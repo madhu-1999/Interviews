@@ -12,6 +12,36 @@ debugInConsole: false # Print debug info in Obsidian console
 ```
 # Prerequisite
 + [[Probability#Random Variable|Random Variable]]
+
+# 
+>[!warning]+
+>$X$ is a random variable;
+> $x$ denotes a particular value of the random variable; 
+> $n$ and $p$ are parameters, that is, fixed real numbers. 
+> The parameter $p$ is usually unknown and must be estimated from data.
+>Above example is of [[#Binomial Distribution]]
+
+
+# Properties of Distributions
+## Percentile
++ a **k-th** percentile is a score below which a given percentage **k** of all scores in its frequency distribution exist.
++ Ex: If a result falls in the 20th percentile, it means that 20% of all results are below this result.
+If $X$ is a continuous random variable, then $$p = \int_{-\infty}^{\pi_p}f(x) dx = F(\pi_p)$$
+![[Screenshot 2025-08-23 at 3.53.34 PM.png]]
+>[!info]+
+>25th percentile -> first quartile
+>50th percentile -> median
+>75th percentile-> third quartile (measure of spread)
+### ***Relation with CDF***
+CDF ($F(x)$) calculates the cumulative probability for a given value $x$  i.e. proportion of data $\leq x$. ($x = \pi_p$).
+The quantile function, or inverse CDF, takes a percentile rank ($p$) and returns corresponding data value ($\pi_p$ ) $$F^{-1}(p) = \pi_p$$
+## Z-score
++ Measures how many standard deviations ($\sigma$), above or below the mean, a data point is.
+$$z = \frac{x - \mu}{\sigma}$$
++ve z-score => above average
+-ve z-score => below average
+$\approx$ 0 => close to average.
+above or below $\pm3$ => highly unusual.    
 # Hypergeometric Distribution
 + Discrete distribution
 If we randomly select $n$ items **without replacement** from a set of $N$ items such that $m$ items are of one type and $N-m$ of a second type,
@@ -151,5 +181,3 @@ $$f(x,k) = \frac{1}{2^{k/2}\Gamma (k/2)}x^{k/2-1}e^{-x/2},x\geq0$$ where $\Gamma
 	+ Skewness = $\sqrt\frac{8}{k}$, As $k\rightarrow\infty$ skewness approaches 0.
 	+ Kurtosis = $\frac{12}{k}$
 	+ 
-# Joint Probability Distribution
-+ See [[Probability#Joint Probability|Joint Probability]] first.

@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "9a4c9aeb9956f766",
+        "id": "f396866ad66eec16",
         "type": "tabs",
         "children": [
           {
-            "id": "995c39d877fe1b1f",
+            "id": "cbcbac2a3b779d40",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "GIT.md",
+                "file": "Data & AI/Probability.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -28,7 +28,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "GIT"
+              "title": "Probability"
             }
           }
         ]
@@ -178,8 +178,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "995c39d877fe1b1f",
+  "active": "cbcbac2a3b779d40",
   "lastOpenFiles": [
+    "Data & AI/Probability Distributions.md",
+    "Data & AI/Probability.md",
+    "Assets/Screenshot 2025-08-23 at 3.53.34 PM.png",
+    "GIT.md",
     "AWS/Amazon EBS.md",
     "AWS/Amazon Elastic Compute Cloud (AWS EC2).md",
     "Assets/Screenshot 2025-02-21 at 1.09.34 PM.png",
@@ -209,11 +213,8 @@
     "Authorization.md",
     "AWS/AWS CloudFormation.md",
     "AWS/Cloud Computing.md",
-    "React/React.md",
-    "React/JSX.md",
     "React",
     "Assets/Screenshot 2025-08-15 at 1.38.21 PM.png",
-    "AWS/AWS Global Infrastructure.md",
     "AWS",
     "Data & AI/Statistics",
     "Data & AI",
@@ -221,7 +222,6 @@
     "Assets/Screenshot 2025-05-28 at 6.02.08 PM.png",
     "Assets/Screenshot 2025-04-26 at 2.44.15 PM.png",
     "Assets/Screenshot 2025-04-26 at 2.43.06 PM 1.png",
-    "Assets/Screenshot 2025-04-26 at 2.43.06 PM.png",
     "Python",
     "System Design",
     "Docker",
