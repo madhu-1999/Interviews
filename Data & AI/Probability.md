@@ -86,6 +86,7 @@ $$k =\frac{4}{81}$$
 + ***Note***: $P(X = x) = 0\space\forall\space x$ . For a continuous random variable, area under the graph gives probability i.e. always over a range.
 ## Expectation E(X)
 + For a random variable X, E(X) represents the average value we predict will be observed if we repeatedly sampled from the random variable's distribution. 
++ It is *population mean ($\mu$)*. Note that sample mean is denoted by $\bar{x}$ .
 + It is a theoretical prediction of average in the long run while **mean** is the actual average of a set of data.
 + Discrete Random Variable:
 $$E(X) = \sum P(x_i)\times x_i$$
@@ -125,14 +126,21 @@ $A$ = Sum of dice is 7= $\{(1,6),(6,1),(2,5), (5,2),(3,4),(4,3)\}$
 $$P[(X,Y)\in A] = \sum_{(x,y)\in A}f(x,y)$$
 $$=f(1,6) + f(6,1) + f(2,5) + f(5,2) + f(3,4) + f(4,3)$$
 $$=\frac{6}{36} = \frac{1}{6}$$
+## [[#Expectation E(X)]]
+$$E(XY) = \sum_y\sum_xxy. f(x,y)$$
 ## Continuous Random Variables
 + PDF is given by $f(x,y)$.
 + For any PDF, three things are true:
 	+ $f(x,y) \geq 0\space\forall\space (x,y)$
 	+ $\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f(x,y)dxdy = 1$
 	+ For any event $A\subset S$ ($S$ = sample space):$$P[(X,Y)\in A] = \int\int f(x,y)dxdy$$
-## 
-Joint CDF for both discrete and continuous is given by: $F_{X,Y}(x,y) = P(X\leq x,Y\leq y)$ 
+## [[#Expectation E(X)]]
+$$E(XY) = \int_{y\in\Omega_y}\int_{x\in\Omega_x} xy.f(x,y)dxdy$$
+where $\Omega_y$ = Sample space of $Y$, and $\Omega_x$ = Sample space of X
+##  Notes
+1. Joint CDF for both discrete and continuous is given by: $F_{X,Y}(x,y) = P(X\leq x,Y\leq y)$ 
+2.  Joint Expectation $E(XY)$  is also called correlation.
+3. If X and Y are independent, joint expectation $E(XY)= E(X)E(Y)$
 # Marginal Probability
 + Unconditional probability of an event $A$ occurring. 
 + Derived from [[#Joint Probability]] and represents likelihood of event happening in isolation.
@@ -143,8 +151,9 @@ $$P(Y=y) = \sum_xP(X=x,Y=y)$$
 ## Continuous Random Variables
 $$f_X(x) = \int_{-\infty}^{\infty} f_{X,Y}(x,y) dy$$
 $$f_Y(y) = \int_{-\infty}^\infty f_{X,Y}(x,y)dx$$
-## 
-***NOTE***: $\sum f_X(x) = \sum f_Y(y) = 1$
+## Notes
+1.  $\sum f_X(x) = \sum f_Y(y) = 1$
+2. If X and Y are independent, $f_{X,Y}(x,y) = f_X(x).f_Y(y)$ 
 # Conditional Probability
 $$
 P(A|B) = \frac{P(A\cap B)}{P(B)} 

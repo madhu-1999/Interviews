@@ -94,3 +94,42 @@ Reading: [Guidelines and best practices for archiving Amazon EBS snapshots](http
 + Faster restore
 + Ensures new volumes perform consistently since first use.
 + [[Amazon Elastic Compute Cloud (AWS EC2)#**Custom AMI**|If a new EC2 instance is created from an existing EC2 instance]], the AMI automatically takes snapshot of root EBS volume. If FSR is enabled, EC2 instance boots up faster, since lazy-loading does not happen.
+# EBS Volume Types
+Reference: [EBS Volume Types](https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volume-types.html)
+>[!note]+
+>IOPS => no of R/W ops per second
+>Throughput => volume of data transferred over time (Mbps)
+## Solid State Drive (SSD) 
++ Optimized for ==transactional== workloads with ==frequent R/W== operations, ==small I/O== 
+### **General Purpose SSD
++ gp2, gp3 
++ Balances price and performance for variety of workloads.
++ System boot volume (default root volume), dev and test env
+###  **IOPS provisoned SSD**
++ io1, io2 Block Express
++ Highest performance SSD for mission critical ==low latency== or ==high throughput== workloads.
++ Great for database workloads
++ Allows [[#EBS Multi Attach]]
+## Hard disk drive (HDD)
++ Optimized for large ==streaming== workloads with ==high throughput== needs
++ Cannot be boot volume.
+### **Throughput optimized HDD**
++ st1
++ ==Low cost== HDD for ==frequently accessed, high throughput== workloads
++ Bid data, data warehouse, log processing
+### **Cold HDD**
++ sc1
++ ==Lowest cost== HDD for ==infrequently accessed== workloads
+# EBS Multi Attach
++ Only for [[#**IOPS provisoned SSD**|io1/io2]] .
++ Can attach same volume to multiple instances (upto 16 Nitro-based) in the ==same AZ==.
++ Must use a ==cluster aware== file system (GFS2, OCFS2) designed to handle concurrent R/W.
++ [[AWS Cloudwatch|Cloudwatch]] metrics aggregated over all instances, so cannot monitor performance for individual insatnce.
++ All instances have full R/W access.
++ Eliminates SPOF. If one instance fails, another can take over without need to detach and reattach the volume, reducing recovery time.
++ Use case:
+	+ Multiple db nodes can access shared volume for concurrent writes, reads.
+	+ Multiple instances can access and process a shared content repository, improving efficiency and throughput for web servers or content pipelines.
+>[!note]+ 
+>Nitro is hypervisor for some EC2 instance types.
+

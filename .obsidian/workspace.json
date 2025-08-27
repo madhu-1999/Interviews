@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "f396866ad66eec16",
+        "id": "9b199432e4362dab",
         "type": "tabs",
         "children": [
           {
-            "id": "cbcbac2a3b779d40",
+            "id": "1f9088b41039b12c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Data & AI/Probability.md",
+                "file": "AWS/Amazon EBS.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -28,7 +28,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "Probability"
+              "title": "Amazon EBS"
             }
           }
         ]
@@ -63,10 +63,10 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:aws",
+                "query": "",
                 "matchingCase": false,
-                "explainSearch": false,
-                "collapseAll": false,
+                "explainSearch": true,
+                "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
               },
@@ -88,7 +88,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 244.5
+    "width": 244.5,
+    "collapsed": true
   },
   "right": {
     "id": "40eb84998c0dc91a",
@@ -178,21 +179,26 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "cbcbac2a3b779d40",
+  "active": "1f9088b41039b12c",
   "lastOpenFiles": [
-    "Data & AI/Probability Distributions.md",
+    "AWS/Storage in AWS.md",
+    "AWS/Amazon Elastic Compute Cloud (AWS EC2).md",
+    "AWS/Amazon EBS.md",
+    "Data & AI/Covariance & Correlation.md",
+    "Data & AI/Data types.md",
+    "Data & AI/Population vs Sample.md",
     "Data & AI/Probability.md",
+    "Data & AI/Descriptive Statistics.md",
+    "Data & AI/Inferential Statistics.md",
+    "Data & AI/Probability Distributions.md",
     "Assets/Screenshot 2025-08-23 at 3.53.34 PM.png",
     "GIT.md",
-    "AWS/Amazon EBS.md",
-    "AWS/Amazon Elastic Compute Cloud (AWS EC2).md",
     "Assets/Screenshot 2025-02-21 at 1.09.34 PM.png",
     "Assets/Pasted image 20250219160701.png",
     "Assets/Pasted image 20250219160816.png",
     "Assets/Pasted image 20250219160923.png",
     "Assets/Image.jpg",
     "Untitled.base",
-    "AWS/Storage in AWS.md",
     "Computer Networks/Network Attached Storage (NAS).md",
     "AWS/IAM.md",
     "AWS/Amazon VPC.md",
@@ -209,10 +215,6 @@
     "Data structures and Algorithms/Dynamic Programming/Subset Sum.md",
     "Data structures and Algorithms/Dynamic Programming",
     "AWS/Interacting with AWS Services.md",
-    "Authentication.md",
-    "Authorization.md",
-    "AWS/AWS CloudFormation.md",
-    "AWS/Cloud Computing.md",
     "React",
     "Assets/Screenshot 2025-08-15 at 1.38.21 PM.png",
     "AWS",
