@@ -49,6 +49,7 @@ debugInConsole: false # Print debug info in Obsidian console
 + Specify the number of instances to launch
 ## Amazon Machine Image (AMI)
 + Pre-built virtual machine images that have the basic components for what is needed to start an instance.
++ ==AMI is built for a specific AWS region. Can't launch a EC2 instance using an AMI in  another region.==
 + Three ways to use:
 	+ Create [[#custom AMI]]
 	+ Use preconfigured AWS AMI's
@@ -124,7 +125,7 @@ Reference for extended reading: https://aws.amazon.com/ec2/instance-types/
 + Cannot choose which physical server instances run on.
 + Offers isolation from other AWS customers.
 
-# EC2 Auto Scaling
+# Auto Scaling Group (ASG)
 >[!Info]+
 >**Scalability** refers to the ability of a system to handle increased load by adding resources
 >**Elasticity** is the ability to scale resources up or down in response to real-time demand.

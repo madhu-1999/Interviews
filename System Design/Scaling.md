@@ -34,6 +34,7 @@ debugInConsole: false # Print debug info in Obsidian console
 + Scalability: can add in more servers if current ones cannot handle all the load
 + Security: can help mitigate DDoS attacks by routing to other servers instead of compromised one.
 + Performance: By doing all above things, improves performance.
++ Exposes a single point of access to the application. Client doesn't know which server it is connecting to and how many servers exist.
 ## Load Balancing algorithms
 ### **Round-Robin**
 Sends traffic to servers in its set in rotation.

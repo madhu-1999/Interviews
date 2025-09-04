@@ -25,6 +25,7 @@ Ex: Worker Table
 | 76        | Vikas       | ECT501      | Pune           |
 | 76        | Vikas       | ECT502      | Pune           |
 | 79        | Rajesh      | ECT669      | Mumbai         |
+
 If we insert a record with empty `Worker_dept` then the missing data creates a anomaly, since a worker *MUST* belong to a department.
 ## Update Anomaly
 

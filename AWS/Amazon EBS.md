@@ -12,9 +12,9 @@ debugInConsole: false # Print debug info in Obsidian console
 ```
 # Overview
 + Elastic Block Store (EBS)
-+ [[Network Attached Storage (NAS)]] to [[Amazon Elastic Compute Cloud (AWS EC2)|EC2]] instances, meaning data persists even after instance is terminated or stopped.
++ Data persists even after instance is terminated or stopped.
 + [[Storage in AWS#Block storage|Block-level storage]] , offering consistent and low-latency performance for workloads like databases.
-+ EBS volumes can be backed up, resized and reattached to different EC2 instances.
++ EBS volumes can be backed up, resized and reattached to different [[Amazon Elastic Compute Cloud (AWS EC2)|EC2]] instances.
 + ==Bound to a specific AZ==.
 + Can customize size (in GBs) and IOPS.
 	+ Billed for entire provisioned capacity, even if unused.

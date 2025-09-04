@@ -40,7 +40,7 @@ debugInConsole: false # Print debug info in Obsidian console
 + Access is slower due to its hierarchical nature.
 + Can scale and expand storage as per needs on AWS.
 + Offers two primary file storage services
-	+ [Amazon EFS]: Fully managed, scalable NFS file system.
+	+ [[Amazon EFS]]: Fully managed, scalable NFS file system.
 	+ Amazon FSx: Fully managed, file storage for popular file systems like Windows, Lustre and NetApp ONTAP.
 ## Object storage
 >[!tldr]

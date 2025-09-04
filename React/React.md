@@ -44,9 +44,9 @@ Web app that loads and updates content dynamically without refreshing entire pag
 	- **Easier to test:** Components can be tested independently, ensuring their functionality and reliability.
 	- **Modular and Reusable**
 	- **Encapsulation and Isolation**:  Each component manages its own state and logic. Ensures loose coupling between data and logic.
-- **Virtual DOM**: React uses a lightweight in-memory representation of the actual DOM, allowing it to perform updates selectively and efficiently.
+- [[Rendering in React#Virtual DOM|Virtual DOM]]: React uses a lightweight in-memory representation of the actual DOM, allowing it to perform updates selectively and efficiently.
 	- When data changes, React first updates the virtual DOM, then compares it to the previous version. This process, known as diffing, allows React to identify the minimal set of changes required in the actual DOM. By updating only the necessary elements, React minimizes expensive DOM manipulations, resulting in significant performance improvements.
-- **JSX**: While not mandatory, JSX provides a syntax extension that allows you to write HTML-like structures within your JavaScript code, making UI development more intuitive.
+- [[JSX]]: While not mandatory, JSX provides a syntax extension that allows you to write HTML-like structures within your JavaScript code, making UI development more intuitive.
 -  **Learn once, write anywhere**: With React Native, you can use your React knowledge to build native mobile applications for iOS and Android. This "learn once, write anywhere" approach allows you to:
 	- **Share code between platforms:** Reuse components and logic across web and mobile, reducing development time and effort.
 	- **Leverage existing skills:** Apply your React expertise to mobile development without needing to learn entirely new technologies.
