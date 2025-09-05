@@ -131,15 +131,46 @@ Reference for extended reading: https://aws.amazon.com/ec2/instance-types/
 >**Elasticity** is the ability to scale resources up or down in response to real-time demand.
 
 + EC2 Auto Scaling adds instances based on demand and key scaling metrics and then decommissions instances when that demand goes down. 
-+ Offers two approaches
-	+ **Dynamic Scaling**:  adjusts in real time to fluctuations in demand
-	+ **Predictive Scaling**: preemptively schedules instances based on anticipated demand.
 + It is a collection of EC2 instances, which can scale in and out to dynamically meet demand.
-+ Size specifications:
-	+ Minimum size: The number of instances never goes below the set *minimum*.
-	+ Maximum size: The number of instances never goes above the set *maximum*
-	+ Desired capacity: AWS aims to maintain *desired* number of instances at any given time. If not specified, defaults to *minimum* number of instances.
++ Auto-scaling group can launch multiple types of instances, to optimize costs. (Spot + On-demand or Reserved/Savings Plan + On-demand)^[[#Pricing Options]]    
+## Launch Template
++ Specify instance configuration information such as AMI, instance type etc.. (All config options in creating EC2 instance).
++ Used by ASG to create new instances.
++ All parameters are optional.
+	+ If AMI is not specified, cannot add AMI during ASG creation.
++ If you do not have sufficient permissions to use and create resources specified in a launch template, you receive an error that you're not authorized to use the launch template when you try to specify it for an Auto Scaling group.
+	+ Ex: To create EBS volumes with tags from existing snapshots, the user must have read access to the snapshots, and permissions to create and tag volumes.
++ After scaling activity happens, there is a cooldown period (default 300s), during which the ASG will not launch or terminate new instances (to allow metrics to stabilize)
+## Size specifications
++ Minimum size: The number of instances never goes below the set *minimum*.
++ Maximum size: The number of instances never goes above the set *maximum*
++ Desired capacity: AWS aims to maintain *desired* number of instances at any given time. If not specified, defaults to *minimum* number of instances.
 ![A basic architecture diagram of an Auto Scaling group within a VPC.](https://docs.aws.amazon.com/images/autoscaling/ec2/userguide/images/asg-basic-arch.png)
+## Scaling approaches
++ **Dynamic Scaling**:  adjusts in real time to fluctuations in demand.
+	+  Track a specific CloudWatch metric, and define what action to take when the associated CloudWatch alarm is in ALARM.
+	+ Metrics used to invoke the alarm state are an aggregation of metrics coming from all of the instances in the Auto Scaling group.
+	+ Target Tracking Scaling
+		+ Increase and decrease the current capacity of the group based on a CloudWatch metric and a target value
+		+ Ex: Average ASG CPU $\approx$ 40%
+	+ Simple Scaling
+		+ Single scaling adjustment only.
+		+ When CloudWatch alarm is triggered (CPU > 70%) add 2 units (Scale out)
+		+ When CloudWatch alarm is triggered (CPU < 30%) remove 1 unit (Scale in)
+	+ Step Scaling
+		+ Multiple step adjustments possible.
+		+ When CloudWatch alarm is triggered ( CPU > 60%) add 1 unit (Scale out)
+		+ When CloudWatch alarm is triggered ( CPU > 70%) add 3 units (Scale out)
+		+ When CloudWatch alarm is triggered (CPU < 40%) remove 1 unit (Scale in)
+		+ When CloudWatch alarm is triggered (CPU < 30%) remove 2 units (Scale in)
+	+ For simple and step scaling, 3 types of adjustments to be possible:
+		+ Set to exact capacity (=10) if say CPU > 80%.
+		+ Add/Remove _x_ units for some metric and utilization.
+		+ Add/Remove _x%_ units for some metric and utilization.
++ **Predictive Scaling**: preemptively schedules instances based on anticipated demand.
+	+ Ml driven. Forecast based on past data for a metric and target utilization.
++ **Scheduled Actions**: manually schedule instances based on known future demand.
+## Health checks
 + EC2 Auto Scaling uses health checks to maintain the *desired* capacity. If any instances are down, it replaces them with new instances. Custom health check can be specified, failure of which leads to the instance being replaced with a new one.
 + If multiple [[AWS Global Infrastructure#Availability Zone (AZ)|AZ's]] specified in the group, instances are divided evenly amongst the AZ's. AWS attempts to create new instances first in the AZ with the least number of instances, on failure moves on to other AZ's. 
 > [!note] 
@@ -148,7 +179,16 @@ Reference for extended reading: https://aws.amazon.com/ec2/instance-types/
 >[!note]
 >If almost near max capacity before rebalancing starts, it can exceed *maximum* threshold by 10% only during rebalancing activity.
 
-+ Auto-scaling group can launch multiple types of instances, to optimize costs. (Spot + On-demand or Reserved/Savings Plan + On-demand)^[[#Pricing Options]]    
+## Instance Refresh
++ Use Instance Refresh if we have a ASG using old launch template and we want to:
+	+ Replace the launch template with a newer version
+	+ Update current EC2 instances with new config 
+	+ Keep service running, minimal disruption
++ Need to specify _minimum healthy %_ which tells ASG how many instances can be terminated over time.
+	+ As instances are terminated, new ones are launched using the new launch template.
+	+ This process continues until all instances with the old launch template are replaced by new instances.
++ Can specify warm-up time i.e. a period needed for an instance to be ready to receive traffic.
+##
 + Web app example. Create different auto-scaling group for each tier.
 ![A basic three tier architecture with an Auto Scaling group.](https://docs.aws.amazon.com/images/autoscaling/ec2/userguide/images/sample-3-tier-architecture-auto-scaling-diagram.png)
 

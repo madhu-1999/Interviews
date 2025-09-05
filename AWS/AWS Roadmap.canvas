@@ -1,0 +1,28 @@
+{
+	"nodes":[
+		{"id":"55ac22fc2b125806","type":"file","file":"AWS/AWS Global Infrastructure.md","x":-400,"y":-220,"width":400,"height":50},
+		{"id":"ca43fb257f606582","type":"file","file":"AWS/Cloud Computing.md","x":-400,"y":-320,"width":400,"height":50},
+		{"id":"946ec79d126c24a7","type":"file","file":"AWS/Amazon VPC.md","x":-600,"y":-120,"width":400,"height":55},
+		{"id":"9dcf3a17da16bd92","type":"file","file":"AWS/IAM.md","x":-191,"y":-113,"width":400,"height":50},
+		{"id":"5592710f128aac38","type":"file","file":"AWS/Amazon Elastic Compute Cloud (AWS EC2).md","x":-600,"y":0,"width":400,"height":66},
+		{"id":"3a9b741915460f95","type":"file","file":"AWS/Amazon EBS.md","x":-1100,"y":285,"width":400,"height":50},
+		{"id":"9be1233190ba10cb","type":"file","file":"AWS/Amazon EFS.md","x":-734,"y":393,"width":400,"height":55},
+		{"id":"7bbfcb1511bff217","type":"file","file":"AWS/Storage in AWS.md","x":-894,"y":163,"width":400,"height":50},
+		{"id":"abea7bcffc0dda43","type":"file","file":"AWS/Amazon ELB.md","x":-324,"y":162,"width":400,"height":51},
+		{"id":"b2f6c6162a59c0f3","type":"file","file":"AWS/AWS CloudFormation.md","x":9,"y":0,"width":400,"height":63},
+		{"id":"45a319ecd4c0624b","type":"file","file":"AWS/Interacting with AWS Services.md","x":120,"y":-270,"width":400,"height":50},
+		{"id":"ec914f1f99c03583","x":-1180,"y":-120,"width":400,"height":50,"type":"file","file":"AWS/Amazon RDS.md"}
+	],
+	"edges":[
+		{"id":"93ed78779014a032","fromNode":"55ac22fc2b125806","fromSide":"bottom","toNode":"946ec79d126c24a7","toSide":"top"},
+		{"id":"19ef30ae960a4998","fromNode":"ca43fb257f606582","fromSide":"bottom","toNode":"55ac22fc2b125806","toSide":"top"},
+		{"id":"f701c58f86161aa4","fromNode":"5592710f128aac38","fromSide":"right","toNode":"b2f6c6162a59c0f3","toSide":"left"},
+		{"id":"b82291e5d2708ee1","fromNode":"946ec79d126c24a7","fromSide":"bottom","toNode":"5592710f128aac38","toSide":"top"},
+		{"id":"eba44a00427a6ea0","fromNode":"55ac22fc2b125806","fromSide":"bottom","toNode":"9dcf3a17da16bd92","toSide":"top"},
+		{"id":"b06e748b4aff6e08","fromNode":"5592710f128aac38","fromSide":"bottom","toNode":"7bbfcb1511bff217","toSide":"top"},
+		{"id":"5173c31c02e0a4a3","fromNode":"7bbfcb1511bff217","fromSide":"bottom","toNode":"3a9b741915460f95","toSide":"top"},
+		{"id":"2c11e4b1bf46a8a8","fromNode":"7bbfcb1511bff217","fromSide":"bottom","toNode":"9be1233190ba10cb","toSide":"top"},
+		{"id":"bef220c803779827","fromNode":"5592710f128aac38","fromSide":"bottom","toNode":"abea7bcffc0dda43","toSide":"top"},
+		{"id":"865e70ac1c1c15ed","fromNode":"55ac22fc2b125806","fromSide":"right","toNode":"45a319ecd4c0624b","toSide":"left"}
+	]
+}

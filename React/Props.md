@@ -93,7 +93,7 @@ export default function Clock({ color, time }) {
     </h1>
   );
 }
-```
+[[State]]```
 + The `time` prop changes every second, and the `color` prop changes when you select another color. 
 + Each time new props are passed in, the child component is re-rendered.
 + Note that, for the child component, props are still immutable. It is just that the parent component is passing in different values for props.

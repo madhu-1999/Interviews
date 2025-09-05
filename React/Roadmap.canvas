@@ -1,0 +1,22 @@
+{
+	"nodes":[
+		{"id":"47d4cc522337d556","x":-220,"y":-240,"width":400,"height":57,"type":"file","file":"React/React.md"},
+		{"id":"0e4f481e14ca9c9f","x":-680,"y":-183,"width":400,"height":50,"type":"file","file":"React/JSX.md"},
+		{"id":"daf722271e452cc7","x":-220,"y":-80,"width":400,"height":60,"type":"file","file":"React/Component.md"},
+		{"id":"cbbee94c480e20c1","x":-440,"y":60,"width":400,"height":60,"type":"file","file":"React/Props.md"},
+		{"id":"760588ca16d1aad4","x":79,"y":63,"width":400,"height":57,"type":"file","file":"React/Event handlers.md"},
+		{"id":"e839fada51136246","x":79,"y":180,"width":400,"height":59,"type":"file","file":"React/State.md"},
+		{"id":"c057dec921b74dde","x":-420,"y":380,"width":400,"height":50,"type":"file","file":"React/Rendering in React.md"},
+		{"id":"a40d450be59d4ea7","x":-580,"y":500,"width":400,"height":50,"type":"file","file":"React/useEffect Hook.md"}
+	],
+	"edges":[
+		{"id":"04679cb72968bc89","fromNode":"47d4cc522337d556","fromSide":"bottom","toNode":"daf722271e452cc7","toSide":"top"},
+		{"id":"5df580ca0a1be94b","fromNode":"47d4cc522337d556","fromSide":"left","toNode":"0e4f481e14ca9c9f","toSide":"top"},
+		{"id":"ba027810d5c6099f","fromNode":"daf722271e452cc7","fromSide":"bottom","toNode":"cbbee94c480e20c1","toSide":"top"},
+		{"id":"710de607ddbc9ea3","fromNode":"daf722271e452cc7","fromSide":"bottom","toNode":"760588ca16d1aad4","toSide":"top"},
+		{"id":"e6ec659938ada7e4","fromNode":"760588ca16d1aad4","fromSide":"bottom","toNode":"e839fada51136246","toSide":"top"},
+		{"id":"196347bf82eb3e5b","fromNode":"cbbee94c480e20c1","fromSide":"bottom","toNode":"c057dec921b74dde","toSide":"top"},
+		{"id":"8a90f04a8a7c92b4","fromNode":"e839fada51136246","fromSide":"bottom","toNode":"c057dec921b74dde","toSide":"top"},
+		{"id":"8e3dfde4581b516d","fromNode":"c057dec921b74dde","fromSide":"bottom","toNode":"a40d450be59d4ea7","toSide":"top"}
+	]
+}
