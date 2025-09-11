@@ -88,7 +88,7 @@ Reading: [Guidelines and best practices for archiving Amazon EBS snapshots](http
 + When a volume is created from a snapshot, the block data is **lazy loaded** i.e. it is pulled from S3 only when it is accessed.
 + This can cause latency when block is accessed for the first time. 
 + Over time as more blocks are read, performance improves until it finally reaches provisioned capacity.
-+ Fast Snapshot restore eliminates this latency by moving snapshot data from s3 to EBS volume in the background, fully initializing it before it is accessed for the first time.
++ Fast Snapshot restore eliminates this latency by moving snapshot data from S3 to EBS volume in the background, fully initializing it before it is accessed for the first time.
 + Enabled explicitly per snapshot. Max limit 16 TiB.
 ### Advantages
 + Faster restore

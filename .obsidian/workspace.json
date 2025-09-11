@@ -4,24 +4,31 @@
     "type": "split",
     "children": [
       {
-        "id": "f0159e1b4418ecb4",
+        "id": "ab4ba7b1288d28bb",
         "type": "tabs",
         "children": [
           {
-            "id": "9acbcaf95d101ff6",
+            "id": "d9dcf41d6b3ce354",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "React/Roadmap.canvas",
-                "viewState": {
-                  "x": -145.43646381825133,
-                  "y": 192.6958059321288,
-                  "zoom": -0.5
+                "file": "System Design/Caching.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
                 }
               },
-              "icon": "lucide-layout-dashboard",
-              "title": "Roadmap"
+              "icon": "lucide-file",
+              "title": "Caching"
             }
           }
         ]
@@ -56,7 +63,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "fully managed",
                 "matchingCase": false,
                 "explainSearch": true,
                 "collapseAll": true,
@@ -171,10 +178,26 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0670be093d5aebc1",
+  "active": "d9dcf41d6b3ce354",
   "lastOpenFiles": [
-    "React/Rendering in React.md",
+    "AWS/Elasticache.md",
+    "System Design/Caching.md",
+    "AWS/Amazon RDS.md",
+    "Computer Networks & Security/Proxy server.md",
+    "AWS/Amazon Aurora.md",
+    "AWS/AWS Roadmap.canvas",
+    "System Design/Database Replication Strategies.md",
+    "AWS/Amazon EBS.md",
+    "AWS/AWS Cloudwatch.md",
+    "Assets/Screenshot 2025-09-05 at 2.37.47 PM.png",
+    "Assets/Screenshot 2025-09-05 at 2.36.51 PM.png",
+    "Assets/Screenshot 2025-09-05 at 2.35.37 PM.png",
+    "Assets/render.skillbuilder.aws_.png",
+    "AWS/Storage in AWS.md",
+    "System Design/Scaling.md",
+    "AWS/Amazon ELB.md",
     "React/Roadmap.canvas",
+    "React/Rendering in React.md",
     "React/Event handlers.md",
     "React/State.md",
     "React/Props.md",
@@ -185,31 +208,16 @@
     "Spring Boot/Spring Boot.md",
     "Spring Boot/Spring Data JPA.md",
     "Spring Boot/Spring Framework Architecture.md",
-    "AWS/AWS Roadmap.canvas",
-    "AWS/Amazon RDS.md",
-    "AWS/Amazon ELB.md",
     "AWS/IAM.md",
     "AWS/Interacting with AWS Services.md",
     "AWS/Amazon EFS.md",
     "AWS/Amazon Elastic Compute Cloud (AWS EC2).md",
-    "AWS/AWS CloudFormation.md",
-    "AWS/Cloud Computing.md",
-    "AWS/Amazon VPC.md",
-    "AWS/AWS Global Infrastructure.md",
-    "Computer Networks & Security/SSL & TLS.md",
-    "Computer Networks & Security/IP addressing.md",
     "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19733714.png",
     "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19733688.png",
     "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_28875086.png",
     "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851240.png",
-    "System Design/Scaling.md",
     "Assets/ELB_Traffic.png",
     "Assets/ELB_HighDemand.png",
-    "Assets/ELB_LowDemand.png",
-    "React/useEffect Hook.md",
-    "Assets/www.udemy.com_course_the-ultimate-react-course_learn_lecture_37350868.png",
-    "Assets/Screenshot 2025-09-01 at 4.19.36 PM.png",
-    "Assets/www.udemy.com_course_the-ultimate-react-course_learn_lecture_37350774.png",
     "Untitled.base",
     "Data structures and Algorithms/Dynamic Programming",
     "React",

@@ -14,8 +14,7 @@ debugInConsole: false # Print debug info in Obsidian console
 # Single Leader
 +  Implemented as a master slave model, where master db handles all the writes and some reads and slave/replica db's handle only the reads.![[Screenshot 2025-04-11 at 11.56.59 AM.png]]
 + On receiving a write request, the master db updates its own data and then sends a update request to its followers who, upon receiving the update request, update their own data.
-+ All writes down by master are recorded in a replication log which is then sent to the slaves for update requests.
-+ Updates can be sent in either a **synchronous** or **asynchronous** manner.
++ All writes done by master are recorded in a replication log which is then sent to the slaves for update requests.
 + Good for read heavy workloads
 + Write heavy workloads can cause leader bottleneck.
 ## Synchronous updates
@@ -26,8 +25,7 @@ debugInConsole: false # Print debug info in Obsidian console
 + Faster since we do not wait for slaves to finish their updates.
 + Reads can be stale if slaves are behind the master.![Depiction of Asynchronous replication. Communication between leader and followers is performed asynchronously.](https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fnj0tg3h4hi9e7x2lwigd.png)
 ## Semi-synchronous replication
-+ In practice, one slave is updated synchronously while others update asynchronously.
-+ Ensures, there is atleast one slave that can be promoted to master if master goes down.
++ Based on[[#Quorum read and writes]]
 ## What happens if slave db go down?
 + If other slave db's are available, they handle all the reads until new slave db comes up.
 + In case all slave db's are down, master db takes over reads temporarily, until atleast one slave db comes back up.
@@ -105,7 +103,7 @@ debugInConsole: false # Print debug info in Obsidian console
 ## Quorum read and writes
 + For **strong consistency** $w+r > n$ :
 	+ $w$: no of nodes that confirm write with ack
-	+ $r$: no of nodes queried for data
+	+ $r$: no of nodes queried for reading data
 	+ $n$: total no of nodes
 + set of nodes used in $w$ and $r$ ***CANNOT*** be mutually exclusive and ***MUST*** have atleast one overlapping node. This ensures atleast one node has the latest value written.
 ## Preventing stale reads

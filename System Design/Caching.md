@@ -37,7 +37,7 @@ debugInConsole: false # Print debug info in Obsidian console
 + All strategies need to use a cache eviction policy to replace older data when cache is full.
 + There has to be some expiry time after which data in cache is **invalidated** to ensure outdated data is not present in it. Cache can be refreshed after expiry time.
 ## Cache Aside
-+ Lazy loading of data, i.e. new data is written to cache only when requested. The Server/Application is responsible for fetching the data.![](https://hazelcast.com/wp-content/uploads/2021/12/cache-aside-read-1.svg)
++ Lazy loading of data, i.e. new data is written to cache only when requested. **The Server/Application is responsible for fetching the data.**![](https://hazelcast.com/wp-content/uploads/2021/12/cache-aside-read-1.svg)
 + Data is read first from the cache, however writes are to database.
 ![](https://hazelcast.com/wp-content/uploads/2021/12/cache-aside-write-1.svg)
 ### **Advantages**
@@ -47,7 +47,7 @@ debugInConsole: false # Print debug info in Obsidian console
 + Data can become inconsistent between cache and db after a update, wiithout proper synchronization.
 + For new data, there will always be cache miss.
 ## Read Through
-+ Lazy loading of data for reads i.e. fetched only when requested. The cache is responsible for fetching the data.
++ Lazy loading of data for reads i.e. fetched only when requested. **The cache is responsible for fetching the data.**
 + Writes are to database.
 ![](https://hazelcast.com/wp-content/uploads/2021/12/read-through.svg)
 ### **Advantages**
@@ -73,7 +73,7 @@ debugInConsole: false # Print debug info in Obsidian console
 + Good for write heavy applications
 + Write operation latency better than write through since db write is asynchronous.
 + Cache hit chance increases.
-+ Gives better performance than write through when b=paired with read-through cache.
++ Gives better performance than write through when paired with read-through cache.
 ### **Disadvantages**
 + Write is successful, even if db write fails or db fails.
 + Inconsistency can occur if db write doesn't happen before cache expires and client wants to access this data.
