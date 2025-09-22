@@ -23,6 +23,7 @@ debugInConsole: false # Print debug info in Obsidian console
 + Provides SSL termination (HTTPS) for websites.
 + Can be setup as internal (private) or external (public) ELB's. 
 + Each ELB has a **static DNS name**, which clients can use to send traffic to.
+	+ Even in multi-AZ setup, there is only one static DNS name. The DNS name resolves to the IP addresses of all the ELB nodes in the set. ^[[Amazon Route 53]]
 + Operates within a [[AWS Global Infrastructure|region]] but provisions nodes in each AZ that it is enabled in.
 	+ Load balancing done only for instances in target group that are in AZ's where ELB is enabled.
 + Monitors health of targets. If target becomes unhealthy, traffic is not sent its way. If an AZ fails or has no healthy targets, traffic is routed to healthy targets in other enabled AZ's.

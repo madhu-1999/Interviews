@@ -13,7 +13,7 @@ debugInConsole: false # Print debug info in Obsidian console
 # Overview
 + Elastic File System for cloud and on-premise access. [[Network Attached Storage (NAS)]]
 + [[Storage in AWS#Fully Managed Services|Fully managed]], scalable file storage.
-+ Operates on the Linux NFS protocol.
++ Operates on the Linux **NFS protocol**.
 + Automatic scaling without provisioning of storage capacity or managing it.
 + ==Pay only for storage used== as opposed to EBS where we pay for all provisioned capacity.
 + Can be accessed by multiple [[Amazon Elastic Compute Cloud (AWS EC2)|EC2]] instances simultaneously. 

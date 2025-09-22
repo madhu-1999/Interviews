@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "System Design/Caching.md",
+                "file": "AWS/Amazon Elastic Compute Cloud (AWS EC2).md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -28,7 +28,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "Caching"
+              "title": "Amazon Elastic Compute Cloud (AWS EC2)"
             }
           }
         ]
@@ -104,6 +104,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "AWS/Amazon Route 53.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,7 +114,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Backlinks for Amazon Route 53"
             }
           },
           {
@@ -122,12 +123,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Welcome.md",
+                "file": "AWS/Amazon Route 53.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Welcome"
+              "title": "Outgoing links from Amazon Route 53"
             }
           },
           {
@@ -151,16 +152,17 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Welcome.md",
+                "file": "AWS/Amazon Route 53.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Welcome"
+              "title": "Outline of Amazon Route 53"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -180,44 +182,44 @@
   },
   "active": "d9dcf41d6b3ce354",
   "lastOpenFiles": [
-    "AWS/Elasticache.md",
-    "System Design/Caching.md",
-    "AWS/Amazon RDS.md",
-    "Computer Networks & Security/Proxy server.md",
-    "AWS/Amazon Aurora.md",
-    "AWS/AWS Roadmap.canvas",
-    "System Design/Database Replication Strategies.md",
-    "AWS/Amazon EBS.md",
-    "AWS/AWS Cloudwatch.md",
-    "Assets/Screenshot 2025-09-05 at 2.37.47 PM.png",
-    "Assets/Screenshot 2025-09-05 at 2.36.51 PM.png",
-    "Assets/Screenshot 2025-09-05 at 2.35.37 PM.png",
-    "Assets/render.skillbuilder.aws_.png",
+    "AWS/Amazon S3.md",
+    "chaining.md",
     "AWS/Storage in AWS.md",
-    "System Design/Scaling.md",
-    "AWS/Amazon ELB.md",
-    "React/Roadmap.canvas",
-    "React/Rendering in React.md",
-    "React/Event handlers.md",
-    "React/State.md",
-    "React/Props.md",
-    "React/JSX.md",
-    "React/Component.md",
-    "React/React.md",
-    "Spring Boot/Spring Boot vs Spring vs Spring Framework.md",
-    "Spring Boot/Spring Boot.md",
-    "Spring Boot/Spring Data JPA.md",
-    "Spring Boot/Spring Framework Architecture.md",
+    "AWS/AWS Roadmap.canvas",
+    "AWS/Amazon EFS.md",
     "AWS/IAM.md",
     "AWS/Interacting with AWS Services.md",
-    "AWS/Amazon EFS.md",
+    "AWS/AWS Global Infrastructure.md",
+    "AWS/Amazon CloudFront.md",
+    "System Design/CDN (Content Delivery Network).md",
+    "AWS/Amazon VPC.md",
+    "Assets/Screenshot 2025-09-18 at 5.33.50 PM.png",
+    "Assets/Screenshot 2025-09-18 at 5.30.34 PM.png",
+    "Assets/render.skillbuilder.aws__module_id=K457BUCF7F%3A001.000.000&product_id=8D79F3AVR7%3A002.000.000&registration_id=4e168b19-b788-58f8-8cd7-115533e99c64&navigation=digital.png",
+    "Computer Networks & Security/VPN.md",
+    "AWS/AWS CloudWatch.md",
+    "Computer Networks & Security/IP addressing.md",
+    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19729022.png",
+    "AWS/Amazon Route 53.md",
+    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101622 (1).png",
+    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101622.png",
+    "Active-passive.md",
+    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19728974 1.png",
+    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19728974.png",
+    "AWS/Amazon RDS.md",
+    "AWS/Amazon EBS.md",
     "AWS/Amazon Elastic Compute Cloud (AWS EC2).md",
-    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19733714.png",
-    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19733688.png",
-    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_28875086.png",
-    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851240.png",
-    "Assets/ELB_Traffic.png",
-    "Assets/ELB_HighDemand.png",
+    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19728960.png",
+    "AWS/Amazon ELB.md",
+    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19728958.png",
+    "Computer Networks & Security/Domain Name System (DNS).md",
+    "AWS/Amazon MemoryDB.md",
+    "AWS/Amazon Aurora.md",
+    "AWS/Amazon DynamoDB.md",
+    "AWS/Elasticache.md",
+    "System Design/Caching.md",
+    "Computer Networks & Security/Proxy server.md",
+    "React/Roadmap.canvas",
     "Untitled.base",
     "Data structures and Algorithms/Dynamic Programming",
     "React",

@@ -45,3 +45,8 @@ A IP address is a **32 bit unique address** for a host that is used when communi
 + Addresses should be contiguous and no of addresses must be a power of 2.
 + First address of block must be evenly divisible with size of block.
 + Mask can be derived from /n suffix bits. Mask will have n 1 bits and rest 0.
+## Private address ranges
+> 10.0.0.0 -10.255.255.255 (10/8 prefix)
+   172.16.0.0 - 172.31.255.255 (172.16/12 prefix)
+   192.168.0.0 - 192.168.255.255 (192.168/16 prefix)
+   

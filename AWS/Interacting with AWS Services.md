@@ -28,3 +28,4 @@ aws ec2 describe-availability-zones
 >Access keys are generated through the management console. (User profile -> Security Credentials -> Create Access Key)
 >Access key id => username
 >Secret access key => password
+

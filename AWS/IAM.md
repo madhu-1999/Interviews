@@ -15,12 +15,12 @@ debugInConsole: false # Print debug info in Obsidian console
 [[Authentication]]
 # What is IAM?
 + Identity and access Management (IAM) is a tool to manage access and type of access to resources.
-+ It is a global service i.e. not region specific. When an IAM user is created, it is available everywhere. This is in contrast to other AWS services like EC2 where region has to be specified.
++ It is a **global** service i.e. not region specific. When an IAM user is created, it is available everywhere. This is in contrast to other AWS services like EC2 where region has to be specified.
 # User
 + Individual or application that needs access to AWS resource. 
 + Each user receives unique credentials such as passwords or access keys.
 + **Root user** created by default (identified by account id). Should not be used or shared.
-+ An IAM user account has same account id as root + displays `IAM user: <username>`.
++ An IAM user account has same account id as root + displays `IAM user: <username>`. (console)
 + Each IAM user has a unique id called (User ARN).
 # Group
 + Collection of users.
@@ -57,7 +57,7 @@ debugInConsole: false # Print debug info in Obsidian console
 ## Permission Policies
 + Defines the actions that are allowed or denied when role is assumed. Same as [[#Policy]].
 ## 
->[!example]+
+>[!example]
 >Suppose you have an application running on an EC2 instance that needs to read from an S3 bucket. Instead of storing access keys on the instance, you can create an IAM role with a policy that allows reading from S3. You then attach this role to your EC2 instance. When the instance runs, it assumes the role and gets temporary credentials to access the S3 bucket.
 # Policy
 + JSON document to define permissions.
@@ -110,16 +110,16 @@ debugInConsole: false # Print debug info in Obsidian console
 + Can Auto generate password at time of IAM user creation and allow user to change their password on login.
 + Can Require users to change password after some time. (say every month).
 + Can Prevent password re-use
->[!info]+
+>[!info]
 >IAM default password policy:
->8 characters (min)
->Include a min of 3 character types from below:
->	Uppercase
->	Lowercase
->	Numbers
->	Non alphanumeric characters
->Password never expires
->Must not be same as AWS account name or email
+>+ 8 characters (min)
+>+ Include a min of 3 character types from below:
+>	+ Uppercase
+>	+ Lowercase
+>	+ Numbers
+>	+ Non alphanumeric characters
+>+ Password never expires
+>+ Must not be same as AWS account name or email
 ## Multi Factor Authentication (MFA)
 + Password you know + security device you own.
 + If password is stolen, account is not compromised.
@@ -154,7 +154,7 @@ debugInConsole: false # Print debug info in Obsidian console
 + Shows service permissions granted to user, when those services was last accessed and what policy granted the access.
 + IAM->Users->User->Last Access 
 # Best practices
-+ don't use root account except for setup
++ Don't use root account except for setup
 + One physical user = One IAM user
 + Assign users to groups and assign permissions to groups
 + Create a strong password policy

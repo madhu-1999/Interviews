@@ -14,7 +14,16 @@
 	- Enabled: Multiple shards across multiple servers.
 - Need to attach subnet groups (in which cache can be used) during creation.
 - Can attach security groups for network security.
-- 
+-  Ideal for 
+	- storing session data
+	- API responses
+	- database query results
+	- other information that applications require repeatedly.
+- Write through and cache-aside caching strategies available.
+- Cache evictions
+	- Delete explicitly
+	- Memory full (LRU)
+	- TTL
 # Deployment options
 ## Serverless
 + Ideal for

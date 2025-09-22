@@ -38,7 +38,10 @@ debugInConsole: false # Print debug info in Obsidian console
 	+ Public IP
 	+ [[Amazon VPC#Security Groups|Security Group]] 
 >[!note]+ 
-> By default, public IP address is assigned by AWS and may change whenever the instance is restarted.
+>+  By default, public IP address is assigned by AWS and may change whenever the instance is restarted.
+>	+ Only assigned if `Auto-assign public IP` is enabled for chosen subnet.
+> + A EC2 instance always has a private IP.
+
 + Configure extra storage or customize existing storage (AMI). 
 >[!note]+
 >+ AMI Determines size of default [[Amazon EBS|EBS]] root volume.
@@ -215,3 +218,30 @@ ssh -i EC2Tutorial.pem ec2-user@<public ip>
 	+ When you connect to an instance using EC2 Instance Connect, the EC2 Instance Connect API pushes an SSH public key to the [instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) where it remains for 60 seconds.
 	+ An IAM policy attached to your user authorizes your user to push the public key to the instance metadata.
 	+ The SSH daemon uses `AuthorizedKeysCommand` and `AuthorizedKeysCommandUser`, which are configured when EC2 Instance Connect is installed, to look up the public key from the instance metadata for authentication, and connects you to the instance.
+# Instance Metadata Service (IMDS)
++ Provides information about a **running** EC2 instance that applications can access to manage or configure themselves.
++ Metadata includes
+	+ instance ID
+	+ IP addresses
+	+ security groups
+	+ IAM role credentials
++ Accessible only from **within the instance**, at link-local IP address `169.254.169.254`.
+	+ A metadata server is created when instance is launched at `169.254.169.254`, which stores all the instance metadata.
++ Ex: EC2 instance needs to access other AWS services like S3 bucket.
+	+ An IAM role is attached to the instance at launch
+	+ Application fetches role credentials from IMDS and makes API calls.
+## IMDSv1
++ Access via `GET` call to http://169.254.169.254/latest/meta-data
++ Vulnerable to attacks like server side request forgery (SSRF)
+## IMDSv2
++ More secure, recommended
++ Access is a two step process:
+	+ Get session token (session validity: 1s-6h)
+```bash
+TOKEN=curl -X PUT "http://169.254.169.254/latest/api/token" 
+			-H "X-aws-ec2-metadata-token-ttl-seconds: 21600"
+```
++ Use session token in IMDSv2 calls
+```bash
+curl -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/
+```

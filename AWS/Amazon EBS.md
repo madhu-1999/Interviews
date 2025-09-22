@@ -124,7 +124,7 @@ Reference: [EBS Volume Types](https://docs.aws.amazon.com/ebs/latest/userguide/e
 + Only for [[#**IOPS provisoned SSD**|io1/io2]] .
 + Can attach same volume to multiple instances (upto 16 Nitro-based) in the ==same AZ==.
 + Must use a ==cluster aware== file system (GFS2, OCFS2) designed to handle concurrent R/W.
-+ [[AWS Cloudwatch|Cloudwatch]] metrics aggregated over all instances, so cannot monitor performance for individual insatnce.
++ [[AWS CloudWatch|Cloudwatch]] metrics aggregated over all instances, so cannot monitor performance for individual insatnce.
 + All instances have full R/W access.
 + Eliminates SPOF. If one instance fails, another can take over without need to detach and reattach the volume, reducing recovery time.
 + Use case:

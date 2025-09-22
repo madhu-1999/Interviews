@@ -31,6 +31,12 @@ debugInConsole: false # Print debug info in Obsidian console
 + Latency: Proximity to users ensures lower latency
 + Service Availability: Not all regions have all services.
 + Pricing: Varies by region
+## Partitions
++ Grouping of regions
++ Currently there are 3 partitions:
+	+ `aws`: Standard regions
+	+ `aws-cn`: China regions
+	+ `aws-us-gov`: GovCloud US
 
 # Availability Zone (AZ)
 + Group of data centers within a region.
