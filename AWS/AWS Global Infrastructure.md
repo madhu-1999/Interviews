@@ -12,8 +12,8 @@ debugInConsole: false # Print debug info in Obsidian console
 ```
 # Terminology
 >[!info]+
->**Bandwidth**: Amount of data that can be transmitted over the network in a given period of time. Ex: 100 Mbps.
->***Note***: High bandwidth does not imply guarantee faster speed due to other factors such as network congestion,  and quality of your connection.
+>**Bandwidth**: Maximum amount of data that can be **theoretically** transmitted over the network in a given period of time. Ex: 100 Mbps.
+>***Note***: High bandwidth does not imply guarantee faster speed due to other factors such as network congestion, and quality of your connection. **Throughput** tells you the actual amount of data being transmitted over the network in a given period of time.
 >**Fully redundant network**: System of duplicate hardware components, software and connections designed to prevent power outages and maintain continuous operation even when failures occur.
 >	1.  **Hardware Redundancy:** Involves duplicating physical components like servers, routers, switches, power supplies, and storage systems.
 >	2. **Software Redundancy:** Uses multiple applications on different servers or virtual instances to provide backups and load balancing capabilities.
@@ -49,5 +49,10 @@ debugInConsole: false # Print debug info in Obsidian console
 # Local Zones
 + Provides compute, storage, database and other select  AWS services closer to end users (Closer than closest AZ in the geographic area).
 + Ex: Real-time gaming
+# Edge locations
++ Strategically placed data centers that serve data from location closest to user.
+	+  [[Amazon CloudFront]] (CDN) retrieves from closest edge location.
+	+ Frequently accessed content is cached here, reducing load on origin server.
++ High performance, low latency
 # AWS Outposts
 + Can use AWS APIs, tools and infrastructure on-premises or own data center along with AWS cloud for  [[Cloud Computing#Alternatives|hybrid deployment]].

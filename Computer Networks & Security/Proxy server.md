@@ -38,3 +38,4 @@ This process hides your actual IP address and can also make your connection more
 ### **Load Balancing**
 + Can distribute incoming requests evenly across all available servers, preventing any one server from being overwhelmed.
 + Can automatically redirect traffic to another server if one fails.
+Read [[Database Sharding#Use a routing layer (Recommended)|Database proxy in sharding]] for more features related to sharding.

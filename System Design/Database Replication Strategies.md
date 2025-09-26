@@ -115,3 +115,7 @@ debugInConsole: false # Print debug info in Obsidian console
 + Background process that periodically checks for discrepancies between replicas and corrects them.
 + Writes are not copied in order, and there may be delay before it is copied.
 + Without an anti-entropy process, values that are rarely read would be missing in some replicas. This affects [[ACID#Durability|durability]] of database as it would only become consistent when [[Database Replication Strategies#Leaderless#Preventing stale reads#**Read Repair**|read repair]] is performed.
+# Limitations of replication 
++ **Write bottleneck**: Since only leader processes writes, it can become a bottleneck for write heavy workloads.
++ **Replication lag**: For write heavy workloads, replication lag can become an issue with different replicas having different versions of data.
++ **Storage capacity**: As databases grow over time, the sheer volume of data (petabytes of data) can become a bottleneck for storage (limited vertical scaling) as well as **query performance**.

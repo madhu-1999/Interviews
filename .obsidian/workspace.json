@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "ab4ba7b1288d28bb",
+        "id": "a5379bce57ace67b",
         "type": "tabs",
         "children": [
           {
-            "id": "d9dcf41d6b3ce354",
+            "id": "ede6231cb5c5c80d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AWS/Amazon Elastic Compute Cloud (AWS EC2).md",
+                "file": "System Design/Database Sharding.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -28,7 +28,31 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "Amazon Elastic Compute Cloud (AWS EC2)"
+              "title": "Database Sharding"
+            }
+          },
+          {
+            "id": "8ab40b54bec46dba",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Computer Networks & Security/Proxy server.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Proxy server"
             }
           }
         ]
@@ -63,7 +87,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "fully managed",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": true,
                 "collapseAll": true,
@@ -180,45 +204,46 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d9dcf41d6b3ce354",
+  "active": "ede6231cb5c5c80d",
   "lastOpenFiles": [
+    "Assets/Screenshot 2025-09-26 at 2.04.28 PM.png",
+    "Computer Networks & Security/Proxy server.md",
+    "System Design/Database Sharding.md",
+    "Assets/Screenshot 2025-09-26 at 12.05.59 AM.png",
+    "Assets/Screenshot 2025-09-25 at 11.22.44 PM.png",
+    "Assets/Screenshot 2025-09-25 at 11.01.22 PM.png",
+    "AWS/AWS Global Infrastructure.md",
+    "AWS/Amazon Aurora.md",
+    "AWS/Amazon EBS.md",
+    "System Design/Database Replication Strategies.md",
+    "System Design/Scaling.md",
+    "System Design/CDN (Content Delivery Network).md",
+    "Data structures and Algorithms/Graph Theory/Union Find.md",
+    "Assets/Pasted image 20250925165838.png",
+    "Assets/Pasted image 20250925165827.png",
+    "Assets/Pasted image 20250925165335.png",
+    "Assets/Pasted image 20250925165218.png",
+    "Assets/Pasted image 20250925163902.png",
+    "Assets/Pasted image 20250925163137.png",
+    "Assets/Screenshot 2025-09-25 at 4.25.34 PM 1.png",
+    "Data structures and Algorithms/Graph Algorithms.md",
+    "Data structures and Algorithms/Graph Theory",
+    "AWS/Interacting with AWS Services.md",
     "AWS/Amazon S3.md",
+    "AWS/Amazon VPC.md",
+    "Computer Networks & Security/REST.md",
+    "AWS/IAM.md",
+    "AWS/Amazon Elastic Compute Cloud (AWS EC2).md",
     "chaining.md",
     "AWS/Storage in AWS.md",
     "AWS/AWS Roadmap.canvas",
     "AWS/Amazon EFS.md",
-    "AWS/IAM.md",
-    "AWS/Interacting with AWS Services.md",
-    "AWS/AWS Global Infrastructure.md",
     "AWS/Amazon CloudFront.md",
-    "System Design/CDN (Content Delivery Network).md",
-    "AWS/Amazon VPC.md",
-    "Assets/Screenshot 2025-09-18 at 5.33.50 PM.png",
-    "Assets/Screenshot 2025-09-18 at 5.30.34 PM.png",
-    "Assets/render.skillbuilder.aws__module_id=K457BUCF7F%3A001.000.000&product_id=8D79F3AVR7%3A002.000.000&registration_id=4e168b19-b788-58f8-8cd7-115533e99c64&navigation=digital.png",
     "Computer Networks & Security/VPN.md",
     "AWS/AWS CloudWatch.md",
     "Computer Networks & Security/IP addressing.md",
-    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19729022.png",
     "AWS/Amazon Route 53.md",
-    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101622 (1).png",
-    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101622.png",
     "Active-passive.md",
-    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19728974 1.png",
-    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19728974.png",
-    "AWS/Amazon RDS.md",
-    "AWS/Amazon EBS.md",
-    "AWS/Amazon Elastic Compute Cloud (AWS EC2).md",
-    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19728960.png",
-    "AWS/Amazon ELB.md",
-    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19728958.png",
-    "Computer Networks & Security/Domain Name System (DNS).md",
-    "AWS/Amazon MemoryDB.md",
-    "AWS/Amazon Aurora.md",
-    "AWS/Amazon DynamoDB.md",
-    "AWS/Elasticache.md",
-    "System Design/Caching.md",
-    "Computer Networks & Security/Proxy server.md",
     "React/Roadmap.canvas",
     "Untitled.base",
     "Data structures and Algorithms/Dynamic Programming",
@@ -228,7 +253,6 @@
     "Data & AI",
     "Python",
     "System Design",
-    "Docker",
-    "Spring Boot"
+    "Docker"
   ]
 }

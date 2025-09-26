@@ -1,4 +1,15 @@
 #aws #cloud 
+```table-of-contents
+title: Index
+style: nestedList # TOC style (nestedList|nestedOrderedList|inlineFirstLevel)
+minLevel: 0 # Include headings from the specified level
+maxLevel: 0 # Include headings up to the specified level
+include: 
+exclude: 
+includeLinks: true # Make headings clickable
+hideWhenEmpty: false # Hide TOC if no headings are found
+debugInConsole: false # Print debug info in Obsidian console
+```
 # Overview
 + [[Storage in AWS#Fully Managed Services|Fully managed]], highly available [[Storage in AWS#Object storage|object storage]].
 + **Infinitely scalable** i.e. can handle any amount of data and requests
@@ -20,7 +31,11 @@
 	+ If uploading more than 5 GB, must use **multi-part** upload.
 + Uniquely identified **within a bucket** by a composite key (key + version id).
 + Every object has a public URI through which it can be publicly accessed.
-	+ If object is private (bucket policy, object ACL, block public access setting), then public URI does not work. A *presigned URI* is needed to access the object.
+	+ If object is private (bucket policy, object ACL, block public access setting), then public URI does not work. A presigned url is needed to access the object.
++ User defined metadata key names must start with `x-amz-meta-`
++ Object tags are useful for fine-grained permissions (only access specific objects with specific tags)
++ **Cannot search object metadata or tags**
+	+ Must use an external DB like DynamoDB as a search index.
 ## Naming
 + Unicode characters with maximum size 1024 bytes.
 + Case-sensitive
@@ -32,6 +47,16 @@
 >+ There is **no** hierarchy in S3, but using prefixes allows [[Interacting with AWS Services#AWS Management Console|console]] to infer hierarchy.
 >	+ When you create a folder in a bucket, actually a **zero-byte** object is created with a key ending in a forward slash (ex: `myfolder/`).
 >	+ Console is programmed to display such an object as an empty folder.
+## Presigned url
++ Secure, time limited link that grants temporary access to a specific S3 object.
+	+ Allows a user without necessary AWS credentials or permissions to upload/download/view an object for a limited time.
++ Presigned url embeds the credentials of the AWS user who generated it into the url along with expiration time (after which url becomes invalid).
+	+  Allows only those actions which the embedded credentials have permission to perform.
+	+ Allows access to only those objects which the embedded credentials have permission to access.
++ Can be generated using [[Interacting with AWS Services|Console, SDK or CLI]].
++ Expiration time:
+	+ Console - 1 minute to 12 hours
+	+ SDK or CLI - 1 minute to 7 days.
 # General Purpose Buckets
 + Every object is stored in a bucket.
 + Every bucket must have a **globally unique name** across all regions, all accounts within a [[AWS Global Infrastructure#Partitions|partition]].
@@ -68,11 +93,51 @@
 ## Bucket policy
 + Permissions apply to all objects in the bucket, **owned by bucket owner**.
 + Only bucket owner can attach this policy to a bucket.
++ **Can be associated with a single bucket only**.
 + Use cases:
 	+ Grant **public access** to the bucket.
 	+ Force objects to be encrypted at upload.
 	+ Grant access to another account.
 + S3 Block Public Access settings override bucket policies.
+### **When to use**
++ To enforce global policies on all objects in a bucket.
++ For simple cross account access like providing read-only access to entire bucket.
+## S3 Access Points
++ Simplifies access management for data in shared buckets.
+	+ Segregate into groups and provide required access.
++ An access point has a DNS name and ARN, which is used in place of bucket ARN.
++ Has its own access policy that grants permissions to users/applications.
+	+ Simplifies bucket policy
+![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_33934122.png]]
++ **Can be associated with a single bucket only**. (bucket can be in different account also)
++ Can be configured to be private (access only within VPC) or public.
+	+ If private, access from outside VPC using a [[Amazon VPC#VPC Endpoints| Gateway VPC endpoint]] . 
+	+ VPC endpoint policy must allow access to target bucket and access point.
+![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_33934122 (1).png]]
+### **When to use**
++ Large shared bucket with data that many teams/applications need, with different permissions.
++ Need to easily onboard/offboard teams/applications without modifying bucket policy and risking unintended consequences.
+## Bucket policy vs Access Points
+| Feature             | S3 Bucket Policy                                                                                                                                                                   | S3 Access Point                                                                                                                                                                       |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Scope**           | Applies to an entire bucket and all its contents. It provides a single, resource-based policy that governs access for everyone.                                                    | Attached to a specific bucket but provides a unique endpoint with its own access policy. You can have thousands of access points for a single bucket, each with distinct permissions. |
+| **Scalability**     | As the number of applications or teams grows, a single bucket policy can become very large and complex to manage. A misconfiguration can affect all applications using the bucket. | Highly scalable and designed for managing access to large, shared datasets. You can create a separate, simplified access policy for each individual application or team.              |
+| **Permissions**     | A change to the bucket policy can have wide-ranging effects on all applications accessing the bucket.                                                                              | Changes to one access point policy only affect the applications that use that specific endpoint, limiting the "blast radius" of a potential misconfiguration.                         |
+| **Network Control** | Can restrict access based on IP addresses, but doing so for a large, shared bucket is difficult to manage effectively.                                                             | Can be restricted to a specific Virtual Private Cloud (VPC), which provides powerful network-level isolation for internal applications.                                               |
+| **Authorization**   | The bucket policy is the single source of truth for authorization at the bucket level.                                                                                             | The final access decision is the _intersection_ of both the access point policy and the bucket policy. The most restrictive "deny" or "allow" takes precedence.                       |
+| **Access Method**   | Applications and users access the bucket directly using its name or ARN.                                                                                                           | Applications and users access the bucket indirectly through the access point's unique ARN or alias.                                                                                   |
+## S3 Object Lambda
++ Use [[AWS Lambda]] functions to change an object before it is retrieved by caller application.
++ _S3 Object Lambda Access Point_ is created which internally uses a standard S3 Access Point (called supporting access point) and a lambda function.
+	+ The object is retrieved using the _supporting access point_.
+	+ The lambda function processes it (can add/remove data) and returns transformed object to the _Object Lambda access point_, which in turn returns it to the caller application.
++ Supports `GET`, `HEAD` and `LIST` operations.
++ Lambda function must be in same region as Object Lambda access point
++ Use cases:
+	+ Redacting PII information for analytics or non-production environments.
+	+ Converting across data formats such as converting XML to JSON
+	+ Filtering to return subset of data
+![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_36228854.png]]
 # Storage Classes
 ## Frequent access
 For latency sensitive (ms access time) frequently accessed data
@@ -156,21 +221,6 @@ For latency sensitive (ms access time) frequently accessed data
 | S3 Glacier Deep Archive (`DEEP_ARCHIVE`)                          | Long-lived archive data accessed less than once a year with retrieval times of hours                          | 99.999999999%             | 99.99% (after you restore objects) | >= 3               | 180 days             | NA**                     | Per-GB retrieval fees apply. You must first restore archived objects before you can access them. For information, see [Restoring an archived object](https://docs.aws.amazon.com/AmazonS3/latest/userguide/restoring-objects.html).                                                                                 |
 | Reduced Redundancy Storage (`REDUCED_REDUNDANCY`) Not recommended | Noncritical, frequently accessed data with millisecond access                                                 | 99.99%                    | 99.99%                             | >= 3               | None                 | None                     | None                                                                                                                                                                                                                                                                                                                |
 
-# S3 Lifecycle
-+ Helps optimize cost of object storage throughout its lifecycle by
-	+ Transitioning objects to lower cost storage classes.
-	+ Deleting expired objects.
-+ Best for data with **predictable data access patterns**.
-+ Overrides [[#Bucket policy]].
-+ Two types of actions
-	+ ***Transition actions***
-		+ Define when objects should transition to next storage class.
-		+ Ex: Transition to [[#**S3 Standard-IA**|S3 Standard IA]] after 30 days and to [[#**S3 Glacier Flexible Retrieval**|S3 Glacier Flexible Retrieval]] after 90 days.
-	+ ***Expiration actions***
-		+ Define when objects should expire.
-		+ S3 deletes expired objects.
-		+ Ex: After compliance period ends.
-+ Rules apply to both **existing** and **new** objects.
 # Object Versioning
 + Enabled at bucket level
 	+ Does not apply retroactively.
@@ -185,6 +235,41 @@ For latency sensitive (ms access time) frequently accessed data
 + If not enabled, version id is **null**, else it is a unique id for the object.
 + `GET` operations fetch **latest version** of an object. (Default)
 	+ Can fetch a specific version of an object by specifying version id
+## MFA Delete
++ If enabled, MFA required for
+	+ Suspend versioning of bucket
+	+ Permanently deleting an object
++ Helps prevent accidental deletes.
++ **Versioning must be enabled** to use MFA delete.
++ Only bucket owner can enable/disable MFA delete
+	+ Can enable/disable only through AWS CLI, SDK or S3 REST API
+# S3 Lifecycle Rules
++ Helps optimize cost of object storage throughout its lifecycle by
+	+ Transitioning objects to lower cost storage classes.
+	+ Deleting expired objects.
++ Best for data with **predictable data access patterns**.
++ Overrides [[#Bucket policy]].
++ Two types of actions
+	+ ***Transition actions***
+		+ Define when objects should transition to next storage class.
+			+ Move current versions of objects b/w storage classes
+			+ Move non-current versions of objects b/w storage classes.
+	+ ***Expiration actions***
+		+ Define when objects should expire.
+		+ S3 deletes expired objects. (adds delete marker if versioning enabled, else permanent delete)
+			+ Permanently delete non-current versions of objects
+			+ Delete current versions of objects
+			+ Delete incomplete multi part uploads
+			+ Delete expired delete markers.
++ Rules apply to both **existing** and **new** objects.
++ Rules can be created for
+	+ a certain prefix (Ex: s3://mybucket/mp3/*)
+	+ certain object tags (Ex: _Department_, _Finance_)
+## S3 Storage Class Analysis
++ Helps decide when to transition objects to right storage class based on data access patterns. S3 Analytics does the analysis.
++ Recommendations for [[#**S3 Standard**|S3 Standard]] and [[#**S3 Standard-IA**|S3 Standard IA]] only.
++ Report is updated daily
++ 24-48 h to start seeing data analysis.
 # Replication
 + Asynchronous, automatic replication of objects across buckets.
 	+ Can replicate to single bucket or multiple buckets.
@@ -218,6 +303,85 @@ For latency sensitive (ms access time) frequently accessed data
 		+ `http://<bucket-name>.s3-website.<Region>.amazonaws.com` (dot)
 + ***Does not*** support HTTPS.
 + Bucket ***must*** be publicly readable.
+# S3 Event Notifications
++ Notifies when certain events happen in S3 bucket. Some events are listed below:
+	+ Create object
+	+ Delete object
+	+ Replication
+	+ [[#S3 Lifecycle Rules|S3 Lifecycle transition/expiration event]]
+	+ [[#S3 Intelligent-Tiering]] automatic archival event
+	+ [[#**Reduced Redundancy Storage**|Reduced redundancy storage]] object loss event
++ To enable notifications, add notification configuration
+	+ Add events that S3 should publish
+	+ Destinations to send notifications. 
+		+ [[Amazon SNS]] topics
+		+ [[Amazon SQS]] queues
+		+ [[AWS Lambda]] functions
+		+ [[Amazon EventBridge]]
+			+ **All** events are sent to EventBridge. No need to specify events
++ Notifications delivered within seconds, but can take a few minutes.
++ There must be a [[IAM#Policy|IAM Resource Policy]] attached to the destination, that allows S3 to send notifications to the destination.
+	+ Amazon EventBridge does not require an IAM policy. 
+# Performance optimization
++ S3 autoscales when request rate spikes. Latency 100-200 ms
+	+ For lower latency (single digit ms), pair with [[Amazon CloudFront]] or [[Elasticache]] for caching.
++ Limit of 
+	+ **3,500 PUT/COPY/POST/DELETE** requests/s per prefix in a bucket
+	+ **5,500 GET/[[REST#HEAD|HEAD]]** requests/s per prefix in a bucket.
+	+ No limit on number of prefixes in a bucket
++ Can increase R/W performance using parallelization.
+	+ If a bucket has 10 prefixes, parallelizing reads increases performance to 55,000 request/s (5,500 GET requests/s per prefix).
++ Multi part upload
+	+ recommended for files > 100MB
+	+ must use for files >  5GB
+	+ Can parallelize uploads to speed up transfers![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851522 1.png]]
++ Use S3 Transfer Acceleration for fast, easy and secure transfer of files over long distances. (Ex: uploading file while in California to a bucket in _eu-west-1_) .
+	+ File is uploaded to closest [[AWS Global Infrastructure#Edge locations|Edge location]], instead of bucket.
+	+ File is transferred along the AWS private network, which is optimized and uncongested to the destination S3 bucket
+	+ Compatible with multi-part uploads.
++ Use _byte range fetches_ to request part of an object or to increase download speeds.
+	+ HTTP request includes a _Range_ header which specifies the range of bytes to fetch.
+	+ Parallelize byte range fetches to reduce download time for an object.
+	+ Can restart failed downloads by only fetching byte ranges that are missing.
+	+ Can optimize video/audio streaming by fetching partial segments that user is watching, and if user seeks to a later part, can simply fetch for that specific byte range.
+	+ Combine with S3 Transfer Acceleration for faster downloads over long distances.
+# Object Encryption
+## Server Side Encryption with Amazon S3 Managed Keys (SSE-S3)
++ Default encryption method for new buckets and objects.
+	+ Bucket policy overrides default encryption
++ Keys handled, managed and owned by AWS
++ AES-256 Encryption
++ Must set header `x-amz-server-side-encryption:AES256` in request, if you explicitly want to use SSE-S3 encryption.
+## Server Side Encryption with AWS KMS Keys (SSE-KMS)
++ Uses keys handled by KMS.
+	+ Keys can be AWS managed or customer managed.
+	+ Key has to be symmetric.
+	+ Key must be in same region as bucket.
+	+ Access to keys managed through policies
+	+ Can audit key usage in AWS CloudTrail
++ Must set header `x-amz-server-side-encryption:awskms` (object level)
++ Can be configured to be bucket-level (bucket-policy) or object-level.
+## Server Side Encryption with Customer Provided Keys (SSE-C)
++ Uses key managed by customer **outside of AWS**.
++ Key not stored, must be passed in header of each request. (HTTPS only)
+	+ S3 stores salted HMAC value of the key.
++ AES-256 encryption
+
+>[!warning]
+>If you lose the encryption key, you lose the object
+
+## Client side Encryption
++ Use client libraries like _Amazon s3 Client Side Encryption Library_.
++ Client must encrypt/decrypt data themselves.
++ Customer fully manages key
+# S3 Access Logs
++ If enabled, logs all requests made to an S3 bucket, from any account, authorized or denied to a destination S3 bucket.
+	+ Destination bucket must be in the same region as source bucket.
+	+ Destination bucket should not have access logging enabled, otherwise there will be a **infinite loop** of logs being delivered to the destination S3 bucket.
+	+ Destination Bucket can only be encrypted using [[#Server Side Encryption with Amazon S3 Managed Keys (SSE-S3)|SSE-S3]].
++ S3 uses a special account `logging.s3.amazonaws.com` to write server logs. So destination bucket must grant the principal access using bucket policy (recommended) or ACL.
++ Logs can be analyzed and queried using Amazon Athena
+
 # Use cases
 + Backup and storage
 + Disaster Recovery

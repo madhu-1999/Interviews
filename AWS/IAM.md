@@ -56,9 +56,16 @@ debugInConsole: false # Print debug info in Obsidian console
 ```
 ## Permission Policies
 + Defines the actions that are allowed or denied when role is assumed. Same as [[#Policy]].
-## 
+## Things to note
 >[!example]
->Suppose you have an application running on an EC2 instance that needs to read from an S3 bucket. Instead of storing access keys on the instance, you can create an IAM role with a policy that allows reading from S3. You then attach this role to your EC2 instance. When the instance runs, it assumes the role and gets temporary credentials to access the S3 bucket.
+>Suppose you have an application running on an EC2 instance that needs to read from an S3 bucket. 
+>Instead of storing access keys on the instance, you can create an IAM role with a policy that allows reading from S3. 
+>You then attach this role to your EC2 instance. When the instance runs, it assumes the role and gets temporary credentials to access the S3 bucket.
+
+
+> [!note]
+> Under the hood, an IAM role is attached to an EC2 instance profile if it is created for an EC2 instance.
+> When we create an EC2 instance and attach a IAM role to it, actually we are attaching a EC2 instance profile to it which contains the IAM role.
 # Policy
 + JSON document to define permissions.
 + Specify what actions are allowed or denied on which resources.

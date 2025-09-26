@@ -96,9 +96,11 @@ Reading: [Guidelines and best practices for archiving Amazon EBS snapshots](http
 + [[Amazon Elastic Compute Cloud (AWS EC2)#**Custom AMI**|If a new EC2 instance is created from an existing EC2 instance]], the AMI automatically takes snapshot of root EBS volume. If FSR is enabled, EC2 instance boots up faster, since lazy-loading does not happen.
 # EBS Volume Types
 Reference: [EBS Volume Types](https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volume-types.html)
->[!note]+
->IOPS => no of R/W ops per second
->Throughput => volume of data transferred over time (Mbps)
+>[!note]
+>+ IOPS => no of R/W ops per second
+>+ Throughput => actual volume of data transferred over a given period of time (Mbps)
+>	+ Bandwidth is theoretical maximum volume of data transferred over a given period of time
+
 ## Solid State Drive (SSD) 
 + Optimized for ==transactional== workloads with ==frequent R/W== operations, ==small I/O== 
 ### **General Purpose SSD

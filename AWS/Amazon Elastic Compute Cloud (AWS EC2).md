@@ -228,7 +228,7 @@ ssh -i EC2Tutorial.pem ec2-user@<public ip>
 + Accessible only from **within the instance**, at link-local IP address `169.254.169.254`.
 	+ A metadata server is created when instance is launched at `169.254.169.254`, which stores all the instance metadata.
 + Ex: EC2 instance needs to access other AWS services like S3 bucket.
-	+ An IAM role is attached to the instance at launch
+	+ A EC2 instance profile (to which IAM role is attached) is attached to the instance at launch
 	+ Application fetches role credentials from IMDS and makes API calls.
 ## IMDSv1
 + Access via `GET` call to http://169.254.169.254/latest/meta-data
