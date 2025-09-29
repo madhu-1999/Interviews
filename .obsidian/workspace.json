@@ -8,36 +8,29 @@
         "type": "tabs",
         "children": [
           {
-            "id": "ede6231cb5c5c80d",
+            "id": "b8d3b53bf924ff79",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "System Design/Database Sharding.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": true,
-                "backlinkOpts": {
-                  "collapseAll": false,
-                  "extraContext": false,
-                  "sortOrder": "alphabetical",
-                  "showSearch": false,
-                  "searchQuery": "",
-                  "backlinkCollapsed": false,
-                  "unlinkedCollapsed": true
+                "file": "System Design/Reading Order.canvas",
+                "viewState": {
+                  "x": -1217.310000000003,
+                  "y": 106.66999999999975,
+                  "zoom": 0
                 }
               },
-              "icon": "lucide-file",
-              "title": "Database Sharding"
+              "icon": "lucide-layout-dashboard",
+              "title": "Reading Order"
             }
           },
           {
-            "id": "8ab40b54bec46dba",
+            "id": "6f2b2842089e17d4",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Computer Networks & Security/Proxy server.md",
+                "file": "OOP/Design Principles Rough notes.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -52,10 +45,35 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "Proxy server"
+              "title": "Design Principles Rough notes"
+            }
+          },
+          {
+            "id": "010e5abcd22414c2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "System Design/LLD/Factory Method Pattern.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Factory Method Pattern"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -204,46 +222,48 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "ede6231cb5c5c80d",
+  "active": "010e5abcd22414c2",
   "lastOpenFiles": [
+    "System Design/Reading Order.canvas",
+    "System Design/LLD/Factory Method Pattern.md",
+    "OOP/Design Principles Rough notes.md",
+    "System Design/LLD/Singleton Pattern.md",
+    "Assets/Screenshot 2025-09-29 at 1.00.44 PM.png",
+    "Spring Boot/Core Principles.md",
+    "OOP/SOLID.md",
+    "Spring Boot/Spring Boot IOC container.md",
+    "Assets/Screenshot 2025-09-29 at 12.33.33 PM.png",
+    "Java/Abstract classes.md",
+    "Java/Interface.md",
+    "Java/Multithreading.md",
+    "Assets/Screenshot 2025-09-28 at 3.02.28 PM.png",
+    "Java/Static.md",
+    "System Design/HLD/Scaling.md",
+    "System Design/HLD/Database Replication Strategies.md",
+    "System Design/HLD/Database Sharding.md",
+    "System Design/HLD/Database Partitioning.md",
+    "System Design/HLD/Consistent Hashing.md",
+    "System Design/HLD/CDN (Content Delivery Network).md",
+    "System Design/HLD/Caching.md",
+    "OOP/Low Level Design.md",
+    "System Design/LLD",
+    "System Design/HLD",
+    "OOP/UML.md",
+    "Assets/Screenshot 2025-09-27 at 12.37.13 PM.png",
+    "Assets/Screenshot 2025-09-27 at 12.07.46 PM.png",
+    "AWS/AWS Roadmap.canvas",
+    "Assets/Screenshot 2025-09-27 at 11.31.17 AM.png",
     "Assets/Screenshot 2025-09-26 at 2.04.28 PM.png",
     "Computer Networks & Security/Proxy server.md",
-    "System Design/Database Sharding.md",
     "Assets/Screenshot 2025-09-26 at 12.05.59 AM.png",
     "Assets/Screenshot 2025-09-25 at 11.22.44 PM.png",
     "Assets/Screenshot 2025-09-25 at 11.01.22 PM.png",
     "AWS/AWS Global Infrastructure.md",
     "AWS/Amazon Aurora.md",
     "AWS/Amazon EBS.md",
-    "System Design/Database Replication Strategies.md",
-    "System Design/Scaling.md",
-    "System Design/CDN (Content Delivery Network).md",
     "Data structures and Algorithms/Graph Theory/Union Find.md",
-    "Assets/Pasted image 20250925165838.png",
-    "Assets/Pasted image 20250925165827.png",
-    "Assets/Pasted image 20250925165335.png",
-    "Assets/Pasted image 20250925165218.png",
-    "Assets/Pasted image 20250925163902.png",
-    "Assets/Pasted image 20250925163137.png",
-    "Assets/Screenshot 2025-09-25 at 4.25.34 PM 1.png",
     "Data structures and Algorithms/Graph Algorithms.md",
     "Data structures and Algorithms/Graph Theory",
-    "AWS/Interacting with AWS Services.md",
-    "AWS/Amazon S3.md",
-    "AWS/Amazon VPC.md",
-    "Computer Networks & Security/REST.md",
-    "AWS/IAM.md",
-    "AWS/Amazon Elastic Compute Cloud (AWS EC2).md",
-    "chaining.md",
-    "AWS/Storage in AWS.md",
-    "AWS/AWS Roadmap.canvas",
-    "AWS/Amazon EFS.md",
-    "AWS/Amazon CloudFront.md",
-    "Computer Networks & Security/VPN.md",
-    "AWS/AWS CloudWatch.md",
-    "Computer Networks & Security/IP addressing.md",
-    "AWS/Amazon Route 53.md",
-    "Active-passive.md",
     "React/Roadmap.canvas",
     "Untitled.base",
     "Data structures and Algorithms/Dynamic Programming",
@@ -251,8 +271,6 @@
     "AWS",
     "Data & AI/Statistics",
     "Data & AI",
-    "Python",
-    "System Design",
-    "Docker"
+    "Python"
   ]
 }

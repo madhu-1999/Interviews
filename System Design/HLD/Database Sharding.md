@@ -1,4 +1,4 @@
-#database #distributed #system-design 
+#database #distributed #system-design #hld
 
 ```table-of-contents
 title: Index
@@ -17,6 +17,10 @@ debugInConsole: false # Print debug info in Obsidian console
 		+ A physical shard can store **multiple** logical shards (isolated from each other).
 			+ If storing multiple logical shards together, the goal is to ensure all related data is stored on same shard. Ex: all of a user's data (profile, posts, purchases) should reside on the same shard.
 	+ Data is distributed such that a row appears in exactly one shard.
+
+>[!note]
+> A logical shard is a [[Database Partitioning|partition]].
+
 ![[Screenshot 2025-09-25 at 11.01.22 PM.png]]
 + [[Scaling#Horizontal Scaling|Horizontally scales]] a database to improve **throughput** and **storage capacity**. 
 # Advantages
@@ -96,7 +100,7 @@ debugInConsole: false # Print debug info in Obsidian console
 + If shards are not distributed properly, can lead to resource contention between shards and impact performance.
 + If server fails, multiple shards are lost. Without proper backup or replication in place, it can lead to data loss and impact availability.
 + A single server has resource limitations. At some point, will have to move shards to dedicated servers to continue scaling.
-# Vertical Sharding
+	# Vertical Sharding
 + Splitting data by functionality i.e. splitting columns of a table in different shards instead of rows.
 	+ Primary key of table is used to identify related data across shards.
 	+ A subset of **all rows** are stored on a shard

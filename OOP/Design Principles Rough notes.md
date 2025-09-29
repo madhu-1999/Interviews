@@ -1,7 +1,18 @@
+```table-of-contents
+title: Index
+style: nestedList # TOC style (nestedList|nestedOrderedList|inlineFirstLevel)
+minLevel: 0 # Include headings from the specified level
+maxLevel: 0 # Include headings up to the specified level
+include: 
+exclude: 
+includeLinks: true # Make headings clickable
+hideWhenEmpty: false # Hide TOC if no headings are found
+debugInConsole: false # Print debug info in Obsidian console
+```
 ## Prerequisites:
-+ Inheritance
-+ Composition
-+ SOLID
++ [[Inheritance]]
++ [[Composition]]
++ [[SOLID]]
 ## General Design principles
 1. Identify aspects of your application that **vary** and separate (encapsulate) them so that it is easier to alter/extend without affecting other parts.
 2. Program to an interface, not an implementation (Dependency injection).
@@ -13,7 +24,7 @@
 	+ Object passed as parameter to the method
 	+ Any object the method creates/instantiates
 	+ Any components of the object (Think [[Composition]]).
-7. The Hollywood Principle:  Don’t call us, we’ll call you.  This helps prevent ''dependency rot". i.e. High level components depend on low-level components. Under this principle, *only* the high-level components call the low-level components ***NOT*** vice-versa.
+7. The Hollywood Principle:  Don’t call us, we’ll call you.  This helps prevent ''dependency rot".Under this principle, *only* the high-level components call the low-level components ***NOT*** vice-versa.
 ## Strategy design pattern
 + Pts 1, 2, 3, 4 apply
 + It is a **behavioral** design pattern that lets you define a family of algorithms, put each of them into a separate class and make their objects interchangeable.(DI)

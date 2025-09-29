@@ -1,4 +1,4 @@
-#system-design #distributed
+#system-design #distributed #hld 
 ```table-of-contents
 title: Index
 style: nestedList # TOC style (nestedList|nestedOrderedList|inlineFirstLevel)
@@ -73,11 +73,11 @@ on the cloud. less costly, no maintenance
 + Doesn't fully utilize server resources, since one is on standby.
 + There can be temporary service disruption when passive one takes over.
 # Database Replication
+![[Screenshot 2025-09-27 at 11.31.17 AM.png]]
 + Benefits:
 	+ Availability: Data on multiple machines. If one goes down, others are available.
 	+ Redundancy: Data (all) present on multiple machines. If one is corrupted, others are still present
 	+ Latency: Reduces it, if present in replica machines in multiple geographic locations.
 	+ Handle huge reads: by redirecting to replica machines.
 + All data is copied onto replica machines.
-## Database Replication strategies
 Read [[Database Replication Strategies]] for more detailed info

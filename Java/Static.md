@@ -19,6 +19,7 @@ public static void staticMethod(){
 + Call using class name (preferred). Can be invoked using instance also. Ex: `MyClass.staticMethod()`.
 # Static Variables
 + Can access directly through class name (preferred). Can be invoked using instance also Ex: `MyClass.myStaticVar`
++ Loaded into heap memory when class is loaded by JVM
 # Static block
 + Executed once when class loaded.
 + Cannot access non-static variables and methods
