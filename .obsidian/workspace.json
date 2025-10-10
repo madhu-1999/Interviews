@@ -4,33 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "a5379bce57ace67b",
+        "id": "8276a368a89fb51d",
         "type": "tabs",
         "children": [
           {
-            "id": "b8d3b53bf924ff79",
-            "type": "leaf",
-            "state": {
-              "type": "canvas",
-              "state": {
-                "file": "System Design/Reading Order.canvas",
-                "viewState": {
-                  "x": -1217.310000000003,
-                  "y": 106.66999999999975,
-                  "zoom": 0
-                }
-              },
-              "icon": "lucide-layout-dashboard",
-              "title": "Reading Order"
-            }
-          },
-          {
-            "id": "6f2b2842089e17d4",
+            "id": "3a8ba739c25854db",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "OOP/Design Principles Rough notes.md",
+                "file": "GIT.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -45,35 +28,10 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "Design Principles Rough notes"
-            }
-          },
-          {
-            "id": "010e5abcd22414c2",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "System Design/LLD/Factory Method Pattern.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": true,
-                "backlinkOpts": {
-                  "collapseAll": false,
-                  "extraContext": false,
-                  "sortOrder": "alphabetical",
-                  "showSearch": false,
-                  "searchQuery": "",
-                  "backlinkCollapsed": false,
-                  "unlinkedCollapsed": true
-                }
-              },
-              "icon": "lucide-file",
-              "title": "Factory Method Pattern"
+              "title": "GIT"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -194,13 +152,25 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "AWS/Amazon Route 53.md",
+                "file": "AWS/Amazon CloudFront.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Amazon Route 53"
+              "title": "Outline of Amazon CloudFront"
+            }
+          },
+          {
+            "id": "4802d5eda5db336d",
+            "type": "leaf",
+            "state": {
+              "type": "footnotes",
+              "state": {
+                "file": "AWS/Amazon CloudFront.md"
+              },
+              "icon": "lucide-file-signature",
+              "title": "Footnotes"
             }
           }
         ],
@@ -222,55 +192,56 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "010e5abcd22414c2",
+  "active": "3a8ba739c25854db",
   "lastOpenFiles": [
+    "Docker/Docker Compose.md",
+    "Data structures and Algorithms/Graph Theory/Topological Sort.md",
+    "Docker/Mindmap.canvas",
+    "Docker/Docker Image.md",
+    "AWS/AWS CloudFormation.md",
+    "Docker/Persisting Data.md",
+    "Docker/Multi-Stage Builds.md",
+    "Docker/Docker CLI.md",
+    "Docker/DockerFile.md",
+    "Java/JVM vs JRE vs JDK.md",
+    "React/Hooks.md",
+    "React/useRef Hook.md",
+    "React/useEffect Hook.md",
+    "React/State.md",
+    "System Design/LLD in Java/Factory Method Pattern.md",
     "System Design/Reading Order.canvas",
-    "System Design/LLD/Factory Method Pattern.md",
-    "OOP/Design Principles Rough notes.md",
-    "System Design/LLD/Singleton Pattern.md",
-    "Assets/Screenshot 2025-09-29 at 1.00.44 PM.png",
-    "Spring Boot/Core Principles.md",
-    "OOP/SOLID.md",
-    "Spring Boot/Spring Boot IOC container.md",
-    "Assets/Screenshot 2025-09-29 at 12.33.33 PM.png",
-    "Java/Abstract classes.md",
-    "Java/Interface.md",
-    "Java/Multithreading.md",
-    "Assets/Screenshot 2025-09-28 at 3.02.28 PM.png",
-    "Java/Static.md",
-    "System Design/HLD/Scaling.md",
-    "System Design/HLD/Database Replication Strategies.md",
-    "System Design/HLD/Database Sharding.md",
-    "System Design/HLD/Database Partitioning.md",
-    "System Design/HLD/Consistent Hashing.md",
-    "System Design/HLD/CDN (Content Delivery Network).md",
-    "System Design/HLD/Caching.md",
-    "OOP/Low Level Design.md",
-    "System Design/LLD",
-    "System Design/HLD",
-    "OOP/UML.md",
-    "Assets/Screenshot 2025-09-27 at 12.37.13 PM.png",
-    "Assets/Screenshot 2025-09-27 at 12.07.46 PM.png",
-    "AWS/AWS Roadmap.canvas",
-    "Assets/Screenshot 2025-09-27 at 11.31.17 AM.png",
-    "Assets/Screenshot 2025-09-26 at 2.04.28 PM.png",
-    "Computer Networks & Security/Proxy server.md",
-    "Assets/Screenshot 2025-09-26 at 12.05.59 AM.png",
-    "Assets/Screenshot 2025-09-25 at 11.22.44 PM.png",
-    "Assets/Screenshot 2025-09-25 at 11.01.22 PM.png",
-    "AWS/AWS Global Infrastructure.md",
-    "AWS/Amazon Aurora.md",
-    "AWS/Amazon EBS.md",
-    "Data structures and Algorithms/Graph Theory/Union Find.md",
-    "Data structures and Algorithms/Graph Algorithms.md",
-    "Data structures and Algorithms/Graph Theory",
+    "System Design/LLD in Java/Abstract Factory Pattern.md",
+    "React/Rendering in React.md",
     "React/Roadmap.canvas",
+    "React/JSX.md",
+    "React/theory-slides-v1.1.pdf",
+    "[[theory-slides-v1.1.pdf.md",
+    "AWS/Amazon S3.md",
+    "Docker/Container.md",
+    "AWS/Amazon CloudFront.md",
+    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101660 (1).png",
+    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101660.png",
+    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_28875086 1.png",
+    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19729850.png",
+    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_36527654.png",
+    "System Design/HLD/CDN (Content Delivery Network).md",
+    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_36527678.png",
+    "AWS/Amazon VPC.md",
+    "Data structures and Algorithms/Graph Theory/Union Find.md",
+    "Python/Class.md",
+    "Assets/Pasted image 20250930193739.png",
+    "Assets/Pasted image 20250930151657.png",
+    "Assets/Pasted image 20250930145920.png",
+    "Assets/Pasted image 20250929231635.png",
+    "System Design/LLD in Java",
+    "System Design/HLD",
+    "AWS/AWS Roadmap.canvas",
+    "Data structures and Algorithms/Graph Theory",
     "Untitled.base",
     "Data structures and Algorithms/Dynamic Programming",
     "React",
     "AWS",
     "Data & AI/Statistics",
-    "Data & AI",
-    "Python"
+    "Data & AI"
   ]
 }

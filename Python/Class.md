@@ -123,11 +123,11 @@ class Pizza:
 # Instance method
 pizza = Pizza([])
 pizza.add_toppings('cheese')
-print(pizza) # O/P: Pizza[['cheese']]
+print(pizza) # O/P: Pizza[ ['cheese'] ]
 
 #Class method
-print(Pizza.margherita()) #O/P Pizza[['mozarella', 'tomatoes']]
-print(pizza.margherita()) #O/P Pizza[['mozarella', 'tomatoes']]
+print(Pizza.margherita()) #O/P Pizza[ ['mozarella', 'tomatoes'] ]
+print(pizza.margherita()) #O/P Pizza[ ['mozarella', 'tomatoes'] ]
 
 #Static method
 print(pizza.get_size_in_inches('small')) # 0/P: 8
@@ -141,7 +141,7 @@ print(Pizza.get_size_in_inches('small')) # 0/P: 8
 ## Class Methods
 + Can access only class level data through `cls` parameter. Note that the name `cls` is a convention ***NOT*** a keyword. `cls` is the class object i.e `<class '__main__.Pizza'>`
 + `@classmethod` [[Decorators|decorator]] is used to differentiate between class method and instance method.
-+ Class methods can be used in implementing [[Design Principles Rough notes#Factory Pattern|Factory Pattern]] to create factory methods like `margherita()` that return class instances with specific configurations. i.e `cls()` creates a class instance/object internally using `__init__()` constructor. We can call instance methods and access instance variables through this instance.
++ Class methods can be used in implementing [[fc|Factory Pattern]] to create factory methods like `margherita()` that return class instances with specific configurations. i.e `cls()` creates a class instance/object internally using `__init__()` constructor. We can call instance methods and access instance variables through this instance.
 + Class methods can thus be used to create alternative constructors.
 + Method can be accessed using class name or object with dot notation.
 ## Static Methods
@@ -211,11 +211,11 @@ print(person.name) # JANE
 person.name = 'Jane Doe'
 print(person.name) # JANE DOE
 ```
-# \__dict__  and vars() function
+# **__dict__**  and vars() function
 + Every object has a  **__dict__** attribute which is a dictionary that stores all the attributes and methods of that object. Remember, everything is an object in Python.
 + For user defined objects and classes:
-	+ Object: \__dict__ attribute returns dictionary of user defined attributes with values only.
-	+ Class: \__dict__ attribute returns dictionary of user defined and inbuilt attributes + functions.
+	+ Object: **__dict__** attribute returns dictionary of user defined attributes with values only.
+	+ Class: **__dict__** attribute returns dictionary of user defined and inbuilt attributes + functions.
 ```python
 class DogClass:
     def __init__(self,name,color):

@@ -1,4 +1,4 @@
-#docker #devops 
+ #devops 
 ```table-of-contents
 title: Index
 style: nestedList # TOC style (nestedList|nestedOrderedList|inlineFirstLevel)
@@ -14,8 +14,14 @@ debugInConsole: false # Print debug info in Obsidian console
 + Allow the **packaging** and **isolation** of applications + runtime environment i.e. all the files needed for the app to run.
 + Solves the problem of application not running on a different machine due to differences in configuration or library dependencies.
 + Virtualizes the OS i.e. all apps share the same OS and resources.
-+ It is lightweight and portable, however Linux containers cannot run on Window containers and vice-versa.
-+ Mac containers don't exist, however linux containers can be run on Mac.
++ It is lightweight and portable.
++ Linux containers cannot be run on Windows  and vice versa
++ Mac containers don't exist.
++ Ex: Docker, colima, Podman
+>[!note]
+>+ Docker Desktop (not CLI) can run Linux containers on Mac and Windows and vice versa for Windows, using special software.
+
+
 ![What is a Container? | Docker](https://www.docker.com/app/uploads/2021/11/docker-containerized-appliction-blue-border_2.png)
 # Contrast with VM
 + Virtual Machines (VM) **virtualize the entire machine down to the hardware** unlike containers which virtualize the OS. i.e. for each app it will create "guest os" which is separate from the host operating system.

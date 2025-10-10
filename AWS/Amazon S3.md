@@ -303,6 +303,8 @@ For latency sensitive (ms access time) frequently accessed data
 		+ `http://<bucket-name>.s3-website.<Region>.amazonaws.com` (dot)
 + ***Does not*** support HTTPS.
 + Bucket ***must*** be publicly readable.
++ Need to configure a _index_ document/object which is returned when static website is visited.
+	+ _index_ object is always returned, even if user requests a bucket subdirectory.
 # S3 Event Notifications
 + Notifies when certain events happen in S3 bucket. Some events are listed below:
 	+ Create object

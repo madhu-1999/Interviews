@@ -312,10 +312,10 @@
         "title": {
           "textFont": "",
           "textBold": false,
-          "textItalic": true
+          "textItalic": false
         },
         "languageTag": {
-          "display": "none",
+          "display": "if_header_shown",
           "textFont": "",
           "textBold": true,
           "textItalic": false
@@ -329,12 +329,12 @@
           "displayVersion": true,
           "displayTimestamp": true
         },
-        "fontSize": 14,
+        "fontSize": 16,
         "foldPlaceholder": ""
       },
       "highlights": {
         "activeCodeblockLine": true,
-        "activeEditorLine": false
+        "activeEditorLine": true
       },
       "inline": {
         "syntaxHighlight": true,
@@ -347,8 +347,8 @@
         "titleFontWeight": 8
       },
       "advanced": {
-        "gradientHighlights": true,
-        "gradientHighlightsColourStop": "70%",
+        "gradientHighlights": false,
+        "gradientHighlightsColourStop": "73%",
         "languageBorderColour": false,
         "languageBorderWidth": 5,
         "iconSize": 28
@@ -366,7 +366,7 @@
           "activeTextColour": "--text-muted"
         },
         "header": {
-          "backgroundColour": "--code-background",
+          "backgroundColour": "#79B0C2",
           "title": {
             "textColour": "--code-comment"
           },
@@ -382,9 +382,9 @@
           "lineColour": "--color-base-30"
         },
         "highlights": {
-          "activeCodeblockLineColour": "#DAB2B2",
+          "activeCodeblockLineColour": "#8D8B8B",
           "activeEditorLineColour": "--color-base-20",
-          "defaultColour": "#0021FC",
+          "defaultColour": "#891D8C80",
           "alternativeHighlights": {}
         },
         "inline": {
@@ -427,7 +427,7 @@
         "highlights": {
           "activeCodeblockLineColour": "#DAB2B2",
           "activeEditorLineColour": "--color-base-20",
-          "defaultColour": "#0021FC",
+          "defaultColour": "#891D8C80",
           "alternativeHighlights": {}
         },
         "inline": {

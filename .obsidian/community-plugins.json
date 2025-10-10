@@ -1,8 +1,7 @@
 [
-  "url-into-selection",
   "obsidian-style-settings",
   "automatic-table-of-contents",
   "oz-image-plugin",
-  "any-block",
-  "code-styler"
+  "code-styler",
+  "tabs"
 ]

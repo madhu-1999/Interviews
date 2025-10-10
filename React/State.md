@@ -21,11 +21,39 @@ debugInConsole: false # Print debug info in Obsidian console
 + The `useState` hook provides both these things:
 	+ A **state variable** to retain data between renders.
 	+ A **state setter function** to update variable and trigger React to render component again.
-```
+```jsx
 const [index, setIndex] = useState(0);
 ```
 `index` is the state variable, `setIndex` the setter function and `useState(0)` means we are passing initial value (0) for state variable.
 	The `[ ]` syntax is array destructuring and it lets you read values from an array. The array returned by `useState` always has exactly two items.
+# Lazy Initialization
+>[!note]
+>`useState` receives initial state through a function call.
+
+For most cases, `useState` is initially passed some literal value, like 0, "", [ ].
+But what if the initial value for a state variable is something that is expensive to calculate or requires reading from `localStorage` ?
+```jsx
+const initialState = calculateSomethingExpensive(props);
+const [count, setCount] = useState(initialState);
+
+const initialState = localStorage.getItem("count");
+const [count, setCount] = useState(initialState);
+```
+`initialState` is only needed/used for the very first render of the component. For every subsequent re-render, it is calculated/read in needlessly. 
+To avoid this, we can calculate `initialState` **lazily**, in a callback function. The function is only called when state is set for the first time.
+```jsx
+const [count, setCount] = useState(() =>  calculateSomethingExpensive(props)
+);
+
+const [count, setCount] = useState(() => Number(localStorage.getItem("count")) 
+);
+```
+>[!warning]
+>The callback function must:
+>+ be a [[Component#What is a pure function?|pure function]]
+>+ require __no__ arguments
+
+
 # Setter Function
 + If setting value of state to a particular literal value
 ```jsx
@@ -34,12 +62,11 @@ function handleClick() {
 	...
     setIndex(i);
   }
-
 ```
 
 + If setting state value, but new value is dependent on current value of state. 
-+ [[#State as a snapshot]] explains why this is needed.
-+ React processes state updates after event handlers have finished running
+	+ [[#State as a snapshot]] explains why this is needed.
+	+ React processes state updates (`setxx`) after event handlers have finished running i.e. state updates are asynchronous.
 ```jsx
 function handleClick() {
     setIndex((index) => index + 1);
@@ -140,7 +167,8 @@ function handleClick() {
       ...artists.slice(insertAt)
     ];
     setArtists(nextArtists);
-  }```
+  }
+```
 ## Delete
 ```jsx
 setArtists(
@@ -211,7 +239,7 @@ const selectedItem = items.find(item =>
 ## Avoid deeply nested state
 Deeply hierarchical state is not very convenient to update. When possible, prefer to structure state in a flat way.
  Ex: [[State#Updating objects in state|Updating state]] gets very complex
- ```jsx
+```jsx
  const travelPlan = {
 	 id: 0,
 	 title: 'Earth',
@@ -228,9 +256,9 @@ Deeply hierarchical state is not very convenient to update. When possible, prefe
 		 }
 	 ],
  }
- ```
+```
  Instead make the hierarchy flat by instead storing `childIds`.
- ```jsx
+```jsx
  const travelPlan = {
 	 0: {
 		 id: 0,
@@ -244,7 +272,7 @@ Deeply hierarchical state is not very convenient to update. When possible, prefe
 	}, 
 	...
  }
- ```
+```
 ## Avoid contradictions in state
  When the state is structured in a way that several pieces of state may contradict and “disagree” with each other, you leave room for mistakes. Try to avoid this.
 ```jsx

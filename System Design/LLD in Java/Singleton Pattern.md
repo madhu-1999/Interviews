@@ -1,4 +1,4 @@
-#lld #system-design #design-patterns
+#lld #system-design #design-patterns #java 
 # Definition
 The Singleton pattern ensures that there exists **only one instance** of a class, and provides a global point of access to it.
 # Class Diagram

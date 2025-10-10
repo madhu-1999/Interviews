@@ -1,4 +1,7 @@
 #system-design  #distributed #hld
+# Prerequisite
+[[Caching]]
+# CDN
 + Distributed network of servers that deliver content (images, video, files) to clients faster and more efficiently.
 # Components of CDN
 + ***Edge servers***: Servers distributed across geographic locations, strategically to be close to clients. It caches content received from origin server and delivers it to clients.

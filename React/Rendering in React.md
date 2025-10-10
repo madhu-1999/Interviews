@@ -121,7 +121,7 @@ on clicking `Increase` button, only `h1` element is changed:
 ### **Fiber**
 + Current React reconciler is called **fiber**
 + During [[#Initial Render]], it creates a **fiber tree** based on the [[#Virtual DOM]].
-+ It is a special internal with **one** "fiber" for each component instance and DOM element in the app.
++ It is a special internal tree with **one** "fiber" for each component instance and DOM element in the app.
 + Each fiber contains a components current state, props, hooks etc, along with a queue of work to do, like updating state, updating refs, performing DOM updates.
 + Unlike [[#Virtual DOM]], it is not recreated on every render. It is a mutable data structure that is mutated in each reconciliation step.
 + Instead of a parent-child relationship, each first child has a link to its parent and all other children have a link to their previous sibling. ([[Linked List]]).
@@ -133,7 +133,7 @@ on clicking `Increase` button, only `h1` element is changed:
 ## Diffing
 Uses 2 rules:
 + Same component at same position in component tree, preserves state or conversely different components at same position reset state.
-	Ex 1 Updating the `App` state does not reset the `Counter` because `Counter` stays in the same position.
+	Ex 1 Updating the `App` component's `isFancy` state does not reset the `Counter` because `Counter` stays in the same position.
 ![Diagram with two sections separated by an arrow transitioning between them. Each section contains a layout of components with a parent labeled 'App' containing a state bubble labeled isFancy. This component has one child labeled 'div', which leads to a prop bubble containing isFancy (highlighted in purple) passed down to the only child. The last child is labeled 'Counter' and contains a state bubble with label 'count' and value 3 in both diagrams. In the left section of the diagram, nothing is highlighted and the isFancy parent state value is false. In the right section of the diagram, the isFancy parent state value has changed to true and it is highlighted in yellow, and so is the props bubble below, which has also changed its isFancy value to true.](https://react.dev/_next/image?url=%2Fimages%2Fdocs%2Fdiagrams%2Fpreserving_state_same_component.png&w=1200&q=75)
 
 + Ex 2 When `Counter` changes to `p`, the `Counter` is deleted and the `p` is added
@@ -157,7 +157,7 @@ Ex: changing key
 # Commit
 + List of effects generated in previous step is used to write to DOM.
 + The write process is **synchronous**, unlike the [[#Render]] step which is asynchronous.
-	+ It is synchronous, so that DOM updates never partial, thus UI is consistent.
+	+ It is synchronous, so that DOM updates are never partial and, thus UI is consistent.
 + The browser will then notice that the DOM has been changed, and as a result, it will repaint the screen whenever it has some idle time.
 + Once completed, the work in progress tree becomes the current fiber tree for the next render.
 + [[#Render]] step is performed by the React library but commit is done by React DOM library.
