@@ -4,7 +4,7 @@
 # Definition
 The Abstract Factory Pattern provides an interface for creating families of related or dependent objects without creating a dependency on their concrete classes.
 # Need for Abstract Factory Pattern
-Continuing with the `PizzaStore` example, we know each of its subclasses `NYStylePizzaStore` and `ChicagoStylePizzaStore` prepares the same pizza say Clam Pizza_ differently (`NYStyleClamPizza` and `ChicagostyleClamPizza`).
+Continuing with the `PizzaStore` example, we know each of its subclasses `NYStylePizzaStore` and `ChicagoStylePizzaStore` prepares the same pizza say _Clam Pizza_ differently (`NYStyleClamPizza` and `ChicagostyleClamPizza`).
 
 Naturally, both pizzas are prepared using the same basic components: _dough_, _sauce_, _toppings_ and _cheese_ but different ingredients.
 ![[Pasted image 20250929181241.png]]
@@ -31,8 +31,6 @@ public interface PizzaIngredientFactory {
 ```
 
 Its subclasses `NYPizzaIngredientFactory` and `ChicagoPizzaIngredientFactory` will implement these methods to specify the ingredients it needs to create `Pizza`.
->[!note]
->We assume that each _style_ of pizzas i.e. NY style and Chicago style uses a common set of ingredients instead of each `Pizza` subtype using different ingredients.
 
 ```java
 public class NYPizzaIngredientFactory implements PizzaIngredientFactory {

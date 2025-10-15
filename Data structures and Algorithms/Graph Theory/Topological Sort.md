@@ -1,7 +1,7 @@
 #graph #dsa 
 
 # Definition
-Linear ordering of vertices such that for a directed edge u-> v u appears before v in ordering.
+Linear ordering of vertices such that for a directed edge u-> v, u appears before v in ordering.
 >[!example]
 >**Input:** V=6 , E = [ [2,3], [3,1], [4,0], [4,1], [5,0], [5,2] ]  
 ![](https://media.geeksforgeeks.org/wp-content/uploads/20200529233009/Untitled-Diagram-337.png)

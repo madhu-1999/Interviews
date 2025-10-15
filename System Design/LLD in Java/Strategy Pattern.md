@@ -70,7 +70,7 @@ public class MallardDuck extends Duck {
 	}
 	
 	//[[Core Principles#**Setter Injection**|Setter Injection]]
-	public void setFlyBrhavior(FlyBehavior flyBehavior) {
+	public void setFlyBehavior(FlyBehavior flyBehavior) {
 		this.flyBehavior = flyBehavior;
 	}
 	

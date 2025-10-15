@@ -24,7 +24,7 @@ debugInConsole: false # Print debug info in Obsidian console
 + Can be setup as internal (private) or external (public) ELB's. 
 + Each ELB has a **static DNS name**, which clients can use to send traffic to.
 	+ Even in multi-AZ setup, there is only one static DNS name. The DNS name resolves to the IP addresses of all the ELB nodes in the set. ^[[Amazon Route 53]]
-+ Operates within a [[AWS Global Infrastructure|region]] but provisions nodes in each AZ that it is enabled in.
++ Operates within a [[AWS Global Infrastructure|region]] but only provisions nodes in AZ's that are enabled.
 	+ Load balancing done only for instances in target group that are in AZ's where ELB is enabled.
 + Monitors health of targets. If target becomes unhealthy, traffic is not sent its way. If an AZ fails or has no healthy targets, traffic is routed to healthy targets in other enabled AZ's.
 ![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851240.png]]
@@ -86,12 +86,12 @@ AWS provides 4 types:
 + Uses **listeners** and **rules** to route requests to **target groups**.
 	+ can define rules based on the request's path (e.g., `/app1` or `/app2`), host header, or other information.
 	+ The path pattern rules apply only to the URL path and not to the query parameters of the URL.
-+ Can register EC2 instances, ECS tasks (`ip`) and lambda functions as targets.
++ Can register EC2 instances, [[Amazon ECS|ECS tasks]] (`ip`) and lambda functions as targets.
 + Targets don't see IP of client directly, it is in `X-Forwarded-For` header.
 + Can route requests to ports on one or more requested targets in [[Amazon VPC|VPC]].
 	+ Can register the same target (such as an EC2 instance) with a target group multiple times, using a different port each time.
 	+ This means we can run multiple applications or microservices on different ports on a single EC2 instance.
-	+ Ex: configure a single listener on port `80` with two rules:
+	+ Ex: configure a listener on front-end port `80` with two rules:
 		> **Rule 1**: IF path is /app1* THEN forward to target group for port 8080
 		   **Rule 2**: IF path is /app2* THEN forward to target group for port 9090
 

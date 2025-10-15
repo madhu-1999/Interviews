@@ -1,6 +1,6 @@
 #dsa #dp 
 # Problem
-Given a rod of length ***n inches*** and an array ***price[]***.  ***price[i]*** denotes the value of a ***piece*** of length i. The task is to determine the ***maximum*** value obtainable by ***cutting up the rod*** and selling the pieces. price[] is ***1-indexed*** array.
+Given a rod of length ***L inches*** and an array ***price[]***.  ***price[i]*** denotes the value of a ***piece*** of length i. The task is to determine the ***maximum*** value obtainable by ***cutting up the rod*** and selling the pieces. price[] is ***1-indexed*** array.
 >[!example]+
 >price = [1, 5, 8, 9]
 >L = 4

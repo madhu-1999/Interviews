@@ -3,5 +3,6 @@
   "automatic-table-of-contents",
   "oz-image-plugin",
   "code-styler",
-  "tabs"
+  "tabs",
+  "find-unlinked-files"
 ]

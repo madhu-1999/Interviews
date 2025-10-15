@@ -29,7 +29,8 @@
 		{"id":"6bfdbc1f3ccf3d12","type":"file","file":"System Design/LLD in Java/Abstract Factory Pattern.md","x":-1568,"y":82,"width":400,"height":50},
 		{"id":"0439263d62fcb5ea","type":"text","text":"# Behavioral Design Patterns","x":-633,"y":-165,"width":250,"height":60},
 		{"id":"15dc7bb7721d8be4","type":"file","file":"System Design/LLD in Java/Strategy Pattern.md","x":-967,"y":41,"width":400,"height":50},
-		{"id":"89d7acac3334956f","x":-520,"y":41,"width":400,"height":50,"type":"file","file":"System Design/LLD in Java/Observer Pattern.md"}
+		{"id":"89d7acac3334956f","type":"file","file":"System Design/LLD in Java/Observer Pattern.md","x":-520,"y":41,"width":400,"height":50},
+		{"id":"ec44d74497750a68","x":-57,"y":41,"width":400,"height":50,"type":"file","file":"System Design/LLD in Java/Decorator Pattern.md"}
 	],
 	"edges":[
 		{"id":"f8120299ccd53a80","fromNode":"29e2c1794c2f1be1","fromSide":"bottom","toNode":"f0189589ca2358ed","toSide":"top","label":"Used to create distributed caches"},
@@ -60,6 +61,7 @@
 		{"id":"a65cfc9e904389d8","fromNode":"b60a9f87d2e2abdf","fromSide":"bottom","toNode":"6bfdbc1f3ccf3d12","toSide":"top"},
 		{"id":"5f5e1ddb311dc727","fromNode":"05c2e8c1ac9980bd","fromSide":"bottom","toNode":"0439263d62fcb5ea","toSide":"top","label":"Related to object interactions"},
 		{"id":"f8132b3c945d633a","fromNode":"0439263d62fcb5ea","fromSide":"bottom","toNode":"15dc7bb7721d8be4","toSide":"top"},
-		{"id":"a17efbd1458ee926","fromNode":"0439263d62fcb5ea","fromSide":"bottom","toNode":"89d7acac3334956f","toSide":"top"}
+		{"id":"a17efbd1458ee926","fromNode":"0439263d62fcb5ea","fromSide":"bottom","toNode":"89d7acac3334956f","toSide":"top"},
+		{"id":"7d671909d42d1c8a","fromNode":"0439263d62fcb5ea","fromSide":"bottom","toNode":"ec44d74497750a68","toSide":"top"}
 	]
 }

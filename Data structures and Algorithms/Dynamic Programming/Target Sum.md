@@ -1,6 +1,6 @@
 #dsa #dp 
 # Problem 
- given a list of non-negative integers $nums$ and a target $S$, we have two symbols $+$ and $-$ For each integer in $nums$, choose to assign $+$ or $-$ to it. Then find the no of ways to assign symbols such that sum of all integers is $sum$.
+ Given a list of non-negative integers $nums$ and a target $S$, we have two symbols $+$ and $-$ For each integer in $nums$, choose to assign $+$ or $-$ to it. Then find the no of ways to assign symbols such that sum of all integers is $sum$.
  >[!example]+
  >nums=[1, 1, 1, 1, 1]
  >sum=3
