@@ -30,7 +30,7 @@ debugInConsole: false # Print debug info in Obsidian console
 	+ RAM
 	+ [[Storage in AWS|Storage space]]
 		+ [[Network Attached Storage (NAS)]]: ([[Amazon EBS|EBS]]and EFS)
-		+ Hardware: ([[Storage in AWS#Block storage|EC2 Instance Store]])
+		+ Hardware: ([[Storage in AWS#^233511|EC2 Instance Store]])
 + Next, we need to create a key pair for SSH login. The public key will be injected into the EC2 instance and the user will hold the private key.
 + Then we define network settings
 	+ Network (AWS VPC)
@@ -153,14 +153,14 @@ Reference for extended reading: https://aws.amazon.com/ec2/instance-types/
 + **Dynamic Scaling**:  adjusts in real time to fluctuations in demand.
 	+  Track a specific CloudWatch metric, and define what action to take when the associated CloudWatch alarm is in ALARM.
 	+ Metrics used to invoke the alarm state are an aggregation of metrics coming from all of the instances in the Auto Scaling group.
-	+ Target Tracking Scaling
+	+ Target Tracking Scaling ^04dd8f
 		+ Increase and decrease the current capacity of the group based on a CloudWatch metric and a target value
 		+ Ex: Average ASG CPU $\approx$ 40%
 	+ Simple Scaling
 		+ Single scaling adjustment only.
 		+ When CloudWatch alarm is triggered (CPU > 70%) add 2 units (Scale out)
 		+ When CloudWatch alarm is triggered (CPU < 30%) remove 1 unit (Scale in)
-	+ Step Scaling
+		+ Step Scaling ^447dac
 		+ Multiple step adjustments possible.
 		+ When CloudWatch alarm is triggered ( CPU > 60%) add 1 unit (Scale out)
 		+ When CloudWatch alarm is triggered ( CPU > 70%) add 3 units (Scale out)
@@ -172,7 +172,7 @@ Reference for extended reading: https://aws.amazon.com/ec2/instance-types/
 		+ Add/Remove _x%_ units for some metric and utilization.
 + **Predictive Scaling**: preemptively schedules instances based on anticipated demand.
 	+ Ml driven. Forecast based on past data for a metric and target utilization.
-+ **Scheduled Actions**: manually schedule instances based on known future demand.
++ **Scheduled Actions**: manually schedule instances based on known future demand. ^55db8e
 ## Health checks
 + EC2 Auto Scaling uses health checks to maintain the *desired* capacity. If any instances are down, it replaces them with new instances. Custom health check can be specified, failure of which leads to the instance being replaced with a new one.
 + If multiple [[AWS Global Infrastructure#Availability Zone (AZ)|AZ's]] specified in the group, instances are divided evenly amongst the AZ's. AWS attempts to create new instances first in the AZ with the least number of instances, on failure moves on to other AZ's. 

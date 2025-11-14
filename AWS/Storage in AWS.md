@@ -25,7 +25,7 @@ debugInConsole: false # Print debug info in Obsidian console
 + Data can be updated, block by block, meaning the whole file doesn't need to be changed every time you make an update
 + AWS provides block storage volumes that attach to EC2 instances like physical hard drives.
 + AWS offers two primary block storage services:
-    + Amazon EC2 Instance store : 
+    + Amazon EC2 Instance store :  ^233511
 	    + Unmanaged, volatile, high-performance storage ==physically== attached to EC2 instances for temporary data. 
 	    + Data is lost if instance is stopped or terminated.
 	    + Use for buffers, caches, scratch space for processing.

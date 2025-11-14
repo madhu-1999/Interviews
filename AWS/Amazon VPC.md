@@ -26,7 +26,7 @@ debugInConsole: false # Print debug info in Obsidian console
 	+ VPC endpoint to connect to AWS services privately. (public or private VPC)
 	+ NAT gateway (AWS managed) or NAT instances (Self-managed) to connect private VPC instances to the internet, while remaining private.
 ![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19729022.png]]
-+ Routing tables used to where network traffic from/to subnet or gateway is directed.
++ Routing tables used to route network traffic from/to subnet or gateway.
 	+ Each subnet must have one, and is associate *by default* to main route table in VPC.
 # Private IPv4 addresses
 + When any AWS resource instance, like [[Amazon Elastic Compute Cloud (AWS EC2)#EC2 Instance|EC2 instance]] is launched in a VPC, a private IPv4 address is assigned to the its primary network interface (ex: eth0).
@@ -44,7 +44,7 @@ ip-10-24-34-0.us-west-2.compute.internal
 	+ Assigning public IP to instance on launch can be overriden by a feature flag during instance launch configuration.
 + AWS charges for all public IPv4 addresses. 
 + It is assigned from a pool of public IP addresses, not associated with the VPC.
-	+ When instance is stopped/terminated, released back into the pool. This is why public IP of instances is dynamic.
+	+ When instance is stopped/terminated, the public IP is released back into the pool. This is why public IP of instances are dynamic.
 + If enabled, instance receives a public DNS hostname that resolves to 
 	+ public IP address, if outside VPC
 	+ private IP address, if inside VPC
@@ -95,8 +95,7 @@ ip-10-24-34-0.us-west-2.compute.internal
 	+ All ***inbound*** traffic is ***blocked***
 	+ All ***outbound*** traffic is ***allowed***
 + Security group in a VPC can be associated ***only*** with resources in the same VPC. 
-+ [[#Security Group VPC Association feature]] is used to assign a security group to resources in ***other*** VPC's in ***same region***.
-+ A resource (say, EC2 instance) can have *multiple* security groups.
++ A resource (say, EC2 instance) can have ***multiple*** security groups.
 + Only contain *ALLOW* rules.
 + Can regulate
 	+ Access to ports
@@ -174,7 +173,11 @@ ip-10-24-34-0.us-west-2.compute.internal
 	+ VPC's can be in same/different accounts/regions
 	+ No overlapping CIDR blocks between connecting VPCs
 	+ Connection is **not transitive**. (Use [Transit Gateway](https://docs.aws.amazon.com/whitepapers/latest/building-scalable-secure-multi-vpc-network-infrastructure/transit-gateway.html) instead)
-+ Does not use gateway or VPN connection to connect VPCs
++ Does not use gateway or VPN connection to connect VPCs.
++ Two way communication
++ Access:
+	- **Full access:** If you add a route to the entire CIDR block of the peer VPC, all resources in your VPC can potentially communicate with all resources in the peer VPC (if allowed by other security rules).
+	- **Partial access:** To restrict communication, you can specify more granular routes in your route table. For example, you can limit access to a specific subnet, multiple subnets, or even a single IP address in the peered VPC.
 ![A VPC peering connection](https://docs.aws.amazon.com/images/vpc/latest/peering/images/peering-intro-diagram.png)
 ## Working
 + _Requester_ VPC sends peering connection request to _accepter_ VPC 

@@ -1,0 +1,2 @@
+1. [Kadane's Algorithm - Maximum subarray sum](https://www.geeksforgeeks.org/dsa/largest-sum-contiguous-subarray/)
+2. [2D Prefix sum - Submatrix Sum (Range queries)](https://www.geeksforgeeks.org/dsa/prefix-sum-2d-array/)

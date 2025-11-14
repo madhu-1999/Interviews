@@ -11,4 +11,5 @@
 1. [[State|useState]]
 2. [[useEffect Hook]]
 3. [[useRef Hook]]
+4. [[useReducer Hook]]
 # Custom Hook
