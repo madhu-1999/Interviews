@@ -1,0 +1,124 @@
+#database #indexing
+# Overview of how table data is stored
+Table data + index data + metadata is stored in data files which is a collection of data pages.
+ ![[mx-img-t1qhb1ziqtw32p13tp6apu1z-pt4m46_50s.jpg|SQL Indexes (Visually Explained) | Clustered vs Nonclustered | #SQL Course 35 - 04:46|50]] [04:46](https://www.youtube.com/watch?v=BxAj3bl00-o&t=287#t=04:46.50) 
+ Each data page (of fixed size 8kb) stores
+ 1. Header (of fixed size) 
+	 In image below 1:150 denotes file id (=1) and page id (=150).
+ 2. some rows in of the table (no of rows is variable, depending on the size of a row)
+ 3. offset footer which contains ptr to each row in the page for quick access.
+![[mx-img-t1qhb1ziqtw32p13tp6apu1z-pt6m38_54s.jpg|SQL Indexes (Visually Explained) | Clustered vs Nonclustered | #SQL Course 35 - 06:38|50]] [06:38](https://www.youtube.com/watch?v=BxAj3bl00-o&t=399#t=06:38.54) 
+# How data is stored when there is no primary key and no indexes
+Rows are stored in the same order as they are entered into the table, which could be __random__.
+Searching on such a table would require a __FULL TABLE SCAN__.
+
+ ![[mx-img-t1qhb1ziqtw32p13tp6apu1z-pt8m7_02s.jpg|SQL Indexes (Visually Explained) | Clustered vs Nonclustered | #SQL Course 35 - 08:07|50]] [08:07](https://www.youtube.com/watch?v=BxAj3bl00-o&t=487#t=08:07.02) 
+# Clustered Index
+It defines the __physical__ order in which rows of a table are stored.
+Since, data can be stored on disk in only one way, ==a table can have only one clustered index.==
+Data in a clustered index is __stored in the sorted order__ of the selected key.
+>[!info]-
+>In __MySQL/MariaDB__: Primary key = clustered index
+>
+>In __Postgres__: Primary key = unique non-clustered index.
+>> We can cluster on any key using `CLUSTER` command. But we need to periodically rerun `CLUSTER` command to cluster newer data.
+
+Data is arranged in a [[B-tree]]. (Note that there are other options for arranging data, B- tree is the most widely used for general-purposes). 
+
+ ![[mx-img-t1qhb1ziqtw32p13tp6apu1z-pt14m26_50s.jpg|SQL Indexes (Visually Explained) | Clustered vs Nonclustered | #SQL Course 35 - 14:26|50]] [14:26](https://www.youtube.com/watch?v=BxAj3bl00-o&t=866#t=14:26.50) 
+ The image above shows a clustered index. CRUD ops are $O(log n)$.  
+	 The leaf nodes point to the actual data pages. (not a pointer !)
+	 Since the data is stored in sorted order so intermediate/root node(s) store pointers to sub-ranges of data.
+#  Non-clustered index
+If you perform a query on a column that is _not_ the primary key, the database uses a **Non-Clustered Index**
+This is a separate B-Tree that ==stores the indexed value and a pointer to go find the actual row== in the main clustered table. i.e. it requires extra space.
+	Notice that data in the index structure is sorted by the column that the non clustered index is created on, but data that is physically in the data page remains in its original order.
+```media-slider
+![[mx-img-t1qhb1ziqtw32p13tp6apu1z-pt20m3_29s.jpg|SQL Indexes (Visually Explained) | Clustered vs Nonclustered | #SQL Course 35 - 20:03|50]]
+![[mx-img-t1qhb1ziqtw32p13tp6apu1z-pt17m59_80s.jpg|SQL Indexes (Visually Explained) | Clustered vs Nonclustered | #SQL Course 35 - 17:59|50]]
+```
+The leaf node stores a pointer to the actual row in the format *file_id : page_id : offset* (see slide 2)
+
+| Feature               | Clustered Index                                                              | Non-Clustered Index                                                         |
+| :-------------------- | :--------------------------------------------------------------------------- | :-------------------------------------------------------------------------- |
+| **Physical Order**    | Sorts and stores data rows                                                   | Does not sort data rows                                                     |
+| **Number per Table**  | Only one                                                                     | Many                                                                        |
+| **Leaf Level**        | Contains data pages                                                          | Contains pointers (Row ID/Key)                                              |
+| **Read Performance**  | Faster (usually)                                                             | Slower (extra step to data page)                                            |
+| **Space Requirement** | Low (part of table)                                                          | High (separate structure)                                                   |
+| __Write Performance__ | Slower (due to potential reordering of data)                                 | Faster (no change in physical location of data)                             |
+| __Use case__          | Unique columns, Infrequenly modified column, improve range query performance | Columns frequently used in joins or search conditions, exact match queries. |
+|                       |                                                                              |                                                                             |
+# Rowstore Index
+![](https://youtu.be/k9DpO91W76o?list=PLNcg_FV9n7qZY_2eAtUzEUulNjTJREhQe)
+They store table data in data pages in rows (as described in [[#Overview of how table data is stored]]).
+```sql
+CREATE NONCLUSTERED INDEX IX_Customers_Country ON Customers(Country);
+
+CREATE CLUSTERED INDEX IX_Customers_ID ON Customers(ID);
+```
+# Columnstore Index
+They store table data in data pages in columns.
+Check [[Parquet]] for detailed explanation of how row grouping, segmentation and compression works.
+ ![[mx-img-m2tk73y1gsv8vcb4ag8xwtmq-pt6m19_29s.jpg|SQL Columnstore Index (Visually Explained) | Columnstore vs Rowstore | #SQL Course 36 - 06:19|50]] [06:19](https://www.youtube.com/watch?v=k9DpO91W76o&t=379#t=06:19.29) 
+The compressed segments are stored in LOB (Large Object) Pages.
+	The Header  (of fixed size) will store *file_id : page_id*.
+	Then we have a Segment Header which stores the _segment_id_ (id of column segment), the _rowgroup_id_ and _dictionary_id_ for the compression mapping.
+	Lastly it stores the compressed data stream.
+
+ ![[mx-img-m2tk73y1gsv8vcb4ag8xwtmq-pt6m0_29s-1w3hlvb.jpg|SQL Columnstore Index (Visually Explained) | Columnstore vs Rowstore | #SQL Course 36 - 06:00|50]] [06:00](https://www.youtube.com/watch?v=k9DpO91W76o&t=360#t=06:00.29) 
+## How does search work?
+Each Row group stores column - level stats for each column in the row (min/max value ranges).
+So when a query comes asking for a column aggregation, the db will check row group stats to identify if the data ranges match (if `WHERE` or `HAVING` clause is specifed). If they don't we can skip that rowgroup (saving time).
+If they match, the db scans the segments for specified columns only, in the row group to find all the column values that match its conditions.
+	Each row group would store info about which segments store data chunks for a particular column.
+Then using the dictionary reference, it can decompress and aggregate column values.
+>[!tip] The row group skipping works better if data is ordered, that way we won't have too many segments with overlapping ranges.
+>>[!note] Data is not ordered by default in columnstore indexes.
+>>We can force a order while creating the index as:
+>>```sql
+>>CREATE CLUSTERED COLUMNSTORE INDEX IX_Sales ON Sales ORDER (TransactionDate, CustomerID);
+>>```
+## Clustered and Non-Clustered Columnstore Indexes
+>[!warning] Data is unsorted by default
+
+For a clustered columnstore index, the original heap/row store will be deleted and the table data is represented as seen in [[Parquet]].
+
+For a non clustered index, the LOB pages are stored as a separate structure, in addition to the rowstore or heap format.
+
+```sql
+CREATE NONCLUSTERED COLUMNSTORE INDEX IX_Customers_Country ON Customers(Country);
+
+CREATE CLUSTERED COLUMNSTORE INDEX IX_Customers_ID ON Customers; -- Cannot specify a column since it must be done for all columns for a valid representation.
+```
+# Unique Index
+Enforce uniqueness of column value.
+Writes are slower (due to index overhead), but reads are faster.
+```sql
+CREATE UNIQUE INDEX  uniq_primary_email ON emails(user_id);
+```
+# Filtered/ Partial Index
+>[!warning] Only allowed for non clustered index and rowstore
+
+Create index on a subset of data by specifying `WHERE` condition.
+- **Reduced Index Size**: The index only stores entries for rows that meet the condition, saving significant disk space.
+- **Faster Maintenance**: PostgreSQL only updates the index when a row that satisfies the condition is inserted or updated.
+- **Improved Query Performance**: Small, specialized indexes are often faster to scan than a full-table index
+**Use Case**: 
+	You query more often on _active_ users, and infrequently on _inactive_ users. Filtered index will speed up queries at lower storage cost (_inactive__ >> _active_).
+```sql
+CREATE INDEX index_name 
+ON table_name (column_name) 
+WHERE condition;
+```
+# When to use which index?
+ ![[mx-img-e3nticad5hogrghcdp1tbv7n-pt3m20_52s.jpg|How to Choose the Right Index (Visually Explained) | #SQL Course 38 - 03:20|50]] [03:20](https://www.youtube.com/watch?v=1lHNw365ldc&t=201#t=03:20.52) 
+# How does DB choose which index to use?
+# Fragmentation
+# Execution Plans
+![](https://youtu.be/O7AzUDogXsw?list=PLNcg_FV9n7qZY_2eAtUzEUulNjTJREhQe)
+Estimate vs Actual
+Table scan vs index scan vs index seek
+# Index Data Structures
+[[B-tree]]
+[[Hash Index]]

@@ -311,11 +311,11 @@
       "header": {
         "title": {
           "textFont": "",
-          "textBold": false,
+          "textBold": true,
           "textItalic": false
         },
         "languageTag": {
-          "display": "if_header_shown",
+          "display": "none",
           "textFont": "",
           "textBold": true,
           "textItalic": false
@@ -329,12 +329,12 @@
           "displayVersion": true,
           "displayTimestamp": true
         },
-        "fontSize": 16,
+        "fontSize": 14,
         "foldPlaceholder": ""
       },
       "highlights": {
-        "activeCodeblockLine": true,
-        "activeEditorLine": true
+        "activeCodeblockLine": false,
+        "activeEditorLine": false
       },
       "inline": {
         "syntaxHighlight": true,
@@ -348,7 +348,7 @@
       },
       "advanced": {
         "gradientHighlights": false,
-        "gradientHighlightsColourStop": "73%",
+        "gradientHighlightsColourStop": "70%",
         "languageBorderColour": false,
         "languageBorderWidth": 5,
         "iconSize": 28
@@ -366,9 +366,9 @@
           "activeTextColour": "--text-muted"
         },
         "header": {
-          "backgroundColour": "#79B0C2",
+          "backgroundColour": "#BCB7B7",
           "title": {
-            "textColour": "--code-comment"
+            "textColour": "#D94949"
           },
           "languageTag": {
             "backgroundColour": "--code-background",
@@ -382,9 +382,9 @@
           "lineColour": "--color-base-30"
         },
         "highlights": {
-          "activeCodeblockLineColour": "#8D8B8B",
+          "activeCodeblockLineColour": "--color-base-30",
           "activeEditorLineColour": "--color-base-20",
-          "defaultColour": "#891D8C80",
+          "defaultColour": "#3400FF80",
           "alternativeHighlights": {}
         },
         "inline": {
@@ -425,9 +425,9 @@
           "lineColour": "--color-base-30"
         },
         "highlights": {
-          "activeCodeblockLineColour": "#DAB2B2",
+          "activeCodeblockLineColour": "--color-base-30",
           "activeEditorLineColour": "--color-base-20",
-          "defaultColour": "#891D8C80",
+          "defaultColour": "--text-highlight-bg",
           "alternativeHighlights": {}
         },
         "inline": {

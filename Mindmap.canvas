@@ -1,0 +1,26 @@
+{
+	"nodes":[
+		{"id":"e336a69f0435170c","type":"file","file":"Docker/Docker Image.md","x":-222,"y":-119,"width":400,"height":50},
+		{"id":"64510d0bb1e564a8","type":"file","file":"Docker/Multi-Stage Builds.md","x":-740,"y":195,"width":400,"height":50},
+		{"id":"c463e641f0906584","type":"file","file":"Docker/DockerFile.md","x":-740,"y":-10,"width":400,"height":50},
+		{"id":"54a7dba1ba4becbb","type":"file","file":"Docker/Container.md","x":314,"y":-220,"width":400,"height":50},
+		{"id":"4e12dcf8e5db4c3b","type":"text","text":"___Optimize image size___","x":-740,"y":245,"width":250,"height":50},
+		{"id":"7f890c7f1f26b09e","type":"text","text":"___Manage multiple images in one file___","x":-740,"y":295,"width":250,"height":50},
+		{"id":"3dca679d67697b96","type":"file","file":"Docker/Docker CLI.md","x":0,"y":170,"width":400,"height":50},
+		{"id":"d4d29cc11e77875a","type":"file","file":"Docker/Docker Compose.md","x":814,"y":-60,"width":400,"height":50},
+		{"id":"7977f49ea4926f92","type":"file","file":"Docker/Persisting Data.md","x":480,"y":120,"width":400,"height":50},
+		{"id":"046ed408681f2ef1","type":"text","text":"# Bind mounts","x":401,"y":263,"width":250,"height":60},
+		{"id":"37f0001ee442f573","type":"text","text":"# Volumes","x":714,"y":263,"width":250,"height":60}
+	],
+	"edges":[
+		{"id":"2387f9f2dd25a22a","fromNode":"c463e641f0906584","fromSide":"bottom","toNode":"64510d0bb1e564a8","toSide":"top"},
+		{"id":"4c24009fd809dba4","fromNode":"d4d29cc11e77875a","fromSide":"bottom","toNode":"7977f49ea4926f92","toSide":"top","label":"Specifies"},
+		{"id":"bb5a10d4d6b07aff","fromNode":"c463e641f0906584","fromSide":"top","toNode":"e336a69f0435170c","toSide":"bottom","label":"Build"},
+		{"id":"21e09131ced34a85","fromNode":"e336a69f0435170c","fromSide":"right","toNode":"54a7dba1ba4becbb","toSide":"bottom","label":"Create"},
+		{"id":"5219d5220425046a","fromNode":"3dca679d67697b96","fromSide":"top","toNode":"e336a69f0435170c","toSide":"bottom","label":"Manages"},
+		{"id":"3159cb33f845aa79","fromNode":"3dca679d67697b96","fromSide":"top","toNode":"54a7dba1ba4becbb","toSide":"bottom","label":"Manages"},
+		{"id":"6c5cfe919a30fca6","fromNode":"54a7dba1ba4becbb","fromSide":"bottom","toNode":"d4d29cc11e77875a","toSide":"top","label":"Manage multiple containers"},
+		{"id":"7f336cbb75ec28a4","fromNode":"7977f49ea4926f92","fromSide":"bottom","toNode":"046ed408681f2ef1","toSide":"top"},
+		{"id":"e626e52ff4f3de4d","fromNode":"7977f49ea4926f92","fromSide":"bottom","toNode":"37f0001ee442f573","toSide":"top","label":"Preferred"}
+	]
+}

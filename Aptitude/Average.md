@@ -1,3 +1,0 @@
-#quantitative 
-# Reference Video
-<iframe width="912" height="513" src="https://www.youtube.com/embed/l4R5OVIeAi4" title="Average Problems Tricks and Shortcuts || Complete Chapter || SBI &amp; IBPS RRB 2024 || Career Definer |" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

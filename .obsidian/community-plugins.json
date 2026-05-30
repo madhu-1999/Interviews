@@ -1,8 +1,15 @@
 [
-  "obsidian-style-settings",
-  "automatic-table-of-contents",
-  "oz-image-plugin",
-  "code-styler",
   "tabs",
-  "find-unlinked-files"
+  "find-unlinked-files",
+  "execute-code",
+  "colored-tags",
+  "media-extended",
+  "media-slider",
+  "obsidian-style-settings",
+  "pdf-plus",
+  "surfing",
+  "header-adjuster",
+  "code-styler",
+  "obsidian-tts",
+  "image-converter"
 ]

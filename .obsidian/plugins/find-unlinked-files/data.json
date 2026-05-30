@@ -8,7 +8,11 @@
   ],
   "linksToIgnore": [],
   "tagsToIgnore": [],
-  "fileTypesToDelete": [],
+  "fileTypesToDelete": [
+    "jpg",
+    "png",
+    "webp"
+  ],
   "ignoreFileTypes": true,
   "ignoreDirectories": true,
   "unresolvedLinksIgnoreDirectories": true,

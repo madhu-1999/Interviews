@@ -3,6 +3,8 @@
   "accentColor": "#1097e0",
   "interfaceFontFamily": "Arial",
   "textFontFamily": "Arial",
-  "enabledCssSnippets": [],
-  "theme": "system"
+  "enabledCssSnippets": [
+    "mermaid"
+  ],
+  "theme": "moonstone"
 }

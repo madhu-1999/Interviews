@@ -1,0 +1,20 @@
+{
+  "defaultVoice": "speechSynthesis-Karen",
+  "pitch": 1,
+  "rate": 1,
+  "volume": 1,
+  "speakLinks": false,
+  "speakFrontmatter": false,
+  "speakSyntax": true,
+  "speakTitle": true,
+  "speakCodeblocks": true,
+  "speakEmoji": false,
+  "speakComments": true,
+  "languageVoices": [],
+  "stopPlaybackWhenNoteChanges": false,
+  "services": {
+    "openai": {
+      "key": ""
+    }
+  }
+}

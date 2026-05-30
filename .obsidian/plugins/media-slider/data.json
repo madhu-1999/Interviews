@@ -1,0 +1,14 @@
+{
+  "enableDrawingAnnotation": true,
+  "enableVisualizer": false,
+  "visualizerColor": "#00ff00",
+  "visualizerHeight": "50px",
+  "compressionQuality": 1,
+  "enableCompression": true,
+  "enableCompareMode": true,
+  "showControlsOnHover": false,
+  "thumbnailsCollapsedByDefault": false,
+  "showCopyButton": true,
+  "showThumbnailToggle": true,
+  "drawings": {}
+}

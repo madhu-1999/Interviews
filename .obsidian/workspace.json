@@ -4,59 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "ca6bd6781ad15663",
+        "id": "a105024b4e103387",
         "type": "tabs",
         "children": [
           {
-            "id": "e513da5a81760c0c",
+            "id": "286a32482f298446",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Data structures and Algorithms/Algorithms.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": true,
-                "backlinkOpts": {
-                  "collapseAll": false,
-                  "extraContext": false,
-                  "sortOrder": "alphabetical",
-                  "showSearch": false,
-                  "searchQuery": "",
-                  "backlinkCollapsed": true,
-                  "unlinkedCollapsed": true
-                }
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Algorithms"
-            }
-          },
-          {
-            "id": "49837b544bccab5b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "AWS/AWS CloudWatch.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": true,
-                "backlinkOpts": {
-                  "collapseAll": false,
-                  "extraContext": false,
-                  "sortOrder": "alphabetical",
-                  "showSearch": false,
-                  "searchQuery": "",
-                  "backlinkCollapsed": false,
-                  "unlinkedCollapsed": true
-                }
-              },
-              "icon": "lucide-file",
-              "title": "AWS CloudWatch"
+              "title": "New tab"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -88,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "\"throughput\"",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": true,
                 "collapseAll": true,
@@ -113,7 +74,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 244.5
+    "width": 244.5,
+    "collapsed": true
   },
   "right": {
     "id": "40eb84998c0dc91a",
@@ -129,7 +91,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AWS/Amazon Route 53.md",
+                "file": "Views.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +101,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Amazon Route 53"
+              "title": "Backlinks for Views"
             }
           },
           {
@@ -148,12 +110,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "AWS/Amazon Route 53.md",
+                "file": "Views.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Amazon Route 53"
+              "title": "Outgoing links from Views"
             }
           },
           {
@@ -172,102 +134,111 @@
             }
           },
           {
-            "id": "47856c4557847a5f",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "AWS/Amazon CloudFront.md",
-                "followCursor": false,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-list",
-              "title": "Outline of Amazon CloudFront"
-            }
-          },
-          {
             "id": "4802d5eda5db336d",
             "type": "leaf",
             "state": {
               "type": "footnotes",
               "state": {
-                "file": "AWS/Amazon CloudFront.md"
+                "file": "Views.md"
               },
               "icon": "lucide-file-signature",
               "title": "Footnotes"
             }
+          },
+          {
+            "id": "3c2bc8ece1d1fd10",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
+      "media-extended:Open media library": false,
+      "media-extended:Open media quick switcher": false,
       "bases:Create new base": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "pdf-plus:PDF++: Toggle auto-copy": false,
+      "pdf-plus:PDF++: Toggle auto-focus": false,
+      "pdf-plus:PDF++: Toggle auto-paste": false,
+      "obsidian-tts:Text to Speech": false,
+      "header-adjuster:Adjust headers": false
     }
   },
-  "active": "49837b544bccab5b",
+  "active": "286a32482f298446",
   "lastOpenFiles": [
-    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19730070 1.png",
-    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19730070.png",
-    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_36527940.png",
-    "Data structures and Algorithms/Dynamic Programming/Subset Sum.md",
-    "Data structures and Algorithms/Dynamic Programming/Knapsack.md",
-    "Data structures and Algorithms/Graph Theory/Topological Sort.md",
-    "Murder in the Abandoned Hospital.md",
-    "Text Adventure game.md",
-    "Data structures and Algorithms/Data Structures & Algorithms.md",
-    "Data structures and Algorithms/Algorithms.md",
-    "React/useReducer Hook.md",
-    "React/Hooks.md",
-    "React/State.md",
-    "React/useRef Hook.md",
-    "AWS/AWS CloudWatch.md",
-    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851352.png",
-    "AWS/Other AWS Services.md",
-    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851352 (1).png",
-    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101802 1.png",
-    "AWS/Amazon VPC.md",
-    "AWS/AWS Roadmap.canvas",
-    "AWS/Amazon SNS.md",
-    "AWS/Amazon SQS.md",
-    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101802.png",
-    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101780.png",
-    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_21437572.png",
-    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851372 (1).png",
-    "Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851372.png",
-    "System Design/HLD/Message Queues.md",
-    "AWS/Amazon S3.md",
-    "AWS/Amazon Aurora.md",
-    "AWS/Amazon EBS.md",
-    "Data structures and Algorithms/Dynamic Programming/Longest Increasing Subsequence.md",
-    "Data structures and Algorithms/Graph Theory/Krushkals MST algorithm.md",
-    "Untitled.base",
-    "Untitled 1.base",
-    "Data structures and Algorithms/Graph Theory/Dijkstra's Algorithm.md",
-    "Data structures and Algorithms/Graph Theory/Minimum Spanning Tree.md",
-    "Data structures and Algorithms/Graph Theory/Prims MST algorithm.md",
-    "Aptitude",
+    "OLTP vs OLAP vs HTAP.md",
+    "Row wise vs Column vs Hybrid Data Storage formats.md",
+    "Object Relational Mapping (ORM).md",
+    "ERD.md",
+    "Functional Dependencies.md",
+    "Database Sharding.md",
+    "Database Normalization.md",
+    "Database Keys.md",
+    "Database Indexes.md",
+    "Amazon RDS.md",
+    "Amazon DynamoDB.md",
+    "Amazon Aurora.md",
+    "ACID.md",
+    "Assets/Designing Data-Intensive Applications, 2nd Edition-9781098119058.pdf",
+    "Apache Spark.md",
+    "Data Warehouses.md",
+    "Assets/Pasted image 20260414171218.png",
+    "Revature Data Engineer.md",
+    "Views.md",
+    "PySpark.md",
+    "Window Functions.md",
+    "IAM.md",
+    "Amazon Cognito.md",
+    "AWS Lambda.md",
+    "AWS CloudWatch.md",
+    "Amazon S3.md",
+    "Assets/Apache Spark-1778705849224.webp",
+    "Assets/Apache Spark-1778698144623.webp",
+    "Assets/Apache Spark-1778619479776.webp",
+    "Assets/Apache Spark-1778618364734.webp",
+    "Parquet.md",
+    "Assets/Apache Spark-1778557874206.webp",
+    "Design Principles Rough notes.md",
+    "Reading Order.canvas",
+    "LLD in Java",
+    "HLD",
+    "theory-slides-v1.1.pdf",
+    "Roadmap.canvas",
+    "Mindmap.canvas",
+    "SQL_Basics.ipynb",
+    "Graph Theory",
+    "Dynamic Programming",
+    "AWS Roadmap.canvas",
+    "Assets/Apache Spark-1778544164515.webp",
+    "Assets/Apache Spark-1778543527311.webp",
+    "Assets/Apache Spark-1778542995485.webp",
+    "Assets/Apache Spark-1778540918836.webp",
+    "Templates/template-promote-headers.js",
+    "Templates/template-promote-headers",
+    "templater",
     "System Design/Reading Order.canvas",
     "Docker/Mindmap.canvas",
-    "React/Roadmap.canvas",
-    "React/theory-slides-v1.1.pdf",
-    "System Design/LLD in Java",
-    "System Design/HLD",
-    "Data structures and Algorithms/Graph Theory",
-    "Data structures and Algorithms/Dynamic Programming",
-    "React",
-    "AWS"
+    "AWS/AWS Roadmap.canvas",
+    "React/Roadmap.canvas"
   ]
 }
