@@ -1,4 +1,4 @@
-	#de 
+#de 
 # Definition
 **Data ingestion** is the process of collecting, moving or onboarding data from one or more sources into a target system, transforming it as needed for downstream use.
 # Ingestion Patterns

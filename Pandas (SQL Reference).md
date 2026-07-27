@@ -1,4 +1,10 @@
-#python #pandas #data-science #de 
+---
+tags:
+  - "#python"
+  - "#data-science"
+  - "#de"
+  - "#pandas"
+---
 # Prerequisite
 [[SQL_Basics]]
 # Creating DataFrame
@@ -333,7 +339,7 @@ df.query('Age > 30')
 df.query('Age > 25 and City == "NY"')
 ```
 Note the double quotes around NY, they signify that NY is a string literal.
-
+	
 |       | First Name | Age | City |
 | ----- | ---------- | --- | ---- |
 | __2__ | Charlie    | 35  |      |
@@ -1146,20 +1152,20 @@ employees.groupby('Department').filter(lambda x: x['Salary'].sum() > 150000)
 ### Inner Join
 <center><b>Orders</b></center>
 
-|     | order_id | date       | amount |
-| --- | -------- | ---------- | ------ |
-| **0**   | 101      | 2023-01-01 | 250    |
-| **1**   | 102      | 2023-01-02 | 450    |
-| **2**   | 103      | 2023-01-03 | 100    |
-| **3**   | 104      | 2023-01-04 | 300    |
+|       | order_id | date       | amount |
+| ----- | -------- | ---------- | ------ |
+| **0** | 101      | 2023-01-01 | 250    |
+| **1** | 102      | 2023-01-02 | 450    |
+| **2** | 103      | 2023-01-03 | 100    |
+| **3** | 104      | 2023-01-04 | 300    |
 <center><b>Payments</b></center>
 
-|     | transaction_id | date       | method |
-| --- | -------------- | ---------- | ------ |
-| **0**   | 101            | 2023-01-10 | Credit |
-| **1**   | 102            | 2023-01-11 | Cash   |
-| **2**   | 103            | 2023-01-12 | Credit |
-| **3**   | 105            | 2023-01-15 | PayPal |
+|       | transaction_id | date       | method |
+| ----- | -------------- | ---------- | ------ |
+| **0** | 101            | 2023-01-10 | Credit |
+| **1** | 102            | 2023-01-11 | Cash   |
+| **2** | 103            | 2023-01-12 | Credit |
+| **3** | 105            | 2023-01-15 | PayPal |
 
 ```sql
 SELECT *
@@ -1506,6 +1512,8 @@ df_mi_same.join(df_mi_diff, on=['city', 'year'])
 | **NY** | **2023** | 500   | 75.0 |
 | **LA** | **2023** | 600   | NaN  |
 >[!hint] Alternative: merge()
+>For `merge()`, one of the two dataframes must be merging on the index and the other on columns. Here, we are assuming, `df_mi_diff` is joining on the index and `df_mi_same` is using columns in the join.
+>
 >```python
 >pd.merge (
 df_mi_same,
@@ -1660,16 +1668,95 @@ pd.concat([staff, hires], axis=0)\
 |__0__|1|Alice|2|Bob|
 |__1__|2|Bob|3|Charlie|
 ## `INTERSECT`
-
+Same as [[#Inner Join]].
 ## `EXCEPT`
+Same as [[#Left Anti Join]]
 # UPDATE clause
-## `df.where()` method
-It keeps the original data when the condition is **True** and replaces it when the condition is **False**.
-## `df.mask()` method
+## `where()` method
+It keeps the original data when the condition is **True** and replaces it when the condition is **False**. i.e. the opposite of what a `UPDATE` statement does.
+
+|     | **Product_ID** | **Category** | **Stock** | **Price** |
+| --- | -------------- | ------------ | --------- | --------- |
+| 0   | 101            | Electronics  | 15        | 200       |
+| 1   | 102            | Furniture    | 0         | 150       |
+| 2   | 103            | Electronics  | -3        | 400       |
+| 3   | 104            | Clothing     | 50        | 25        |
+| 4   | 105            | Furniture    | -1        | 60        |
+```sql
+UPDATE inventory 
+SET Stock = 0 
+WHERE Stock < 0;
+```
+
+The `other` param specifies value to replace with when condition is __False__. If not specified, it is by default `NaN`.
+```python
+df_simple = df.copy()
+# Condition: Keep if Stock is greater than or equal to 0
+df_simple['Stock'] = df_simple['Stock'].where(df_simple['Stock'] >= 0, other=0)
+```
+
+|     | **Product_ID** | **Category** | **Stock** | **Price** |
+| --- | -------------- | ------------ | --------- | --------- |
+| 0   | 101            | Electronics  | 15        | 200       |
+| 1   | 102            | Furniture    | 0         | 150       |
+| 2   | 103            | Electronics  | 0         | 400       |
+| 3   | 104            | Clothing     | 50        | 25        |
+| 4   | 105            | Furniture    | 0         | 60        |
+>[!important] Difference between `where()` and `loc[]` 
+
+| Feature           | df.loc[]                                              | df.where()                                      |
+| ----------------- | ----------------------------------------------------- | ----------------------------------------------- |
+| Output Shape      | **Reduces rows/columns** to only match the condition. | **Maintains original shape**.                   |
+| Non-matching data | Excluded entirely from the output.                    | Replaced with `NaN` or a custom fallback value. |
+
+## `mask()` method
+It replaces values if condition evaluates to __True__, and preserves data if condition evaluates to __False__. i.e. same as a `UPDATE` statement.
+
+|     | **Product_ID** | **Category** | **Stock** | **Price** |
+| --- | -------------- | ------------ | --------- | --------- |
+| 0   | 101            | Electronics  | 15        | 200       |
+| 1   | 102            | Furniture    | 0         | 150       |
+| 2   | 103            | Electronics  | -3        | 400       |
+| 3   | 104            | Clothing     | 50        | 25        |
+| 4   | 105            | Furniture    | -1        | 60        |
+```sql
+UPDATE inventory 
+SET Stock = 0 
+WHERE Stock < 0;
+```
+
+The `other` param specifies value to replace with when condition is __True__. If not specified, it is by default `NaN`.
+```python
+df_mask = df.copy()
+
+# Condition: Update if stock < 0
+df_mask['Stock'] = df_mask['Stock'].mask(df_mask['Stock'] < 0, other=0)
+```
+
+|     | **Product_ID** | **Category** | **Stock** | **Price** |
+| --- | -------------- | ------------ | --------- | --------- |
+| 0   | 101            | Electronics  | 15        | 200       |
+| 1   | 102            | Furniture    | 0         | 150       |
+| 2   | 103            | Electronics  | 0         | 400       |
+| 3   | 104            | Clothing     | 50        | 25        |
+| 4   | 105            | Furniture    | 0         | 60        |
 # `DELETE` clause
 ## Delete cols
+```python
+df = df.drop(columns=["column_to_delete"])
+# or
+df = df.drop(["column_to_delete"], axis=1)
+```
 ## Delete rows
+```python
+# By index labels
+# Drop rows with index labels 0 and 1
+df = df.drop([0, 1])
 
+# Boolean indexing
+df = df[df["status"] != "inactive"] # Opposite of DELETE statement
+df = df.query('status != "inactive"')
+```
 # Separate article
 window functions
 datetime functions

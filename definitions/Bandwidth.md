@@ -1,0 +1,1 @@
+The _theoretical_ maximum volume of data transferred over a given period of time. Usually measured in **bits/bytes per second** (networks) or **operations/transactions per second** (processors).

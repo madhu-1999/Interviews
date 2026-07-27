@@ -1,0 +1,1 @@
+The actual amount of data successfully processed or moved from one place to another in a given amount of time. It measures a system's real-world performance, usually measured in **bits/bytes per second** (networks) or **operations/transactions per second** (processors).

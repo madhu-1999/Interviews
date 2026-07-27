@@ -11,7 +11,7 @@ Naturally, both pizzas are prepared using the same basic components: _dough_, _s
 We want each store to use its own set of ingredients but we don't want the ingredients to be tightly coupled with the creation of `Pizza`.
 
 In Factory Method Pattern, we created a factory to instantiate different `Pizza` subtypes, however here we have to create multiple _ingredient types_ in a concrete factory : dough, sauce, cheese and toppings.
-All these are **related** to each other and each type (Ex: dough) has multiple subtypes (Ex: ThinCrustDough, ThickCrustDough) i.e. we have to create **multiple families** of objects.^[[#Definition]]
+All these are **related** to each other and each type (Ex: dough) has multiple subtypes (Ex: ThinCrustDough, ThickCrustDough) i.e. we have to create **multiple families** of objects.
 
 This is not possible using the Factory Method Pattern. We have to use Abstract Factory Pattern.
 # Abstract Factory

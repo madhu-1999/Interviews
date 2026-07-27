@@ -23,6 +23,6 @@
 + Fault tolerance can be built by copying keys of one virtual node to other virtual nodes (belonging to same node). Thus, if one virtual node goes down, others still have the keys.
 
 # Applications
-+ Data partitoning -> Amazon DyanmoDB, Cassandra
++ Data partitioning -> [[Amazon DynamoDB]], Cassandra
 + CDN -> distribute static content evenly
-+ Load balancers -> distribute requests evenly to web/cache servers.
++ [[Scaling#Load Balancer|Load balancers]] -> distribute requests evenly to web/cache servers.

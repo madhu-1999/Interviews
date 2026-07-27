@@ -1,6 +1,6 @@
 #sql #postgres 
 # GROUPING SETS
->[!faq] Use case
+>[!tip] Use case
 > Used to fetch data for dashboards where you need to show the "_details_", "_subtotals_" and the "_grand totals_" in one view.
 
 ```sql
@@ -100,7 +100,7 @@ GROUP BY GROUPING SETS ((brand, segment), (brand));
 
 Now we will have two distinct pairs (brand, NULL) and (brand, All Brands).
 # CUBE
->[!faq] Use Case
+>[!tip] Use Case
 >Used to fetch data for dashboards where you need to show the "_details_", "_subtotals_" and the "_grand totals_" in one view.
 
 ```sql

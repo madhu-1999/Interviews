@@ -79,7 +79,7 @@
 + Preferred approach
 + Suffers from [[Database Replication Strategies#Issues arising from replication lag#Consistent prefix read|Inconsistent prefix read]]
 # Leaderless
-+ Used by Amazon DynamoDb, Cassandra 
++ Used by [[Amazon DynamoDB]], Cassandra 
 + Clients directly write to replicas. No leaders
 + Better availability since if one goes down, others are still able to process reads and writes.
 + Better fault tolerance since if one goes down, it doesn't affect other nodes unlike other setups where if leader went down, recovery process is longer.

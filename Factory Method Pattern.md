@@ -95,7 +95,7 @@ public class PizzaStore {
 >Simple Factory is ***NOT*** a design pattern. It is the factory pattern in its simplest form.
 
 # Factory Method Pattern
-What if we need to create another more than one type of factory i.e support different types of object instantiation?
+What if we need to create more than one type of factory i.e support different types of object instantiation?
 This is where the Factory Method Pattern comes into play.
 
 ## Creating multiple factories

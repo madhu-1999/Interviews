@@ -11,4 +11,4 @@ public abstract class A{}
 + Methods declared as **final**, cannot be abstract.
 + If a class has a abstract method, it **must** be declared abstract.
 + It can have **static** methods.
-+ A class can be abstract without having a abstract method.
++ A class can be abstract without having an abstract method.

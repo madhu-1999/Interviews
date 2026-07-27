@@ -1,19 +1,22 @@
-#database #indexing
+#database #indexing #rdbms 
 # Overview of how table data is stored
 Table data + index data + metadata is stored in data files which is a collection of data pages.
- ![[mx-img-t1qhb1ziqtw32p13tp6apu1z-pt4m46_50s.jpg|SQL Indexes (Visually Explained) | Clustered vs Nonclustered | #SQL Course 35 - 04:46|50]] [04:46](https://www.youtube.com/watch?v=BxAj3bl00-o&t=287#t=04:46.50) 
+ ![[mx-img-t1qhb1ziqtw32p13tp6apu1z-pt4m46_50s.jpg|SQL Indexes (Visually Explained) | Clustered vs Nonclustered | #SQL Course 35 - 04:46|0]]
+  [04:46](https://www.youtube.com/watch?v=BxAj3bl00-o&t=287#t=04:46.50) 
  Each data page (of fixed size 8kb) stores
  1. Header (of fixed size) 
 	 In image below 1:150 denotes file id (=1) and page id (=150).
  2. some rows in of the table (no of rows is variable, depending on the size of a row)
  3. offset footer which contains ptr to each row in the page for quick access.
-![[mx-img-t1qhb1ziqtw32p13tp6apu1z-pt6m38_54s.jpg|SQL Indexes (Visually Explained) | Clustered vs Nonclustered | #SQL Course 35 - 06:38|50]] [06:38](https://www.youtube.com/watch?v=BxAj3bl00-o&t=399#t=06:38.54) 
-# How data is stored when there is no primary key and no indexes
-Rows are stored in the same order as they are entered into the table, which could be __random__.
+![[mx-img-t1qhb1ziqtw32p13tp6apu1z-pt6m38_54s.jpg|SQL Indexes (Visually Explained) | Clustered vs Nonclustered | #SQL Course 35 - 06:38|0]]
+[06:38](https://www.youtube.com/watch?v=BxAj3bl00-o&t=399#t=06:38.54) 
+# How is data stored when there is no primary key and no indexes
+Rows are stored in the same order as they are entered into the table, which could be ____random__.
 Searching on such a table would require a __FULL TABLE SCAN__.
 
- ![[mx-img-t1qhb1ziqtw32p13tp6apu1z-pt8m7_02s.jpg|SQL Indexes (Visually Explained) | Clustered vs Nonclustered | #SQL Course 35 - 08:07|50]] [08:07](https://www.youtube.com/watch?v=BxAj3bl00-o&t=487#t=08:07.02) 
-# Clustered Index
+ ![[mx-img-t1qhb1ziqtw32p13tp6apu1z-pt8m7_02s.jpg|SQL Indexes (Visually Explained) | Clustered vs Nonclustered | #SQL Course 35 - 08:07|0]]
+  [08:07](https://www.youtube.com/watch?v=BxAj3bl00-o&t=487#t=08:07.02) 
+# Clustered / Primary Index
 It defines the __physical__ order in which rows of a table are stored.
 Since, data can be stored on disk in only one way, ==a table can have only one clustered index.==
 Data in a clustered index is __stored in the sorted order__ of the selected key.
@@ -25,19 +28,46 @@ Data in a clustered index is __stored in the sorted order__ of the selected key.
 
 Data is arranged in a [[B-tree]]. (Note that there are other options for arranging data, B- tree is the most widely used for general-purposes). 
 
- ![[mx-img-t1qhb1ziqtw32p13tp6apu1z-pt14m26_50s.jpg|SQL Indexes (Visually Explained) | Clustered vs Nonclustered | #SQL Course 35 - 14:26|50]] [14:26](https://www.youtube.com/watch?v=BxAj3bl00-o&t=866#t=14:26.50) 
+ ![[mx-img-t1qhb1ziqtw32p13tp6apu1z-pt14m26_50s.jpg|SQL Indexes (Visually Explained) | Clustered vs Nonclustered | #SQL Course 35 - 14:26|0]] [14:26](https://www.youtube.com/watch?v=BxAj3bl00-o&t=866#t=14:26.50) 
  The image above shows a clustered index. CRUD ops are $O(log n)$.  
 	 The leaf nodes point to the actual data pages. (not a pointer !)
 	 Since the data is stored in sorted order so intermediate/root node(s) store pointers to sub-ranges of data.
-#  Non-clustered index
-If you perform a query on a column that is _not_ the primary key, the database uses a **Non-Clustered Index**
+#  Non-clustered / Secondary index
+If you perform a query on a column that is _not_ the primary key, the database uses a **Non-Clustered Index**.
+There are two ways to store non-clustered indexes:[^1] 
+## Index references data pointers directly
+>[!tip] Best for read-heavy workloads
+
 This is a separate B-Tree that ==stores the indexed value and a pointer to go find the actual row== in the main clustered table. i.e. it requires extra space.
 	Notice that data in the index structure is sorted by the column that the non clustered index is created on, but data that is physically in the data page remains in its original order.
-```media-slider
-![[mx-img-t1qhb1ziqtw32p13tp6apu1z-pt20m3_29s.jpg|SQL Indexes (Visually Explained) | Clustered vs Nonclustered | #SQL Course 35 - 20:03|50]]
-![[mx-img-t1qhb1ziqtw32p13tp6apu1z-pt17m59_80s.jpg|SQL Indexes (Visually Explained) | Clustered vs Nonclustered | #SQL Course 35 - 17:59|50]]
-```
-The leaf node stores a pointer to the actual row in the format *file_id : page_id : offset* (see slide 2)
+	![[Database Indexes-1780129755288.webp]]
+
+![[Database Indexes-1780129584084.webp]]
+
+
+The leaf node stores a pointer to the actual row in the format *file_id : page_id : offset*.
+
+>[!success]- Advantage
+>By referencing data directly, we can reduce the number of disk seeks making reads faster.
+
+>[!failure]- Disadvantage
+>Whenever a data record gets updated or moved (during defragmentation), the database has to hunt down _every single non-clustered index_ you've created and update all of their pointers to the new disk location. This makes writes and maintenance incredibly expensive.
+
+## Using primary index as indirection
+>[!tip] Best for Write-heavy workloads
+
+Instead of the secondary index pointing directly to a specific physical location on your hard drive (a file offset), it points to the **Primary Key**. The database then has to do two separate lookups to give you the data:
+1. **First Lookup:** It searches the secondary index to find the primary key associated with your query.
+2. **Second Lookup:** It takes that primary key and searches the primary index to find the actual data record.
+![[Database Indexes-1780165645456.webp]] 
+[[Database Internals.pdf#page=51&selection=0,96,0,97&color=yellow|Src: Database Internals, p.51]]
+>[!success]- Advantage
+>By pointing to the primary key instead, the physical location of the row can change as much as it wants (on updates, moving due to defragmentation) . As long as the primary key stays the same, the secondary indexes never need to be updated. This makes **writes faster.**
+
+>[!missing]- Disadvantage
+>While reading, we perform an extra disk seek since leaf nodes of secondary index point to primary key, and we need to perform a primary key lookup to get actual data record. This makes **reads slower.**
+>(Think, traverse 2 B-tree indexes vs 1 B-tree index + 1 direct page-fetch) 
+# Clustered Index vs Non-Clustered Index
 
 | Feature               | Clustered Index                                                              | Non-Clustered Index                                                         |
 | :-------------------- | :--------------------------------------------------------------------------- | :-------------------------------------------------------------------------- |
@@ -60,13 +90,13 @@ CREATE CLUSTERED INDEX IX_Customers_ID ON Customers(ID);
 # Columnstore Index
 They store table data in data pages in columns.
 Check [[Parquet]] for detailed explanation of how row grouping, segmentation and compression works.
- ![[mx-img-m2tk73y1gsv8vcb4ag8xwtmq-pt6m19_29s.jpg|SQL Columnstore Index (Visually Explained) | Columnstore vs Rowstore | #SQL Course 36 - 06:19|50]] [06:19](https://www.youtube.com/watch?v=k9DpO91W76o&t=379#t=06:19.29) 
+ ![[mx-img-m2tk73y1gsv8vcb4ag8xwtmq-pt6m19_29s.jpg|SQL Columnstore Index (Visually Explained) | Columnstore vs Rowstore | #SQL Course 36 - 06:19|0]] [06:19](https://www.youtube.com/watch?v=k9DpO91W76o&t=379#t=06:19.29) 
 The compressed segments are stored in LOB (Large Object) Pages.
 	The Header  (of fixed size) will store *file_id : page_id*.
 	Then we have a Segment Header which stores the _segment_id_ (id of column segment), the _rowgroup_id_ and _dictionary_id_ for the compression mapping.
 	Lastly it stores the compressed data stream.
 
- ![[mx-img-m2tk73y1gsv8vcb4ag8xwtmq-pt6m0_29s-1w3hlvb.jpg|SQL Columnstore Index (Visually Explained) | Columnstore vs Rowstore | #SQL Course 36 - 06:00|50]] [06:00](https://www.youtube.com/watch?v=k9DpO91W76o&t=360#t=06:00.29) 
+ ![[mx-img-m2tk73y1gsv8vcb4ag8xwtmq-pt6m0_29s-1w3hlvb.jpg|SQL Columnstore Index (Visually Explained) | Columnstore vs Rowstore | #SQL Course 36 - 06:00|0]] [06:00](https://www.youtube.com/watch?v=k9DpO91W76o&t=360#t=06:00.29) 
 ## How does search work?
 Each Row group stores column - level stats for each column in the row (min/max value ranges).
 So when a query comes asking for a column aggregation, the db will check row group stats to identify if the data ranges match (if `WHERE` or `HAVING` clause is specifed). If they don't we can skip that rowgroup (saving time).
@@ -112,7 +142,7 @@ ON table_name (column_name)
 WHERE condition;
 ```
 # When to use which index?
- ![[mx-img-e3nticad5hogrghcdp1tbv7n-pt3m20_52s.jpg|How to Choose the Right Index (Visually Explained) | #SQL Course 38 - 03:20|50]] [03:20](https://www.youtube.com/watch?v=1lHNw365ldc&t=201#t=03:20.52) 
+ ![[mx-img-e3nticad5hogrghcdp1tbv7n-pt3m20_52s.jpg|How to Choose the Right Index (Visually Explained) | #SQL Course 38 - 03:20|0]] [03:20](https://www.youtube.com/watch?v=1lHNw365ldc&t=201#t=03:20.52) 
 # How does DB choose which index to use?
 # Fragmentation
 # Execution Plans
@@ -122,3 +152,7 @@ Table scan vs index scan vs index seek
 # Index Data Structures
 [[B-tree]]
 [[Hash Index]]
+
+serialize 
+# Footnotes
+[^1]: [[Database Internals.pdf#page=50&annotation=4170R|Database Internals, p.50]]

@@ -1,15 +1,7 @@
 + Stands for **RE**presentational **S**tate **T**ransfer.
 + It is an **architectural style** that defines a set of constraints used to create web services.
 + **REST API** is a simple, flexible way to access web services without any processing using HTTP methods (typically).
-```table-of-contents
-title: Index
-style: nestedList # TOC style (nestedList|nestedOrderedList|inlineFirstLevel)
-minLevel: 0 # Include headings from the specified level
-maxLevel: 0 # Include headings up to the specified level
-includeLinks: true # Make headings clickable
-hideWhenEmpty: false # Hide TOC if no headings are found
-debugInConsole: false # Print debug info in Obsidian console
-```
+
 # REST Constraints
 + Requires a **Client-Server** architecture. 
 + REST API calls are **stateless** .i.e. the calls contain all the information needed to fulfill the request successfully. ***NOTE***: HTTP methods are used since HTTP is a stateless protocol.

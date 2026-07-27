@@ -19,7 +19,7 @@ for i in range(1,5,2): # step=2
 # 1
 # 3
 ```
-+ Iterate over a iterable like [[List]] 
++ Iterate over a iterable like [[Python - List|List]] 
 ```python
 for name in ['John', 'Rick']
 	print(name)

@@ -58,7 +58,7 @@
   "csArgs": "",
   "csFileExtension": "csx",
   "csInject": "",
-  "pythonPath": "/Users/madhulikasawant/Interviews/.jupymd/bin/python3.9",
+  "pythonPath": "/Users/madhulikasawant/Interviews/.venv/bin/python3.11",
   "pythonArgs": "",
   "pythonEmbedPlots": true,
   "pythonFileExtension": "py",
