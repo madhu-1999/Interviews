@@ -39,7 +39,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Spark - RDD.md",
+                "file": "Spark - Fault tolerance.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -54,7 +54,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "Spark - RDD"
+              "title": "Spark - Fault tolerance"
             }
           },
           {
@@ -63,7 +63,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Spark - Transformations.md",
+                "file": "Spark - Persisting Data.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -78,11 +78,23 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "Spark - Transformations"
+              "title": "Spark - Persisting Data"
+            }
+          },
+          {
+            "id": "6767e041bcbef63e",
+            "type": "leaf",
+            "state": {
+              "type": "surfing-view",
+              "state": {
+                "url": "https://github.com/login/device/success"
+              },
+              "icon": "lucide-file",
+              "title": "Device Activation"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -135,8 +147,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -216,13 +227,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Spark - RDD.md",
+                "file": "Spark - Persisting Data.md",
                 "followCursor": true,
                 "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Spark - RDD"
+              "title": "Outline of Spark - Persisting Data"
             }
           }
         ],
@@ -247,26 +258,69 @@
       "pdf-plus:PDF++: Toggle auto-focus": false,
       "pdf-plus:PDF++: Toggle auto-paste": false,
       "obsidian-tts:Text to Speech": false,
-      "header-adjuster:Adjust headers": false
+      "header-adjuster:Adjust headers": false,
+      "github-wiki-sync:Sync wiki": false
     }
   },
-  "active": "f79339f661a139de",
+  "floating": {
+    "id": "5602a55b7afa643b",
+    "type": "floating",
+    "children": [
+      {
+        "id": "7211a990165098ed",
+        "type": "window",
+        "children": [
+          {
+            "id": "cf9f929f1fac325d",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "e81d740395ffe5c5",
+                "type": "leaf",
+                "state": {
+                  "type": "webviewer",
+                  "state": {
+                    "url": "https://github.com/benpm/obsidian_github_wiki",
+                    "title": "GitHub - benpm/obsidian_github_wiki: Obsidian plugin that allows a vault to be stored in a Github Wiki, or edit existing Wikis with Obsidian · GitHub",
+                    "mode": "webview"
+                  },
+                  "icon": "globe-2",
+                  "title": "GitHub - benpm/obsidian_github_wiki: Obsidian plugin that allows a vault to be stored in a Github Wiki, or edit existing Wikis with Obsidian · GitHub"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical",
+        "x": 223,
+        "y": 78,
+        "width": 1024,
+        "height": 800,
+        "maximize": false,
+        "zoom": -0.5
+      }
+    ]
+  },
+  "active": "0670be093d5aebc1",
   "lastOpenFiles": [
-    "Spark - RDD Operations Reference.md",
+    "Spark - Persisting Data.md",
+    "Wiki/Home.md",
+    "Wiki",
+    "Spark - Fault tolerance.md",
+    "Spark - RDD.md",
     "Spark - Transformations.md",
     "Spark - Introduction.md",
-    "Spark - RDD.md",
+    "Spark - RDD Operations Reference.md",
+    "Topics to cover.md",
     "Assets/Spark - RDD Operations Reference-1785093751138.webp",
     "Assets/Spark - RDD Operations Reference-1785092337224.webp",
     "Assets/Spark - RDD Operations Reference-1785056140668.webp",
     "Assets/Spark - RDD Operations Reference-1785031212619.webp",
     "PySpark.md",
     "Spark - Reading & Writing Files.md",
-    "Spark - Persisting Data.md",
     "Spark - Shared Variables.md",
     "Assets/Spark - Shared Variables-1784734785613.webp",
     "Assets/Spark - Persisting Data-1784676532518.webp",
-    "Topics to cover.md",
     "Assets/RDDs in Spark-1784475581781.webp",
     "Assets/Apache Spark-1784224134862.webp",
     "Parquet.md",
@@ -286,7 +340,6 @@
     "Pandas (SQL Reference).md",
     "Grouping Data.md",
     "Persisting Data.md",
-    "Docker CLI.md",
     "Documents/Database Internals.pdf",
     "media-lib/index.base",
     "definitions",
@@ -297,7 +350,6 @@
     "Reading Order.canvas",
     "LLD in Java",
     "HLD",
-    "theory-slides-v1.1.pdf",
     "Roadmap.canvas",
     "Mindmap.canvas",
     "AWS Roadmap.canvas",

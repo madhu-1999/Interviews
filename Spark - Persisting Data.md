@@ -24,11 +24,14 @@ When an RDD is persisted, each node stores any partitions of it, that it compute
 | **MEMORY_AND_DISK_SER**                       | Store serialized object to memory and disk. If not enough memory, spill to disk (i.e. some partitions are not cached in memory but read directly from disk). More space efficient, but takes longer to read than **MEMORY_AND_DISK** |
 | **DISK_ONLY_2**, **MEMORY_AND_DISK_2**, etc.. | Same as above, but replicate each partition on two nodes.                                                                                                                                                                            |
 # `RDD.cache()` vs `RDD.persist()`
+
 Both methods are used to persist RDDs/DataFrames/Datasets to memory.
 Both `.cache()` and `.persist()` internally translate to a `.persist()` call.
 The only difference is that, `.persist()` allows us to specify a [[#Storage Levels|storage level]], while `.cache()` does not.
+
 + [i] **For [[Spark - RDD|RDDs]]**: `.cache()` and `.persist()` defaults to **MEMORY_ONLY**.
 + [i] **For DataFrame/Dataset**: `.cache()` and `.persist()` default to **MEMORY_AND_DISK**.
+ 
  **Notes** [^3]
 + [!] Both methods are evaluated lazily, and preserve lineage.
 + [!] When `.persist()` writes to disk, it is **temporary**, and is deleted when the Spark program stops running.

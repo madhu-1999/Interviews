@@ -1,0 +1,13 @@
+.obsidian-github-wiki-status {
+	cursor: pointer;
+}
+
+.ghw-device-code {
+	font-family: var(--font-monospace);
+	font-size: 2em;
+	font-weight: bold;
+	letter-spacing: 0.15em;
+	text-align: center;
+	margin: 1em 0;
+	user-select: all;
+}
