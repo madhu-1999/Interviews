@@ -67,7 +67,7 @@ It is a shared variable used to **calculate simple global aggregations** across 
 + [i] Read-only for the driver
 + [i] Write-only for the executors 
 + [i] Supports commutative and associative operations 
-+ [!] Use with [](Spark%20-%20Introduction.md#Actions|actions), ***NOT*** [transformations](Spark%20-%20Transformations.md).
++ [!] Use with [actions](Spark%20-%20Introduction.md#Actions), ***NOT*** [transformations](Spark%20-%20Transformations.md).
 
 >[!faq] Why can't global variables be used for global aggregations?
 
@@ -131,7 +131,10 @@ These are the most common type of accumulators and support numeric types like:
 - `DoubleAccumulator`: `sc.doubleAccumulator()` 
 ## Custom Accumulators
 [^6][^7]
-Custom accumulators must subclass `AccumulatorParam` and provide implementation for `zero()`: Defines zero value for the type and `addInPlace()`: Defines how to add two values.
+Custom accumulators must subclass `AccumulatorParam` and provide implementation for 
++ `zero()`: Defines zero value for the type and 
++ `addInPlace()`: Defines how to add two values.
+
 ```python
 # Custom accumulator
 class ListAccumulatorParam(AccumulatorParam):

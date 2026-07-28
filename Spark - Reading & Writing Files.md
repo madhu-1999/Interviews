@@ -4,7 +4,7 @@ tags:
   - spark
   - distributed
 ---
-# [[Spark - RDD|RDD]]
+# [RDD](Spark%20-%20RDD.md)
 [^2]
 ## Reading Files
 [^1][^3][^4]
@@ -53,7 +53,7 @@ rdd.saveAsPickleFile("pickle_data")
 # DataFrame
 ## Reading Files
 [^2]
-Even though reading from a file is technically a [[Spark - Transformations|transformation]], it is not evaluated lazily, and a job is triggered right away. (Remember __one action = one job__!)
+Even though reading from a file is technically a [transformation](Spark%20-%20Transformations.md), it is not evaluated lazily, and a job is triggered right away. (Remember __one action = one job__!)
 	This is because, the read operation `spark.read` involves more complex logic such as inferring the schema, checking the file, and setting up data partitions.
 
 ## Writing Files

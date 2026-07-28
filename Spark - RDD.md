@@ -46,6 +46,7 @@ The data inside an RDD (partition of it) is stored by the executor in memory, te
 [^2]
 [Transformations](Spark%20-%20Transformations.md) are not executed immediately. Instead, they are recorded in the lineage and executed together when an [](Spark%20-%20Introduction.md#Actions|action) is called on it.
 >[!faq]- What is lineage?
+>
 >It is a DAG that represents a sequence of transformations applied to a RDD from its source to its current state.
 >Each node in the lineage graph represents a parent RDD, and each edge represents a transformation operation (e.g., map, filter) that was applied to derive the child RDD.
 >![RDDs in Spark-1784475581781](Assets/RDDs%20in%20Spark-1784475581781.webp)
@@ -136,6 +137,7 @@ print(empty_rdd.isEmpty())
 | `dependencies()`           | A list of references to parent RDDs (lineage)                                          |
 | `iterator(p, parentIters)` | A method to compute each partition/split, given iterators of  parent dependencies      |
 | `partitioner()`            | Return metadata specifying whether the RDD is hash/range partitioned. (Optional)       |
+
 For example, an RDD representing an HDFS file has a partition for each block of the file and knows which machines each block is on. Meanwhile, the result of a map on this RDD has the same partitions, but applies the map function to the parent’s data when computing its elements.
 # When to use RDDs
 + __Data is unstructured__: Unstructured data sources such as media or text streams benefit from the performance advantages RDDs offer.

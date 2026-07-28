@@ -52,6 +52,7 @@ print(result.collect())
 ```
 
 >[!faq] `flatMap()` vs `flatMapValues()`
+>
 >|Feature|`flatMap`|`flatMapValues`|
 |---|---|---|
 |**Target Data**|Any RDD (individual elements or key-value tuples).|Pair RDDs only (explicit key-value structure).|

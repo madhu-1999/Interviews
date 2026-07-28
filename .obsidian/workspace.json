@@ -58,12 +58,12 @@
             }
           },
           {
-            "id": "7cca6836cfb3da13",
+            "id": "c3b4371c3f7c3fe6",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Spark - Persisting Data.md",
+                "file": "Spark - Job, Stage and Task.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -78,7 +78,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "Spark - Persisting Data"
+              "title": "Spark - Job, Stage and Task"
             }
           }
         ],
@@ -114,7 +114,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "#spark",
+                "query": "spark",
                 "matchingCase": false,
                 "explainSearch": true,
                 "collapseAll": true,
@@ -216,13 +216,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Spark - Persisting Data.md",
+                "file": "Spark - Job, Stage and Task.md",
                 "followCursor": true,
                 "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Spark - Persisting Data"
+              "title": "Outline of Spark - Job, Stage and Task"
             }
           }
         ],
@@ -290,18 +290,22 @@
       }
     ]
   },
-  "active": "7cca6836cfb3da13",
+  "active": "c3b4371c3f7c3fe6",
   "lastOpenFiles": [
-    "Spark - Transformations.md",
-    "Spark - RDD.md",
-    "Spark - RDD Operations Reference.md",
     "Spark - Introduction.md",
-    "Database Sharding.md",
-    "Database Partitioning.md",
-    "Spark.md",
-    "Spark - Shared Variables.md",
-    "Spark - Persisting Data.md",
+    "Spark - Job, Stage and Task.md",
     "Spark - Fault tolerance.md",
+    "Assets/Spark - Job, Stage and Task-1785260619945.webp",
+    "Assets/Spark - Job, Stage and Task-1785260373362.webp",
+    "Spark - Transformations.md",
+    "Spark - Shared Variables.md",
+    "Spark - Reading & Writing Files.md",
+    "Spark - RDD.md",
+    "Database Partitioning.md",
+    "Spark - Persisting Data.md",
+    "Spark - RDD Operations Reference.md",
+    "Database Sharding.md",
+    "Spark.md",
     "Wiki/Home.md",
     "Wiki",
     "Topics to cover.md",
@@ -310,7 +314,6 @@
     "Assets/Spark - RDD Operations Reference-1785056140668.webp",
     "Assets/Spark - RDD Operations Reference-1785031212619.webp",
     "PySpark.md",
-    "Spark - Reading & Writing Files.md",
     "Assets/Spark - Shared Variables-1784734785613.webp",
     "Assets/Spark - Persisting Data-1784676532518.webp",
     "Assets/RDDs in Spark-1784475581781.webp",
@@ -319,16 +322,12 @@
     "Big Data.md",
     "Data Engineering Lifecycle.md",
     "Ingestion.md",
-    "Assets/Data Engineering Lifecycle-1783908324640.webp",
-    "Assets/Data Engineering Lifecycle-1783908312069.webp",
     "definitions/Encapsulation.md",
     "definitions/Big Data.md",
     "Python - Iterable and Iterators.md",
     "Window Functions.md",
     "Python - List.md",
     "Python - Constructors.md",
-    "Views.md",
-    "Historical Weather Analytics Project.md",
     "Documents/Database Internals.pdf",
     "media-lib/index.base",
     "definitions",

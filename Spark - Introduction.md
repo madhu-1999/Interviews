@@ -168,9 +168,9 @@ spark.stop()
 | **Infrastructure Cost** | Lower upfront cost; runs on cheaper, standard hard drives.    | Higher upfront infrastructure cost due to intensive RAM needs.        |
 | **Security**            | Encryption and access control to prevent unauthorized access. | Limited security features. You must ensure the environment is secure. |
 # DataFrame and Dataset
-DataFrames are **distributed collections of data organized into rows and columns**. It is a higher level abstraction built on top of RDDs. Dataframes are ==optimized using Catalyst and Tungsten== under the hood, which improves performance significantly.
+DataFrames are **distributed collections of data organized into rows and columns**. It is a higher level abstraction built on top of RDDs. Dataframes are <mark>optimized using Catalyst and Tungsten</mark> under the hood, which improves performance significantly.
 
-Dataset is also a SparkSQL structure and represents an extension of the DataFrame API. ==It possess best of RDDs - OOP style + type safety and best of Dataframes - structured format + optimization + memory management.==
+Dataset is also a SparkSQL structure and represents an extension of the DataFrame API. <mark>It possess best of RDDs - OOP style + type safety and best of Dataframes - structured format + optimization + memory management.</mark>
 It is only available for strongly typed languages like Java and Scala.
 ## When to use
 - **Data requires a structure**. DataFrames infer a schema on structured and semi-structured data.
@@ -344,35 +344,8 @@ df_by_range = df.repartition(50, col("age"))
 >+ __Disk Spill__: When Spark shuffles data, It writes the data to local disks on the worker nodes first (**Shuffle Write**) and then the receiving node reads it back (**Shuffle Read**).If your worker nodes don't have enough RAM to hold the shuffle blocks, Spark will "spill" that data to disk.
 >+ __Increased CPU Overhead__:Data must be serialized (converted to bytes) to be sent over the wire and then deserialized at the destination. Spark may also calculate a hash for every record to decide which partition it belongs.
 >+ __Broken Pipeline__: Spark usually processes data in a _stream_. However, a shuffle acts as a **Barrier**. All _Map_ tasks must finish writing their shuffle files before any _Reduce_ tasks can start reading them.
-# Jobs, Stages and Tasks
-```python
-# --- JOB 1: Simple Action ---
-# This triggers the first Job.
-# 1 Stage since no transforms are applied.
-print(f"Total records: {df.count()}")
-
-# --- JOB 2: Narrow -> Wide -> Action ---
-# 1. Narrow Transform: filter (stays in Stage 1)
-# 2. Wide Transform: groupBy (triggers Stage 2 / Shuffle)
-# 3. Action: collect (triggers the Job)
-result = df.filter(df.Salary > 4000).groupBy("Department").agg(F.avg("Salary"))
-
-# This triggers the second Job, which will have 2 Stages
-final_output = result.collect()
-```
-
-A __job__ refers to a ==sequence of transformations== on data. 
-Whenever an action (`count()`, `collect()`, etc..) is called, a job is triggered .i.e. __one action = one job__.
-A job is comprised of __one or more stages__.
-A job is __divided__ into __multiple stages__ when we have to perform __wide transformations__ which requires shuffling.
-==At the end of each job, we get a new [RDD](#RDDs).
-
-A __stage__ refers to a ==sequence of transformations on data which does not involve shuffling==.
-Each stage is comprised of __one or more [tasks](#Task)__, and all the tasks within a stage perform the same computation.
-<center><b>Representation of Job 2</b></center>
-
-![Apache Spark-1778698144623](Assets/Apache%20Spark-1778698144623.webp)
-This is a very high level overview of job, stages and tasks. [Reading a DAG](https://dzone.com/articles/reading-spark-dags) looks very different with AQE turned on, and other Spark code optimizations.
+# Job, Stage and Task
+> See  [Job, Stage and Task](Spark%20-%20Job,%20Stage%20and%20Task.md).
 # Data shuffling
 [Shuffle](https://bitsofchris.com/p/shuffling-in-spark-how-to-balance) occurs when ==data is exchanged between partitions across different nodes,==
  for certain operations that requires redistributing data between partitions:

@@ -25,9 +25,9 @@
 + A poorly chosen partition key can result in an **uneven distribution** of data or workload, creating performance _hotspots_ on one or more partitions while others are underutilized.
 # Partitioning Schemes
 ## Key-based
-Same as [](Database%20Sharding.md#Key%20Based%20Sharding|Key-based%20sharding) but on a single server
+Same as [Key-based sharding](Database%20Sharding.md#Key%20Based%20Sharding) but on a single server
 ## Range-based
-Same as [](Database%20Sharding.md#Range%20Based%20Sharding|Range%20based%20sharding) but on a single server
+Same as [Range-based Sharding](Database%20Sharding.md#Range%20Based%20Sharding) but on a single server
 ## Round robin
 + Data is cyclically and equally distributed among partitions
 ![Round-robin-Partitioning](https://media.geeksforgeeks.org/wp-content/uploads/20240515130518/Round-robin-Partitioning.webp)

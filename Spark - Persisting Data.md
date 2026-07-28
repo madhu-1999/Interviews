@@ -69,12 +69,14 @@ i.e. checkpoint operation triggers a new job which writes the RDD to disk, so th
 >[!tip] Default: Eager Checkpoint
 
 **Eager checkpoint**: Triggered immediately. (Blocking operation)
+
 **Lazy checkpoint**: It marks the RDD for checkpointing, while the actual operation is triggered after the job is completed.
 ## Local vs Reliable Checkpoint
 [^6]
 >[!tip] Default: Reliable Checkpoint
 
 **Local Checkpoint**: Stores data on executor's local disk. This makes it **fault-intolerant**. If the executor node fails or is removed due to dynamic cluster allocation, checkpoint data is permanently lost.  Use `.localCheckpoint()` for local checkpointing.
+
 **Reliable Checkpoint**: Stores data on distributed storage like HDFS, S3, which inherently provides fault-tolerant storage.
 	
 [^1]: https://spark.apache.org/docs/latest/rdd-programming-guide.html#rdd-persistence
