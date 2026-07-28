@@ -1,4 +1,4 @@
-+ An [[Interface]] with only **one abstract method**. 
++ An [Interface](Interface.md) with only **one abstract method**. 
 + Also called Single Abstract Method (***SAM***).
 + ***@FunctionalInterface*** annotation can be used at the top of the interface, optionally. 
 + ***@FunctionalInterface*** restricts us and throws compilation error if we try to add more than 1 abstract method.

@@ -3,7 +3,7 @@ tags:
   - "#de"
 ---
 # Stages
-![[Data Engineering Lifecycle-1783908324640.webp]]
+![Data Engineering Lifecycle-1783908324640](Assets/Data%20Engineering%20Lifecycle-1783908324640.webp)
 ## Generation
 A _source system_ is the origin of the data used in the data engineering lifecycle.
 >[!example] Transactional DB, IOT devices, flat files (CSV, XML), web services 

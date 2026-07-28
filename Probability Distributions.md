@@ -11,7 +11,7 @@ hideWhenEmpty: false # Hide TOC if no headings are found
 debugInConsole: false # Print debug info in Obsidian console
 ```
 # Prerequisite
-+ [[Probability#Random Variable|Random Variable]]
++ [](Probability.md#Random%20Variable|Random%20Variable)
 
 # 
 >[!warning]+
@@ -19,7 +19,7 @@ debugInConsole: false # Print debug info in Obsidian console
 > $x$ denotes a particular value of the random variable; 
 > $n$ and $p$ are parameters, that is, fixed real numbers. 
 > The parameter $p$ is usually unknown and must be estimated from data.
->Above example is of [[#Binomial Distribution]]
+>Above example is of [#Binomial Distribution](#Binomial%20Distribution)
 
 
 # Properties of Distributions
@@ -27,7 +27,7 @@ debugInConsole: false # Print debug info in Obsidian console
 + a **k-th** percentile is a score below which a given percentage **k** of all scores in its frequency distribution exist.
 + Ex: If a result falls in the 20th percentile, it means that 20% of all results are below this result.
 If $X$ is a continuous random variable, then $$p = \int_{-\infty}^{\pi_p}f(x) dx = F(\pi_p)$$
-![[Screenshot 2025-08-23 at 3.53.34 PM.png]]
+![Screenshot 2025-08-23 at 3.53.34 PM](Assets/Screenshot%202025-08-23%20at%203.53.34%20PM.png)
 >[!info]+
 >25th percentile -> first quartile
 >50th percentile -> median
@@ -71,7 +71,7 @@ Ans: $$P(X=10) = ^{20}C_{10} \times (0.5)^{10} \times (1 - 0.5)^{15}$$
 Mean/E(X): $\mu = n\times p$
 Variance: $np(1-p)$
 # Negative Binomial Distribution
-See [[Probability Distributions#Binomial Distribution| Binomial Distribution]] first
+See [](.md#Binomial%20Distribution|%20Binomial%20Distribution) first
 Used to model the **number of failures** needed before achieving a **certain number of successes** in a sequence of independent trials, where the probability of success in each trial is constant.
 $$P(X = k) = ^{k + r - 1}C_{k}\times p^r\times (1-p)^k$$
 where $k$ = Number of failures
@@ -86,7 +86,7 @@ Variance: $$\sigma^2 = \frac{r(1-p)}{p^2}$$
 Use for **over dispersed** data i.e $\sigma^2 > \mu$ 
 # Geometric Distribution
 Used to model the **number of failures** needed before achieving **first success** in a sequence of independent trials, where the probability of success in each trial is constant.
-+ Special case of [[Probability Distributions#Negative Binomial Distribution| Negative Binomial Distribution]] where $r$ = 1
++ Special case of [](.md#Negative%20Binomial%20Distribution|%20Negative%20Binomial%20Distribution) where $r$ = 1
 $$P(X = x) = (1-p)^{x-1}p$$
 where $x$ = no of failures
 $E(X) = \frac{1}{p}$
@@ -132,7 +132,7 @@ Probability distribution of a **given number of events occurring in a fixed inte
 	+ The average rate of occurrence ($\lambda$) is constant over the interval.
 	+ Cannot have negative values.
 	+ For small $\lambda$ ($\lambda < 10$) the distribution is right skewed.
-	+ For large $n$ (no of events) and small $p$ , it can be used to approximate a [[Probability Distributions#Binomial Distribution|binomial distribution]]
+	+ For large $n$ (no of events) and small $p$ , it can be used to approximate a [](.md#Binomial%20Distribution|binomial%20distribution)
 $$E(X) = \mu = \sigma^2 = \lambda$$
 This implies that as the number of events increase, average rate of occurrence increases and so does the variability of the number of occurrences.
 Ex: If average no of calls in a call center in an hour($\lambda$) = 2 then range of possible outcomes may be {0, 1, 2, 3, 4} with decreasing probability from the mean. If $\lambda$ = 20 then we see more variability in the no of occurrences like 15, 18, 20, 22, 25 calls.
@@ -144,7 +144,7 @@ $k!$ adjusts for how many ways the X events can occur
 # Exponential Distribution
 + Continuous probability distribution
 Models the time between events occurring, given events occur continuously and independently at a constant average rate($\lambda$).
-+ Connection to [[Probability Distributions#Poisson Distribution|poisson distribution]]:
++ Connection to [](.md#Poisson%20Distribution|poisson%20distribution):
 If events occur according to a Poisson process with rate $\lambda$, then the waiting time between events follows a exponential distribution with parameter $\lambda$.
 $$P(X=x) = \lambda e^{-\lambda x}\space \forall\space x\geq0, \lambda>0$$
 CDF: $$F(x) = 1 - e^{-\lambda x}\space\forall\space x\geq0$$
@@ -170,12 +170,12 @@ $$P(\frac{1}{6} < X < \frac{1}{3}) = \int_{\frac{1}{6}}^{\frac{1}{3}}3e^{-3x}dx 
 		+ Rate parameter $\lambda$ must be consistent with time units in data.
 		+ If we measure time in hours but specify $\lambda$ in days<sup>-1</sup> , probabilities will be incorrect.  
 # Chi-Squared Distribution
-Represents the distribution of the sum of squares of $k$ independent [[Probability Distributions#^a192be|standard normal variables]]. If $Z_1,Z_2,...Z_k$ are independent standard normal variables, then $X^2 = Z_1^2+Z_2^2+..+Z_k2$ .
+Represents the distribution of the sum of squares of $k$ independent [](.md#^a192be|standard%20normal%20variables). If $Z_1,Z_2,...Z_k$ are independent standard normal variables, then $X^2 = Z_1^2+Z_2^2+..+Z_k2$ .
 + Parameterized by degrees of freedom ($k$).
 $$f(x,k) = \frac{1}{2^{k/2}\Gamma (k/2)}x^{k/2-1}e^{-x/2},x\geq0$$ where $\Gamma$= gamma function
 + Properties
 	+ Defined only for non-negative( $x\geq0$ ) values, since it is sum of squares of standard normal variables.
-	+ Shape depends on degrees of freedom ($k$). For small $k$, it is right skewed. As $k\rightarrow\infty$ , becomes a [[Probability Distributions#Normal / Gaussian Distribution|normal distribution]].
+	+ Shape depends on degrees of freedom ($k$). For small $k$, it is right skewed. As $k\rightarrow\infty$ , becomes a [](.md#Normal%20/%20Gaussian%20Distribution|normal%20distribution).
 	+ Mean = $k$
 	+ Variance = $2k$
 	+ Skewness = $\sqrt\frac{8}{k}$, As $k\rightarrow\infty$ skewness approaches 0.

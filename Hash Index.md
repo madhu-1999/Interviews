@@ -1,6 +1,6 @@
 #database #indexing 
 # Prerequisite
-[[Hash Table]]
+[Hash Table](Hash%20Table)
 # How it works
 Suppose you have a `shipments` table with columns such as `shipment_id`, `tracking_number`, `origin`, `destination`, and `status`.
 	You frequently search for shipments based on `tracking_number`, so you create a hash index on this column:
@@ -8,7 +8,7 @@ Suppose you have a `shipments` table with columns such as `shipment_id`, `tr
 CREATE INDEX idx_tracking_hash ON shipments USING hash (tracking_number);
 ```
 
-When a write comes for a record, the row is stored to disk as discussed in [[Database Indexes#Overview of how table data is stored|data storage in RDBMS]]. The associated index is also updated. 
+When a write comes for a record, the row is stored to disk as discussed in [](Database%20Indexes.md#Overview%20of%20how%20table%20data%20is%20stored|data%20storage%20in%20RDBMS). The associated index is also updated. 
 	The key `tracking_number` is passed to a hash function.
 	The output of the hash function maps to a bucket in the underlying hash table. 
 	The bucket stores a pointer to the corresponding file and offset that contains the record.
@@ -22,9 +22,9 @@ end
 H((hash function))
 subgraph s1["hash index"]
 	direction LR 
-	C[[005]] 
-	D[[...]] 
-	E[[012]]
+	C[005](005) 
+	D[...](...) 
+	E[012](012)
 	
 	C --> Node3(1:5)
 	D --> Node1(...) 

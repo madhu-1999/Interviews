@@ -28,7 +28,7 @@ debugInConsole: false # Print debug info in Obsidian console
 + **More expensive and harder to maintain**
 # Load Balancer
 + Distributes traffic between **web servers** equally that are part of load-balancer set
-+ The load balancer does health checks for all servers in its sets and maintains a table in which it stores data related to all servers in its set like health info, response time, no of active connections (think TCP).![[Screenshot 2025-04-10 at 5.37.51 PM.png]]
++ The load balancer does health checks for all servers in its sets and maintains a table in which it stores data related to all servers in its set like health info, response time, no of active connections (think TCP).![Screenshot 2025-04-10 at 5.37.51 PM](Assets/Screenshot%202025-04-10%20at%205.37.51%20PM.png)
 ## Advantages
 + Availability: can switch routing to other servers if one is down or overloaded.
 + Scalability: can add in more servers if current ones cannot handle all the load
@@ -46,7 +46,7 @@ Sends traffic to server with least amount of active connections. (Think TCP). Co
 Sends traffic to server with least response time. Response time in load balancer table
 ### **URL/ Source IP hash**
 Sends traffic based on hash value of url/source ip. hash value is cached by load balancer.
-### **[[Consistent Hashing]]**
+### **[Consistent Hashing](Consistent%20Hashing.md)**
 Requests of a user/network (criteria depends) always mapped to a particular server.
 ## Types of Load Balancers
 ### **Network/ Layer 4**
@@ -73,11 +73,11 @@ on the cloud. less costly, no maintenance
 + Doesn't fully utilize server resources, since one is on standby.
 + There can be temporary service disruption when passive one takes over.
 # Database Replication
-![[Screenshot 2025-09-27 at 11.31.17 AM.png]]
+![Screenshot 2025-09-27 at 11.31.17 AM](Assets/Screenshot%202025-09-27%20at%2011.31.17%20AM.png)
 + Benefits:
 	+ Availability: Data on multiple machines. If one goes down, others are available.
 	+ Redundancy: Data (all) present on multiple machines. If one is corrupted, others are still present
 	+ Latency: Reduces it, if present in replica machines in multiple geographic locations.
 	+ Handle huge reads: by redirecting to replica machines.
 + All data is copied onto replica machines.
-Read [[Database Replication Strategies]] for more detailed info
+Read [Database Replication Strategies](Database%20Replication%20Strategies.md) for more detailed info

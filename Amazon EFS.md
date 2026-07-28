@@ -1,15 +1,15 @@
 #aws #cloud
 # Overview
-+ Elastic File System for cloud and on-premise access. [[Network Attached Storage (NAS)]]
-+ [[Storage in AWS#Fully Managed Services|Fully managed]], scalable file storage.
++ Elastic File System for cloud and on-premise access. [Network Attached Storage (NAS)](Network%20Attached%20Storage%20(NAS).md)
++ [](Storage%20in%20AWS.md#Fully%20Managed%20Services|Fully%20managed), scalable file storage.
 + Operates on the Linux **NFS protocol**.
 + Automatic scaling without provisioning of storage capacity or managing it.
 + ==Pay only for storage used== as opposed to EBS where we pay for all provisioned capacity.
-+ Can be accessed by multiple [[Amazon Elastic Compute Cloud (AWS EC2)|EC2]] instances simultaneously. 
++ Can be accessed by multiple [EC2](Amazon%20Elastic%20Compute%20Cloud%20(AWS%20EC2).md) instances simultaneously. 
 	+ EFS exposes a endpoint (mount target), using NFS protocol that multiple instances can ==mount== concurrently
 	+ Supports 1000+ concurrent NFS connections
 ![](https://cdn.prod.website-files.com/655bc1860a87f22da98dd83c/67ee9b6ab41627f664f12bd6_efs-ec2-how-it-works-OneZone.png)
-+ ==Compatible only with Linux based [[Amazon Elastic Compute Cloud (AWS EC2)#Amazon Machine Image (AMI)|AMI]]== 
++ ==Compatible only with Linux based [](Amazon%20Elastic%20Compute%20Cloud%20(AWS%20EC2).md#Amazon%20Machine%20Image%20(AMI)|AMI)== 
 + Encryption at rest using AWS KMS.
 + Can be used with EC2, Lambda, EKS, ECS and Fargate containers.
 # Types of File systems
@@ -39,10 +39,10 @@
 + Retrieval is slower and there are fees to access and restore data from archive.
 + minimum 90 day retention.
 ## One Zone
-+ Same as [[#Standard]]
++ Same as [#Standard](#Standard)
 + Only in one AZ.
 ## One Zone IA
-+ Same as [[#Infrequent Access (IA)]]
++ Same as [#Infrequent Access (IA)](#Infrequent%20Access%20(IA))
 + Only in one AZ
 # EFS Data Lifecycle 
 + Optimize storage costs by automatically moving data between storage classes based on usage patterns.
@@ -62,14 +62,14 @@
 ## General Purpose
 + Lowest latency.
 + Default for all EFS file systems
-+ [[#One Zone]] file systems **always** use this mode.
++ [#One Zone](#One%20Zone) file systems **always** use this mode.
 + Ideal for latency sensitive workloads (web servers).
 ## Max I/O
 + Ideal for highly parallelized workloads that need ==higher throughput==.
 + Higher latency.
 + Can scale to improve total IOPS across file system.
 + Used for big data, analytics or log processing jobs.
-+ ==Cannot be used with [[#Elastic Throughput]] or [[#One Zone]]== 
++ ==Cannot be used with [#Elastic Throughput](#Elastic%20Throughput) or [#One Zone](#One%20Zone)== 
 # Throughput Modes
 >[!info]+
 >+ Can switch existing file system's throughput mode and change throughput amount.
@@ -84,18 +84,18 @@
 ## Provisioned Throughput
 + Provision specific throughput capacity (MiB/s).
 + Independent of amount of data stored.
-+ Ideal for workloads which need ==consistently high throughput==, above what [[#Elastic Throughput]] provides.
++ Ideal for workloads which need ==consistently high throughput==, above what [#Elastic Throughput](#Elastic%20Throughput) provides.
 + Can burst above provisioned capacity with credits.
 ## Bursting Throughput
 + Throughput ==capacity== grows with amount of storage.
-+ Base throughput is proportionate to [[#Standard|standard]] storage size.
++ Base throughput is proportionate to [standard](#Standard) storage size.
 + Burst credits accrue when file system consumes throughput below its base rate.
 + Burst credits are deducted when throughput exceeds base rate.
 + Without burst credits, bursting still happens but at a lower rate.
 # Access Control
-+ [[Amazon VPC#Security Groups|Security Groups]] are used to control inbound and outbound traffic to EFS mount targets. 
++ [](Amazon%20VPC.md#Security%20Groups|Security%20Groups) are used to control inbound and outbound traffic to EFS mount targets. 
 	+ Allow outbound traffic from ==TCP port 2049== to let AWS services mount EFS.
-+ Attach [[IAM#Policy|IAM policies]] to EFS to control which principals (users, roles) are allowed to perform actions.
++ Attach [](IAM.md#Policy|IAM%20policies) to EFS to control which principals (users, roles) are allowed to perform actions.
 + Uses POSIX file system, so access at content level can be controlled by Unix user/group Ids and permission bits (rwx for owner, group and others).
 + *EFS Access points* for granular access:
 	+ customizable entry point into EFS file system.
@@ -120,11 +120,11 @@
 | Prerequisites    | An EFS file system must have at least one mount target to be accessible.                                                  | An EFS file system must have at least one mount target to use access points.                                                                             |
 
 # Steps to create EFS file system
-1. Choose [[#Types of File systems|file system type]]
+1. Choose [file system type](#Types%20of%20File%20systems)
 2. Automatic backups can be enabled. Disabled by default.
 3. Set lifecycle management policies.
 4. Encryption at rest can be disabled. Enabled by default
-5. Pick [[#Throughput Modes|throughput mode]]. Pick [[#Performance Modes|performance mode]] from additional settings
+5. Pick [throughput mode](#Throughput%20Modes). Pick [performance mode](#Performance%20Modes) from additional settings
 6. Pick VPC
 7. Set security group, subnet and IP address for each AZ.
 # Use Cases

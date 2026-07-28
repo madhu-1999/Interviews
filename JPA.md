@@ -1,6 +1,6 @@
 #java #orm #jpa
 + Stands for Java Persistence API / Jakarta Persistence
-+ It is a **specification** for [[Object Relational Mapping (ORM)|ORM]] implementation i.e. it defines the components( interfaces and classes blueprint) and how they should interact but does not provide implementation.
++ It is a **specification** for [ORM](Object%20Relational%20Mapping%20(ORM).md) implementation i.e. it defines the components( interfaces and classes blueprint) and how they should interact but does not provide implementation.
 + ORM tools like Hibernate, OpenJPA provide implementation
 
 # Key Terminologies

@@ -63,7 +63,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Spark - Persisting Data.md",
+                "file": "Spark - RDD.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -78,19 +78,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "Spark - Persisting Data"
-            }
-          },
-          {
-            "id": "6767e041bcbef63e",
-            "type": "leaf",
-            "state": {
-              "type": "surfing-view",
-              "state": {
-                "url": "https://github.com/login/device/success"
-              },
-              "icon": "lucide-file",
-              "title": "Device Activation"
+              "title": "Spark - RDD"
             }
           }
         ],
@@ -227,13 +215,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Spark - Persisting Data.md",
+                "file": "Spark - RDD.md",
                 "followCursor": true,
                 "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Spark - Persisting Data"
+              "title": "Outline of Spark - RDD"
             }
           }
         ],
@@ -301,7 +289,7 @@
       }
     ]
   },
-  "active": "0670be093d5aebc1",
+  "active": "7cca6836cfb3da13",
   "lastOpenFiles": [
     "Spark - Persisting Data.md",
     "Wiki/Home.md",

@@ -3,9 +3,9 @@ tags:
   - "#python"
 ---
 # Prerequisite
-[[Python - Classes and Objects]]
+[Python - Classes and Objects](Python%20-%20Classes%20and%20Objects.md)
 # Basics 
-It is a built-in [[Decorator Pattern|decorator]] that automatically generates boilerplate code for `.__init__()` , `.__repr__()` and `.__eq__()` for classes that primarily store data.
+It is a built-in [decorator](Decorator%20Pattern.md) that automatically generates boilerplate code for `.__init__()` , `.__repr__()` and `.__eq__()` for classes that primarily store data.
 ```run-python
 from dataclasses import dataclass
 
@@ -25,7 +25,7 @@ ex2 = Exercise("Bench press", 10, 3, 52.5)
 print(ex1 == ex2) # O/P: True
 ```
 
-Since it is a regular class with some predefined functionality, we can add [[Python - Functions|functions]] to it.
+Since it is a regular class with some predefined functionality, we can add [functions](Python%20-%20Functions.md) to it.
 >[!warning] Type hints are ___required___ when defining a dataclass, but the types are ___NOT___ enforced!
 ## Adding default values
 ```run-python
@@ -153,7 +153,7 @@ print(ace_of_spades > queen_of_hearts)
 ```
 
 >[!faq] On what basis, does `@dataclass` perform comparisons?
-Dataclasses compares objects as [[Python - Tuples#Comparing tuples|tuples]] of all its fields in the order that they are specified in the class: `('A', '♠') > ('Q', '♡')` . 
+Dataclasses compares objects as [](Python%20-%20Tuples.md#Comparing%20tuples|tuples) of all its fields in the order that they are specified in the class: `('A', '♠') > ('Q', '♡')` . 
 >Here, `A < Q` so, it returns False.
 >
 ## Customizing comparisons
@@ -205,7 +205,7 @@ print(ace_of_spades > queen_of_hearts)
 
 Here, the `sort_index` attribute, represents our custom sort key. It is placed first so that, when tuple based ordering happens, we compare based on its value first.
 We set `field(init=False, repr=False)` so that its value can be calculated after the values of `rank` and `suit` are set.
-To set the value of `sort_index`, we use the `.__post_init__()` [[Python - Magic Methods|dunder method]] , which executes after `.__init__()` method.
+To set the value of `sort_index`, we use the `.__post_init__()` [dunder method](Python%20-%20Magic%20Methods) , which executes after `.__init__()` method.
 ### Override dunder methods
 If you don't want to use tuple based comparison at all, you can override the required dunder methods manually to provide custom comparison behavior.
 >[!warning] `@dataclass` decorator parameter must be set to `order=False`, if overriding methods, else a `TypeError` will be raised.
@@ -279,7 +279,7 @@ print(deck)
 # This will throw a dataclasses.FrozenInstanceError
 deck.cards = [queen_of_hearts, ace_of_spades]
 ```
-# [[Python - Inheritance|Inheritance]]
+# [Inheritance](Python%20-%20Inheritance.md)
 We can subclass data classes, in the same way as regular classes:
 ```python
 from dataclasses import dataclass

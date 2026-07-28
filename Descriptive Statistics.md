@@ -1,9 +1,9 @@
 #data-science #statistics
 # Prerequisite
-+ [[Data & AI/Data types|Data types]]
++ [Data types](Data%20&%20AI/Data%20types)
 # Definition
 + Used to summarize and describe variable(s) for a sample of data.
-+ Cannot be used to make inferences or predictions, unlike [[Inferential Statistics]]
++ Cannot be used to make inferences or predictions, unlike [Inferential Statistics](Inferential%20Statistics.md)
 + Summarize one variable -> **univariate analysis**
 + Analyze relationship b/w 2 variables -> **bivariate analysis**
 + Analyze relationship b/w 3+ variables -> **multivariate analysis**

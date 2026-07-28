@@ -4,7 +4,7 @@ The Adapter Pattern converts the interface of a class into another interface the
 # Need for Adapter Pattern
 Say you’ve got an existing software system that you need to work a new vendor class library into, but the new vendor designed their interfaces differently than the last vendor.
 You don’t want to solve the problem by changing your existing code (and you can’t
-change the vendor’s code). So what do you do? Well, you can write a class that adapts the new vendor interface into the one you’re expecting.![[Screenshot 2025-12-21 at 4.31.26 PM.png]]
+change the vendor’s code). So what do you do? Well, you can write a class that adapts the new vendor interface into the one you’re expecting.![Screenshot 2025-12-21 at 4.31.26 PM](Assets/Screenshot%202025-12-21%20at%204.31.26%20PM.png)
 Lets say we are creating a Duck Simulator, and we want to introduce turkeys into the simulator without changing the existing code.
 This can be achieved by writing a Adapter class to convert a `Turkey` instance into a `Duck` instance.
 ## Object Adapter
@@ -70,6 +70,6 @@ But this is not possible in Java, since multiple inheritance is not allowed.
 
 # UML Diagram
 ## Object Adapter
-![[Screenshot 2025-12-21 at 5.04.18 PM.png]]
+![Screenshot 2025-12-21 at 5.04.18 PM](Assets/Screenshot%202025-12-21%20at%205.04.18%20PM.png)
 ## Class Adapter
-![[Screenshot 2025-12-21 at 5.15.11 PM.png]]
+![Screenshot 2025-12-21 at 5.15.11 PM](Assets/Screenshot%202025-12-21%20at%205.15.11%20PM.png)

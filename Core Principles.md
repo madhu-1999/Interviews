@@ -1,6 +1,6 @@
 #java #spring 
 # Dependency Injection (DI) / Inversion of Control (IOC)
-Refer [[SOLID#**D**ependency Injection | Dependency Injection]] to understand in depth
+Refer [](SOLID.md#**D**ependency%20Injection%20|%20Dependency%20Injection) to understand in depth
 + Traditionally, an object creates its own dependencies (other objects it needs to function). This leads to **tight coupling** between objects, making it harder to test, maintain and reuse.
 ```java
 class ReportGenerator {
@@ -89,7 +89,7 @@ If A depends on B, B also depends on A. In this case A cannot be fully instantia
 ***Resolution***:
 + (Preferred) Keep common code on which both are dependent in separate class to break the dependency i.e. Made new common class C, now A depends on C instead of B and B depends on C instead of A.
 + Use @Lazy annotation on @Autowired. 
-	+ @Lazy implies bean will be created only when required i.e. no eager initialization, so on application startup, a proxy bean is generated. (To understand proxy refer,[[Spring AOP#AOP Proxy | Proxy]])
+	+ @Lazy implies bean will be created only when required i.e. no eager initialization, so on application startup, a proxy bean is generated. (To understand proxy refer,[](Spring%20AOP.md#AOP%20Proxy%20|%20Proxy))
 	+ Suppose B is labeled with @Lazy so when A is instantiated, proxy bean of B is set as dependency. Then when B is instantiated, A is available to be set as dependency.
 + Use setter/field injection for circular dependencies (since instance is in partially initialized state)
 ### **Unsatisfied Dependency**
@@ -114,4 +114,4 @@ public class User {
 }
 ```
 # Aspect Oriented Programming (AOP)
-Refer [[Spring AOP]]
+Refer [Spring AOP](Spring%20AOP.md)

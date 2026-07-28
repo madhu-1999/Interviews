@@ -10,7 +10,7 @@ str2 = "cab" is a subsequence of "cabac" because we can delete the last "ac".
 The answer provided is the shortest such string that satisfies these properties.
 
 # [Solution](https://www.youtube.com/watch?v=pHXntFeu6f8&list=PLEJXowNB4kPxBwaXtRO1qFLpCzF75DYrS&index=20)
-This is a variation of [[LCS]].
+This is a variation of [LCS](LCS.md).
 To get SCS, we need to find LCS(str1, str2) and then backtrack on the dp array to get the SCS.
 	If $str1[i] = str2[j]$ => include the character only once in the SCS.
 	If $str1[i] \neq str2[j]$  => include $str1[i]$ iff $dp[i-1][j] > dp[i][j-1]$ else $str2[j]$ (Move in dir of larger dp value)

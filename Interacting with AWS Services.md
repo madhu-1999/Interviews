@@ -16,7 +16,7 @@ There are 3 ways to call AWS API's to interact with services:
 # AWS Management Console
 + Browser based
 + Visual Navigation
-+ Protected using username, password and if activated [[IAM#Multi Factor Authentication (MFA)|MFA]].
++ Protected using username, password and if activated [](IAM.md#Multi%20Factor%20Authentication%20(MFA)|MFA).
 # AWS CLI
 + Manage services through CLI using text-based commands.
 + Can use AWS CloudShell (AWS provided terminal on browser) or own terminal.
@@ -25,7 +25,7 @@ There are 3 ways to call AWS API's to interact with services:
 # list all AZs in current region
 aws ec2 describe-availability-zones
 ```
-+ Protected by access keys (under an IAM user), thus only those commands work for which user has permission (Refer [[IAM]]).
++ Protected by access keys (under an IAM user), thus only those commands work for which user has permission (Refer [IAM](IAM.md)).
 + Built on the AWS SDK for Python.
 >[!note]
 >+ If using your own terminal, we first need to run `aws configure` command which prompts you to enter access key id, secret access key and AWS region.
@@ -50,10 +50,10 @@ aws ec2 describe-availability-zones
 	+ CLI and SDK calls are signed for you.
 	+ Some requests to S3 do not need to be signed.
 + Signed using _Sigv4_.
-	+ Pass signature in _Authorization_ Header![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19729360.png]]
-	+ Pass signature in query string: *X-AMZ-Signature*![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19729360 (1).png]]
+	+ Pass signature in _Authorization_ Header![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19729360](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19729360.png)
+	+ Pass signature in query string: *X-AMZ-Signature*![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19729360 (1)](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19729360%20(1).png)
 # MFA with CLI or SDK
-+ Can enable [[IAM#Multi Factor Authentication (MFA)|virtual MFA]] **only** for a [[IAM#User|IAM User]] and ***NOT*** the root user.
++ Can enable [](IAM.md#Multi%20Factor%20Authentication%20(MFA)|virtual%20MFA) **only** for a [](IAM.md#User|IAM%20User) and ***NOT*** the root user.
 	+ MFA can be enabled for root user through the console.
 	+ virtual MFA that is set up is an AWS resource that can be configured onto a third party authenticator app like Duo.
 + Must create a temporary session first
@@ -80,7 +80,7 @@ and the session token received is then used in API calls or CLI commands to AWS:
 3. CLI Credentials file:  ~/.aws/credentials
 4. CLI config file: ~/.aws/config
 5. Container Credentials - for ECS tasks
-6. [[IAM#Things to note|EC2 Instance Profile]] credentials
+6. [](IAM.md#Things%20to%20note|EC2%20Instance%20Profile) credentials
 ## SDK Credentials Chain
 1. System properties: aws.secretKey, aws.accessKeyId
 2. Environment Variables: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY and AWS_SESSION_TOKEN

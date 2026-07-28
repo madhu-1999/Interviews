@@ -21,7 +21,7 @@ Animal() # This will throw a TypeError
 ```
 
 >[!warning]- If abstract class has no abstract methods, it can be instantiated.
->Refer [[Python - Duck typing#^b8a5eb|this]] to understand why this happens.
+>Refer [](Python%20-%20Duck%20typing.md#^b8a5eb|this) to understand why this happens.
 
 ```run-python
 from abc import ABC
@@ -102,7 +102,7 @@ if __name__ == "__main__":
     circle = Circle(5) # O/P: TypeError
 ```
 # Abstract Properties
-In Python, [[Python - Property Attributes|properties]] behave like attributes and methods. We can have abstract properties in a class if the "getter" function is annotated with both `@abstractmethod` and `@property`.
+In Python, [properties](Python%20-%20Property%20Attributes.md) behave like attributes and methods. We can have abstract properties in a class if the "getter" function is annotated with both `@abstractmethod` and `@property`.
 
 ```python
 from abc import ABC, abstractmethod
@@ -125,7 +125,7 @@ print(dog.species)
 # Virtual Subclasses
 Python relies on duck typing to allow independent classes to appear as though they are the same type as long as they all contain a given set of method signatures. 
 This provides type flexibility and avoids rigid inheritance hierarchies, but at the same time makes it harder to understand what methods constitute a given interface. 
-Virtual subclasses provide a middle ground between inheritance hierarchies (via Abstract classes) and type flexibility (via duck typing). [[Python - Duck typing#^906522|Refer to this for a more detailed explanation]]
+Virtual subclasses provide a middle ground between inheritance hierarchies (via Abstract classes) and type flexibility (via duck typing). [](Python%20-%20Duck%20typing.md#^906522|Refer%20to%20this%20for%20a%20more%20detailed%20explanation)
 
 ```run-python
 import abc

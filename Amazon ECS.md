@@ -1,11 +1,11 @@
 #aws  #cloud 
 # Prerequisite
-[[Container]]
+[Container](Container.md)
 # Overview
 + Elastic Container Service
 + __Fully managed__ container orchestration service for Docker containers.
 	+ Manage, create and scale containerized applications.
-+ Amazon ECR => [[Docker Image#Container Registry|container registry service]].
++ Amazon ECR => [](Docker%20Image.md#Container%20Registry|container%20registry%20service).
 + Region-bound service, available only in enabled AZ's.
 # Architecture
 There are 3 layers :
@@ -21,9 +21,9 @@ There are 3 layers :
 + Ensures a _desired amount_ of tasks are running at any given time, replacing any failed tasks automatically.
 + Helps integrate with load balancer by automatically registering/deregistering tasks to target group.
 + Scales tasks up/down based on demand/metric.
-	+ [[Amazon Elastic Compute Cloud (AWS EC2)#^04dd8f|Target Tracking]]
-	+ [[Amazon Elastic Compute Cloud (AWS EC2)#^447dac|Step Scaling]]
-	+ [[Amazon Elastic Compute Cloud (AWS EC2)#^55db8e|Scheduled Scaling]]
+	+ [](Amazon%20Elastic%20Compute%20Cloud%20(AWS%20EC2).md#^04dd8f|Target%20Tracking)
+	+ [](Amazon%20Elastic%20Compute%20Cloud%20(AWS%20EC2).md#^447dac|Step%20Scaling)
+	+ [](Amazon%20Elastic%20Compute%20Cloud%20(AWS%20EC2).md#^55db8e|Scheduled%20Scaling)
 
 ## ECS Cluster
 + A logical grouping of tasks or services that provide the infrastructure capacity for containers.
@@ -32,18 +32,18 @@ There are 3 layers :
 	+ Network (VPC + Subnet)
 	+ Monitoring tools
 # Capacity Compute Types
-## [[Amazon Elastic Compute Cloud (AWS EC2)#EC2 Instance| EC2 Instances]]
+## [](Amazon%20Elastic%20Compute%20Cloud%20(AWS%20EC2).md#EC2%20Instance|%20EC2%20Instances)
 
 ^582b21
 
 + Need to manage, deploy and maintain EC2 instances yourself
 + Each EC2 instance runs the ECS agent to register in the ECS cluster. 
-	+ ECS then deploys containers on it as per requirements.(See [[#ECS Task Placement]] for more details)
+	+ ECS then deploys containers on it as per requirements.(See [#ECS Task Placement](#ECS%20Task%20Placement) for more details)
 + Can scale using:
-	+ [[Amazon Elastic Compute Cloud (AWS EC2)#Auto Scaling Group (ASG)|Auto-scaling groups]].
+	+ [](Amazon%20Elastic%20Compute%20Cloud%20(AWS%20EC2).md#Auto%20Scaling%20Group%20(ASG)|Auto-scaling%20groups).
 	+ __ECS Cluster Capacity Provider__ (recommended): auto-provision and scale EC2 instances used for ECS tasks i.e. you don't have to manage EC2 instances yourself.
 + Ideal for predictable workloads.
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_31788258.png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_31788258](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_31788258.png)
 ## Fargate 
 +  Fargate manages its own infrastructure i.e. handles deployment, scaling, maintenance.
 + Launch Docker containers based on task definition.
@@ -56,7 +56,7 @@ There are 3 layers :
 + JSON file that provides a blueprint for an ECS task to the ECS service.
 + Can define up to 10 containers per task definition.
 + Contains information like:
-	+ [[Docker Image|Image]] name
+	+ [Image](Docker%20Image.md) name
 	+ Memory and CPU needed
 	+ Networking info
 	+ IAM role (one role per task definition)
@@ -65,31 +65,31 @@ There are 3 layers :
 		+ Can be:
 			+ Hardcoded (ex: URLs)
 			+ in SSM Parameter Store/Secrets Manager (ex: API keys, DB passwords)
-			+ stored as a env file in [[Amazon S3#General Purpose Buckets|S3 bucket]]. 
+			+ stored as a env file in [](Amazon%20S3.md#General%20Purpose%20Buckets|S3%20bucket). 
 		+ Values injected in to ECS task
-	+ Port Binding for Container and Host![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_31788346.png]]
+	+ Port Binding for Container and Host![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_31788346](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_31788346.png)
 	+ At least one container defined in the task definition must be a __essential container__. If an essential container fails, then the entire task is stopped i.e. all containers defined in the associated task definition are killed.
 # IAM Roles
 ## EC2 Instance Profile
 + Only for EC2 instance launch type.
 + IAM role is attached to EC2 Instance Profile which in turn is attached to a EC2 instance.
-+ Allows secure access of IAM role credentials (See [[Amazon Elastic Compute Cloud (AWS EC2)#Instance Metadata Service (IMDS)|IMDS]] for more info).
++ Allows secure access of IAM role credentials (See [](Amazon%20Elastic%20Compute%20Cloud%20(AWS%20EC2).md#Instance%20Metadata%20Service%20(IMDS)|IMDS) for more info).
 + Used by ECS agent to:
 	+ Make API calls to ECS
 	+ Send container logs to CloudWatch
 	+ Pull Docker image from ECR
 ## ECS Task Role
 + Can be used by EC2 instance launch type or Fargate launch type.
-+ Allows each task to have a specific role, unlike [[#EC2 Instance Profile]] where all tasks in same instance share permissions.
-	+ IAM role with a [[IAM#Trust Policies|trust policy]] that allows `ecs-tasks.amazonaws.com` service to assume the role.
++ Allows each task to have a specific role, unlike [#EC2 Instance Profile](#EC2%20Instance%20Profile) where all tasks in same instance share permissions.
+	+ IAM role with a [](IAM.md#Trust%20Policies|trust%20policy) that allows `ecs-tasks.amazonaws.com` service to assume the role.
 + It is specified in the task definition.
 	+ Only one role can be specified per task definition, so for two tasks to have different roles, they must be derived from different task definitions.
-	+ Difference is, unlike [[#EC2 Instance Profile]], such tasks can share the same host/underlying infrastructure.
+	+ Difference is, unlike [#EC2 Instance Profile](#EC2%20Instance%20Profile), such tasks can share the same host/underlying infrastructure.
 + Allows secure access of IAM role credentials.
 # Load Balancer Integration
-Read [[Amazon ELB]] before proceeding
+Read [Amazon ELB](Amazon%20ELB.md) before proceeding
 ## Bridge mode
-+ Used with [[#^582b21|EC2 Instance Launch Type]], ALB, NLB
++ Used with [EC2 Instance Launch Type](#^582b21), ALB, NLB
 + A virtual network bridge is created on the EC2 instance, which allows dynamic port mapping, where a ECS task is randomly associated with an available port on the EC2 instance (`containerport`), dynamically by the ECS agent.
 + Multiple tasks from same service use different ports and share the EC2 instance's private IP address.
 >[!note]
@@ -109,10 +109,10 @@ Read [[Amazon ELB]] before proceeding
 > <br/>
 > A user makes a request to your ALB's DNS name. The ALB receives the request and, based on its load-balancing algorithm (e.g., round-robin), forwards the request to either `ec2-instance-ip:65123` or `ec2-instance-ip:23751`.
 > </br>
-> The EC2 instance's network stack receives the request on the specific port assigned to the task. It then forwards the request to the correct container.![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_31788346 (1).png]]
+> The EC2 instance's network stack receives the request on the specific port assigned to the task. It then forwards the request to the correct container.![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_31788346 (1)](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_31788346%20(1).png)
 ## awsvpc Networking mode
-+ Used with [[#Fargate]], ALB, NLB
-+ Each task gets its own dedicated ENI(elastic network interface) and private IP address from associated [[Amazon VPC]] subnet.
++ Used with [#Fargate](#Fargate), ALB, NLB
++ Each task gets its own dedicated ENI(elastic network interface) and private IP address from associated [Amazon VPC](Amazon%20VPC.md) subnet.
 + The load balancer routes traffic directly to the task's private IP address. i.e target group type is `ip` .
 + Since each task has a private IP, multiple tasks from same service can use the same `containerport`.
 ## Workflow
@@ -120,7 +120,7 @@ Read [[Amazon ELB]] before proceeding
 	1. Target type is `ip` (ECS task private IP) .
 2. When ECS scheduler creates a new task it is automatically registered with the target group __using instance id/ip and static port that the task is mapped to__.
 3. If unhealthy or destroyed, it is automatically deregistered from the target group.
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_31788346 (2).png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_31788346 (2)](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_31788346%20(2).png)
 >[!note]
 >The ECS task's ENI security group must allow inbound traffic from the static port (here 80) of the ELB.
 # CLB integration (Not recommended)
@@ -130,13 +130,13 @@ Read [[Amazon ELB]] before proceeding
 Options work for both EC2 instances and Fargate.
 >[!note]
 >S3 cannot be mounted as a file system
-## [[Amazon EBS]]
+## [Amazon EBS](Amazon%20EBS.md)
 + Need to specify mount path and volume name, along with any attributes like volume type, IOPS and throughput, in the task definition.
 + ECS auto-provisions the volume and attaches it to a newly created task.
 	+ By default, deleted when task stops. (Delete on termination option can be unchecked to persist it).
 + Can be accessed by only one task at a time.
 + Use for ETL jobs, ML inference and other workloads requiring high-speed local processing.
-## [[Amazon EFS]]
+## [Amazon EFS](Amazon%20EFS.md)
 + Need to specify mount point and volume name in task definition.
 + ECS ensures EFS file system is mounted and available for access when new task is created.
 + Data persists by default, when a task stops or is destroyed.
@@ -144,9 +144,9 @@ Options work for both EC2 instances and Fargate.
 	+ Tasks can be on different hosts
 + Storage is elastic i.e. can grow and shrink as needed.
 + Use for shared storage (datasets, files, web serving).
-## [[Persisting Data#Bind volumes|Bind mounts]]
+## [](Persisting%20Data.md#Bind%20volumes|Bind%20mounts)
 + Shared storage for multiple tasks on the same host.
-+ For EC2 instances , uses [[Storage in AWS#^233511|EC2 Instance Storage]] and for Fargate uses ephemeral storage (default 20 GB).
++ For EC2 instances , uses [](Storage%20in%20AWS.md#^233511|EC2%20Instance%20Storage) and for Fargate uses ephemeral storage (default 20 GB).
 + Storage is tied to the host(EC2)/container(Fargate) lifecycle i.e. it is deleted when either the host is terminated or if all tasks referring to it are stopped or terminated.
 # ECS Rolling Updates
 When updating task definition from old version (say v1) to a newer version (say v2), rolling updates can be used to ensure that tasks are still available and running while the change happens in the background in phases.
@@ -156,9 +156,9 @@ To do this, we need to specify:
 + _Maximum %_: Maximum no of tasks that can be running at any given time. 
 
 > [!example]
-> Min: 50%, Max: 100%![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_31788300.png]]
+> Min: 50%, Max: 100%![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_31788300](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_31788300.png)
 > <br/>
-> Min: 100%, Max: 150%![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_31788300 (1).png]]
+> Min: 100%, Max: 150%![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_31788300 (1)](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_31788300%20(1).png)
 
 # ECS Task Placement
 + The scheduler determines:
@@ -244,7 +244,7 @@ They can be mixed together for a more complex strategy.
 }
 ```
 # Amazon ECR
-+ [[Docker Image#Container Registry|Container Registry]] : public and private
++ [](Docker%20Image.md#Container%20Registry|Container%20Registry) : public and private
 + Repositories provide vulnerability scanning, versioning, encryption for images
 ## CLI commands
 1. Login
@@ -266,4 +266,4 @@ docker pull <aws-account-id>.dkr.ecr.<region>.amazonaws.com/<image-name:tag>
 # AWS Copilot
 + Open source CLI tool that simplifies build, deploy and operation of containerized apps on AppRunner, ECS and Fargate.
 + You declare the app architecture in a YAML manifest file, and Copilot auto-provisions all required AWS infrastructure like VPC's, load balancers, ECS clusters.
-+ Can deploy to multiple environments and automate deployments using [[AWS Codepipeline]]
++ Can deploy to multiple environments and automate deployments using [AWS Codepipeline](AWS%20Codepipeline)

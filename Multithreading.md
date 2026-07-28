@@ -2,8 +2,8 @@
 
 # Basics
 ## Core
- ![[mx-img-eqk2ncb0iyx8hznwrbpv9ykr-pt1m29_99s.jpg|Multithreading Basics: CPU, Core, Program, Process, Thread & much more - 01:29|50]] [01:29](https://www.youtube.com/watch?v=091vJWjl1A4&t=90#t=01:29.99) 
- ![[mx-img-eqk2ncb0iyx8hznwrbpv9ykr-pt1m55_20s.jpg|Multithreading Basics: CPU, Core, Program, Process, Thread & much more - 01:55|50]] [01:55](https://www.youtube.com/watch?v=091vJWjl1A4&t=115#t=01:55.20) 
+ ![Multithreading Basics: CPU, Core, Program, Process, Thread & much more - 01:29|50](Assets/mx-img-eqk2ncb0iyx8hznwrbpv9ykr-pt1m29_99s.jpg) [01:29](https://www.youtube.com/watch?v=091vJWjl1A4&t=90#t=01:29.99) 
+ ![Multithreading Basics: CPU, Core, Program, Process, Thread & much more - 01:55|50](Assets/mx-img-eqk2ncb0iyx8hznwrbpv9ykr-pt1m55_20s.jpg) [01:55](https://www.youtube.com/watch?v=091vJWjl1A4&t=115#t=01:55.20) 
 ## Program
 It is a set of instructions written in a programming language that tells the computer how to perform a specific task.
 Ex: Microsoft Word allows users to create and edit documents.
@@ -12,16 +12,16 @@ It is an **instance** of a program that is being executed.
 ## Thread
 It is the **smallest** unit of execution within a process.
 A process can have multiple threads which share the same resources but can run independently.
- ![[mx-img-eqk2ncb0iyx8hznwrbpv9ykr-pt4m24_31s.jpg|Multithreading Basics: CPU, Core, Program, Process, Thread & much more - 04:24|50]] [04:24](https://www.youtube.com/watch?v=091vJWjl1A4&t=264#t=04:24.31) 
+ ![Multithreading Basics: CPU, Core, Program, Process, Thread & much more - 04:24|50](Assets/mx-img-eqk2ncb0iyx8hznwrbpv9ykr-pt4m24_31s.jpg) [04:24](https://www.youtube.com/watch?v=091vJWjl1A4&t=264#t=04:24.31) 
 ## Multitasking
 **Run multiple processes simultaneously** .
 	In **single core CPUs**, done through time sharing (rapidly switching between processes).
 	In **multi core CPUs**, processes distributed across cores with a scheduler balancing the load.
- ![[mx-img-eqk2ncb0iyx8hznwrbpv9ykr-pt7m56_96s.jpg|Multithreading Basics: CPU, Core, Program, Process, Thread & much more - 07:56|50]] [07:56](https://www.youtube.com/watch?v=091vJWjl1A4&t=477#t=07:56.96) 
+ ![Multithreading Basics: CPU, Core, Program, Process, Thread & much more - 07:56|50](Assets/mx-img-eqk2ncb0iyx8hznwrbpv9ykr-pt7m56_96s.jpg) [07:56](https://www.youtube.com/watch?v=091vJWjl1A4&t=477#t=07:56.96) 
 ## Multithreading
 Refers to the ability to execute **multiple threads** in a single process concurrently.
 	Every thread has its own call stack and copy of local variables but they share heap
- ![[mx-img-eqk2ncb0iyx8hznwrbpv9ykr-pt9m30_30s.jpg|Multithreading Basics: CPU, Core, Program, Process, Thread & much more - 09:30|50]] [09:30](https://www.youtube.com/watch?v=091vJWjl1A4&t=570#t=09:30.30) 
+ ![Multithreading Basics: CPU, Core, Program, Process, Thread & much more - 09:30|50](Assets/mx-img-eqk2ncb0iyx8hznwrbpv9ykr-pt9m30_30s.jpg) [09:30](https://www.youtube.com/watch?v=091vJWjl1A4&t=570#t=09:30.30) 
 It makes **multitasking more efficient**, by **breaking a process down into threads** that are managed concurrently.
 
 >[!info] How does JVM handle multithreading?
@@ -430,7 +430,7 @@ public class ThreadDriver {
 
 # Thread Safety and Shared Resources
 Code that is safe to call by multiple threads simultaneously is called _thread safe_. 
-If a piece of code is thread safe, then it contains no [[#Common race conditions|race conditions]] .
+If a piece of code is thread safe, then it contains no [race conditions](#Common%20race%20conditions) .
 ## Local Variables
 Every thread stores its own copy of local variables on its stack.
 	i.e. local variables are **not shared** between threads.
@@ -648,9 +648,9 @@ public void storeFrame(Frame frame) {
 ```
 Notice how the field `hasNewFrame` is now set to `true` before the `frame` field is assigned to reference the new Frame object. That means, that if the drawing thread is waiting in the while-loop in the `takeFrame()` method, the drawing thread could exit that while-loop, and take the old Frame object. That would result in a redrawing of an old Frame, leading to a waste of resources.
 # Synchronization
-# [[synchronized Keyword]]
-# [[Volatile Keyword]]
-# [[Lock]]
+# [synchronized Keyword](synchronized%20Keyword.md)
+# [Volatile Keyword](Volatile%20Keyword.md)
+# [Lock](Lock.md)
 
 
 # References

@@ -82,7 +82,7 @@ Some problems with this approach:
 		This can be mitigated by abstracting out common functionality to a new parent class `Light` , which `BedroomLight` and `KitchenLight` extend.
 + What happens if we want to support more devices in the future?
 		`Device` interface could be polluted with new functions like increasePower (for a vacuum cleaner).
-This violates [[SOLID#**O**pen for extension, closed for modification|Open/closed principle]] and [[SOLID#**I**nterface Segregation Principle (ISP)|Interface Segregation Principle]].
+This violates [](SOLID.md#**O**pen%20for%20extension,%20closed%20for%20modification|Open/closed%20principle) and [](SOLID.md#**I**nterface%20Segregation%20Principle%20(ISP)|Interface%20Segregation%20Principle).
 ## Using Command Pattern
 The solution is to decouple the requester (here, `RemoteControl`) of an action from the request itself. The request is considered as a stand alone object with all the information needed to fulfill it (what device, what action, device location (bathroom, bedroom)). It is passed on to a receiver (here device type like `Light`, `Fan`) which performs the action encapsulated in the request object. This way, the `RemoteControl` does not know what action it is performing, making it more flexible.
 
@@ -178,7 +178,7 @@ public class RemoteControlTest {
 	}
 }		
 ```
-Recap of workflow: ![[Screenshot 2025-12-21 at 2.14.04 PM.png]]
+Recap of workflow: ![Screenshot 2025-12-21 at 2.14.04 PM](Assets/Screenshot%202025-12-21%20at%202.14.04%20PM.png)
 ## Supporting undo
 We extend the `Command` interface functionality to support undo operation. Each subclass of `Command` can then define its own undo operation (ex: Undoing _light on_ results in _light off_).
 ```java hl:3 hl:17-19
@@ -302,4 +302,4 @@ public class RemoteControlTest {
 ```
 
 # UML Diagram
-![[Screenshot 2025-12-21 at 2.38.18 PM.png]]
+![Screenshot 2025-12-21 at 2.38.18 PM](Assets/Screenshot%202025-12-21%20at%202.38.18%20PM.png)

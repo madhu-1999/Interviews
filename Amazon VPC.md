@@ -1,8 +1,8 @@
 #aws #cloud
 # Prerequisite
-+ [[IP addressing]]
++ [IP addressing](IP%20addressing.md)
 # Overview
-+ It is a logically isolated virtual network. (bound to a [[AWS Global Infrastructure#Region|region]]) 
++ It is a logically isolated virtual network. (bound to a [](AWS%20Global%20Infrastructure.md#Region|region)) 
 + Subnet (range of IP addresses) allows for partitioning of a VPC (bound to a AZ)
 	+ Public subnet is accessible from the internet.
 	+ Private subnet is not accessible from the internet. (recommended)
@@ -14,11 +14,11 @@
 	+ Internet gateway connects public VPC to internet
 	+ VPC endpoint to connect to AWS services privately. (public or private VPC)
 	+ NAT gateway (AWS managed) or NAT instances (Self-managed) to connect private VPC instances to the internet, while remaining private.
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19729022.png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19729022](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19729022.png)
 + Routing tables used to route network traffic from/to subnet or gateway.
 	+ Each subnet must have one, and is associated *by default* to main route table in VPC.
 # Private IPv4 addresses
-+ When any AWS resource instance, like [[Amazon Elastic Compute Cloud (AWS EC2)#EC2 Instance|EC2 instance]] is launched in a VPC, a private IPv4 address is assigned to the its primary network interface (ex: eth0).
++ When any AWS resource instance, like [](Amazon%20Elastic%20Compute%20Cloud%20(AWS%20EC2).md#EC2%20Instance|EC2%20instance) is launched in a VPC, a private IPv4 address is assigned to the its primary network interface (ex: eth0).
 + Every instance also gets a private DNS hostname that resolves to the private IP address.
 ```
 IP address Domain name 
@@ -66,8 +66,8 @@ ip-10-24-34-0.us-west-2.compute.internal
 	+ public subnet in each AZ of size `/20`  (default)
 	+ an internet gateway 
 	+ A route in the main route table that points all outbound traffic to the internet gateway.
-	+ A default [[#Security Groups|security group]]
-	+ A default [[#Network access control lists|NACL]]
+	+ A default [security group](#Security%20Groups)
+	+ A default [NACL](#Network%20access%20control%20lists)
 	+ DNS settings that assign public DNS hostnames to public IP addresses.
 # Ports to know
 1. 22 - SSH (log into linux instance)
@@ -180,7 +180,7 @@ ip-10-24-34-0.us-west-2.compute.internal
 		+ It can be a service within same account, in a different account or hosted on-premises (non-AWS).
 + VPC endpoint is created within _service consumer_ VPC.
 	+ Resources in _service consumer_ can connect to _endpoint service_ through VPC endpoint.
-	+ A _endpoint policy_ ([[IAM#Policy|IAM policy]]) is attached to it, which determines which _principals_ can use the VPC endpoint to access the _endpoint service_.
+	+ A _endpoint policy_ ([](IAM.md#Policy|IAM%20policy)) is attached to it, which determines which _principals_ can use the VPC endpoint to access the _endpoint service_.
 + All traffic between _service consumer_ and _endpoint service_ stays within the AWS private network. It **does not** traverse the internet.
 + Provides **enhanced security** and **lower latency**.
 ## VPC Endpoint Types
@@ -191,7 +191,7 @@ ip-10-24-34-0.us-west-2.compute.internal
 
 + Creates a endpoint network interface to send traffic TCP/UDP traffic to endpoint service.
 ### **Gateway**
-+ Connects only to [[Amazon S3]] and [[Amazon DynamoDB]]
++ Connects only to [Amazon S3](Amazon%20S3.md) and [Amazon DynamoDB](Amazon%20DynamoDB.md)
 + On creation, must add a new entry to route tables of subnets of _service consumer_ that will use it.
 	+ _endpoint service_ prefix list is destination and gateway endpoint as target.
 + Communication strictly within __same VPC__.
@@ -199,29 +199,29 @@ ip-10-24-34-0.us-west-2.compute.internal
 >[!note]
 > + Prefix list is a range of IP addresses of services that can be referenced to allow/deny access in security groups/route tables.
 > 	+ Whenever IP address changes, prefix list is automatically updated, so no need to update manually.
-# AWS Client [[VPN]]
+# AWS Client [VPN](VPN.md)
 + Managed, client-based service. (OpenVPN-based)
 + Securely access AWS and on-premises services
 + Dynamically scales according to number of users connecting to resources.
 + Supports multiple authentication methods. (ex: Active directory, federated authentication)
 + Supports multiple authorization methods (ex: network access control list, security group based access control)
-# AWS Site-to-Site [[VPN]]
+# AWS Site-to-Site [VPN](VPN.md)
 + Connect on-premises private network to AWS. (encrypted)
 + Communication goes over the **public internet**.
- ![[Screenshot 2025-09-18 at 5.30.34 PM.png]]
+ ![Screenshot 2025-09-18 at 5.30.34 PM](Assets/Screenshot%202025-09-18%20at%205.30.34%20PM.png)
 # AWS Direct Connect
 + Dedicated **physical** connection between your network and VPC.
 + Private, secure and fast.
 + Goes over private network. 
-![[Screenshot 2025-09-18 at 5.33.50 PM.png]]
+![Screenshot 2025-09-18 at 5.33.50 PM](Assets/Screenshot%202025-09-18%20at%205.33.50%20PM.png)
 # VPC Flow logs
 + Log IP protocol traffic coming to/from network interfaces in VPC.
 	+ Can log *accepted* traffic, *rejected* traffic or *all* traffic.
 + Helps to monitor and troubleshoot connectivity issues.
 + Can create flow logs for AWS managed network interfaces like:
-	+ [[Amazon ELB]]
-	+ [[Amazon RDS]]
-	+ [[Elasticache]]
+	+ [Amazon ELB](Amazon%20ELB.md)
+	+ [Amazon RDS](Amazon%20RDS.md)
+	+ [Elasticache](Elasticache.md)
 	+ NAT gateways
 	+ Transit gateways
-+ Can be published to: [[Amazon S3]], [[AWS CloudWatch]] or Amazon Data Firehose
++ Can be published to: [Amazon S3](Amazon%20S3.md), [AWS CloudWatch](AWS%20CloudWatch.md) or Amazon Data Firehose

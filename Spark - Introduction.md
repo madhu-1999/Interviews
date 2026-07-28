@@ -5,9 +5,9 @@ tags:
   - "#distributed"
 ---
 # Prerequisite
-[[Database Partitioning]]
-[[Database Sharding]]
-[[Hadoop]] 
+[Database Partitioning](Database%20Partitioning.md)
+[Database Sharding](Database%20Sharding.md)
+[Hadoop](Hadoop) 
 # What is Apache Spark?
 It is an __open source, distributed computing framework__ for big data processing and analytics. [^3]
 # Why use Apache Spark?
@@ -18,7 +18,7 @@ It is an __open source, distributed computing framework__ for big data processin
 5. **Runs Everywhere** - It will run on Hadoop, Kubernetes, Mesos, Standalone, and even within the Cloud.
 6. __Lazy evaluation__ - Apache Spark doesn’t execute your commands immediately. Instead, it creates a DAG and waits until an action operation explicitly triggers computation.
 # Spark Ecosystem
-![[Apache Spark-1784224134862.webp]]
+![Apache Spark-1784224134862](Assets/Apache%20Spark-1784224134862.webp)
 ## Spark Core
 [^6]
 It provides core/ foundational capabilities that the other parts of the ecosystem (ex: Spark SQL, Spark Streaming) build on.
@@ -26,15 +26,15 @@ It provides core/ foundational capabilities that the other parts of the ecosyste
 + [I] __Memory Management__: Controls how memory is divided between execution (shuffles, joins, aggregations) and storage (caching data).
 + [I] __Fault tolerance__: Tracks the history of transformations used (lineage). If a node fails and data is lost, the lineage can be used to recompute only the missing data.
 ### Key data abstractions
-+ [k] **[[Spark - RDD|RDD]]**: It represents an immutable, fault-tolerant collection of data elements that are distributed across a cluster and can be processed in parallel.
++ [k] **[RDD](Spark%20-%20RDD.md)**: It represents an immutable, fault-tolerant collection of data elements that are distributed across a cluster and can be processed in parallel.
 + [k] **DAG**: A blueprint of operations and dependencies that spells out exactly how your job will execute.
 ## Spark SQL
 [^4][^5]
 It is used for processing **structured** and **semi-structured** data, using standard SQL syntax or the declarative DataFrame API. It is built on top of **Spark Core**.
 + [I] **Integrated data access**
-	+ Native support for [[Parquet]], ORC, JSON, CSV and Avro
+	+ Native support for [Parquet](Parquet.md), ORC, JSON, CSV and Avro
 	+ Direct querying of RDBMS via JDBC/ODBC
-	+ Supports cross-source joins (ex: Join JSON file in [[Amazon S3]] with a relational table in an RDBMS)
+	+ Supports cross-source joins (ex: Join JSON file in [Amazon S3](Amazon%20S3.md) with a relational table in an RDBMS)
 + [I] **SQL compatibility**: Allows easy integration with SQL based tools (ex: Apache Hive) by supporting SQL and HiveQL queries.
 + [I]  __Query optimization__: *Catalyst* converts queries into optimized physical plans and _Tungsten_ optimizes the actual execution by maximizing CPU and memory efficiency.
 ### Key data abstractions
@@ -87,13 +87,13 @@ It is a distributed graph processing library that unifies graph and data process
 ## SparkR
 R package for Apache Spark.
 # Spark Architecture
-![[Pasted image 20260429163309.png]]
+![Pasted image 20260429163309](Assets/Pasted%20image%2020260429163309.png)
 >[!tip]- SparkSession vs SparkContext
 >_SparkSession_ is a higher level abstraction sitting on top of _SparkContext_.
 >_SparkSession_ unifies APIs for _SQLContext_, _HiveContext_ and _SparkContext_.
 
 
-![[image 1.jpg]]
+![image 1](Assets/image%201.jpg)
 ## Key components
 [^2]
 ### __Driver__
@@ -111,14 +111,14 @@ They are worker processes (JVM) responsible for __executing tasks__ in Spark app
 They are launched on worker nodes (physical machine) and communicate with the driver program and cluster manager. Executors run tasks concurrently (__one task = one core__) and store data in memory or disk for caching and intermediate storage.
 ## Task
 A task is the smallest unit of work in Spark, representing a unit of computation that can be performed on a single partition of data i.e. __one task = one partition__. The driver program divides the Spark job into tasks and assigns them to the executor nodes for execution.
-# [[Spark - Transformations#Transformations|Transformations]]
+# [](Spark%20-%20Transformations.md#Transformations|Transformations)
 [^12]
 They are operations that transform your existing RDD or DataFrame into a new RDD or DataFrame.
 + [I] **Lazy evaluation**: They don't execute immediately.
 + [*] `map`, `filter`, `groupBy`, `flatMap`, `distinct`, `union`, `join` etc...
 # Actions
 [^12]
-> See [[Spark - Transformations#Transformations vs Actions|Transformations vs Actions]] for differences.
+> See [](Spark%20-%20Transformations.md#Transformations%20vs%20Actions|Transformations%20vs%20Actions) for differences.
 
 They trigger the actual computation of the set of transformations defined up until that point, and then it executes immediately.
 + [I] They return the result to the driver, typically a single value or a small collection of data that **can fit in the driver's memory**.
@@ -133,7 +133,7 @@ This has two main benefits:
 + [p] We avoid bringing the DataFrame into memory immediately, which can save some cluster capacity.
 
 + [c] However, if we repeatedly execute the same set of transformations i.e. create the same RDD multiple times, the benefit of lazy evaluation is lost. (reprocessing overhead).
-	+ [i] To prevent this, we can persist the RDD to memory using `.cache()` or `.persist()` (See [[Spark - Persisting Data]] for more details.)
+	+ [i] To prevent this, we can persist the RDD to memory using `.cache()` or `.persist()` (See [Spark - Persisting Data](Spark%20-%20Persisting%20Data.md) for more details.)
 
 >[!faq]- How does Spark track what transformations need to be performed in what order? 
 >It uses DAG.
@@ -189,7 +189,7 @@ It is only available for strongly typed languages like Java and Scala.
 
 ## Explicit Repartitioning
 ### `coalesce`
-It is a [[#Narrow transformations|narrow transform]] designed to __reduce the partitions__ in your DataFrame __without triggering a full [[#Data shuffling|shuffle]].__
+It is a [narrow transform](#Narrow%20transformations) designed to __reduce the partitions__ in your DataFrame __without triggering a full [shuffle](#Data%20shuffling).__
 __Key characteristics of coalesce__:
 - **One-way operation**: Coalesce can only reduce the number of partitions, not increase them (unless you set shuffle=true, which essentially turns it into repartition).
 - [p] **Minimal data movement**: It __attempts__ to combine partitions that are already on the same executor, minimizing network traffic.
@@ -252,7 +252,7 @@ graph LR
 When all nodes for merge are not on the same node, it will choose a node to host the new partition and transfer the required partition for the merge to the new partition from its original node (Here `P4` handed over to `Worker 2`).
 >[!warning] Coalesce will always do the hand over to the node that is physically closest to it, irrespective of data skew.
 
-![[Apache Spark-1778557874206.webp]]
+![Apache Spark-1778557874206](Assets/Apache%20Spark-1778557874206.webp)
 >[!faq ]- Why is shuffle a narrow transform even though sometimes shuffle happens?
 >A transformation is _narrow_ if each output partition depends on a **specific, known set of input partitions**.
 >> In `coalesce(3)` above, output partition `P1` knows it needs `P1, P2, P3` , output partition `P2` knows, it needs `P5, P6, P7` etc..
@@ -260,7 +260,7 @@ When all nodes for merge are not on the same node, it will choose a node to host
 >Actually, `coalesce` does not perform a shuffle, since no shuffle files are written and no hashing is performed. It simply moves partitions from the RAM of one worker node to another.
 
 **Use Cases**
-- Reducing output file count before writing to [[Amazon S3|S3]], HDFS, or Delta Lake.
+- Reducing output file count before writing to [S3](Amazon%20S3.md), HDFS, or Delta Lake.
 ```python
 df = spark.read.parquet("s3://bucket/transactions/")  
 # Suppose df has 200 partitions after reads + filters
@@ -303,7 +303,7 @@ df_coalesced.write.parquet("s3://bucket/output/")
 >- **Optimized Output Files:** It is the standard tool for reducing the number of small files written to a data lake or database.
 >- **Maintains Sort Order:** In some scenarios, because it merges adjacent partitions without a full reshuffle, it is better at preserving any existing local sort order than a full `repartition`
 ### `repartition`
-It's a [[#Wide Transformations|wide transformation]] because each output partition may depend on data from all input partitions.[^1]
+It's a [wide transformation](#Wide%20Transformations) because each output partition may depend on data from all input partitions.[^1]
 __Key characteristics of repartition__:
 - **Bidirectional operation**: Can both increase and decrease the number of partitions.
 - [c] **Full data shuffle**: Triggers a complete redistribution of data across the cluster.
@@ -330,8 +330,8 @@ df_by_range = df.repartition(50, col("age"))
 >>If you have 1,000 unique countries but you repartition to 200, then mathematically, at least some partitions _must_ contain at least 5 different countries
 
 <center>Repartition by column (hash-based distribution)</center>
-![[Apache Spark-1778618364734.webp]]
-<center>Repartition by numPartitions (round-robin)</center> ![[Apache Spark-1778619479776.webp]]
+![Apache Spark-1778618364734](Assets/Apache%20Spark-1778618364734.webp)
+<center>Repartition by numPartitions (round-robin)</center> ![Apache Spark-1778619479776](Assets/Apache%20Spark-1778619479776.webp)
 **Use Cases**
 + __Addressing Data Skew__: If your data is unevenly distributed across existing partitions, `repartition()` can help rebalance it.
 + __Increasing Parallelism__: If you've filtered a huge dataset down to a small fraction, you might only have a few active partitions left. Repartitioning to a higher number allows Spark to utilize more of your cluster’s CPU cores for the next set of transformations.
@@ -365,13 +365,13 @@ A __job__ refers to a ==sequence of transformations== on data.
 Whenever an action (`count()`, `collect()`, etc..) is called, a job is triggered .i.e. __one action = one job__.
 A job is comprised of __one or more stages__.
 A job is __divided__ into __multiple stages__ when we have to perform __wide transformations__ which requires shuffling.
-==At the end of each job, we get a new [[#RDDs|RDD]].
+==At the end of each job, we get a new [RDD](#RDDs).
 
 A __stage__ refers to a ==sequence of transformations on data which does not involve shuffling==.
-Each stage is comprised of __one or more [[#Task|tasks]]__, and all the tasks within a stage perform the same computation.
+Each stage is comprised of __one or more [tasks](#Task)__, and all the tasks within a stage perform the same computation.
 <center><b>Representation of Job 2</b></center>
 
-![[Apache Spark-1778698144623.webp]]
+![Apache Spark-1778698144623](Assets/Apache%20Spark-1778698144623.webp)
 This is a very high level overview of job, stages and tasks. [Reading a DAG](https://dzone.com/articles/reading-spark-dags) looks very different with AQE turned on, and other Spark code optimizations.
 # Data shuffling
 [Shuffle](https://bitsofchris.com/p/shuffling-in-spark-how-to-balance) occurs when ==data is exchanged between partitions across different nodes,==
@@ -417,13 +417,13 @@ After running a job, we can check for the following in Spark UI:
 + **Use Enough Partitions**: For large datasets, increasing the number of shuffle partitions can help with memory pressure.
 + __Turn on AQE__: AQE dynamically adjusts the number of shuffle partitions based on runtime metrics, which helps especially with data skew or uneven data distribution.
 # Joins
-The first step of a join is to [[#Data shuffling|shuffle]] records from both sides of the join, such that data is partitioned on join key.
+The first step of a join is to [shuffle](#Data%20shuffling) records from both sides of the join, such that data is partitioned on join key.
 
 >[!important] One partition can store multiple join keys .i.e. one partition $\neq$ one key
 
-See [[#^ad2db7|How are records assigned to partitions during shuffle]] for the different ways to achieve this. 
+See [How are records assigned to partitions during shuffle](#^ad2db7) for the different ways to achieve this. 
 ## Shuffle Sort Merge Join
-![[Apache Spark-1778705849224.webp]]
+![Apache Spark-1778705849224](Assets/Apache%20Spark-1778705849224.webp)
 ## Shuffle Sort Hash Join
 ## Broadcast Join
 # Workflow recap

@@ -65,7 +65,7 @@ Loads classes from application classpath specified by `java.class.path` env var.
 	+ ### Just-In-Time Compiler (JIT)
 		+ Compiles bytecode to native machine code
 		+ When interpreter sees repeated method calls, JIT supplies native code to interpreter, makes execution faster.
-	+ ### [[Garbage Collection|Garbage Collector]] 
+	+ ### [Garbage Collector](Garbage%20Collection.md) 
 			+ Destroys unreferenced objects from heap
 ## Java Native Interface (JNI)
 + Interface that allows Java to call native method libraries (C/C++) and be called by native methods.

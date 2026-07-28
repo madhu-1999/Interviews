@@ -19,13 +19,13 @@ This is a very complex query that would involve __multiple joins__, since the re
 As seen above analytical, queries are expensive to run due to their complexity. Using a OLTP database for this would mean **degraded performance** for users while the query is running since both are analytical and operational queries would **fight for resources**, such as disk I/O, memory and CPU. 
 Furthermore, maintaining a large amount of historical data would **slow down inserts and updates** due to the massive index overhead, which defeats the purpose of using a OLTP database, which is optimized for fast inserts and updates.
 # Why can OLAP databases not be used for operational purposes?
-1. **Inefficient for Frequent Inserts** — OLAP databases are optimized for fast read operations, particularly in a [[Row wise vs Column vs Hybrid Data Storage formats|columnar]] format. Writing operations, especially frequent inserts, are slow since these systems are not designed for row-level transactions.
+1. **Inefficient for Frequent Inserts** — OLAP databases are optimized for fast read operations, particularly in a [columnar](Row%20wise%20vs%20Column%20vs%20Hybrid%20Data%20Storage%20formats.md) format. Writing operations, especially frequent inserts, are slow since these systems are not designed for row-level transactions.
 2. **Lack of ACID Compliance** — OLAP databases do not fully support ACID (Atomicity, Consistency, Isolation, Durability) properties, making them unreliable for transactional data.
 3. **High Computational Costs** — Frequent inserts and updates in OLAP databases require extensive computing power, leading to higher operational costs.
 4. **Missing Transactional Features** — Unlike OLTP databases, OLAP systems lack essential features like rollback mechanisms, foreign key constraints for data integrity, and row-level locking to prevent data conflicts.
 5. **Update Anomalies** — Instead of modifying existing records, OLAP databases often create duplicate versions, complicating data consistency.
 
-[[Designing Data-Intensive Applications, 2nd Edition-9781098119058.pdf#page=21&selection=11,51,11,52&color=note|Designing Data-Intensive Applications, 2nd Edition-9781098119058, p.21]]
+[](Documents/Designing%20Data-Intensive%20Applications,%202nd%20Edition-9781098119058.pdf#page=21&selection=11,51,11,52&color=note|Designing%20Data-Intensive%20Applications,%202nd%20Edition-9781098119058,%20p.21)
 
 | Property           | OLTP                                                            | OLAP                                                        |
 | ------------------ | --------------------------------------------------------------- | ----------------------------------------------------------- |
@@ -43,7 +43,7 @@ Furthermore, maintaining a large amount of historical data would **slow down ins
 | Optimization       | For writes and updates in huge volumes                          | For fast retrieval of complex queries and aggregations      |
 | Tools              | MySQL, MongoDB                                                  | BigQuery, Snowflake, Redshift                               |
 
-> [!PDF|255, 208, 0] [[Designing Data-Intensive Applications, 2nd Edition-9781098119058.pdf#page=24&annotation=37943R|Designing Data-Intensive Applications, 2nd Edition-9781098119058, p.24]]
+> [!PDF|255, 208, 0] [](Documents/Designing%20Data-Intensive%20Applications,%202nd%20Edition-9781098119058.pdf#page=24&annotation=37943R|Designing%20Data-Intensive%20Applications,%202nd%20Edition-9781098119058,%20p.24)
 > > Systems designed for this type of use, known as product analytics or realtime analytics, include Pinot, Druid, and ClickHouse [6]. Such systems ingest data in real time and are optimized for low-latency query responses. In contrast, traditional OLAP systems typically ingest data in batches and are optimized for high-throughput query processing.
 
 # HTAP (Hybrid Transaction and Analytical Processing)

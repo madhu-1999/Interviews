@@ -68,8 +68,8 @@
 12. `LIMIT`/`FETCH`/`TOP`
 
 # Further Reading
-1. [[SQL_Basics]]
-2. [[Conditional Expressions]]
-3. [[Grouping Data]]
-4. [[Subqueries and CTEs]]
-5. [[Window Functions]] 
+1. [SQL_Basics](SQL_Basics.md)
+2. [Conditional Expressions](Conditional%20Expressions.md)
+3. [Grouping Data](Grouping%20Data.md)
+4. [Subqueries and CTEs](Subqueries%20and%20CTEs.md)
+5. [Window Functions](Window%20Functions.md) 

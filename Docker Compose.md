@@ -7,8 +7,8 @@
 		+ Database
 		+ Load Balancer
 		+ Cache
-		typically, each one in its own container, along with managing networking, [[Persisting Data#Volumes (Preferred)|volumes]] and port mappings.
-+ Ensures consistency across environments ([[AWS CloudFormation#Infrastructure As Code (IaC)|IaC]]). Can use env variables for things that change.
+		typically, each one in its own container, along with managing networking, [](Persisting%20Data.md#Volumes%20(Preferred)|volumes) and port mappings.
++ Ensures consistency across environments ([](AWS%20CloudFormation.md#Infrastructure%20As%20Code%20(IaC)|IaC)). Can use env variables for things that change.
 + Valuable tool for local development, testing, and simpler deployments.
 # Supported filenames
 Default path : working directory

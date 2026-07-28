@@ -12,7 +12,7 @@ In Java, every object has a lock implicitly associated with it — a `String`, 
 Object lock = new Object();
 ```
 
-You can’t call `acquire` and `release` on Java’s intrinsic locks, however. Instead you use the [[synchronized Keyword]] to acquire the lock for the duration of a statement block:
+You can’t call `acquire` and `release` on Java’s intrinsic locks, however. Instead you use the [synchronized Keyword](synchronized%20Keyword.md) to acquire the lock for the duration of a statement block:
 ```java
 synchronized (lock) { // thread blocks here until lock is free
     // now this thread has the lock
@@ -45,7 +45,7 @@ public class SimpleBuffer {
     }
 }
 ```
-Read [[synchronized Keyword]] to understand how this only allows one thread access to any method in the class at a time.
+Read [synchronized Keyword](synchronized%20Keyword.md) to understand how this only allows one thread access to any method in the class at a time.
 # Explicit Locking
 These are advanced locks which you can control yourself (explicit `lock()` and `unlock()`).
 ```java

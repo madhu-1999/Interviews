@@ -2,7 +2,7 @@
 # Definition
 The Singleton pattern ensures that there exists **only one instance** of a class, and provides a global point of access to it.
 # Class Diagram
-![[Screenshot 2025-09-28 at 3.02.28 PM.png]]
+![Screenshot 2025-09-28 at 3.02.28 PM](Assets/Screenshot%202025-09-28%20at%203.02.28%20PM.png)
 # Java Implementation
 ```java
 public class Singleton {
@@ -61,7 +61,7 @@ Just like a global variable, the Singleton pattern lets you access some object f
 
 A global variable is initialized whether it is used or not (eager initialization) whereas a Singleton instance is created only when requested (lazy initialization).
 # Disadvantages
-+ Violates [[SOLID#**S**ingle Responsibility Principle|Single Responsibility Principle]] since a Singleton class has two distinct responsibilities:
++ Violates [](SOLID.md#**S**ingle%20Responsibility%20Principle|Single%20Responsibility%20Principle) since a Singleton class has two distinct responsibilities:
 	+ Providing a single instance of the class
 	+ Primary business logic
 +  It may be difficult to unit test the client code of the Singleton because it is difficult to mock them, since the constructor of the singleton class is private and overriding static methods is impossible.

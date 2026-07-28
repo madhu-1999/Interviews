@@ -43,7 +43,7 @@ mkdir .adotfolder
 ls
 ```
 
-Even when using [[#Matching any string [ * ] | * ]] wild-card, dotfiles do not show up.
+Even when using [ * ](#Matching%20any%20string%20[%20*%20) wild-card, dotfiles do not show up.
 ```run-shell
 # Dotfiles don't show up
 ls *
@@ -119,7 +119,7 @@ echo $MYSTRING
 >echo $A
 >```
 ## Variables and Quoting
-Refer [[#Quoting]] for basic variable behavior with quotes.
+Refer [#Quoting](#Quoting) for basic variable behavior with quotes.
 ### **String Variables with more than one word**
 ```run-shell
 # This throws an error

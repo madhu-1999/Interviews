@@ -37,7 +37,7 @@ Common quality problems:
 ## Value
 It refers to the analysis, insights, discoveries and ultimately business decisions and consumer outcomes that result from the data collected.
 # Data Lifecyle
-![[Big Data-1783906185963.webp]]
+![Big Data-1783906185963](Assets/Big%20Data-1783906185963.webp)
 # References:
 https://mantelgroup.com.au/the-5-vs-of-big-data/
 https://www.knime.com/blog/the-data-lifecycle

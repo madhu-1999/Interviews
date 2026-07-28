@@ -1,12 +1,12 @@
 #aws #cloud #database #rdbms 
 # Overview
 + Relational Database Service (RDS)
-+ [[#Managed Services|Managed]] relational database service that 
++ [Managed](#Managed%20Services) relational database service that 
 	+ makes it easier to set up, operate and scale relational databases in the cloud.
 	+ handles routine database tasks such as backups, patching and hardware provisioning. 
-+ Supports creation of different database engines, including [[Amazon Aurora]], MySQL, PostgreSQL, Microsoft SQL Server, MariaDB, and Oracle Database.
-+ Can control access by using [[IAM]] to define users and permissions.
-+ Can protect database by putting it in a [[Amazon VPC|VPC]].
++ Supports creation of different database engines, including [Amazon Aurora](Amazon%20Aurora.md), MySQL, PostgreSQL, Microsoft SQL Server, MariaDB, and Oracle Database.
++ Can control access by using [IAM](IAM.md) to define users and permissions.
++ Can protect database by putting it in a [VPC](Amazon%20VPC.md).
 >[!note]
 >Below info is not valid for Amazon Aurora.
 # DB instance
@@ -17,7 +17,7 @@
 ## Access
 + Can be accessed using same tools as self hosted database instance.
 + SSH access is **NOT** allowed except with RDS Custom
-+ CRUD through AWS CLI, RDS API or Management console^[[Interacting with AWS Services]]
++ CRUD through AWS CLI, RDS API or Management console^[Interacting with AWS Services](Interacting%20with%20AWS%20Services.md)
 ## Instance classes
 + Instance class determines the memory and computation capacity of a DB instance.
 	+  General purpose – db.m*
@@ -25,8 +25,8 @@
 	- Compute optimized – db.c*
 	- Burstable performance – db.t*
 ## Storage
-+ The DB instance's primary data, logs and other files are stored in [[Amazon EBS|EBS]] volumes.
-	+ Can use either [[Amazon EBS#**General Purpose SSD|General Purpose SSD]] or [[Amazon EBS#**IOPS provisoned SSD**|IOPS Provisioned SSD]] 
++ The DB instance's primary data, logs and other files are stored in [EBS](Amazon%20EBS.md) volumes.
+	+ Can use either [](Amazon%20EBS.md#**General%20Purpose%20SSD|General%20Purpose%20SSD) or [](Amazon%20EBS.md#**IOPS%20provisoned%20SSD**|IOPS%20Provisioned%20SSD) 
 + Automatically stripes data across EBS volumes.
 	+ Incoming data us broken into smaller chunks called stripes.
 	+ The stripes are written **simultaneously** to multiple underlying EBS volumes. 
@@ -34,7 +34,7 @@
 		+ Instead each stripe is written to a different volume simultaneously.
 	+ This increases the total throughput and IOPS by a factor for _n_ , where _n_ is no of volumes.
 # Read replicas
-Refer [[Database Replication Strategies]] before continuing
+Refer [Database Replication Strategies](Database%20Replication%20Strategies.md) before continuing
 + Single leader setup + asynchronous updates (can have replication lag)
 + Ideal for read-heavy workloads.
 + Upto 15 read replicas per database instance (primary).
@@ -43,7 +43,7 @@ Refer [[Database Replication Strategies]] before continuing
 	+ This way application knows to send reads to replicas and writes to primary.
 + Can be within same AZ, cross AZ or cross region.
 	+ With cross AZ/region, read traffic can be served even if primary becomes unavailable.
-+ [[#Auto Scaling]] not supported.
++ [#Auto Scaling](#Auto%20Scaling) not supported.
 	+ Manually delete and create Read replicas.
 + If primary is deleted without deleting read replicas:
 	+ If replica in same region, automatically promoted to standalone DB instance.
@@ -53,7 +53,7 @@ Refer [[Database Replication Strategies]] before continuing
 	+ Connection strings have to updated since read replicas have different DNS endpoint from primary.
 ![Read replica configuration](https://docs.aws.amazon.com/images/AmazonRDS/latest/UserGuide/images/read-replica.png)
 ## Creation
-+ Take a [[Amazon EBS#EBS Snapshots|snapshot]] (EBS) of the primary instance
++ Take a [](Amazon%20EBS.md#EBS%20Snapshots|snapshot) (EBS) of the primary instance
 + Create read replica from this snapshot.
 	+ Snapshots can be copied across AZ and region.
 + By default, storage type is same as DB instance, but can be changed.
@@ -131,12 +131,12 @@ Refer [[Database Replication Strategies]] before continuing
 | **Cost**        | Backup storage equivalent to your database size is free. Additional storage is charged. | Billed for storage from the moment they are created.                                                           |
 # AWS Shared Responsibility Model
 ## Fully managed Services
-![[Screenshot 2025-09-05 at 2.35.37 PM.png]]
+![Screenshot 2025-09-05 at 2.35.37 PM](Assets/Screenshot%202025-09-05%20at%202.35.37%20PM.png)
 ## Managed Services
-![[Screenshot 2025-09-05 at 2.36.51 PM.png]]
+![Screenshot 2025-09-05 at 2.36.51 PM](Assets/Screenshot%202025-09-05%20at%202.36.51%20PM.png)
 ## Unmanaged Services
-Ex: self-hosted db on a [[Amazon Elastic Compute Cloud (AWS EC2)#EC2 Instance|EC2]] instance.
-![[Screenshot 2025-09-05 at 2.37.47 PM.png]]
+Ex: self-hosted db on a [](Amazon%20Elastic%20Compute%20Cloud%20(AWS%20EC2).md#EC2%20Instance|EC2) instance.
+![Screenshot 2025-09-05 at 2.37.47 PM](Assets/Screenshot%202025-09-05%20at%202.37.47%20PM.png)
 # Security
 ## At-rest encryption
 + Database master and replicas can be encrypted using AWS KMS -- must be defined at launch time.
@@ -147,11 +147,11 @@ Ex: self-hosted db on a [[Amazon Elastic Compute Cloud (AWS EC2)#EC2 Instance|EC
 + TLS certificate specific to AWS region used to encrypt data.
 + Need to modify database connection settings to incorporate TLS certificate to do encryption client-side.
 ## IAM Authentication
-+ Use [[IAM#Roles|IAM Roles]] to authenticate connection to database. 
++ Use [](IAM.md#Roles|IAM%20Roles) to authenticate connection to database. 
 ## Network Security
-+ Enforced through [[Amazon VPC#Security Groups|Security Groups]]
-# [[Proxy server#Database Proxy|Database Proxy]]
-+ [[#Fully managed Services|Fully managed service]]
++ Enforced through [](Amazon%20VPC.md#Security%20Groups|Security%20Groups)
+# [](Proxy%20server.md#Database%20Proxy|Database%20Proxy)
++ [Fully managed service](#Fully%20managed%20Services)
 + Allows apps to pool and share DB connections.
 	+ Improves efficiency by reducing stress on database resources (CPU, RAM, minimize open connections)
 + Serverless, autoscaling and highly available across multiple AZ's

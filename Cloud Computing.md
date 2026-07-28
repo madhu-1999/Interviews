@@ -47,6 +47,6 @@ On-demand delivery of IT resources over the internet with pay as you go pricing.
 + Ex: Dropbox, Microsoft Office 365, Gmail
 # CI/CD
 ## Continuous Integration (CI)
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851318.png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851318](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851318.png)
 ## Continuous Delivery
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851318 (1).png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851318 (1)](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851318%20(1).png)

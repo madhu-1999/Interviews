@@ -175,7 +175,7 @@ But if lists are long, this is slow.
 Suppose we are looking at 41 (upper) and 11 (lower).
 11 is smaller and the skip successor of 11 on the lower list is 31.
 So we can skip to 31 directly instead of traversing every element, since lists are sorted.
-![[Screenshot 2025-12-07 at 8.14.06 PM.png]]
+![Screenshot 2025-12-07 at 8.14.06 PM](Assets/Screenshot%202025-12-07%20at%208.14.06%20PM.png)
 Then the following questions arise: 
 1. How to decide where to place skip pointers?
 2. How many skip pointers to place?
@@ -276,7 +276,7 @@ Query: "quick brown dog"
 		T                        T
 will evaluate to true and return the text "the quick brown fox jumped over the brown dog" as a match even though the full phrase "quick brown dog" does not exist in the text.
 ## Positional indexes
-A [[#Positional implementation|positional inverted index]] can be used to solve this issue, since it stores position indices for a given term in a document, we can compare if each term in phrase query is adjacent in a particular document.
+A [positional inverted index](#Positional%20implementation) can be used to solve this issue, since it stores position indices for a given term in a document, we can compare if each term in phrase query is adjacent in a particular document.
 
 ```run-python
 # Positional inverted index: term → {doc_id : [positions]}

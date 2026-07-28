@@ -1,7 +1,7 @@
 #DE 
 # Parquet Data Organization
 
- ![[mx-img-j62s5vkqls35nlmcun5l2mnt-pt12m32_89s.jpg|The Parquet Format and Performance Optimization Opportunities Boudewijn Braams (Databricks) - 12:32|0]] [12:32](https://www.youtube.com/watch?v=1j8SdS7s_NY&t=753#t=12:32.89) 
+ ![The Parquet Format and Performance Optimization Opportunities Boudewijn Braams (Databricks) - 12:32|0](Assets/mx-img-j62s5vkqls35nlmcun5l2mnt-pt12m32_89s.jpg) [12:32](https://www.youtube.com/watch?v=1j8SdS7s_NY&t=753#t=12:32.89) 
  Each file is partitioned first, into row groups (default size 128 MB) and then subdivided into column chunks. A chunk is further subdivided into pages (default size 1 MB) which store the actual data.
  Each page also stores page level metadata such as min value in the page, max value in the page, count of values in the page etc..
  Each file also stores associated metadata (file, row group level and column level) in the footer.
@@ -13,19 +13,19 @@ __Offers no additional compression or size reduction.__
 ## Dictionary Encoding
 For __columns that contain repeated values__. It works by creating a dictionary of unique values and then replacing each value in the column with a reference to the dictionary.
 __Highly effective for columns with a limited number of unique values__ (e.g., categorical data, zip codes, or status flags).
-![[mx-img-j62s5vkqls35nlmcun5l2mnt-pt14m40_10s-xar5f1.jpg|The Parquet Format and Performance Optimization Opportunities Boudewijn Braams (Databricks) - 14:40|0]] [14:40](https://www.youtube.com/watch?v=1j8SdS7s_NY&t=880#t=14:40.10) 
+![The Parquet Format and Performance Optimization Opportunities Boudewijn Braams (Databricks) - 14:40|0](Assets/mx-img-j62s5vkqls35nlmcun5l2mnt-pt14m40_10s-xar5f1.jpg) [14:40](https://www.youtube.com/watch?v=1j8SdS7s_NY&t=880#t=14:40.10) 
 ### __Optimization__
 If dictionary size is getting too big, we can try to optimize by:
 1. Increasing dictionary size limit `parquet.dictionary.page.size`
 2. Decreasing row group size (=> less values per column chunk => less values in dictionary) `parquet.block.size`
- ![[mx-img-j62s5vkqls35nlmcun5l2mnt-pt17m27_39s.jpg|The Parquet Format and Performance Optimization Opportunities Boudewijn Braams (Databricks) - 17:27|0]] [17:27](https://www.youtube.com/watch?v=1j8SdS7s_NY&t=1047#t=17:27.39) 
+ ![The Parquet Format and Performance Optimization Opportunities Boudewijn Braams (Databricks) - 17:27|0](Assets/mx-img-j62s5vkqls35nlmcun5l2mnt-pt17m27_39s.jpg) [17:27](https://www.youtube.com/watch?v=1j8SdS7s_NY&t=1047#t=17:27.39) 
 ## Run Length Encoding (RLE)
 For __columns with consecutive repeating values__. It works by storing the value once along with the number of times it repeats, instead of storing the repeated value multiple times.
-![[Pasted image 20260425221019.png]]
+![Pasted image 20260425221019](Assets/Pasted%20image%2020260425221019.png)
 ## Bit Packing
 It is an encoding technique that __reduces the number of bits used to store small integers__. Instead of storing each integer as a fixed-size 32-bit or 64-bit value, bit-packing stores each integer in the smallest number of bits necessary to represent it. [^2]
 This is particularly useful for __columns that contain small integers__, such as IDs or categorical data __with a limited number of categories.__
-![[Pasted image 20260425221401.png]]
+![Pasted image 20260425221401](Assets/Pasted%20image%2020260425221401.png)
 ```run-python
 # Packing values (3 bits for 5, 4 bits for 10, 5 bits for 20, 1 bit for 1)
 value1 = 5    # 3 bits (0-7)
@@ -55,7 +55,7 @@ print(f"Packed Value (Binary): {bin(packed)}")
 ```
 ## Delta Encoding
 It is used to __store differences between consecutive values__ rather than storing the full values themselves. This works well for __columns where values are close together or follow a predictable pattern__, such as timestamps, IDs, or monotonically increasing numbers.
-![[Pasted image 20260425221708.png]]
+![Pasted image 20260425221708](Assets/Pasted%20image%2020260425221708.png)
 # Compression Techniques
 Compression is crucial for managing large datasets. By reducing the size of the data on disk, compression not only **saves storage space** but also **improves query performance** by reducing the amount of data that needs to be read from disk and transferred over networks.
 ## Snappy
@@ -76,17 +76,17 @@ Parquet stores row level statistics in the footer which includes min/max in row 
 
 For a predicate such as `WHERE x > 5` , the row group statistics enable row group skipping as shown below.
 Since each row group is about 128 MB, it leads to significant time savings during query fetching.
- ![[mx-img-j62s5vkqls35nlmcun5l2mnt-pt20m55_41s.jpg|The Parquet Format and Performance Optimization Opportunities Boudewijn Braams (Databricks) - 20:55|0]] [20:55](https://www.youtube.com/watch?v=1j8SdS7s_NY&t=1255#t=20:55.41) 
+ ![The Parquet Format and Performance Optimization Opportunities Boudewijn Braams (Databricks) - 20:55|0](Assets/mx-img-j62s5vkqls35nlmcun5l2mnt-pt20m55_41s.jpg) [20:55](https://www.youtube.com/watch?v=1j8SdS7s_NY&t=1255#t=20:55.41) 
 For equality predicates `WHERE x = 5`, we can further speed up predicate pushdown by enabling dictionary filtering `parquet.filter.dictionary.enabled`.
 If the predicate value is not in a row group dictionary we can skip the group.
 # Partitioning
 Partitioning a dataset on a __low cardinality__ attribute that is often queried can speed up query performance, since we can skip unrelated partitions.
- ![[mx-img-j62s5vkqls35nlmcun5l2mnt-pt25m10_01s.jpg|The Parquet Format and Performance Optimization Opportunities Boudewijn Braams (Databricks) - 25:10|0]] [25:10](https://www.youtube.com/watch?v=1j8SdS7s_NY&t=1510#t=25:10.01) 
+ ![The Parquet Format and Performance Optimization Opportunities Boudewijn Braams (Databricks) - 25:10|0](Assets/mx-img-j62s5vkqls35nlmcun5l2mnt-pt25m10_01s.jpg) [25:10](https://www.youtube.com/watch?v=1j8SdS7s_NY&t=1510#t=25:10.01) 
  __Avoid too many small files__ per partition. Each parquet file has an overhead of setting up internal data structures and metadata. If data is distributed across many small files, it reduces query performance.[^1]
 	 1. Repartition the dataset using `df.repartition(numPartitions).write.parquet(...)`. This involves shuffling the files so that each partition has an equal number of files.
 	 2. Coalesce the dataset using `df.coalesce(numPartitions).write.parquet(...)` ,which results in each partitions, possibly having an unequal number of files.
 __Avoid few huge files__ per partition. The footer in a parquet file, will have a lot of metadata (row group, column, file) in the case of a huge file, and the footer is not optimized for fast query performance. This causes very slow query performance.
 
-[^1]: [[Spark - Introduction#Explicit Repartitioning]]
+[^1]: [](Spark%20-%20Introduction.md#Explicit%20Repartitioning)
 
 [^2]: [Bit packing](https://medium.com/data-science/smart-way-of-storing-data-d22dd5077340)

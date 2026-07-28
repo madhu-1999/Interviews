@@ -7,7 +7,7 @@ Given an integer array `nums`, return _the length of the longest **strictly i
 **Output:** 4
 **Explanation:** The longest increasing subsequence is [2,3,7,101], therefore the length is 4.
 # Solution
-Variation of [[LCS]]
+Variation of [LCS](LCS.md)
 Note: We loop over $i=0...n-1$ and $j=i+1...n-1$.
 $$dp(j) = \begin{cases}
 1 & i = 0 \space\text{(Base case)}\\

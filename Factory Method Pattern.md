@@ -14,7 +14,7 @@ Every time we use **new** operator to instantiate an object like so:
 Pizza pizza = new VeggiePizza()
 ```
 where `Pizza` is an interface and `VeggiePizza` its concrete implementation, we are making a _high level module_ (`Pizza`) depend on a _low-level module_ (`VeggiePizza`) 
-This is a violation of  [[SOLID#**D**ependency Injection|Dependency Inversion Principle]].
+This is a violation of  [](SOLID.md#**D**ependency%20Injection|Dependency%20Inversion%20Principle).
 
 When you have an _interface_ (`Pizza`) that is implemented by a lot of _concrete classes_, then inevitably we would have instantiation code that looks like this:
 
@@ -40,7 +40,7 @@ Pizza orderPizza (String type) {
 ```
 
 And every time a new _concrete class_ is added, if-else statements will have to be modified.
-This is a very error-prone and violates [[SOLID#**O**pen for extension, closed for modification|Open/closed principle]].
+This is a very error-prone and violates [](SOLID.md#**O**pen%20for%20extension,%20closed%20for%20modification|Open/closed%20principle).
 
 # Simple Factory
 In accordance with the design principle: ___Identify parts of your application that changes, and encapsulate it so that it is easier to alter/extend without affecting other parts___, we find that the highlighted portion of the code is the only part that __changes__.  So we encapsulate it into an object whose sole purpose is to create _pizzas_.
@@ -103,17 +103,17 @@ Suppose we are opening franchise stores of our `PizzaStore` in NY and Chicago wh
 This means we will need 2 different factories, one for NY style pizzas and another for Chicago style pizzas.
 All franchises also need to follow some common rules for say baking, cutting and boxing pizzas.
 
-To accommodate these changes, we make `Pizzastore` an [[Abstract classes|abstract class]] with two methods: `orderPizza()` which provides common functionality for creating, baking, cutting and boxing pizzas to franchise stores, and a abstract method `createPizza()` which will be overriden by subclasses (`NYStylePizzaStore` and `ChicagoStylePizzaStore`) to create pizzas (factory method).
+To accommodate these changes, we make `Pizzastore` an [abstract class](Abstract%20classes.md) with two methods: `orderPizza()` which provides common functionality for creating, baking, cutting and boxing pizzas to franchise stores, and a abstract method `createPizza()` which will be overriden by subclasses (`NYStylePizzaStore` and `ChicagoStylePizzaStore`) to create pizzas (factory method).
 
-Notice this satisfies the [[#Definition]] of factory method pattern. We have an [[#^ece0a6|interface]] (`PizzaStore`) which is deferring the instantiation of objects to its subclasses (`NYStylePizzaStore` and `ChicagoStylePizzaStore`).
+Notice this satisfies the [#Definition](#Definition) of factory method pattern. We have an [interface](#^ece0a6) (`PizzaStore`) which is deferring the instantiation of objects to its subclasses (`NYStylePizzaStore` and `ChicagoStylePizzaStore`).
 
 This **decouples** the code since `orderPizza()` method does not know which type of pizza (NYStyle or ChicagoStyle) it is preparing, it just know it is preparing a `Pizza`. i.e. `PizzaStore` (a high-level abstraction) depends on `Pizza` (a high-level abstraction). 
-Unlike [[#Simple Factory]] , `PizzaStore` is not dependent on its subclasses 
+Unlike [#Simple Factory](#Simple%20Factory) , `PizzaStore` is not dependent on its subclasses 
 Thus it is not violating **Dependency Inversion Principle** anymore.
 
 If we want to add some new pizzas, say `CaliforniaStyleVeggiePizza` etc.. we can create a new subclass of `PizzaStore` --- `CaliforniaStylePizzaStore` and override `createPizza()` to create the new pizzas. Thus, it does not violate **Open/closed principle** anymore.
 
-![[Screenshot 2025-09-29 at 12.33.33 PM.png]]
+![Screenshot 2025-09-29 at 12.33.33 PM](Assets/Screenshot%202025-09-29%20at%2012.33.33%20PM.png)
 >[!note]
 >`PizzaStore` is an abstract class here, but can also be an interface, starting Java 8 ( `orderPizza()` can be a default method)
 
@@ -134,7 +134,7 @@ public abstract class PizzaStore {
 }
 ```
 ## Working of a factory method
-It is same as [[#^9ac87b|SimplePizzaFactory]]. The if/else code is encapsulated by the `createPizza()` method of the subclasses. For ex:
+It is same as [SimplePizzaFactory](#^9ac87b). The if/else code is encapsulated by the `createPizza()` method of the subclasses. For ex:
 
 ```java
 public class NYStylePizzaStore extends PizzaStore {
@@ -154,10 +154,10 @@ public class NYStylePizzaStore extends PizzaStore {
 }
 ```
 
-Notice that we return an instance of `Pizza` class .i.e. all the different kinds of pizzas implement the `Pizza` [[#^ece0a6|interface]].
-![[Screenshot 2025-09-29 at 1.00.44 PM.png]]
+Notice that we return an instance of `Pizza` class .i.e. all the different kinds of pizzas implement the `Pizza` [interface](#^ece0a6).
+![Screenshot 2025-09-29 at 1.00.44 PM](Assets/Screenshot%202025-09-29%20at%201.00.44%20PM.png)
 # UML Class Diagram
-![[Screenshot 2025-02-21 at 1.09.34 PM.png]]
+![Screenshot 2025-02-21 at 1.09.34 PM](Assets/Screenshot%202025-02-21%20at%201.09.34%20PM.png)
 `Product` => `Pizza`
 
 `ConcreteProduct` => `NYStyleCheesePizza`, `ChicagoStyleClamPizza` etc..

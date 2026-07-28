@@ -1,6 +1,6 @@
 #docker #devops 
 # Prerequisite
-[[Docker Image]]
+[Docker Image](Docker%20Image.md)
 # Overview
 + Text document used to create a image
 	+ Contains instructions on commands to run, files to copy etc.. to configure environment.

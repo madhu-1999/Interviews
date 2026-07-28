@@ -97,12 +97,12 @@ A relation is in 5NF if it is in 4NF and there is no join dependency i.e. lossle
 + Loss of data context due to being split up into smaller, more specific tables.
 + Increases complexity of database design if not done correctly.
 
-[^1]: [[Functional Dependencies#Full FD]]
+[^1]: [](Functional%20Dependencies.md#Full%20FD)
 
-[^2]: [[Functional Dependencies#Non-Trivial FD]]
+[^2]: [](Functional%20Dependencies.md#Non-Trivial%20FD)
 
-[^3]: [[Database Keys#Super Key]]
+[^3]: [](Database%20Keys.md#Super%20Key)
 
-[^4]: [[Functional Dependencies#Multivalued FD]]
+[^4]: [](Functional%20Dependencies.md#Multivalued%20FD)
 
-[^5]: [[Functional Dependencies#Lossless join decomposition]]
+[^5]: [](Functional%20Dependencies.md#Lossless%20join%20decomposition)

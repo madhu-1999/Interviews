@@ -1,6 +1,6 @@
 #system-design  #distributed #hld
 # Prerequisite
-[[Caching]]
+[Caching](Caching.md)
 # CDN
 + Distributed network of servers that deliver content (images, video, files) to clients faster and more efficiently.
 # Components of CDN
@@ -11,7 +11,7 @@
 + When client requests content, CDN identifies the client's location and checks the edge server closest to it for the content.
 + If the content is not present, CDN fetches it from the origin server and caches it in the edge server before returning response to the client.
 + The next time, the content is requested, the edge server can return it from the cache, improving performance and reducing latency.
-![[Screenshot 2025-05-28 at 6.02.08 PM.png]]
+![Screenshot 2025-05-28 at 6.02.08 PM](Assets/Screenshot%202025-05-28%20at%206.02.08%20PM.png)
 + In a multi-tier setup, instead of directly requesting content from origin server, it requests server above it in the hierarchy of edge servers/ edge server closest to it, recursively till it can fetch the content.
 + Each piece of cached content has a TTL, after which it will be invalidated and refreshed from source.
 # Advantages

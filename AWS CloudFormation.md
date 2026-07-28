@@ -26,15 +26,15 @@ debugInConsole: false # Print debug info in Obsidian console
 >4. A S3 bucket
 >5. A load balancer (ELB)
 ><br/>
->Then CloudFormation will create them in the right order with the specified configuration.![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851310.png]]
+>Then CloudFormation will create them in the right order with the specified configuration.![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851310](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851310.png)
 
 # Template
 + JSON/YAML file that describes a set of resources, their properties and relationships with other resources.
 + Serves as a _blueprint_ for creating and managing infrastructure.
 + Output is creation of a stack or multiple stacks.
-+ __Must be uploaded to [[Amazon S3|S3]]__ , and then referenced in CloudFormation.
++ __Must be uploaded to [S3](Amazon%20S3.md)__ , and then referenced in CloudFormation.
 + Cannot be edited, so a new version of the updated file must be uploaded to S3.
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851310 (1).png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851310 (1)](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851310%20(1).png)
 ## Deploying Templates
 1. Manual way
 	+ Edit template in Infrastructure Composer or code editor
@@ -86,14 +86,14 @@ In either case, we can see what failed in event logs.
 + Create, update or delete stacks across **multiple accounts and regions** using a single template.
 + When a stack set is updated, all associated stack instances across regions and accounts are updated.
 + Only Admin account or Delegated Admin can create stack sets
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_42314138.png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_42314138](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_42314138.png)
 # Template Format
 Each template contains one or more of the following sections:
 ## Resources
 + __Mandatory__ section
 + Specify AWS resources and their configurations.
 	+ Resources can reference each other
-+ Only a few AWS services are ___NOT___ supported. Workaround using [[#CloudFormation Custom Resources]]
++ Only a few AWS services are ___NOT___ supported. Workaround using [#CloudFormation Custom Resources](#CloudFormation%20Custom%20Resources)
 ```yaml
 Resources:
 # Logical id that can be used to reference this resource
@@ -343,9 +343,9 @@ Outputs:
 + Used to:
 	+ Define AWS resources not supported by CloudFormation
 	+ Define custom provisioning of on-premises or 3<sup>rd</sup> party resources.
-	+ Run custom scripts during create / update / delete of stacks, through [[AWS Lambda]] functions. (Ex: lambda function to empty a S3 bucket before deleting it)
+	+ Run custom scripts during create / update / delete of stacks, through [AWS Lambda](AWS%20Lambda.md) functions. (Ex: lambda function to empty a S3 bucket before deleting it)
 + Defined in template using `AWS::CloudFormation::CustomResource` or `Custom::<resource-name>` (recommended).
-+ Backed by a Lambda function or [[Amazon SNS]] topic.
++ Backed by a Lambda function or [Amazon SNS](Amazon%20SNS.md) topic.
 ```yaml
 Resources:
   MyCustomResource:
@@ -358,7 +358,7 @@ Resources:
     # Optional Input values
     ExampleProperty: "ExampleValue"
 ```
-# [[IAM]] permissions
+# [IAM](IAM.md) permissions
 + Often the user executing a template i.e creating a stack from a template does not have the necessary permissions to create all the resources.
 + To avoid giving the user all the necessary permissions, we use _service roles_.
 + A service role is a role that a service assumes to perform actions on your behalf. ^1b71a7

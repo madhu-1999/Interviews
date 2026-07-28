@@ -23,4 +23,4 @@ users.getById(20);
 - ORMs are generally slower than using SQL.
 
 # Further Reading
-+ [[Spring Data JPA]]
++ [Spring Data JPA](Spring%20Data%20JPA.md)

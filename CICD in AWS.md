@@ -1,17 +1,17 @@
 #aws #cloud
 # Overview
 Note: AWS CodeCommit has been discontinued.
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851318 (2).png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851318 (2)](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851318%20(2).png)
 # AWS CodePipeline
 + **Fully managed continuous delivery service** that automates the steps required to release software.
 + If a stage fails, the pipeline stops.
-	+ Can send failed/cancelled pipelines to [[AWS CloudWatch#Amazon EventBridge|EventBridge]].
-+ If pipeline can't perform an action, ensure the [[IAM#Roles|IAM service role]] attached has enough IAM permissions.
+	+ Can send failed/cancelled pipelines to [](AWS%20CloudWatch.md#Amazon%20EventBridge|EventBridge).
++ If pipeline can't perform an action, ensure the [](IAM.md#Roles|IAM%20service%20role) attached has enough IAM permissions.
 ## Terminology
 ![A pipeline with sample stages and actions.](https://docs.aws.amazon.com/images/codepipeline/latest/userguide/images/pipeline-elements-workflow-application.png)
 __Pipeline__: Overall workflow that defines how software progresses through the release process.
 **Stages:** Logical divisions within a pipeline (e.g., Source, Build, Test, Staging, Production) used to isolate environments and control the flow of concurrent changes.
-**Artifacts:** Collections of data (e.g., source code, built binaries) that are produced by one action and consumed by another as they move through the pipeline. They are stored in a [[Amazon S3#General Purpose Buckets|S3 bucket]]. 
+**Artifacts:** Collections of data (e.g., source code, built binaries) that are produced by one action and consumed by another as they move through the pipeline. They are stored in a [](Amazon%20S3.md#General%20Purpose%20Buckets|S3%20bucket). 
 + Artifact data can be encrypted using AWS Managed/Customer Managed Key. 
 **Actions:** Specific operations performed on artifacts within a stage, such as pulling code from a repository or running unit tests.
 **Transitions:** The "bridge" between stages that allows artifacts to move forward after a stage's actions succeed.
@@ -42,7 +42,7 @@ ___PARALLEL___: Executions run simultaneously and independently of each other.
 + Can add CodeBuild as a build or test action to the build or test stage of a pipeline in AWS CodePipeline.
 	+ Autoscales and processes multiple builds/tests concurrently.
 + Provides preconfigured build environments for the most popular programming languages. 
-+ Output logs are stored in [[AWS CloudWatch]] Logs and S3.
++ Output logs are stored in [AWS CloudWatch](AWS%20CloudWatch.md) Logs and S3.
 + Use CloudWatch metrics to monitor build statistics
 + Use EventBridge for failed builds and trigger notifications.
 + Use CloudWatch Alarms to notify about failure "thresholds".
@@ -93,9 +93,9 @@ artifacts:
 - ***artifacts*:** Specifies the files and directories produced by the build to be uploaded to S3 (after encryption).
 - ***env*:** Defines environment variables, parameter store values, or secrets from AWS Secrets Manager
 - ___cache___: Files to cache to S3 for future build speedup (usually dependencies).
-**Artifacts**: The output of the build process (like a JAR file or Docker image) is typically uploaded to an **Amazon S3** bucket or a container registry like [[Amazon ECS#Amazon ECR|Amazon ECR]].
+**Artifacts**: The output of the build process (like a JAR file or Docker image) is typically uploaded to an **Amazon S3** bucket or a container registry like [](Amazon%20ECS.md#Amazon%20ECR|Amazon%20ECR).
 # AWS CodeDeploy
-+ Automates application deployments to [[Amazon Elastic Compute Cloud (AWS EC2)|Amazon EC2]] instances, on-premises instances, serverless [[AWS Lambda|Lambda]] functions, or [[Amazon ECS]] services.
++ Automates application deployments to [Amazon EC2](Amazon%20Elastic%20Compute%20Cloud%20(AWS%20EC2).md) instances, on-premises instances, serverless [Lambda](AWS%20Lambda.md) functions, or [Amazon ECS](Amazon%20ECS.md) services.
 + Automated rollback for failed deployments or trigger CloudWatch alarms.
 + Helps minimize downtime by gradually deploying new version of application.
 + CodeDeploy must have permission to access the service it is deploying on (EC2/Lambda/ECS)
@@ -108,7 +108,7 @@ artifacts:
 	+ __OneAtATime__: slowest, but max availability. Deploys new app version, on one instance at a time.
 	+ __Custom__: Define replacement %.
 + Supports blue-green deployment
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851334.png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851334](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851334.png)
 ## Lambda functions
 + Can automate traffic shift between lambda function aliases.
 	+ Make X vary over time until X=100%
@@ -119,7 +119,7 @@ artifacts:
 			+ _LambdaCanary10Percent5Minutes_
 			+ _LambdaCanary10Percent30Minutes_
 		+ __AllAtOnce__: Immediate traffic shift (X=0)
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851334 (1).png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851334 (1)](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851334%20(1).png)
 ## ECS tasks
 + Supports only blue-green deployments
 	+ Make X vary over time until X=100%
@@ -130,12 +130,12 @@ artifacts:
 			+ _ECSCanary10Percent5Minutes_
 			+ _ECSCanary10Percent30Minutes_
 		+ __AllAtOnce__: Immediate traffic shift (X=0)
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851334 (2).png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851334 (2)](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851334%20(2).png)
 # AWS CodeArtifact
 + Secure, scalable and cost-effective artifact management system 
 + Supports various dependency management systems such as pip, gradle, maven, yarn.
-+ [[#AWS CodeBuild]] can retrieve artifacts directly from CodeArtifact![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_28757698.png]]
-+ EventBridge integration![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_28757698 (1).png]]
++ [#AWS CodeBuild](#AWS%20CodeBuild) can retrieve artifacts directly from CodeArtifact![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_28757698](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_28757698.png)
++ EventBridge integration![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_28757698 (1)](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_28757698%20(1).png)
 # AWS CodeGuru
 + Automated code reviews(CodeGuru Reviewer) and performance recommendations(CodeGuru Profiler)
 + CodeGuru Reviewer:

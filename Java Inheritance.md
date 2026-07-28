@@ -8,15 +8,15 @@ hideWhenEmpty: false # Hide TOC if no headings are found
 debugInConsole: false # Print debug info in Obsidian console
 ```
 + Java supports all inheritance types except **multiple**.
-+ **Multiple inheritance**[^1] is supported through [[Interface]] or [[Composition]], all **others** are supported through **classes** (can use interface also). Ex: `class C implements A, B`
++ **Multiple inheritance**[^1] is supported through [Interface](Interface.md) or [Composition](Composition.md), all **others** are supported through **classes** (can use interface also). Ex: `class C implements A, B`
 + **extends** keyword is used to inherit a class. Ex: `class B extends A`.
 + All classes by **default**, inherit the **Object** class
 
 ## What can subclass do?
 + It inherits only the public, protected fields/methods of parent class. **Cannot inherit private fields/methods**.
 + Can add new fields and methods.
-+ Can override parent class methods, using [[Method overriding]]
-+ Can implement static methods of superclass, which results in [[Method overriding#Method Hiding vs Method Overriding|method hiding]]. i.e. the parent class static method is inaccessible through child class.
++ Can override parent class methods, using [Method overriding](Method%20overriding.md)
++ Can implement static methods of superclass, which results in [](Method%20overriding.md#Method%20Hiding%20vs%20Method%20Overriding|method%20hiding). i.e. the parent class static method is inaccessible through child class.
 + Subclass constructor invokes superclass constructor implicitly, but can be invoked explicitly using **super** keyword.
 
 ## Upcasting
@@ -46,4 +46,4 @@ Child c = (Child) p;
 + **Can** access **child** class **methods/fields**.
 + If **parent** class **field** is **overriden**, it has **access** to **child** class **field**.
 
-[^1]: [[Inheritance#**Multiple Inheritance** **One child, multiple parents**]]
+[^1]: [](definitions/Inheritance.md#**Multiple%20Inheritance**%20**One%20child,%20multiple%20parents**)

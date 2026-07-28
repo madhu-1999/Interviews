@@ -7,7 +7,7 @@ tags:
 + [i] __Ordered__ by insertion order.
 + [i] __Mutable__
 + [i] They can store objects of different types.
-+ [i] __[[Python - Iterable and Iterators|Iterable]]__ 
++ [i] __[Iterable](Python%20-%20Iterable%20and%20Iterators.md)__ 
 # Creating List
 ## Using literals
 ```python
@@ -35,7 +35,7 @@ print(list("Pythonista"))
 # O/P: []
 print(list())
 ```
-## Using [[Python - Comprehensions|List Comprehensions]]
+## Using [List Comprehensions](Python%20-%20Comprehensions)
 ```run-python
 #O/P: [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 print([number ** 2 for number in range(1, 11)])
@@ -220,7 +220,7 @@ print(l1 * 3) # O/P: [1, 2, 3, 1, 2 ,3, 1, 2, 3]
 # Reversing a list
 ## `reversed()`
 
-Refer [[Python - Iterable and Iterators|iterator]] for more details.
+Refer [iterator](Python%20-%20Iterable%20and%20Iterators.md) for more details.
 ```run-python
 digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
@@ -242,7 +242,7 @@ digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 digits.reverse()
 print(digits) # [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
 ```
-## [[#Slicing]]
+## [#Slicing](#Slicing)
 ```run-python
 # We can also reverse a list using slicing
 digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]

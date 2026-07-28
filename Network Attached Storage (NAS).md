@@ -18,7 +18,7 @@
 + Centralized storage
 + Ease of access
 + Scalable - can scale up (add more storage devices on same NAS server) or scale out (multiple NAS servers communicate via an API or protocol)
-+ Data redundancy and backup through [[RAID]]
++ Data redundancy and backup through [RAID](RAID)
 + Admin can define which users can access what files and edit permissions.
 # Disadvantages
 + Management complexity

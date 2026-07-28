@@ -6,9 +6,9 @@ tags:
 # Overview
 + [i] __Mutable__
 + [i] __Unordered__
-+ [i] [[Python - Iterable and Iterators|Iterable]]  
++ [i] [Iterable](Python%20-%20Iterable%20and%20Iterators.md)  
 + [i] They can store objects of different data types.
-	+ [!] The objects __MUST__ be hashable i.e. we __CANNOT__ store mutable types like [[Python - List|lists]], [[Python - Dictionary|dictionaries]] or sets!
+	+ [!] The objects __MUST__ be hashable i.e. we __CANNOT__ store mutable types like [lists](Python%20-%20List.md), [dictionaries](Python%20-%20Dictionary.md) or sets!
 + [*] They only store __unique__ elements.
 # Creating sets
 ## Using literals
@@ -23,7 +23,7 @@ s2 = set([1, 2, 3, 4, 5]) # Adds each element in list to set
 
 s3 = set('python') # {'p', 'y', 't', 'h', 'o', 'n'}
 ```
-## Using [[Python - Comprehensions|set comprehensions]]
+## Using [set comprehensions](Python%20-%20Comprehensions)
 ```python
 usernames = ['Alice', 'Bob', 'charlie', 'Charlie', 'bob']
 # {'bob', 'alice', 'charlie'}
@@ -166,7 +166,7 @@ print(available_ingredients.issuperset(required_ingredients))
 print(available_ingredients > required_ingredients)
 ```
 ## Disjoint sets
-+ [I] We could use [[#Intersection]] operators, but remember, disjoint sets will return a empty set, not a boolean!
++ [I] We could use [#Intersection](#Intersection) operators, but remember, disjoint sets will return a empty set, not a boolean!
 	+ [i] Empty sets are _falsy_ values, so it would work the same in a condition. 
 ```run-python
 required_ingredients = {"cheese", "eggs", "milk"}

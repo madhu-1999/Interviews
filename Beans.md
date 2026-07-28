@@ -17,7 +17,7 @@ public class AppConfig{
 }
 ```
 + @Bean and Config classes are also used when we want to use a class that is in a different package. For example, look at the directory structure. The application is started by running `QuickstartApplication.java` class, which is in `com.example.quickstart` package. The `Invoice` class is in a different package `com.example.beanExample`.
-![[Screenshot 2025-03-14 at 3.01.17 PM.png]]
+![Screenshot 2025-03-14 at 3.01.17 PM](Assets/Screenshot%202025-03-14%20at%203.01.17%20PM.png)
 Lets look at the `QuickstartApplication` class, @SpringBootApplication annotation can only find beans in the same package i.e. all beans in `com.example.quickstart` . 
 ```java
 @SpringBootApplication
@@ -81,4 +81,4 @@ Otherwise, we can use the `@Import` annotation to load it in specifically.
 + `@Scope("websocket")`
 + a new object is instantiated once per websocket
 # Further reading
-+ [[Spring Boot IOC container|IOC container]] - Clarify @SpringBootApplication & how it performs DI, ApplicationContext
++ [IOC container](Spring%20Boot%20IOC%20container.md) - Clarify @SpringBootApplication & how it performs DI, ApplicationContext

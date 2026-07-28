@@ -8,7 +8,7 @@
 
 # Components
 ## __Function__
-+ Resource that runs in response to a event such as clicking a button on a website, upload to [[Amazon S3]]
++ Resource that runs in response to a event such as clicking a button on a website, upload to [Amazon S3](Amazon%20S3.md)
 + Contains code, config, runtime settings and permissions
 ## __Function Handler__
 + When function runs in response to an event, it calls the function handler method, which is part of the code
@@ -85,7 +85,7 @@ def lambda_handler(event, context):
 + Part of a lambda function's configuration.
 ### ___Push based triggers___
 + Lambda console ___Test___ Feature
-+ [[Interacting with AWS Services#AWS CLI|AWS CLI]] command 
++ [](Interacting%20with%20AWS%20Services.md#AWS%20CLI|AWS%20CLI) command 
 ~~~tabs
 tab: Synchronous invocation
 ```bash
@@ -107,12 +107,12 @@ aws lambda invoke \
     response.json
 ```
 ~~~
-+ [[Interacting with AWS Services#AWS SDK|AWS SDK]] in application code
-+ [[#Function URL]] A dedicated HTTPS endpoint to invoke function (curl, postman, browser)
-+ Many AWS services trigger lambda function synchronously ([[Amazon API Gateway]], [[Amazon ELB]]) or asynchronously (S3, [[AWS CloudWatch#Amazon EventBridge|EventBridge]], [[Amazon SNS]])
++ [](Interacting%20with%20AWS%20Services.md#AWS%20SDK|AWS%20SDK) in application code
++ [#Function URL](#Function%20URL) A dedicated HTTPS endpoint to invoke function (curl, postman, browser)
++ Many AWS services trigger lambda function synchronously ([Amazon API Gateway](Amazon%20API%20Gateway.md), [Amazon ELB](Amazon%20ELB.md)) or asynchronously (S3, [](AWS%20CloudWatch.md#Amazon%20EventBridge|EventBridge), [Amazon SNS](Amazon%20SNS.md))
 ___Note___: For asynchronous invocations, events are put into a internal queue and pulled/pushed to lambda function. On failure of processing, lambda service attempts to retry (max 3 times) with exponential backoff (1 min after 1st, 2 min after 2nd). After retries are over, can send to DLQ (DLQ setup is not done by Lambda, it must be setup manually)
 ### ___Pull based triggers/Event Source Mappings___ 
-For queue and stream based services ([[Amazon SQS]], [[Other AWS Services#Amazon Kinesis Data Streams|Kinesis Data streams]], [[Other AWS Services#Amazon Data Firehose|Data Firehose]], [[Amazon DynamoDB]]), lambda service itself polls the source, retrieves records in batches and processes them.
+For queue and stream based services ([Amazon SQS](Amazon%20SQS.md), [](Other%20AWS%20Services.md#Amazon%20Kinesis%20Data%20Streams|Kinesis%20Data%20streams), [](Other%20AWS%20Services.md#Amazon%20Data%20Firehose|Data%20Firehose), [Amazon DynamoDB](Amazon%20DynamoDB.md)), lambda service itself polls the source, retrieves records in batches and processes them.
 	Batched records are passed as payload to the lambda function
 	A batch is ready to be processed by the lambda function if:
 		_Batching window_ .i.e. max time to wait for records to gather is completed.
@@ -130,7 +130,7 @@ __For streams__ (Kinesis, DynamoDB)
 + By default, if function returns an error, entire batch is reprocessed until function succeeds or records in the batch expire.
 	+ To ensure in order processing, processing is paused until error is resolved.
 + Event source mapping can be configured to:
-	+ discard old events (discarded events go to [[#destinations]])
+	+ discard old events (discarded events go to [#destinations](#destinations))
 	+ limit no of retries
 	+ split batch on error
 __For SQS__
@@ -144,11 +144,11 @@ __For SQS__
 + Records are __deleted__ after processing.
 ## __Permissions__
 ### ___Permissions lambda function needs to access other services___
-+ To give lambda functions permissions to access other services, we use a _execution role_ , which is a special type of [[IAM#Roles|role]] with a associated policy that defines what actions are allowed.
++ To give lambda functions permissions to access other services, we use a _execution role_ , which is a special type of [](IAM.md#Roles|role) with a associated policy that defines what actions are allowed.
 + Every Lambda function __must__ have a execution role and a given execution role can be used by many lambda functions.
-+ Default execution role gives lambda function permission to write logs to [[AWS CloudWatch#CloudWatch Logs|CloudWatch]].
++ Default execution role gives lambda function permission to write logs to [](AWS%20CloudWatch.md#CloudWatch%20Logs|CloudWatch).
 ### ___Permissions for users and services to access lambda function___
-+ [[IAM#Permission Policies|Resource based policy]] (attached to resource, here lambda function) defines which users and services are allowed/denied which actions.
++ [](IAM.md#Permission%20Policies|Resource%20based%20policy) (attached to resource, here lambda function) defines which users and services are allowed/denied which actions.
 + Identity based policy (for users) or trust policy (for roles) can also be used to specify actions allowed/denied for the lambda service.
 + To invoke lambda function, other users/services must be granted the `lambda:InvokeFunction` action, through resource/identity/trust policy.
 # Function URL
@@ -161,7 +161,7 @@ __For SQS__
 	+ __None__: Public and unauthenticated access to the lambda function as long as resource based policy allows it.
 	+  __AWS_IAM__: IAM authentication required to access lambda function. Access depends on either resource or identity-based policy containing a _ALLOW_.
 		+ For cross account access, both identity (of principal resource) and resource based policy (of lambda function) must contain a _ALLOW_.
-+ Can be applied to [[#^3a4ce8|$LATEST]] or any [[#^1f49c4|function aliases]], but ___NOT___ to function versions.
++ Can be applied to [$LATEST](#^3a4ce8) or any [function aliases](#^1f49c4), but ___NOT___ to function versions.
 # Lambda Limits
 + __RAM__
 	+ 128 MB - 10 GB in 1MB increments
@@ -176,7 +176,7 @@ __For SQS__
 # Integration with ALB
 + ALB receives client request, converts HTTP request to JSON and invokes lambda function using its _function url_(HTTPS endpoint).
 + The lambda function __must__ be registered as a __target__ in a target group of the ALB.
-+ The lambda function receives the request JSON as payload and returns a JSON response to the ALB, which converts it into a HTTP response and returns it to the client.  ![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19730426.png]]
++ The lambda function receives the request JSON as payload and returns a JSON response to the ALB, which converts it into a HTTP response and returns it to the client.  ![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19730426](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19730426.png)
 ~~~tabs
 tab: Request JSON
 ```json
@@ -243,21 +243,21 @@ ___Note___: If multi-value headers is enabled in ALB, then all HTTP headers/quer
 # Lambda in VPC
 + By default, a lambda function runs in a AWS owned VPC therefore it cannot access any resources in your public or private VPCs without proper permissions.
 + To give a lambda function access to a resource in your VPC, during its creation we must specify VPC ID, Subnet and security group of the lambda function. 
-	+ Internally, the lambda service creates a [[Amazon VPC#VPC Endpoints#**Interface**|ENI]] in the specified VPC. To do so, the lambda function must have an ___AWSLambdaVPCAccessExecutionRole___ role. (AWS managed IAM policy that grants access to resources within a VPC)
+	+ Internally, the lambda service creates a [](Amazon%20VPC#VPC%20Endpoints#VPC%20Endpoints#**Interface**|ENI) in the specified VPC. To do so, the lambda function must have an ___AWSLambdaVPCAccessExecutionRole___ role. (AWS managed IAM policy that grants access to resources within a VPC)
 	+ The lambda function's security group must have __outbound__ rules that allow traffic on the specific ports and protocols required to reach your target resource.
-	+ The resource's security group must have an __inbound__ rule that allows traffic from the Lambda function's security group.![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19730594.png]]
+	+ The resource's security group must have an __inbound__ rule that allows traffic from the Lambda function's security group.![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19730594](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19730594.png)
 + A lambda function:
 	+ has internet access if deployed in a private subnet with a NAT gateway.
 	+ does not have internet access if deployed in a public subnet.
 	+ can access other AWS services privately via a VPC endpoint
 ## File system mounting
-+ If deployed in a VPC, lambda functions can access EFS file systems using [[Amazon EFS#Mount target vs Access point|EFS Access points]]
++ If deployed in a VPC, lambda functions can access EFS file systems using [](Amazon%20EFS.md#Mount%20target%20vs%20Access%20point|EFS%20Access%20points)
 # Lambda Layers
 + A mechanism to share dependencies, supplementary code, libraries or custom runtimes amongst multiple lambda functions.
 + Up to 5 layers can be attached per function (max 250 MB).
 + Can upload custom dependencies as a _zip_ file if less than 50 MB, else upload to S3 and specify in layer config.
 	+ AWS SDK available by default with every lambda function
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19730674.png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19730674](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19730674.png)
 ## Benefits:
 + __Share common libraries or utility code__ across numerous functions within your account or even across different AWS accounts, avoiding code duplication.
 + By separating heavy dependencies from core business logic, we make __deployment package smaller__, which means quicker uploads.
@@ -278,7 +278,7 @@ ___Note___: If multi-value headers is enabled in ALB, then all HTTP headers/quer
 + __Provisioned concurrency__ keeps a specified number of execution environments initialized and ready before the first invocation to avoid the _cold start_ issue .
 + Can be used with AWS Application Auto scaling to dynamically increase/decrease the amount of provisioned concurrency on a schedule or real-time utilization metrics.
 + Provisioned concurrency comes out of the total max (1000) concurrent executions allowed.
-# Lambda and [[AWS CloudFormation|CloudFormation]]
+# Lambda and [CloudFormation](AWS%20CloudFormation.md)
 ## Uploading Lambda functions with CloudFormation
 ### __Inline Function__
 + Function specified in `Code.ZipFile` property
@@ -335,7 +335,7 @@ Resources:
         S3ObjectVersion: String
 ```
 # Lambda Container Images
-+ Deploy lambda function as a [[Amazon ECS|ECS container]] image (size upto 10GB)
++ Deploy lambda function as a [ECS container](Amazon%20ECS.md) image (size upto 10GB)
 	+ Package complex, heavy dependencies in a container
 + Base image must implement __Lambda Runtime API__, and available for multiple languages like Java, Python Node.js, .NET, Go, Ruby
 	+ Custom images can be published to ECR
@@ -360,14 +360,14 @@ CMD ["app.lambdaHandler"]
 + __Pay-per-use__: Pay per request and compute time.
 + __High availability__: Runs across multiple AZ's in a region, by default.
 + **Seamless Integration**: Integrates with over 200 AWS services
-+ **Built-in Monitoring and Logging**: through [[AWS CloudWatch]]
++ **Built-in Monitoring and Logging**: through [AWS CloudWatch](AWS%20CloudWatch.md)
 # Best Practices
 + Perform heavy duty work outside the function handler
 	+ Ex: Connect to database, initialize AWS SDK, Pull dependencies / datasets
 + Use env variables for sensitive information ex: db connection url, secrets
 + Minimize deployment package size by putting heavy dependencies in layers.
 + ___NEVER___ let a lambda function call itself.
-# [[Amazon Elastic Compute Cloud (AWS EC2)|EC2]] vs Lambda
+# [EC2](Amazon%20Elastic%20Compute%20Cloud%20(AWS%20EC2).md) vs Lambda
 | Feature               | AWS Lambda                                                                 | Amazon EC2                                                                                        |
 | --------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | **Operational Model** | Serverless (Managed by AWS)                                                | Infrastructure as a Service (IaaS) (Managed by User)                                              |

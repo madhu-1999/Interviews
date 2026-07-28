@@ -51,7 +51,7 @@ teams = ['Rockies', 'Cubs']
 
 d4 = dict(zip(places, teams))
 ```
-## Using dictionary [[Python - Comprehensions|comprehensions]]
+## Using dictionary [comprehensions](Python%20-%20Comprehensions)
 ```run-python
 squares = {integer: integer**2 for integer in range(1, 10)}
 print(squares)

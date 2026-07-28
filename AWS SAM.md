@@ -2,11 +2,11 @@
 # Overview
 + SAM = Serverless Application Model
 + Framework for developing and deploying serverless applications
-	+ Can use [[CICD in AWS#AWS CodeDeploy|AWS CodeDeploy]] to deploy [[AWS Lambda|Lambda]] functions
-	+ Can run Lambda, [[Amazon API Gateway]], [[Amazon DynamoDB]] locally.
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851436.png]]
+	+ Can use [](CICD%20in%20AWS.md#AWS%20CodeDeploy|AWS%20CodeDeploy) to deploy [Lambda](AWS%20Lambda.md) functions
+	+ Can run Lambda, [Amazon API Gateway](Amazon%20API%20Gateway.md), [Amazon DynamoDB](Amazon%20DynamoDB.md) locally.
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851436](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851436.png)
 # SAM Template Specification
-+ Defined using syntax that extends [[AWS CloudFormation]] syntax for serverless development.
++ Defined using syntax that extends [AWS CloudFormation](AWS%20CloudFormation.md) syntax for serverless development.
 	+ Note: We can directly define provision of serverless services in CloudFormation but the SAM template syntax is less complex to define.
 + Under the hood, the SAM template (.yaml file) is converted into CloudFormation syntax.
 + Every SAM template contains :
@@ -21,7 +21,7 @@
 + Provides least privilege necessary.
 + Defined in the `Policies` section of a SAM template
 	+ `S3ReadPolicy` : Read only permissions to objects in S3
-	+ `SQSPollerPolicy`: Allows you to poll a [[Amazon SQS]] queue.
+	+ `SQSPollerPolicy`: Allows you to poll a [Amazon SQS](Amazon%20SQS.md) queue.
 	+ `DynamoDBCrudPolicy`: Allows CRUD operations on a DynamoDB table.
 ## CodeDeploy Integration
 + To enable, we use 2 properties within `AWS::Serverless::Function`:

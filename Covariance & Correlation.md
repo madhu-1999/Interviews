@@ -11,9 +11,9 @@ hideWhenEmpty: false # Hide TOC if no headings are found
 debugInConsole: false # Print debug info in Obsidian console
 ```
 # Prerequisite
-[[Probability#Random Variable|Random Variable]]
-[[Probability#Joint Probability|Joint Distribution]]
-[[Population vs Sample]] 
+[](Probability.md#Random%20Variable|Random%20Variable)
+[](Probability.md#Joint%20Probability|Joint%20Distribution)
+[Population vs Sample](Population%20vs%20Sample.md) 
 # Covariance
 + Measure which indicates how two random variables change together.
 	+ +ve => Both inc/dec simultaneously
@@ -22,7 +22,7 @@ debugInConsole: false # Print debug info in Obsidian console
 ## Why it matters
 1. Direction of ***linear*** relationship between variables.
 2. Strength of the relationship, in ***unstandardized*** form.
-3. Foundation for calculating [[#Correlation]]
+3. Foundation for calculating [#Correlation](#Correlation)
 
 ## Discrete Random Variables
 $$Cov(X,Y) = \sum_x\sum_y(x-\mu_x)(y-\mu_y)f(x,y)$$
@@ -34,7 +34,7 @@ $$= E(XY) - E(X)E(Y)$$
 
 ## Formula for population and sample
 $$\text{Cov}(X,Y) =\frac{1}{N}\sum_{i=1}^N(X_i-\mu_x)(Y_i-\mu_y) $$
-where $N$ = population size, $\mu_x,\mu_y$ = means (or [[Probability#Expectation E(X)|expectation]]) of X, Y.
+where $N$ = population size, $\mu_x,\mu_y$ = means (or [](Probability.md#Expectation%20E(X)|expectation)) of X, Y.
 $$\text{Cov}(X,Y) =\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{x})(Y_i-\bar{y}) $$
 where $n$ = sample size, $\bar{x},\bar{y}$ = mean of X and Y.
 ***NOTE***: Joint probability is assumed to be $\frac{1}{N}$ or $\frac{1}{n-1}$ .
@@ -79,14 +79,14 @@ where $\sigma_x,\sigma_y$ = population standard deviation of X and Y.
 $$r_{XY} = \frac{Cov(X,Y)}{s_X.s_y}$$
 where $s_x,s_y$ = sample standard deviation of X and Y
 ### **Assumptions** 
-1. The two variables need to be [[Data & AI/Data types#Continuous|continuous]] (interval or ratio).
+1. The two variables need to be [](Data%20&%20AI/Data%20types#Continuous|continuous) (interval or ratio).
 2. The two variables should have a linear relationship. (check scatterplot)
-3. No spurious outliers (check [[#Covariance]] for reason).
-4. The variables should be [[Probability Distributions#Normal / Gaussian Distribution|normally]] or near-to normally distributed.
+3. No spurious outliers (check [#Covariance](#Covariance) for reason).
+4. The variables should be [](Probability%20Distributions.md#Normal%20/%20Gaussian%20Distribution|normally) or near-to normally distributed.
 ## Spearman rank correlation coefficient
 + Use if :
-	+ atleast one variable is [[Data & AI/Data types#Ordinal|ordinal]]
-	+ one or more variables do not follow [[Probability Distributions#Normal / Gaussian Distribution|normal distribution]].
+	+ atleast one variable is [](Data%20&%20AI/Data%20types#Ordinal|ordinal)
+	+ one or more variables do not follow [](Probability%20Distributions.md#Normal%20/%20Gaussian%20Distribution|normal%20distribution).
 + Measures **monotonicity** of relationship between two random variables.
 >[!info]+
 >In a monotonic relationship, rate of change is different for both variables, unlike linear relationship where rate of change a.k.a slope is constant.
@@ -103,6 +103,6 @@ $$\rho = \frac{6\sum d_i^2}{N^3 - N}$$
 where $d_i=\text{rank}(X_i) - \text{rank}(Y_i)$ , $N$ = population size.
 + Same formula for sample.
 ### ***Alternative formula***
-[[#Pearson Correlation Coefficient]] transformed:
+[#Pearson Correlation Coefficient](#Pearson%20Correlation%20Coefficient) transformed:
 $$\rho = \frac{Cov(R_X,R_Y)}{\sigma_{R_X}\sigma_{R_Y}}$$
 where $R_X,R_Y$ = rank variables of X and Y 

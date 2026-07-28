@@ -57,18 +57,18 @@ debugInConsole: false # Print debug info in Obsidian console
 + IAM permissions needed for EC2 instance / on-premise server to push logs to CloudWatch
 
 ## Sources
-+ [[Interacting with AWS Services#AWS SDK|SDK]], CloudWatch Unified Agent, CloudWatch Log Agent
-+ [[Elastic Beanstalk]]: Collection of logs from application
-+ [[Amazon ECS]]: Logs from containers
-+ [[AWS Lambda]]: Logs from functions
-+ [[Amazon VPC#VPC Flow logs|VPC Flow Logs]]
++ [](Interacting%20with%20AWS%20Services.md#AWS%20SDK|SDK), CloudWatch Unified Agent, CloudWatch Log Agent
++ [Elastic Beanstalk](Elastic%20Beanstalk.md): Collection of logs from application
++ [Amazon ECS](Amazon%20ECS.md): Logs from containers
++ [AWS Lambda](AWS%20Lambda.md): Logs from functions
++ [](Amazon%20VPC.md#VPC%20Flow%20logs|VPC%20Flow%20Logs)
 + CloudTrail based on filter
-+ [[Amazon Route 53]]: Log DNS queries
++ [Amazon Route 53](Amazon%20Route%2053.md): Log DNS queries
 ## Destinations
-+ [[Amazon S3]]
-+ [[Other AWS Services#Amazon Kinesis Data Streams|Kinesis Data Stream]]
-+ [[Other AWS Services#Amazon Data Firehose|Amazon Data Firehose]]
-+ [[AWS Lambda]]
++ [Amazon S3](Amazon%20S3.md)
++ [](Other%20AWS%20Services.md#Amazon%20Kinesis%20Data%20Streams|Kinesis%20Data%20Stream)
++ [](Other%20AWS%20Services.md#Amazon%20Data%20Firehose|Amazon%20Data%20Firehose)
++ [AWS Lambda](AWS%20Lambda.md)
 + AWS OpenSearch
 ## Log Stream
 Sequence of log events that share the same source.
@@ -88,13 +88,13 @@ Collection of log streams with the same retention, monitoring or access settings
 ## Log Subscriptions
 + Real time data streaming of logs
 + Send data stream to Kinesis Data Streams, Data Firehose or Lambda
-+ Filter which log events to send using subscription filter![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851352.png]]
++ Filter which log events to send using subscription filter![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851352](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851352.png)
 ### __Cross Account / Cross Region Log Subscription__
 + Send log events to resources in different AWS accounts
 	+ The access policy of destination resource must allow log transfer from source account.
 + Create an IAM role in destination account that allows writing into destination resource.
 	+ Ensure this role can be assumed by source account.
-	![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851352 (1).png]]
+	![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851352 (1)](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851352%20(1).png)
 # Alarms
 + Trigger notification/changes to resources for any metric (Ex: CPU usage > 70%)
 	+ Can also watch metrics in other AWS accounts
@@ -123,14 +123,14 @@ Collection of log streams with the same retention, monitoring or access settings
 + Can run once or on a fixed schedule
 ## Use case
 + CloudWatch Synthetics Canary is monitoring application in an EC2 instance in _us-east-1_.
-+ If application fails, it triggers a CloudWatch Alarm which in turn invokes a lambda function that changes Amazon Route 53 DNS record to point to application deployed in _us-west-2_.![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_36527940.png]]
++ If application fails, it triggers a CloudWatch Alarm which in turn invokes a lambda function that changes Amazon Route 53 DNS record to point to application deployed in _us-west-2_.![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_36527940](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_36527940.png)
 # Amazon EventBridge 
 + __Serverless event bus__ that facilitates event-driven architecture, by allowing different applications to communicate using events.
 + Autoscales to process large number of events.
 + Supports __real-time__ processing of events, so that applications can instantly react to changes.
 + __Pay as you go__ service. Only pay for the events that you publish and process.
 ## Key Components
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19730070 1.png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19730070 1](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19730070%201.png)
 ### __Event__
 + Any change in a system, data or environment (ex: upload in a s3 bucket, new user signup in an application)
 ### __Event Sources__
@@ -143,7 +143,7 @@ Collection of log streams with the same retention, monitoring or access settings
 	+ Default bus: Receives events from all AWS services in your account.
 	+ Partner event bus: Receives event from integrated third party apps like ZenDesk, DataDog,
 + Which event goes where is determined by __rules__, which filter events based on defined criteria or schedule.
-+ Event buses can be accessed by other AWS accounts by using a [[IAM#Policy|resource-based policy]].
++ Event buses can be accessed by other AWS accounts by using a [](IAM.md#Policy|resource-based%20policy).
 + Can archive and replay events
 ### __Pipe__
 + Router for events between a __single source and single target__.
@@ -165,7 +165,7 @@ This makes __debugging harder__.
 + Provides a visual analysis of your architecture by displaying all the components and their connections to each other.
 + It does so by tracking all the internal calls made by applications (such as calls to other services, SNS, DynamoDB etc..) when a user request comes in and showing how many requests succeeded and how many failed.
 + Makes root cause analysis easier by highlighting parts of an application/service that are problematic through details like latency, no of errors etc..
-Here, DynamoDB table is causing problems for overall application (denoted by orange error).![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851358.png]]
+Here, DynamoDB table is causing problems for overall application (denoted by orange error).![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851358](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851358.png)
 ## Workflow
 1. Your application must be _instrumented_ a.k.a integrated with X-Ray, either through X-Ray SDK or AWS Distro for OpenTelemetry (recommended).
 2. X-Ray collects data from all the services in an application, by adding a HTTP header to all incoming and outgoing requests and other events.
@@ -180,11 +180,11 @@ ___Note___:
 	Custom sampling rules with custom _reservoir_ and _rate_ + additional filter criteria (HTTP method, URL path etc..)
 	Set up sampling rules in CloudWatch > Settings > Traces > Sampling Rules (no code change needed)
 ## AWS Distro for OpenTelemetry vs X-Ray SDK
-+ Use AWS Distro for OpenTelemetry if you want to standardize with open-source APIs or send traces to multiple destinations simultaneously.![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_37145248.png]]
++ Use AWS Distro for OpenTelemetry if you want to standardize with open-source APIs or send traces to multiple destinations simultaneously.![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_37145248](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_37145248.png)
 + Use X-Ray SDK if you only want to send trace data to X-Ray service.
 Here, agent -> CloudWatch agent and AWS Backend -> Traces are sent to X-Ray service![Use the X-Ray SDK with either the CloudWatch agent or the X-Ray daemon.](https://docs.aws.amazon.com/images/xray/latest/devguide/images/xray-sdk.png).
 ## Security
-+ [[IAM]] for authorization.
++ [IAM](IAM.md) for authorization.
 	+ All services sending traces to X-Ray must have appropriate permissions to write to X-Ray.
 	+ X-Ray daemon must have permissions to access correct API calls
 + Data is encrypted at rest
@@ -197,12 +197,12 @@ Here, agent -> CloudWatch agent and AWS Backend -> Traces are sent to X-Ray serv
 6. ___GetTraceSummaries___: Retrieves IDs and annotations for traces in a specific time frame + optional filter
 7. ___GetTraceGraph___: Retrieve service map for one or more specific trace IDs
 ## X-Ray Compatibility
-+ [[AWS Lambda]]
-+ [[Elastic Beanstalk]]
-+ [[Amazon ECS]]
-+ [[Amazon ELB]]
-+ [[API Gateway]]
-+ [[Amazon Elastic Compute Cloud (AWS EC2)#EC2 Instance|EC2 Instance]]
++ [AWS Lambda](AWS%20Lambda.md)
++ [Elastic Beanstalk](Elastic%20Beanstalk.md)
++ [Amazon ECS](Amazon%20ECS.md)
++ [Amazon ELB](Amazon%20ELB.md)
++ [API Gateway](API%20Gateway)
++ [](Amazon%20Elastic%20Compute%20Cloud%20(AWS%20EC2).md#EC2%20Instance|EC2%20Instance)
 ## Advantages
 - **Performance Analysis**: Identify performance bottlenecks and latency spikes within your application architecture.
 - **Troubleshooting and Debugging**: Drill down into individual request traces to find the root cause of errors, faults, and exceptions with detailed stack traces and metadata.
@@ -241,6 +241,6 @@ Here, agent -> CloudWatch agent and AWS Backend -> Traces are sent to X-Ray serv
 	+ CloudTrail console
 	+ S3 bucket
 	+ EventBridge event
-	![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851366.png]]
+	![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851366](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851366.png)
 + Stored for __90 days__
 	+ To keep for longer, send to S3 bucket and analyze using Amazon Athena

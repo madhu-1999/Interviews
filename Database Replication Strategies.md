@@ -1,10 +1,10 @@
 #system-design #database #distributed #hld
 
 # Prerequisite
-[[Scaling#Database Replication|Database Replication]]
-[[ACID]] 
+[](Scaling.md#Database%20Replication|Database%20Replication)
+[ACID](ACID.md) 
 # Single Leader
-+  Implemented as a master slave model, where master db handles all the writes and some reads and slave/replica db's handle only the reads.![[Screenshot 2025-04-11 at 11.56.59 AM.png]]
++  Implemented as a master slave model, where master db handles all the writes and some reads and slave/replica db's handle only the reads.![Screenshot 2025-04-11 at 11.56.59 AM](Assets/Screenshot%202025-04-11%20at%2011.56.59%20AM.png)
 + On receiving a write request, the master db updates its own data and then sends a update request to its followers who, upon receiving the update request, update their own data.
 + All writes done by master are recorded in a replication log which is then sent to the slaves for update requests.
 + Good for read heavy workloads
@@ -17,7 +17,7 @@
 + Faster since we do not wait for slaves to finish their updates.
 + Reads can be stale if slaves are behind the master.![Depiction of Asynchronous replication. Communication between leader and followers is performed asynchronously.](https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fnj0tg3h4hi9e7x2lwigd.png)
 ## Semi-synchronous replication
-+ Based on[[#Quorum read and writes]]
++ Based on[#Quorum read and writes](#Quorum%20read%20and%20writes)
 ## What happens if slave db go down?
 + If other slave db's are available, they handle all the reads until new slave db comes up.
 + In case all slave db's are down, master db takes over reads temporarily, until atleast one slave db comes back up.
@@ -45,7 +45,7 @@
 + Case where user reads from a replica that is up to date but then again reads same data from a lagging replica, receiving data that is stale.
 + **Monotonic reads** guarantees a solution, involves a user always reading from a given replica. This, however has a drawback where availability is compromised if the node goes down.
 ### **Consistent prefix read**
-+ If user A writes 50 to a object using L1 leader, then L1 leader returns success and initiates update to L2 and L3 leaders. Assuming L3 receives and updates value to 50, but L2 update is still pending. A new user B requests write to same object to 70 from L3 leader. L3 leader returns success, and initiates update requests to L2 and L1. L2 updates new value 70 first and then 50, which leads to **inconsistent** state.![[Screenshot 2025-04-11 at 4.14.59 PM.png]]
++ If user A writes 50 to a object using L1 leader, then L1 leader returns success and initiates update to L2 and L3 leaders. Assuming L3 receives and updates value to 50, but L2 update is still pending. A new user B requests write to same object to 70 from L3 leader. L3 leader returns success, and initiates update requests to L2 and L1. L2 updates new value 70 first and then 50, which leads to **inconsistent** state.![Screenshot 2025-04-11 at 4.14.59 PM](Assets/Screenshot%202025-04-11%20at%204.14.59%20PM.png)
 + Version vectors are one solution to this problem.
 # Multi Leader
 + Updates are aysnchronous i.e. consistency is weaker.
@@ -66,29 +66,29 @@
 	+ All writes for a particular piece of data goes to a particular leader. (Preferred)
 	+ Merge both writes together and store that value. Ex: shopping cart state
 	+ Application prompts user to resolve conflict.
-### **[[Database Replication Strategies#Issues arising from replication lag | Replication lag issues]]**
+### **[](.md#Issues%20arising%20from%20replication%20lag%20|%20Replication%20lag%20issues)**
 ## Multi-leader topologies
 + Topologies for connecting all the leaders.
 ### **Circular**
 + default in Mysql
-+ Same as [[Network Topologies#Ring | Ring Topology]]
++ Same as [](Network%20Topologies.md#Ring%20|%20Ring%20Topology)
 ### **Star**
-+ Same as [[Network Topologies#Star|Star]]
++ Same as [](Network%20Topologies.md#Star|Star)
 ### **All to all**
-+ Same as [[Network Topologies#Mesh|Mesh]]
++ Same as [](Network%20Topologies.md#Mesh|Mesh)
 + Preferred approach
-+ Suffers from [[Database Replication Strategies#Issues arising from replication lag#Consistent prefix read|Inconsistent prefix read]]
++ Suffers from [](Database%20Replication%20Strategies#Issues%20arising%20from%20replication%20lag#Issues%20arising%20from%20replication%20lag#Consistent%20prefix%20read|Inconsistent%20prefix%20read)
 # Leaderless
-+ Used by [[Amazon DynamoDB]], Cassandra 
++ Used by [Amazon DynamoDB](Amazon%20DynamoDB.md), Cassandra 
 + Clients directly write to replicas. No leaders
 + Better availability since if one goes down, others are still able to process reads and writes.
 + Better fault tolerance since if one goes down, it doesn't affect other nodes unlike other setups where if leader went down, recovery process is longer.
-+ Offers Strong consistency through [[Database Replication Strategies#Leaderless#Quorum read and writes|quorum read and writes.]] 
++ Offers Strong consistency through [](Database%20Replication%20Strategies#Leaderless#Leaderless#Quorum%20read%20and%20writes|quorum%20read%20and%20writes.) 
 ## Client-driven fan-out
 + Write request is sent to all replicas. Client waits for acknowledgement from a majority of replicas(i.e. if $n$ total nodes,$n/2+1$ nodes) to consider operation a success.![Write Operation in Leaderless Replication](https://user-images.githubusercontent.com/4745789/148634243-36259bc6-ee6e-4fd2-b399-c475ad7a405d.png)
 + Read request is sent to all replicas. Client waits for response from majority of nodes (i.e. for $n$ nodes, $n/2+1$ nodes) and then returns value with latest version/highest id.![Read Operation in Leaderless Replication](https://user-images.githubusercontent.com/4745789/148634242-adf09717-a063-455f-b5d2-57497e60ca27.png)
 ## Node coordinator
-+ Client sends read or write request to node coordinator which does [[Database Replication Strategies#Leaderless#Client-driven fan-out|client driven fan out]].
++ Client sends read or write request to node coordinator which does [](Database%20Replication%20Strategies#Leaderless#Leaderless#Client-driven%20fan-out|client%20driven%20fan%20out).
 + makes it easier for clients since fan out responsibility is on node coordinator.
 ![Node Coordinator Driven Fan-out in Leaderless Replication](https://user-images.githubusercontent.com/4745789/148634240-0c05e68f-ec35-4ce8-8053-e7334f616dd6.png)
 
@@ -106,7 +106,7 @@
 ### **Anti Entropy**
 + Background process that periodically checks for discrepancies between replicas and corrects them.
 + Writes are not copied in order, and there may be delay before it is copied.
-+ Without an anti-entropy process, values that are rarely read would be missing in some replicas. This affects [[ACID#Durability|durability]] of database as it would only become consistent when [[Database Replication Strategies#Leaderless#Preventing stale reads#**Read Repair**|read repair]] is performed.
++ Without an anti-entropy process, values that are rarely read would be missing in some replicas. This affects [](ACID.md#Durability|durability) of database as it would only become consistent when [](Database%20Replication%20Strategies#Leaderless#Preventing%20stale%20reads#Leaderless#Preventing%20stale%20reads#**Read%20Repair**|read%20repair) is performed.
 # Limitations of replication 
 + **Write bottleneck**: Since only leader processes writes, it can become a bottleneck for write heavy workloads.
 + **Replication lag**: For write heavy workloads, replication lag can become an issue with different replicas having different versions of data.

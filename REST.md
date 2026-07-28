@@ -53,6 +53,6 @@ Best Practices:
 + ex: DELETE:/api/students/1
 + It is **idempotent**.
 ## HEAD
-+ Similar to [[#GET]], but returns only HTTP headers.
++ Similar to [#GET](#GET), but returns only HTTP headers.
 + Used to obtain metadata of a resource
 + It is  **idempotent**

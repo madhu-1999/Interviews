@@ -1,6 +1,6 @@
 #aws #cloud 
 # Overview
-+ [[Storage in AWS#Fully Managed Services|Fully managed]], highly available [[Storage in AWS#Object storage|object storage]].
++ [](Storage%20in%20AWS.md#Fully%20Managed%20Services|Fully%20managed), highly available [](Storage%20in%20AWS.md#Object%20storage|object%20storage).
 + **Infinitely scalable** i.e. can handle any amount of data and requests
 	+ Auto scales on demand. No need to provision storage
 	+ Flat structure of object makes it more efficient for high volume storage.
@@ -33,7 +33,7 @@
 
 >[!critical]
 >+ Object **key** name is always the full path
->+ There is **no** hierarchy in S3, but using prefixes allows [[Interacting with AWS Services#AWS Management Console|console]] to infer hierarchy.
+>+ There is **no** hierarchy in S3, but using prefixes allows [](Interacting%20with%20AWS%20Services.md#AWS%20Management%20Console|console) to infer hierarchy.
 >	+ When you create a folder in a bucket, actually a **zero-byte** object is created with a key ending in a forward slash (ex: `myfolder/`).
 >	+ Console is programmed to display such an object as an empty folder.
 ## Presigned url
@@ -42,13 +42,13 @@
 + Presigned url embeds the credentials of the AWS user who generated it into the url along with expiration time (after which url becomes invalid).
 	+  Allows only those actions which the embedded credentials have permission to perform.
 	+ Allows access to only those objects which the embedded credentials have permission to access.
-+ Can be generated using [[Interacting with AWS Services|Console, SDK or CLI]].
++ Can be generated using [Console, SDK or CLI](Interacting%20with%20AWS%20Services.md).
 + Expiration time:
 	+ Console - 1 minute to 12 hours
 	+ SDK or CLI - 1 minute to 7 days.
 # General Purpose Buckets
 + Every object is stored in a bucket.
-+ Every bucket must have a **globally unique name** across all regions, all accounts within a [[AWS Global Infrastructure#Partitions|partition]].
++ Every bucket must have a **globally unique name** across all regions, all accounts within a [](AWS%20Global%20Infrastructure.md#Partitions|partition).
 + They are defined at the **region** level.
 ## Naming
 + Only lowercase letters, numbers, period (.) or hyphen (-).
@@ -71,7 +71,7 @@
 	+ Bucket owner owns all objects uploaded to the bucket and has full access(r/w) to the bucket.
 + *Bucket owner preferred* means ACLs are enabled, but bucket owner owns and has full control over all new objects.
 + *Object writer* means the AWS account that uploads an object has full control over it. ACLs are enabled.
-# [[IAM]] for S3
+# [IAM](IAM.md) for S3
 + User based / Identity based
 	+ IAM policies - which API calls should be allowed for a specific IAM user/role.
 + Resource based
@@ -97,12 +97,12 @@
 + An access point has a DNS name and ARN, which is used in place of bucket ARN.
 + Has its own access policy that grants permissions to users/applications.
 	+ Simplifies bucket policy
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_33934122.png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_33934122](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_33934122.png)
 + **Can be associated with a single bucket only**. (bucket can be in different account also)
 + Can be configured to be private (access only within VPC) or public.
-	+ If private, access from outside VPC using a [[Amazon VPC#VPC Endpoints| Gateway VPC endpoint]] . 
+	+ If private, access from outside VPC using a [](Amazon%20VPC.md#VPC%20Endpoints|%20Gateway%20VPC%20endpoint) . 
 	+ VPC endpoint policy must allow access to target bucket and access point.
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_33934122 (1).png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_33934122 (1)](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_33934122%20(1).png)
 ### **When to use**
 + Large shared bucket with data that many teams/applications need, with different permissions.
 + Need to easily onboard/offboard teams/applications without modifying bucket policy and risking unintended consequences.
@@ -116,7 +116,7 @@
 | **Authorization**   | The bucket policy is the single source of truth for authorization at the bucket level.                                                                                             | The final access decision is the _intersection_ of both the access point policy and the bucket policy. The most restrictive "deny" or "allow" takes precedence.                       |
 | **Access Method**   | Applications and users access the bucket directly using its name or ARN.                                                                                                           | Applications and users access the bucket indirectly through the access point's unique ARN or alias.                                                                                   |
 ## S3 Object Lambda
-+ Use [[AWS Lambda]] functions to change an object before it is retrieved by caller application.
++ Use [AWS Lambda](AWS%20Lambda.md) functions to change an object before it is retrieved by caller application.
 + _S3 Object Lambda Access Point_ is created which internally uses a standard S3 Access Point (called supporting access point) and a lambda function.
 	+ The object is retrieved using the _supporting access point_.
 	+ The lambda function processes it (can add/remove data) and returns transformed object to the _Object Lambda access point_, which in turn returns it to the caller application.
@@ -126,7 +126,7 @@
 	+ Redacting PII information for analytics or non-production environments.
 	+ Converting across data formats such as converting XML to JSON
 	+ Filtering to return subset of data
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_36228854.png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_36228854](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_36228854.png)
 # Storage Classes
 ## Frequent access
 For latency sensitive (ms access time) frequently accessed data
@@ -193,7 +193,7 @@ For latency sensitive (ms access time) frequently accessed data
 ### **S3 Glacier Deep Archive**
 + Archives data (no real time access)
 + 12 hour retrieval time
-## S3 on [[AWS Global Infrastructure#AWS Outposts|Outposts]]
+## S3 on [](AWS%20Global%20Infrastructure.md#AWS%20Outposts|Outposts)
 + Only available for objects stored in buckets on Outposts.
 + Objects are encrypted using server side encryption with S3 managed encryption keys.
 	+ Can also choose to use customer provided encryption keys.
@@ -237,7 +237,7 @@ For latency sensitive (ms access time) frequently accessed data
 	+ Transitioning objects to lower cost storage classes.
 	+ Deleting expired objects.
 + Best for data with **predictable data access patterns**.
-+ Overrides [[#Bucket policy]].
++ Overrides [#Bucket policy](#Bucket%20policy).
 + Two types of actions
 	+ ***Transition actions***
 		+ Define when objects should transition to next storage class.
@@ -256,7 +256,7 @@ For latency sensitive (ms access time) frequently accessed data
 	+ certain object tags (Ex: _Department_, _Finance_)
 ## S3 Storage Class Analysis
 + Helps decide when to transition objects to right storage class based on data access patterns. S3 Analytics does the analysis.
-+ Recommendations for [[#**S3 Standard**|S3 Standard]] and [[#**S3 Standard-IA**|S3 Standard IA]] only.
++ Recommendations for [S3 Standard](#**S3%20Standard**) and [S3 Standard IA](#**S3%20Standard-IA**) only.
 + Report is updated daily
 + 24-48 h to start seeing data analysis.
 # Replication
@@ -278,13 +278,13 @@ For latency sensitive (ms access time) frequently accessed data
 ## S3 Batch Replication
 + Replicate existing objects
 + Replicate objects that failed to replicate
-+ Replicate objects in source bucket that have already been replicated [[#^1269a6]]
-+ Replicate replicas of objects ([[#^2f7159|chaining of replication]])
++ Replicate objects in source bucket that have already been replicated [#^1269a6](#^1269a6)
++ Replicate replicas of objects ([chaining of replication](#^2f7159))
 ## Requirements for replication
 + Source and destination buckets must have versioning enabled.
 + S3 must have appropriate IAM permissions to perform replications.
 + If bucket has objects, the bucket owner doesn't own, then object owner must provide bucket owner *READ* permission with object ACL.
-+ Destination bucket owner must grant source bucket permission to replicate through a [[#Bucket policy|bucket policy]].
++ Destination bucket owner must grant source bucket permission to replicate through a [bucket policy](#Bucket%20policy).
 # Static Website Hosting
 + Can host static websites using a bucket i.e. bucket becomes server.
 	+ Hosted on *website endpoint*, which is either:
@@ -299,35 +299,35 @@ For latency sensitive (ms access time) frequently accessed data
 	+ Create object
 	+ Delete object
 	+ Replication
-	+ [[#S3 Lifecycle Rules|S3 Lifecycle transition/expiration event]]
-	+ [[#S3 Intelligent-Tiering]] automatic archival event
-	+ [[#**Reduced Redundancy Storage**|Reduced redundancy storage]] object loss event
+	+ [S3 Lifecycle transition/expiration event](#S3%20Lifecycle%20Rules)
+	+ [#S3 Intelligent-Tiering](#S3%20Intelligent-Tiering) automatic archival event
+	+ [Reduced redundancy storage](#**Reduced%20Redundancy%20Storage**) object loss event
 + To enable notifications, add notification configuration
 	+ Add events that S3 should publish
 	+ Destinations to send notifications. 
-		+ [[Amazon SNS]] topics
-		+ [[Amazon SQS]] queues
-		+ [[AWS Lambda]] functions
-		+ [[AWS CloudWatch#Amazon EventBridge|Amazon EventBridge]]
+		+ [Amazon SNS](Amazon%20SNS.md) topics
+		+ [Amazon SQS](Amazon%20SQS.md) queues
+		+ [AWS Lambda](AWS%20Lambda.md) functions
+		+ [](AWS%20CloudWatch.md#Amazon%20EventBridge|Amazon%20EventBridge)
 			+ **All** events are sent to EventBridge. No need to specify events
 + Notifications delivered within seconds, but can take a few minutes.
-+ There must be a [[IAM#Policy|IAM Resource Policy]] attached to the destination, that allows S3 to send notifications to the destination.
++ There must be a [](IAM.md#Policy|IAM%20Resource%20Policy) attached to the destination, that allows S3 to send notifications to the destination.
 	+ Amazon EventBridge does not require an IAM policy. 
 # Performance optimization
 + S3 autoscales when request rate spikes. Latency 100-200 ms
-	+ For lower latency (single digit ms), pair with [[Amazon CloudFront]] or [[Elasticache]] for caching.
+	+ For lower latency (single digit ms), pair with [Amazon CloudFront](Amazon%20CloudFront.md) or [Elasticache](Elasticache.md) for caching.
 + Limit of 
 	+ **3,500 PUT/COPY/POST/DELETE** requests/s per prefix in a bucket
-	+ **5,500 GET/[[REST#HEAD|HEAD]]** requests/s per prefix in a bucket.
+	+ **5,500 GET/[](REST.md#HEAD|HEAD)** requests/s per prefix in a bucket.
 	+ No limit on number of prefixes in a bucket
 + Can increase R/W performance using parallelization.
 	+ If a bucket has 10 prefixes, parallelizing reads increases performance to 55,000 request/s (5,500 GET requests/s per prefix).
 + Multi part upload
 	+ recommended for files > 100MB
 	+ must use for files >  5GB
-	+ Can parallelize uploads to speed up transfers![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851522 1.png]]
+	+ Can parallelize uploads to speed up transfers![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851522 1](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851522%201.png)
 + Use S3 Transfer Acceleration for fast, easy and secure transfer of files over long distances. (Ex: uploading file while in California to a bucket in _eu-west-1_) .
-	+ File is uploaded to closest [[AWS Global Infrastructure#Edge locations|Edge location]], instead of bucket.
+	+ File is uploaded to closest [](AWS%20Global%20Infrastructure.md#Edge%20locations|Edge%20location), instead of bucket.
 	+ File is transferred along the AWS private network, which is optimized and uncongested to the destination S3 bucket
 	+ Compatible with multi-part uploads.
 	+ Name of the bucket must be DNS compliant.
@@ -370,7 +370,7 @@ For latency sensitive (ms access time) frequently accessed data
 + If enabled, logs all requests made to an S3 bucket, from any account, authorized or denied to a destination S3 bucket.
 	+ Destination bucket must be in the same region as source bucket.
 	+ Destination bucket should not have access logging enabled, otherwise there will be a **infinite loop** of logs being delivered to the destination S3 bucket.
-	+ Destination Bucket can only be encrypted using [[#Server Side Encryption with Amazon S3 Managed Keys (SSE-S3)|SSE-S3]].
+	+ Destination Bucket can only be encrypted using [SSE-S3](#Server%20Side%20Encryption%20with%20Amazon%20S3%20Managed%20Keys%20(SSE-S3)).
 + S3 uses a special account `logging.s3.amazonaws.com` to write server logs. So destination bucket must grant the principal access using bucket policy (recommended) or ACL.
 + Logs can be analyzed and queried using Amazon Athena
 

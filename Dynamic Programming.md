@@ -6,15 +6,15 @@
 A given problem is said to have ****Optimal Substructure Property**** if the optimal solution of the given problem can be obtained by using the optimal solution to its subproblems instead of trying every possible way to solve the subproblems.
 # Types
 ## Easy-Medium
-[[Knapsack]]
-[[LCS]]
-[[Longest Increasing Subsequence|LIS]]
-[[Matrix Chain Multiplication]]
-[[DP on grid]]
-[[Kadane's Algorithm]]
-[[Others]]
+[Knapsack](Knapsack.md)
+[LCS](LCS.md)
+[LIS](Longest%20Increasing%20Subsequence.md)
+[Matrix Chain Multiplication](Matrix%20Chain%20Multiplication)
+[DP on grid](DP%20on%20grid)
+[Kadane's Algorithm](Kadane's%20Algorithm)
+[Others](Others)
 ## Advanced DP
-[[Digit DP]]
+[Digit DP](Digit%20DP.md)
 DP kth lexigographical string
 DP on tree
 DP + bitmasking

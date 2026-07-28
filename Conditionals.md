@@ -24,7 +24,7 @@ else:
 	print("Equal)
 ```
 # In
-+ To check if specified object is in iterable container like [[Python - List|list]].
++ To check if specified object is in iterable container like [list](Python%20-%20List.md).
 ```python
 name = "John"
 if name in ["John", "Rick"]:

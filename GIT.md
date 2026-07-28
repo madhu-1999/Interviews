@@ -23,7 +23,7 @@ git branch -d hello
 # Merging
 + Combine the branch with its parent to make changes final.
 + Merging in Git creates a special commit that has two unique parents. A commit with two parents essentially means "I want to include all the work from this parent over here and this one over here, _and_ the set of all their parents."
-![[Pasted image 20250326135332.png]]
+![Pasted image 20250326135332](Assets/Pasted%20image%2020250326135332.png)
 ## git merge
 ```git
 // Before using merge command, must be in the branch into which merge should happen
@@ -61,7 +61,7 @@ git checkout HEAD~2
 # Reversing Changes
 ## git reset
 `git reset` reverses changes by moving a branch reference backwards in time to an older commit. In this sense you can think of it as "rewriting history;" `git reset` will move a branch backwards as if the commit had never been made in the first place.
-![[Screenshot 2025-03-26 at 2.45.24 PM.png]]
+![Screenshot 2025-03-26 at 2.45.24 PM](Assets/Screenshot%202025-03-26%20at%202.45.24%20PM.png)
 ```git
 // Revert back one commit
 git reset HEAD^
@@ -70,7 +70,7 @@ git reset HEAD^
 While resetting works great for local branches on your own machine, its method of "rewriting history" doesn't work for remote branches that others are using.
 In order to reverse changes and _share_ those reversed changes with others, we need to use `git revert`
 
-The new commit `C2'` introduces _changes_ -- it just happens to introduce changes that exactly reverses the commit of `C2`.![[Screenshot 2025-03-26 at 2.43.56 PM.png]]
+The new commit `C2'` introduces _changes_ -- it just happens to introduce changes that exactly reverses the commit of `C2`.![Screenshot 2025-03-26 at 2.43.56 PM](Assets/Screenshot%202025-03-26%20at%202.43.56%20PM.png)
 ```git
 // Revert one commit
 git reset HEAD

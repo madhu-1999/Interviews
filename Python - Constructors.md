@@ -9,7 +9,7 @@ A object instantiation call (`o = new Class()`), triggers:
 
 # Object creation with `.__new__()`
 
-We typically, don't have to [[Python - Inheritance#Method overriding|override]] this method to create a new instance of a class. The `.__new__()` method of the object super class is called implicitly.
+We typically, don't have to [](Python%20-%20Inheritance.md#Method%20overriding|override) this method to create a new instance of a class. The `.__new__()` method of the object super class is called implicitly.
 
 ```python
 class SomeClass:
@@ -21,7 +21,7 @@ class SomeClass:
 
 # Initializing with `.__init__()`
 
-If a class does not define a `.__init__()` method, the `.__init__()` of it's [[Python - Inheritance#`super()` method|super class]] is called.
+If a class does not define a `.__init__()` method, the `.__init__()` of it's [](Python%20-%20Inheritance.md#`super()`%20method|super%20class) is called.
 ```run-python
 class Example:
     def show(self):
@@ -60,8 +60,8 @@ print(o.count) # This will throw a AttributeError
 ```
 
 >[!faq] Can `.__init__()` be overloaded?
->Since Python supports [[Python - Functions#Method Overloading|method overloading]] differently, it is not possible to have two different method signatures for `.__init__()` . The second `.__init__()`  _hides_ the first one i.e. first method cannot be accessed!
->We can use [[Python - Functions#Parameter Types|keyword, default and variable length parameters]] to simulate method overloading.
+>Since Python supports [](Python%20-%20Functions.md#Method%20Overloading|method%20overloading) differently, it is not possible to have two different method signatures for `.__init__()` . The second `.__init__()`  _hides_ the first one i.e. first method cannot be accessed!
+>We can use [](Python%20-%20Functions.md#Parameter%20Types|keyword,%20default%20and%20variable%20length%20parameters) to simulate method overloading.
 
 # References
 [Python constructors](https://realpython.com/python-class-constructor/)

@@ -1,6 +1,6 @@
 #aws #cloud #database #nosql
 # Overview
-+ [[Amazon RDS#Fully managed Services|Fully managed service]] No-SQL database (unstructured or semi-structured data)
++ [](Amazon%20RDS.md#Fully%20managed%20Services|Fully%20managed%20service) No-SQL database (unstructured or semi-structured data)
 + High performance and auto-scaling for document and key-value data structures
 + Highly available and durable
 	+ By automatically distributing data across 3 AZ's in a region. (global tables)
@@ -16,11 +16,11 @@
 	+ It can be of type: string, number, or binary
 	+ __Option 1: Partition key__:
 		+ Partition key must be _unique_ for each item.
-		+ Partition key must be _diverse_ so that data is distributed.![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851406.png]]
+		+ Partition key must be _diverse_ so that data is distributed.![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851406](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851406.png)
 	+ __Option 2: Partition + Sort Key__:
 		+ Combination must. be _unique_ for each item.
 		+ Data is grouped by _partition key_. Within a partition, data is ordered by _sort key_.
-		![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851406 (1).png]]
+		![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851406 (1)](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851406%20(1).png)
 + Each table can have infinite _items_ (rows)
 + Each item has _attributes_ (columns)
 + Max size of _item_ = 400KB
@@ -39,8 +39,8 @@
 + Automatically delete items after an expiry timestamp (Unix Epoch)
 	+ Actual deletion happens within a few days of expiration. A deletion process periodically scans for expired items and deletes them.
 	+ Expired items can be returned as query/scan result.
-+ Expired items are deleted from both [[#Local Secondary Index]] and [[#Global Secondary Index]]
-+ Delete operation enters [[#DynamoDB Streams]], from where it can be recovered if needed.
++ Expired items are deleted from both [#Local Secondary Index](#Local%20Secondary%20Index) and [#Global Secondary Index](#Global%20Secondary%20Index)
++ Delete operation enters [#DynamoDB Streams](#DynamoDB%20Streams), from where it can be recovered if needed.
 # Table classes
 ## DynamoDB Standard
 + Low cost R/W, High cost of storage
@@ -55,7 +55,7 @@
 + Specify no of r/w per second & provision capacity (Read capacity units (RCU) & Write capacity units (WCU).)
 	+ 1 WCU = 1 write/s for an item up to 1 KB. If item is larger, more WCUs consumed.
 		+ Ex: Write 10 items of size 2 KB = $10*\frac{2KB}{1KB} = 20 \space\text{WCUs}$
-	+ 1 RCU = 1 [[#Strongly Consistency]] read / 2 [[#Eventual Consistency|Eventually consistent]] reads per second, for an item up to 4 KB. If larger, more RCUs are consumed.
+	+ 1 RCU = 1 [#Strongly Consistency](#Strongly%20Consistency) read / 2 [Eventually consistent](#Eventual%20Consistency) reads per second, for an item up to 4 KB. If larger, more RCUs are consumed.
 		+ Ex: 10 strongly consistent reads/s with item size 6 KB = $10 * \frac{8KB}{4KB} = 20\space\text{RCUs}$  (8 KB instead of 6 since we have to round up to nearest multiple of 4KB)
 		+ Ex: 16 eventually consistent reads/s with item size 12 KB = $\frac{16}{2}*\frac{12KB}{4KB} = 24 \space\text{RCUs}$
 + Can setup auto-scaling of throughput based on demand.
@@ -67,7 +67,7 @@
 + Pay as you go (more expensive), no provisioning needed.
 + No throttling, unlimited RCUs and WCUs
 # Read consistency modes
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851410.png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851410](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851410.png)
 ## Eventual Consistency
  + If we read just after write, it is possible data is stale due to replication lag.
 ## Strong Consistency
@@ -117,7 +117,7 @@ Ex: _ForumName_ is partition key and _Subject_ is sort key of base table.
 + ___Can be added/modified after table creation___.
 Ex: _UserId, GameTitle_ is primary key of base table. The index has the key _GameTitle, TopScore_.![GameTitleIndex table containing a list of titles, scores, and user ids.](https://docs.aws.amazon.com/images/amazondynamodb/latest/developerguide/images/GSI_02.png)
 # DynamoDB Transactions
-+ All-or-nothing operations (insert/update/delete) to multiple items across one or more tables. ([[ACID]])
++ All-or-nothing operations (insert/update/delete) to multiple items across one or more tables. ([ACID](ACID.md))
 + Transactional Reads and Writes consume 2x WCUs and RCUs i.e. 
 	+ 1 Transactional read = 2 RCUs
 	+ 1 Transactional write = 2 WCUs
@@ -213,7 +213,7 @@ ___Transactional operations__
 + ms latency for cached reads & queries
 + Solves the "hot key" problem (too many reads)
 + 5 min default TTL
-+ Up to 10 nodes in a cluster (can be multi-AZ setup)![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851418.png]]
++ Up to 10 nodes in a cluster (can be multi-AZ setup)![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851418](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851418.png)
 ## [DAX vs Elasticache](https://repost.aws/questions/QUrKBj_QjSReS1rCWbOTS5YQ/dax-or-elastic-cache-with-dynamodb#:~:text=Guidelines%20for%20Effective%20Usage,2%20years%20ago)
 # DynamoDB Streams
 + Ordered stream of item-level modifications in a table.
@@ -222,8 +222,8 @@ ___Transactional operations__
 	+ _OLD_IMAGE_: entire item before modification.
 	+ _NEW_AND_OLD_IMAGES_: both the new and old item
 + Records can be sent to:
-	+ [[Other AWS Services#Amazon Kinesis Data Streams|Kinesis Data Streams]]
-	+ [[AWS Lambda]]
+	+ [](Other%20AWS%20Services.md#Amazon%20Kinesis%20Data%20Streams|Kinesis%20Data%20Streams)
+	+ [AWS Lambda](AWS%20Lambda.md)
 	+ Read by Kinesis Consumer Library (KCL) apps
 + Data retention: up to 24 hrs.
 + Streams are made of shards, but  AWS provisions them
@@ -232,4 +232,4 @@ ___Transactional operations__
 	+ real-time actions ex: welcome mail
 	+ analytics
 	+ cross-region replication
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851530.png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851530](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851530.png)

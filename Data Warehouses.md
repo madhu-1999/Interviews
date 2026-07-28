@@ -233,7 +233,7 @@ Sometimes, keeping everything in one warehouse is genuinely impractical. These s
 
 # Data Modeling Approaches
 https://youtu.be/gRE3E7VUzRU?list=PLy4OcwImJzBLWhUqduwLs30YHiDpX4Xp7
-1. [[Database Normalization]] (Snowflake schema) 
+1. [Database Normalization](Database%20Normalization.md) (Snowflake schema) 
 2. Denormalized Model (Star schema)
 3. One Big Table
 4. Data Vault
@@ -256,7 +256,7 @@ __Attribute hierarchies__ organize data into different levels, allowing users to
     **Region → State → City**, enabling geographic trend analysis
 
 Notice `Region` data is duplicated in `customer_dim` and `store_dim` .
-![[Pasted image 20260414161307.png]]
+![Pasted image 20260414161307](Assets/Pasted%20image%2020260414161307.png)
 
 >Q. How to design a star schema?
 
@@ -339,7 +339,7 @@ Finally, you place a **Foreign Key** in the Fact table that points to the **Prim
 |**Action**|Summarized (Sum, Avg)|Filtered (Group by, Where)|
 ## Snowflake Schema 
 https://www.owox.com/blog/articles/snowflake-schema-data-modeling
-![[Pasted image 20260414171218.png]]
+![Pasted image 20260414171218](Assets/Pasted%20image%2020260414171218.png)
 __The Golden Rule__
 - **Denormalize** attributes you use in **90% of queries**.Keep them in the main table to avoid joins.
 - **Normalize** attributes used in **<10% of queries**. Move these to sub-dimensions to keep your main "search path" lean and fast.

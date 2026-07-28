@@ -65,7 +65,7 @@ FROM sales;
  
 This query generates a single result set with the aggregates for all `GROUP BY` clauses.
 
-![[Pasted image 20260219190246.png]]
+![Pasted image 20260219190246](Assets/Pasted%20image%2020260219190246.png)
 But there are two main issues with this:
 1. Query is very lengthy
 2. `UNION ALL` scans table 4 times (once per `SELECT`) to generate the result, which is slow.
@@ -166,7 +166,7 @@ ORDER BY
 	brand, segment;
 ```
 
-![[Pasted image 20260219234220.png]]
+![Pasted image 20260219234220](Assets/Pasted%20image%2020260219234220.png)
 ### Why use a Partial Cube?
 
 - **Performance:** Generating fewer grouping sets requires less computational power and memory, which is critical for large datasets.
@@ -203,7 +203,7 @@ SELECT
 FROM sales
 GROUP BY ROLLUP (brand, segment)
 ```
-![[Pasted image 20260220222805.png]]
+![Pasted image 20260220222805](Assets/Pasted%20image%2020260220222805.png)
 **Scenario**: Time-Series Aggregation
 Because time is inherently hierarchical, `ROLLUP` is perfect for financial or operational dashboards. You can create a single query that returns:
 + Daily counts.
@@ -226,4 +226,4 @@ This generates the combinations:
 >(segment, brand) 
 >(segment)
 
-![[Pasted image 20260220223706.png]]
+![Pasted image 20260220223706](Assets/Pasted%20image%2020260220223706.png)

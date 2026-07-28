@@ -6,7 +6,7 @@ tags:
   - "#pandas"
 ---
 # Prerequisite
-[[SQL_Basics]]
+[SQL_Basics](SQL_Basics.md)
 # Creating DataFrame
 ```python
 import pandas as pd
@@ -117,7 +117,7 @@ SELECT product_id, low_fats FROM products;
 ```
 
 ```python
-df[['product_id', 'low_fats']]
+df['product_id', 'low_fats']('product_id',%20'low_fats')
 ```
 
 |       | product_id | low_fats |
@@ -157,7 +157,7 @@ df.loc['Avery Bradley']
 >```
 ## Select multiple rows
 ```python
-df.loc[["Avery Bradley", "R.J. Hunter"]]
+df.loc["Avery Bradley", "R.J. Hunter"]("Avery%20Bradley",%20"R.J.%20Hunter")
 ```
 
 | **Name**          | **Age** | **College**   | **Salary** |
@@ -170,7 +170,7 @@ df.loc[["Avery Bradley", "R.J. Hunter"]]
 >```
 ## Select Specific Rows and Columns
 ```python
-df.loc[["Avery Bradley", "R.J. Hunter"], ["Age", "College"]]
+df.loc["Avery Bradley", "R.J. Hunter"]("Avery%20Bradley",%20"R.J.%20Hunter")
 ```
 
 | **Name**          | **Age** | **College**   |
@@ -210,7 +210,7 @@ df.iloc[3]
 | **R.J. Hunter**   | 22.0    | Georgia State | 1148640.0  |
 ## Select multiple rows
 ```python
-df.iloc[[2, 4]]
+df.iloc[2, 4](2,%204)
 ```
 
 | **Name**          | **Age** | **College**       | **Salary** |
@@ -219,7 +219,7 @@ df.iloc[[2, 4]]
 | **Jonas Jerebko** | 29.0    | NaN               | 5000000.0  |
 ## Select specific rows and columns
 ```python
-df.iloc[[2, 4], [2, 0]]
+df.iloc[2, 4](2,%204)
 ```
 Notice the 2nd column `Salary` appears first.
 
@@ -302,7 +302,7 @@ WHERE area >= 3000000
 
 ```python
 df[ (df['area'] >= 3000000) | (df['population'] >= 25000000) ]
-	[['name', 'population', 'area']]
+	['name', 'population', 'area']('name',%20'population',%20'area')
 # or
 df.loc[(df['area'] >= 3000000) | (df['population'] >= 25000000), ['name', 'population', 'area']]
 ```
@@ -698,7 +698,7 @@ FROM visits;
 ```python
 # keep = 'first'
 # Keep first duplicate
-visits[['name', 'date']].drop_duplicates()
+visits['name', 'date']('name',%20'date').drop_duplicates()
 ```
 Rows 0 and 2 have repeating values for the entire subset (name, date). Here, we keep the first duplicate (row 0)
 
@@ -712,7 +712,7 @@ Rows 0 and 2 have repeating values for the entire subset (name, date). Here, we 
 ```python
 # keep = 'last'
 # Keep last duplicate
-visits[['name', 'date']].drop_duplicates(keep='last')
+visits['name', 'date']('name',%20'date').drop_duplicates(keep='last')
 ```
 Rows 0 and 2 have repeating values for the entire subset (name, date). Here, we keep the last duplicate (row 2)
 
@@ -732,7 +732,7 @@ HAVING COUNT(*) > 1;
 
 ```python
 # Drop all duplicates
-visits[['name', 'date']].drop_duplicates(keep=False)
+visits['name', 'date']('name',%20'date').drop_duplicates(keep=False)
 ```
 
 |     | name    | date       |
@@ -751,7 +751,7 @@ visits[['name', 'date']].drop_duplicates(keep=False)
 >
 >We can use alternative syntax for `drop_duplicates`:
 >```python
->visits.drop_duplicates(subset=['date'])[['date', 'visit_id']]
+>visits.drop_duplicates(subset=['date'])['date', 'visit_id']('date',%20'visit_id')
 >```
 >In the __previous syntax__, we first selected a subset and then performed the operation, which limits the projected data to that subset.
 >
@@ -779,7 +779,7 @@ visits['date'].nunique()
 
 # Using with DataFrame
 # axis = 0 (default) -> unique count across columns
-visits[['name', 'date']].nunique() # Returns a Series
+visits['name', 'date']('name',%20'date').nunique() # Returns a Series
 ```
 Here _name_ and _date_ are __index__ values of the Series.
 
@@ -800,7 +800,7 @@ FROM (
 
 ```python
 # Returns a Series
-visits[['name', 'date']].value_counts()
+visits['name', 'date']('name',%20'date').value_counts()
 ```
 Here _name_ and _date_ are both __index__ for the Series.
 
@@ -849,7 +849,7 @@ FROM tips;
 ```
 
 ```python
-tips[['tip', 'sex']].rename(columns = {'sex' : 'gender'})
+tips['tip', 'sex']('tip',%20'sex').rename(columns = {'sex' : 'gender'})
 ```
 
 |     | tip  | gender |
@@ -1192,7 +1192,7 @@ pd.merge(
 | **2**   | 103      | 2023-01-03 | 100    | 103            | 2023-01-12 | Credit |
 >[!tip]- Cleaning up after `merge()`
 >In above example, notice that the join column repeats twice (one for payments, one for orders). 
->Usually, you'll want to [[#`DELETE` clause|drop]] one immediately to keep the data tidy.
+>Usually, you'll want to [drop](#`DELETE`%20clause) one immediately to keep the data tidy.
 >```python
 ># Drop the redundant transaction_id column
 merged_df = merged_df.drop(columns=['transaction_id'])
@@ -1263,7 +1263,7 @@ pd.merge(
 | **1** | 2           | Bob     | 102.0    | 2.0     | 150.0  |
 | **2** | 3           | Charlie | NaN      | NaN     | NaN    |
 ### Right Join
-[[Pandas (SQL Reference)#^1b4929|Sample Data]]
+[](.md#^1b4929|Sample%20Data)
 ```sql
 SELECT *
 FROM customers c
@@ -1287,7 +1287,7 @@ pd.merge(
 | **1** | 2.0         | Bob   | 102      | 2       | 150    |
 | **2** | NaN         | NaN   | 103      | 4       | 200    |
 ### Outer Join
-[[Pandas (SQL Reference)#^1b4929|Sample Data]]
+[](.md#^1b4929|Sample%20Data)
 ```sql
 SELECT *
 FROM customers c
@@ -1315,7 +1315,7 @@ Setting `indicator=True` results in addition of a new column `_merge` which indi
 | **2**   | 3.0         | Charlie | NaN      | NaN     | NaN    | left_only  |
 | **3**   | NaN         | NaN     | 103.0    | 4.0     | 200.0  | right_only |
 ### Left Anti Join
-[[Pandas (SQL Reference)#^1b4929|Sample Data]]
+[](.md#^1b4929|Sample%20Data)
 ```sql
 SELECT *
 FROM customers c
@@ -1342,7 +1342,7 @@ temp[temp['_merge'] == 'left_only'].drop(columns=['_merge'])
 | ----- | ----------- | ------- | -------- | ------- | ------ |
 | __2__ | 3.0         | Charlie | NaN      | NaN     | NaN    |
 ### Right Anti Join
-[[Pandas (SQL Reference)#^1b4929|Sample Data]]
+[](.md#^1b4929|Sample%20Data)
 ```sql
 SELECT *
 FROM customers c
@@ -1369,7 +1369,7 @@ temp[temp['_merge'] == 'right_only'].drop(columns=['_merge'])
 | ----- | ----------- | ---- | -------- | ------- | ------ |
 | __3__ | NaN         | NaN  | 103.0    | 4.0     | 200.0  |
 ### Full Anti Join
-[[Pandas (SQL Reference)#^1b4929|Sample Data]]
+[](.md#^1b4929|Sample%20Data)
 ```sql
 SELECT *
 FROM customers c
@@ -1398,7 +1398,7 @@ temp[temp['_merge'].isin(['left_only', 'right_only'])]\
 | **2**   | 3.0         | Charlie | NaN      | NaN     | NaN    |
 | **3**   | NaN         | NaN     | 103.0    | 4.0     | 200.0  |
 ### Self Join
-Same as [[Pandas (SQL Reference)#^1166de| inner join same key]].
+Same as [](.md#^1166de|%20inner%20join%20same%20key).
 ### Cross Join
 <center><b>Colors</b></center>
 
@@ -1524,7 +1524,7 @@ right_index = True
 )
 >```
 ### Mixed Join (Index-Column)
-[[Pandas (SQL Reference)#Index join (Same index label)|Other data]] 
+[](.md#Index%20join%20(Same%20index%20label)|Other%20data) 
 <center><b>df_c</b> </center>
 
 |     | id_col | val_c |
@@ -1553,7 +1553,7 @@ right_index = True
 )
 >```
 ### Multi join (3+ df)
-[[Pandas (SQL Reference)#Index join (Same index label)|Other data]] 
+[](.md#Index%20join%20(Same%20index%20label)|Other%20data) 
 <center><b>df_d</b> </center>
 
 |     | val_d |
@@ -1668,9 +1668,9 @@ pd.concat([staff, hires], axis=0)\
 |__0__|1|Alice|2|Bob|
 |__1__|2|Bob|3|Charlie|
 ## `INTERSECT`
-Same as [[#Inner Join]].
+Same as [#Inner Join](#Inner%20Join).
 ## `EXCEPT`
-Same as [[#Left Anti Join]]
+Same as [#Left Anti Join](#Left%20Anti%20Join)
 # UPDATE clause
 ## `where()` method
 It keeps the original data when the condition is **True** and replaces it when the condition is **False**. i.e. the opposite of what a `UPDATE` statement does.

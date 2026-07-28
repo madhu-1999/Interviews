@@ -1,8 +1,8 @@
 #aws #cloud 
 # Prerequisite
-[[Caching]]
+[Caching](Caching.md)
 # Overview
-+ [[Amazon RDS#Fully managed Services|Fully Managed]] Service to get managed Redis, Memcached or Valkey cache.
++ [](Amazon%20RDS.md#Fully%20managed%20Services|Fully%20Managed) Service to get managed Redis, Memcached or Valkey cache.
 	+ AWS takes care of OS maintenaince, patching, optimization, setup, configuration, monitoring, failure recovery and backups.
 + In-memory database with high performance, low latency
 + Helps reduce load off of database for ready heavy workloads.
@@ -54,7 +54,7 @@
 - Offers backup and restore features in the open-source version.
 - Supports sets and sorted sets, useful for features like leaderboards.
 ## Memcached
-+ Uses multiple nodes that partition your data, a process called [[Database Sharding|sharding]].
++ Uses multiple nodes that partition your data, a process called [sharding](Database%20Sharding.md).
 - Does not provide high availability or replication.
 - The serverless version offers backup and restore features, while the self-managed version on ElastiCache does not.
 - Employs a multi-threaded architecture, which can improve performance.

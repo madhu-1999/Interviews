@@ -115,7 +115,7 @@ A_{2,1}B_{2,1} & A_{2,2}B_{2,2}
 \end{bmatrix}
 $$
 ## Vector (Dot product)
-Please read [[#^649259|Understanding dot product]]
+Please read [Understanding dot product](#^649259)
 $\mathbf{x} \cdot \mathbf{y} = \mathbf{x}^\top \mathbf{y} = \sum_i x_i y_i$
 $$
 \mathbf{x}^\top \mathbf{y} = 
@@ -285,7 +285,7 @@ $$v_1 = \begin{bmatrix}1 \\ 0 \\ 0\end{bmatrix}\implies \mathbf{A_{:,1}}
 \space\space v_2=\begin{bmatrix}0 \\ 1 \\ 0\end{bmatrix} \implies \mathbf{A_{:,2}}
 $$
 The area enclosed between the 2 vectors is the _span_.
-![[Pasted image 20260225210147.png]]
+![Pasted image 20260225210147](Assets/Pasted%20image%2020260225210147.png)
 Example B: Rank Deficient (Rank 1)
 The second column is just the first column multiplied by 2. It adds no "new" direction.
 
@@ -295,7 +295,7 @@ _The span is just a 1D line, even though the matrix has two columns._
 $$v_1 = \begin{bmatrix}1 \\ 2 \\ 3\end{bmatrix}\implies \mathbf{B_{:,1}} (\text{speck of orange in the graph})
 \space\space v_2=\begin{bmatrix}2 \\ 4 \\ 6\end{bmatrix} \implies \mathbf{B_{:,2}}
 $$
-![[Pasted image 20260225210901.png]]
+![Pasted image 20260225210901](Assets/Pasted%20image%2020260225210901.png)
 
 # Inverse of matrix
 It can be calculated only if:
@@ -325,7 +325,7 @@ x_2
 3
 \end{bmatrix}
 $$
-Depending on the [[#Span of matrix|span]] of the columns of $\mathbf{A}$ , the system can have:
+Depending on the [span](#Span%20of%20matrix) of the columns of $\mathbf{A}$ , the system can have:
 1. **Exactly one solution:** The columns are linearly independent and cover the space where $\mathbf{b}$ lives. (Above example)
 2. **No solution:** $\mathbf{b}$ lies outside the span of the columns of $\mathbf{A}$.
 >[!example] Example
@@ -344,7 +344,7 @@ Another way: $x_1 = 1, x_2 = 1$.
  >
  Because you can "trade-off" between $x_1$ and $x_2$ without changing the direction, there are **infinitely many combinations** that work.
 ## Solving for exactly one solution
-If the matrix $\mathbf{A}$ is square and non-singular (all columns are [[#^e3fd32|linearly independent]]):
+If the matrix $\mathbf{A}$ is square and non-singular (all columns are [linearly independent](#^e3fd32)):
 $$
 \begin{aligned}
 \mathbf{Ax} &= \mathbf{b} \\
@@ -390,7 +390,7 @@ A square matrix A is orthogonal if:
 $$A^T A = AA^T = I \implies A^{-1} = A^T$$
 A orthogonal matrix satisfies two conditions:
 1. **Orthogonality:** Every column is perpendicular to every other column (their dot product is 0).
-2. **Normalization:** Every column has a length ([[#Norms|norm]]) of exactly 1.
+2. **Normalization:** Every column has a length ([norm](#Norms)) of exactly 1.
 
 Example: Consider this matrix $A$:
 
@@ -406,7 +406,7 @@ Orthogonal matrices are valued as they:
 > **Preserves length**
 > Given a vector $\mathbf{x}$ and a orthogonal matrix $Q$, we want to show that $\|Q\mathbf{x}\|^2 =\|\mathbf{x}\|^2$
 > 
->[[#^e5914d|Recall that ]]: $\|\mathbf{x}\|^2 = \mathbf{x}^T \mathbf{x}$. Therefore:
+>[Recall that ](#^e5914d): $\|\mathbf{x}\|^2 = \mathbf{x}^T \mathbf{x}$. Therefore:
 >$$\|Q\mathbf{x}\|^2 = (Q\mathbf{x})^T (Q\mathbf{x})$$
 >Using the property of transposes $(AB)^T = B^T A^T$:
 $$\|Q\mathbf{x}\|^2 = \mathbf{x}^T (Q^T Q) \mathbf{x}$$
@@ -416,7 +416,7 @@ $$\|Q\mathbf{x}\|^2 = \mathbf{x}^T I \mathbf{x} = \mathbf{x}^T \mathbf{x} = \|\m
 >**Preserves angle**
 >The angle between two vectors $\mathbf{x}$ and $\mathbf{y}$ is determined by their dot product. For an orthogonal matrix $Q$:
 $$(Q\mathbf{x}) \cdot (Q\mathbf{y}) = (Q\mathbf{x})^T (Q\mathbf{y})$$
-> ([[#Vector (Dot product)|Recall that]]: $\mathbf{x}\cdot\mathbf{y}=\mathbf{x}^\top\mathbf{y}$) 
+> ([Recall that](#Vector%20(Dot%20product)): $\mathbf{x}\cdot\mathbf{y}=\mathbf{x}^\top\mathbf{y}$) 
 > 
 >Using the property of transposes $(AB)^T = B^T A^T$:
 >$$\mathbf{x}^T Q^T Q \mathbf{y} = \mathbf{x}^T I \mathbf{y} = \mathbf{x}^T \mathbf{y}$$
@@ -511,7 +511,7 @@ The no of matrix multiplications has reduced from $k$ to 2.
 ## Finding eigenvalues
 $$A\mathbf{v} = \lambda\mathbf{v}\implies A\mathbf{v} -\lambda\mathbf{v} = 0 \implies (A - \lambda I)\mathbf{v} = 0$$
 To satisfy this equation: either $\mathbf{v} = 0$ or $A-\lambda I= 0$ . Therefore, to find a eigenvector, we must assume $A-\lambda I = 0$. 
-Since  $A-\lambda I = 0$ , this implies $\det(A-\lambda I) = 0$  ([[#Determinant of Matrix| A zero vector has zero area]])
+Since  $A-\lambda I = 0$ , this implies $\det(A-\lambda I) = 0$  ([ A zero vector has zero area](#Determinant%20of%20Matrix))
 So to find the value of $\lambda$ , we solve for $\det(A-\lambda I) = 0$
 
 >[!example] Example
@@ -521,7 +521,7 @@ So to find the value of $\lambda$ , we solve for $\det(A-\lambda I) = 0$
 >$$\lambda^2 - \lambda - 6 = 0 \implies (\lambda - 3)(\lambda + 2) = 0$$
 **Eigenvalues**: $\lambda_1 = 3, \lambda_2 = -2$.
 ## Finding eigenvectors
-After finding eigenvalues, we can substitute any $\lambda$ value in the equation: $(A - \lambda I)\mathbf{v} = 0$ and solve the resulting [[#System of linear equations]] to find the eigenvector.
+After finding eigenvalues, we can substitute any $\lambda$ value in the equation: $(A - \lambda I)\mathbf{v} = 0$ and solve the resulting [#System of linear equations](#System%20of%20linear%20equations) to find the eigenvector.
 
 >[!example] Example
 >Let $A = \begin{bmatrix} 2 & -4 \\ -1 & -1 \end{bmatrix}, \lambda_1 = 3, \lambda_2 = -2$
@@ -547,14 +547,14 @@ After finding eigenvalues, we can substitute any $\lambda$ value in the equation
 SVD decomposes an $m \times n$ matrix $A$ into three parts:
 $$A = U \Sigma V^T$$
 where,
-$U$ = $m\times m$ [[#Orthogonal Matrix]]. 
-	Its columns are [[#^0d4213|eigenvectors]] of $AA^T$ , also called **left singular vectors**.
+$U$ = $m\times m$ [#Orthogonal Matrix](#Orthogonal%20Matrix). 
+	Its columns are [eigenvectors](#^0d4213) of $AA^T$ , also called **left singular vectors**.
 	It represents a rotation in the _output_ space
-$\sum$ = $m\times n$ [[#Diagonal Matrix]] . 
-	The non-zero entries are the **square roots** of the [[#^0d4213|eigenvalues]] of $A^TA$.
+$\sum$ = $m\times n$ [#Diagonal Matrix](#Diagonal%20Matrix) . 
+	The non-zero entries are the **square roots** of the [eigenvalues](#^0d4213) of $A^TA$.
 	It represents a linear transform.
 $V^T$ = $n\times n$ orthogonal matrix.
-	Its columns are [[#^0d4213|eigenvectors]] of $A^TA$ , also called **right singular vectors**
+	Its columns are [eigenvectors](#^0d4213) of $A^TA$ , also called **right singular vectors**
 		It represents a rotation in the _input_ space
 
 ### **Understanding the formula**
@@ -564,7 +564,7 @@ A linear transform can stretch, compress or reflect a vector or shape, but it do
 
 Lets say we have a linear transform $A = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$ and a unit square defined by the vectors $x = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$ (horizontal) and $y = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$. 
 
-Using this [[#^a93b9a|notation]], we can say that:
+Using this [notation](#^a93b9a), we can say that:
 $$A\mathbf{x} = Ax + Ay = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}\begin{bmatrix} 1 \\ 0 \end{bmatrix} +\begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}\begin{bmatrix} 0 \\ 1 \end{bmatrix}$$
 $$=\begin{bmatrix} 1 \\ 0 \end{bmatrix} + \begin{bmatrix} 1 \\ 1 \end{bmatrix}$$
 As we can see from the answer as well as the image below: after transform, the $y$ component has changed to $\begin{bmatrix} 1 \\ 1 \end{bmatrix}$ which implies the new $y$ vector is **not independent** of the new $x$ vector.
@@ -574,7 +574,7 @@ understand exactly what "action" (compress / stretch / reflect) the transform $A
 
 |           Before transform           |           After transform            |
 | :----------------------------------: | :----------------------------------: |
-| ![[Pasted image 20260228165219.png]] | ![[Pasted image 20260228165358.png]] |
+| ![Pasted image 20260228165219](Assets/Pasted%20image%2020260228165219.png) | ![Pasted image 20260228165358](Assets/Pasted%20image%2020260228165358.png) |
 |                                      |                                      |
 To understand how SVD decomposes the matrix watch this [video](http://youtube.com/watch?v=vSczTbgc8Rc) 
 # Moore Penrose PseudoInverse

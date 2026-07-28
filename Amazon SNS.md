@@ -1,20 +1,20 @@
 #aws #cloud 
 # Prerequisite
-[[Amazon SQS]]
+[Amazon SQS](Amazon%20SQS.md)
 # Overview
 + Producer wants to send one message to many subscribers (pub/sub model)
 	+ Producer sends message to SNS topic.
 	+ Subscribers listen to SNS topic for new messages
 + Messages not persisted. Data is lost if not delivered
-+ Subscribers can be:![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851372.png]]
++ Subscribers can be:![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851372](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851372.png)
 + Producers can be:
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851372 (1).png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851372 (1)](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851372%20(1).png)
 # Encryption
 + Encryption in transit through HTTPS/SSL.
-+ Encryption at rest through KMS keys (SSE-SNS, SSE-KMS, similar to [[Amazon S3#Object Encryption|SSE-S3 and SSE-KMS]])
++ Encryption at rest through KMS keys (SSE-SNS, SSE-KMS, similar to [](Amazon%20S3.md#Object%20Encryption|SSE-S3%20and%20SSE-KMS))
 + Client side encryption/decryption needs to be done by client.
 # Security
-+ [[IAM]] policies and SNS access policies (similar to [[Amazon S3#Bucket policy|S3 bucket policies]]).
++ [IAM](IAM.md) policies and SNS access policies (similar to [](Amazon%20S3.md#Bucket%20policy|S3%20bucket%20policies)).
 	+ Can allow other AWS accounts and S3 services to write to a SNS topic.
 # SNS FIFO
 + Similar features to SQS FIFO
@@ -24,4 +24,4 @@
 + Limited throughput; 300 msg/s without batching, 3000 msg/s with batching
 # Message Filtering
 + A subscriber can specify a message filtering policy (JSON document).
-+ Only the messages which meet filter policy criteria are sent to the subscriber.![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_21437572.png]]
++ Only the messages which meet filter policy criteria are sent to the subscriber.![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_21437572](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_21437572.png)

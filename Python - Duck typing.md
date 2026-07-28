@@ -3,12 +3,12 @@ tags:
   - "#python"
 ---
 # What is Duck typing?
-Since Python is a dynamically typed language i.e. the type of an object can change at runtime and it has no type checking, it does not make sense to rely on the type of the object to determine if we are [[SOLID#**D**ependency Injection|programming to the correct interface]] .
+Since Python is a dynamically typed language i.e. the type of an object can change at runtime and it has no type checking, it does not make sense to rely on the type of the object to determine if we are [](SOLID.md#**D**ependency%20Injection|programming%20to%20the%20correct%20interface) .
 Instead, Python checks if a object has the required method signature. If it does, the operation is valid, else it throws an `AttributeError` ^b8a5eb
 
 >[!tldr] Duck typing allows you to treat objects of different types as the same general type.
 
-Lets understand this, in terms of the [[Strategy Pattern]]. In Java, you must explicitly define an interface. The client code will strictly demand an object that _is-a_ type of that interface.
+Lets understand this, in terms of the [Strategy Pattern](Strategy%20Pattern.md). In Java, you must explicitly define an interface. The client code will strictly demand an object that _is-a_ type of that interface.
 
 ```run-java
 
@@ -168,7 +168,7 @@ cart.checkout(300, pay_with_crypto)
 > 
 > >[!faq] How to overcome this?
 > 
-> 1. If the classes `Duck` and `Swan` were implementing a common interface through [[Python - Abstract Base Class|abstract base class]] , we can: 
+> 1. If the classes `Duck` and `Swan` were implementing a common interface through [abstract base class](Python%20-%20Abstract%20Base%20Class.md) , we can: 
 > 	1. do a `isinstance` check to confirm they are of the expected type.
 > 	2. Use static type checking (type hints) to identify incorrect behavior early.
 > 2. For this example, where `Duck` and `Swan` are independent classes, to confirm that an object is the expected general type we can check if the object has the required attributes/methods before proceeding.
@@ -242,7 +242,7 @@ cart.checkout(300, pay_with_crypto)
 >         raise NotImplementedError("drive() must be implemented")
 > ```
 > 
-> This would mean loosing the decoupling provided by duck typing that lets us avoid rigid type hierarchies. However, Python provides a workaround, to use abstract base classes but avoid type hierarchies via [[Python - Abstract Base Class#Virtual Subclasses|virtual subclasses]].
+> This would mean loosing the decoupling provided by duck typing that lets us avoid rigid type hierarchies. However, Python provides a workaround, to use abstract base classes but avoid type hierarchies via [](Python%20-%20Abstract%20Base%20Class.md#Virtual%20Subclasses|virtual%20subclasses).
 > # Using Protocols (Recommended)
 > ```run-python
 > from typing import Protocol

@@ -1,13 +1,13 @@
 #system-design #lld #design-patterns #java
 # Prerequisite
-[[Factory Method Pattern]]
+[Factory Method Pattern](Factory%20Method%20Pattern.md)
 # Definition
 The Abstract Factory Pattern provides an interface for creating families of related or dependent objects without creating a dependency on their concrete classes.
 # Need for Abstract Factory Pattern
 Continuing with the `PizzaStore` example, we know each of its subclasses `NYStylePizzaStore` and `ChicagoStylePizzaStore` prepares the same pizza say _Clam Pizza_ differently (`NYStyleClamPizza` and `ChicagostyleClamPizza`).
 
 Naturally, both pizzas are prepared using the same basic components: _dough_, _sauce_, _toppings_ and _cheese_ but different ingredients.
-![[Pasted image 20250929181241.png]]
+![Pasted image 20250929181241](Assets/Pasted%20image%2020250929181241.png)
 We want each store to use its own set of ingredients but we don't want the ingredients to be tightly coupled with the creation of `Pizza`.
 
 In Factory Method Pattern, we created a factory to instantiate different `Pizza` subtypes, however here we have to create multiple _ingredient types_ in a concrete factory : dough, sauce, cheese and toppings.
@@ -85,7 +85,7 @@ public class CheesePizza extends Pizza {
 ```
 
 >[!note]
->Since `CheesePizza`  (a low level abstraction) depends on  `PizzaIngredientFactory` (a high level abstraction), this does not violate [[SOLID#**D**ependency Injection|Dependency Inversion Principle]].
+>Since `CheesePizza`  (a low level abstraction) depends on  `PizzaIngredientFactory` (a high level abstraction), this does not violate [](SOLID.md#**D**ependency%20Injection|Dependency%20Inversion%20Principle).
 
 We need to pass an instance of `PizzaIngredientFactory` to `CheesePizza` , which means we need to make changes to concrete classes of `PizzaStore`.
 
@@ -95,7 +95,7 @@ public class NYStylePizzaStore extends PizzaStore {
 	
 	public NYStylePizzaStore(PizzaIngredientFactory ingredientFactory) {
 		this.ingredientFactory = ingredientFactory;
-	} //[[Core Principles#**Constructor injection**|Constructor Injection]] 
+	} //[](Core%20Principles.md#**Constructor%20injection**|Constructor%20Injection) 
 	
 	public Pizza createPizza(String type){
 		Pizza pizza = null; 
@@ -119,8 +119,8 @@ public class NYStylePizzaStore extends PizzaStore {
 }
 ```
 
-Adding new variants of existing families is easy (ex: `CheeseBurstDough`), just create a new subclass that extends required interface (`Dough`). [[SOLID#**O**pen for extension, closed for modification|Open/closed principle]] is preserved.
+Adding new variants of existing families is easy (ex: `CheeseBurstDough`), just create a new subclass that extends required interface (`Dough`). [](SOLID.md#**O**pen%20for%20extension,%20closed%20for%20modification|Open/closed%20principle) is preserved.
 # UML Class Diagram
-![[Screenshot 2025-09-29 at 7.33.21 PM.png]]
+![Screenshot 2025-09-29 at 7.33.21 PM](Assets/Screenshot%202025-09-29%20at%207.33.21%20PM.png)
 # Reference
 Head First Design Patterns

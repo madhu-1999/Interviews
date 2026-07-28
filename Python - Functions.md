@@ -8,7 +8,7 @@ def add(a:int, b:int) -> int:
 	return a+b
 ```
 
->[!info] In Python, everything except [[Python - Exceptions|exceptions]] are objects. i.e. functions are also objects.
+>[!info] In Python, everything except [exceptions](Python%20-%20Exceptions.md) are objects. i.e. functions are also objects.
 
 Occasionally, you may want to define a function that does nothing. This is referred to as a **stub**, which is usually a temporary placeholder for a Python function that will be fully implemented at a later time.
 ```python
@@ -16,7 +16,7 @@ def function():
 	pass
 ```
 
->[!important] Variables defined in a function are [[Python - Variable Scopes#Local|local]] in scope.
+>[!important] Variables defined in a function are [](Python%20-%20Variable%20Scopes.md#Local|local) in scope.
 >
 # Returning values
 ## Return nothing
@@ -30,7 +30,7 @@ def add(a:int, b:int) -> int:
 ```
 ## Return multiple values
 
->[!info] When multiple values are returned, they are automatically enclosed in a [[Python - Tuples|tuple]].
+>[!info] When multiple values are returned, they are automatically enclosed in a [tuple](Python%20-%20Tuples.md).
 
 ```run-python
 def get_user_profile():
@@ -44,7 +44,7 @@ user_name, user_age, user_role = get_user_profile()
 print(user_name)  # Output: Alice
 ```
 
-When returning more than 2 or 3 values, positional tuples can become confusing. Returning a [[Python - Dictionary|dictionary]] / named tuple #cite  / object instead, provides explicit key names
+When returning more than 2 or 3 values, positional tuples can become confusing. Returning a [dictionary](Python%20-%20Dictionary.md) / named tuple #cite  / object instead, provides explicit key names
 ```run-python
 def calculate_metrics(numbers):
     return {
@@ -151,7 +151,7 @@ When we create `greet(name)` it hides the function `greet()`.
 
 >[!faq] How does Python support method overloading?
 
-+ [*] Method overloading is supported by the flexibility provided by [[#Keyword Parameter|keyword]], [[#Default Parameter|default]] and [[#Variable length arguments|variable length arguments]]. Unlike statically typed languages, we have a single method signature but we can pass a varying number of arguments to the function.
++ [*] Method overloading is supported by the flexibility provided by [keyword](#Keyword%20Parameter), [default](#Default%20Parameter) and [variable length arguments](#Variable%20length%20arguments). Unlike statically typed languages, we have a single method signature but we can pass a varying number of arguments to the function.
 + [*] By using the `multipledispatch` library (3rd party), we can mimic method overloading, as done in statically typed languages i.e. Python will enforce type and number of arguments.
 ```python
 from multipledispatch import dispatch  
@@ -203,8 +203,8 @@ nums = [1, 2, 3]
 augment_twice(nums, 4)  
 print(nums)         # [1, 2, 3, 4, 4]
 ```
-Before appending to a_list:![[Screenshot 2025-04-26 at 2.38.29 PM.png]]
-After appending: ![[Screenshot 2025-04-26 at 2.40.26 PM.png]]
+Before appending to a_list:![Screenshot 2025-04-26 at 2.38.29 PM](Assets/Screenshot%202025-04-26%20at%202.38.29%20PM.png)
+After appending: ![Screenshot 2025-04-26 at 2.40.26 PM](Assets/Screenshot%202025-04-26%20at%202.40.26%20PM.png)
 + Here is an example where list does not mutate on appending to list
 ```python
 def augment_twice_bad(a_list, val):  
@@ -215,14 +215,14 @@ nums = [1, 2, 3]
 augment_twice_bad(nums, 4)  
 print(nums)         # [1, 2, 3]
 ```
-Before appending: ![[Screenshot 2025-04-26 at 2.43.06 PM 1.png]]
-After appending![[Screenshot 2025-04-26 at 2.44.15 PM.png]]
-# [[Python - Generators| Generator Functions]]
+Before appending: ![Screenshot 2025-04-26 at 2.43.06 PM 1](Assets/Screenshot%202025-04-26%20at%202.43.06%20PM%201.png)
+After appending![Screenshot 2025-04-26 at 2.44.15 PM](Assets/Screenshot%202025-04-26%20at%202.44.15%20PM.png)
+# [ Generator Functions](Python%20-%20Generators)
 # Lambda Functions
 They are anonymous functions (i.e. no function name) with some limitations:
 + A lambda function ___CANNOT___ contains statements like `pass` , `return` , `raise`.
 + It defines a __single expression__ in its body, unlike Java which allows multiline lambdas.
->[!info] Lambdas support use of different [[#Parameter Types]] .
+>[!info] Lambdas support use of different [#Parameter Types](#Parameter%20Types) .
 ## Use cases
 ### With `map()` / `filter()` / `reduce`
 ```run-python
@@ -244,7 +244,7 @@ print(sorted(ids, key=lambda x: x[2:]))
 ## Advantages
 + [p] They __eliminate the boilerplate code__ of defining a full function for a minor, one-off task.
 + [p] You can inject logic directly inside higher-order function arguments, such as `map()`, `filter()`, or `sorted()` ( `key` param) without polluting your local namespace with throw-away function names.
-+ [p] They can remember and access variables from their [[Python - Variable Scopes#Enclosing|enclosing scope]].
++ [p] They can remember and access variables from their [](Python%20-%20Variable%20Scopes.md#Enclosing|enclosing%20scope).
 ```run-python
 pairs = [(1, 'one'), (2, 'two'), (3, 'three')]
 pairs.sort(key=lambda pair: pair[1]) 
@@ -256,7 +256,7 @@ print(pairs) # O/P: [(1, 'one'), (3, 'three'), (2, 'two')]
 + [c] Because they are anonymous, any error raised inside a lambda displays as `<lambda>` in the stack trace, making __debugging significantly harder__ than identifying a clearly named standard function.
 + [c] Cannot attach docstrings, type hints, or annotations to a lambda expression, limiting the ability to document the code cleanly.
 # Inner Functions
-We can define a function within another function. This type of function can access names defined in the [[Python - Variable Scopes#Enclosing|enclosing scope]].
+We can define a function within another function. This type of function can access names defined in the [](Python%20-%20Variable%20Scopes.md#Enclosing|enclosing%20scope).
 + [!] They can only be called within the outer function.
 ## Use cases
 ### Encapsulation
@@ -324,7 +324,7 @@ print(square(4))  # 16 (remembers exponent=2)
 print(cube(4))    # 64 (remembers exponent=3)
 ```
 ## Building Decorators
-[[Decorator Pattern|Decorators]] are functions that take another function as an argument and extend its behavior without modifying the original code. They heavily rely on inner functions to wrap the original callable and unpack arguments
+[Decorators](Decorator%20Pattern.md) are functions that take another function as an argument and extend its behavior without modifying the original code. They heavily rely on inner functions to wrap the original callable and unpack arguments
 ```run-python
 def debug(func):
     def _debug(*args, **kwargs):

@@ -22,8 +22,8 @@
 	+ **ID Token**: Authenticates the user with claims like name and email.
 	- **Access Token**: Grants access to authorized API operations and scopes.
 	- **Refresh Token**: Used to retrieve new ID and access tokens when they expire.
-- Pricing based on Monthly Active Users.![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19731918.png]]
-## [[AWS Lambda]] Triggers
+- Pricing based on Monthly Active Users.![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19731918](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19731918.png)
+## [AWS Lambda](AWS%20Lambda.md) Triggers
 + Hooks that allow developers to run custom code at various lifecycle stages:
 
 | User Pool Flow | Trigger Operation                                                                                                            | Purpose in 2025                                                           |
@@ -43,15 +43,15 @@
 + Flags risks when a user signs in from two locations that are geographically too far apart for travel within the time elapsed.
 + Checks passwords at sign-up, sign-in, or password reset against databases of leaked credentials from public data breaches.
 + Evaluates risk scores for every sign-in based on device fingerprints, IP reputation, and geolocation. It can automatically block suspicious sessions or force a second MFA check.
-+ All sign in and sign up attempts are logged to [[AWS CloudWatch]] logs
++ All sign in and sign up attempts are logged to [AWS CloudWatch](AWS%20CloudWatch.md) logs
 + Integrate with **AWS WAF Web ACLs** directly with user pool app clients to protect against volumetric attacks, SQL injection, and unauthorized bot activity.
 + Enforce password complexity rules (length, symbols, numbers) and **password history** (preventing reuse of up to 24 previous passwords.
 + Data is encrypted at rest by default.
 + Cognito provides __managed auth UI__ which can be customized with own logo and CSS to handle sign in and sign ups.
 	+ Can customize domain, but no matter where domain exists, must create a ACM certificate in us-east-1.
-# [[Amazon ELB]] Integration
+# [Amazon ELB](Amazon%20ELB.md) Integration
 + Can offload authentication responsibility to Load Balancer (ALB).
-+ Must use __HTTPS__ listener to set _authenticate-oidc_ and _authenticate-cognito_ rules![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_36527558.png]]
++ Must use __HTTPS__ listener to set _authenticate-oidc_ and _authenticate-cognito_ rules![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_36527558](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_36527558.png)
 # Identity Pools
 + Grant users temporary AWS credentials to access AWS resources from a client application.( Ex: uploading a file to S3 or reading from a DynamoDB table).
 + They take a identity token and return a temporary IAM role.
@@ -59,7 +59,7 @@
 	+ Client sends Identity Pool user identity token.
 	+ Identity pool verifies the token and returns temporary credentials via AWS STS (Access key, Secret Key, Session Token)
 + Limited access to services can be granted to __unauthenticated guests__.
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19731966.png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19731966](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19731966.png)
 + For an IAM role to work with an Identity Pool, it must have a **Trust Policy** that allows the Cognito Identity service to assume the role.
 	+ Default IAM roles for Authenticated and Unauthenticated users.
 	+ Can partition user access through policy variables.

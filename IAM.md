@@ -11,8 +11,8 @@ hideWhenEmpty: false # Hide TOC if no headings are found
 debugInConsole: false # Print debug info in Obsidian console
 ```
 # Prerequisite
-[[Authorization]]
-[[Authentication]]
+[Authorization](Authorization.md)
+[Authentication](Authentication.md)
 # What is IAM?
 + Identity and access Management (IAM) is a tool to manage access and type of access to resources.
 + It is a **global** service i.e. not region specific. When an IAM user is created, it is available everywhere. This is in contrast to other AWS services like EC2 where region has to be specified.
@@ -35,7 +35,7 @@ debugInConsole: false # Print debug info in Obsidian console
 + Need to define two main things:
 ## Trust Policies
 + Defines who can assume the role.
-+ For example, you might create a trust policy that allows an [[Amazon Elastic Compute Cloud (AWS EC2)|EC2 instance]] or an [[AWS Lambda]] function to assume the role.
++ For example, you might create a trust policy that allows an [EC2 instance](Amazon%20Elastic%20Compute%20Cloud%20(AWS%20EC2).md) or an [AWS Lambda](AWS%20Lambda.md) function to assume the role.
 ```json
 {
 	"Version": "2012-10-17",
@@ -55,7 +55,7 @@ debugInConsole: false # Print debug info in Obsidian console
 }
 ```
 ## Permission Policies
-+ Defines the actions that are allowed or denied when role is assumed. Same as [[#Policy]].
++ Defines the actions that are allowed or denied when role is assumed. Same as [#Policy](#Policy).
 ## Things to note
 >[!example]
 >Suppose you have an application running on an EC2 instance that needs to read from an S3 bucket. 
@@ -109,7 +109,7 @@ debugInConsole: false # Print debug info in Obsidian console
 + Can be tricky to manage, so less preferred.
 # Authentication in IAM
 ## Password policy
-+ Can specify requirements for [[IAM#User|IAM User's]] password, like:
++ Can specify requirements for [](.md#User|IAM%20User's) password, like:
 	+ Include uppercase letters
 	+ lowercase letters
 	+ numbers
@@ -152,7 +152,7 @@ debugInConsole: false # Print debug info in Obsidian console
 	+ Password last used
 	+ Password last changed
 	+ MFA active
-	+ [[Interacting with AWS Services|Access Keys]] generated
+	+ [Access Keys](Interacting%20with%20AWS%20Services.md) generated
 	+ Last use of access keys
 	+ Creation date of access keys
 	+ Certificates
@@ -167,8 +167,8 @@ debugInConsole: false # Print debug info in Obsidian console
 + Create a strong password policy
 + Enforce use of MFA
 + Use roles to give permissions to AWS services
-+ Use access keys for programmatic access ([[Interacting with AWS Services|CLI/SDK]])
-+ Audit permissions of account using [[#IAM Credentials Report]] and [[#IAM Last Access]].
++ Use access keys for programmatic access ([CLI/SDK](Interacting%20with%20AWS%20Services.md))
++ Audit permissions of account using [#IAM Credentials Report](#IAM%20Credentials%20Report) and [#IAM Last Access](#IAM%20Last%20Access).
 + Never share IAM users and access keys
 # Shared Responsibility Model for IAM
 # AWS Responsibility
@@ -191,7 +191,7 @@ debugInConsole: false # Print debug info in Obsidian console
 ## APIs
 `AssumeRole` : Assume roles within account or cross account
 `AssumeRoleWithSAML`: SSO for users authenticating with SAML.
-`AssumeRoleWithWebIdentity`: SSO for third party IDPs. (Use [[Amazon Cognito]] instead) 
+`AssumeRoleWithWebIdentity`: SSO for third party IDPs. (Use [Amazon Cognito](Amazon%20Cognito.md) instead) 
 `GetSessionToken`: MFA token for user.
 `GetFederationToken`: get credentials for federated user
 `GetCallerIdentity`: Get details of IAM user or role used in the API call.

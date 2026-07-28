@@ -7,8 +7,8 @@ tags:
 + [i] __Ordered__ by insertion order
 + [i]  __Immutable__
 + [i] They can store objects of different types.
-+ [i] __[[Python - Iterable and Iterators|Iterable]]__ 
-+ [i] Hashable ( They can be used as keys for a [[Python - Dictionary|dictionary]])
++ [i] __[Iterable](Python%20-%20Iterable%20and%20Iterators.md)__ 
++ [i] Hashable ( They can be used as keys for a [dictionary](Python%20-%20Dictionary.md))
 # Creating tuples
 >[!warning] A tuple of one element requires a trailing comma to be created
 >```run-python
@@ -106,7 +106,7 @@ point = (7, 14, 21)
 del point[2]
 ```
 
-+ [*] If the tuple stores mutable objects (ex: [[Python - List|list]]) then, the object ==reference cannot be changed== but its ==contents can be changed==.
++ [*] If the tuple stores mutable objects (ex: [list](Python%20-%20List.md)) then, the object ==reference cannot be changed== but its ==contents can be changed==.
 	+ [!] Tuples with mutable objects are not hashable. i.e they cannot be used as dictionary keys. 
 ```run-python
 student_info = ("Linda", 18, ["Math", "Physics", "History"])
@@ -157,7 +157,7 @@ print(tuple(reversed(digits))) # O/P: (9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
 # It does not mutate the original list
 print(digits) # O/P: (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
 ```
-## [[#Slicing]]
+## [#Slicing](#Slicing)
 ```run-python
 # We can also reverse a tuple using slicing
 digits = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)

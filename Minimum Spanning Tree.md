@@ -12,8 +12,8 @@ A spanning tree that has the **minimum** weight among all the possible spanning 
 1. A graph can have multiple MSTs if some edge weights in the graph are same.![MSTdrawio](https://media.geeksforgeeks.org/wp-content/uploads/20231003111632/MSTdrawio.png)
 2. If all edge weights in a graph are distinct, there can be only one MST.
 # Finding MST of a graph
-1. [[Krushkals MST algorithm]]
-2. [[Prims MST algorithm]]
+1. [Krushkals MST algorithm](Krushkals%20MST%20algorithm.md)
+2. [Prims MST algorithm](Prims%20MST%20algorithm.md)
 # Applications
 1. Used in social network analysis to find relationships between individuals or groups.
 2. Used in network design to find minimum cost of connections needed to connect all nodes.

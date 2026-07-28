@@ -96,7 +96,7 @@ This process reads directly from database transaction logs such as MySQL binlog,
 	_Limitation_: Requires specialized software or database features to capture changes.
 	_Advantage_: Because it works at the database level instead of querying live tables, it minimizes impact on production systems while still capturing all inserts, updates and deletes in real time.
 ### __Trigger based CDC__
-[[Triggers|Database triggers]] can be created on source tables. These triggers write details about the changes (what changed, what the new/old values are) into separate _change tables_. The ETL process then extracts data from these change tables.
+[Database triggers](Triggers.md) can be created on source tables. These triggers write details about the changes (what changed, what the new/old values are) into separate _change tables_. The ETL process then extracts data from these change tables.
 	_Limitation_: Triggers add overhead to the source database transactions, potentially impacting application performance. They also require careful management.
 	_Advantage_: It offers precise control and can include custom logic or transformations, which can be useful for regulated workloads
 ### **Query-based CDC**
@@ -114,7 +114,7 @@ Instead of writing these events to a target table immediately, Debezium publishe
 	 Every `INSERT`, `UPDATE`, and `DELETE` is captured as a new row in a stream.
 	 An `UPDATE` to a user's address appears as a new record with a `version_2` or a `timestamp` higher than the previous one.
 	 Such an append-only pattern is preferred since updates are frequent. (Most columnar formats rely on __immutability__ => updates are costly).
- ![[Pasted image 20260505154927.png]]
+ ![Pasted image 20260505154927](Assets/Pasted%20image%2020260505154927.png)
 ## Further Reading
  https://medium.com/@richardzgyao/real-world-tips-for-building-custom-cdc-data-pipelines-7c50e42142b2
 # Handling Extraction Errors

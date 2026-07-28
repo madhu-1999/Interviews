@@ -4,10 +4,10 @@ tags:
   - "#oop"
 ---
 # Prerequisite
-[[Python - Classes and Objects]]
-[[Python - Functions]]
+[Python - Classes and Objects](Python%20-%20Classes%20and%20Objects.md)
+[Python - Functions](Python%20-%20Functions.md)
 # Overview
-It is a special kind of attribute that allows you to add function-like behavior (like data validation, logging, or caching) on top of regular [[Python - Classes and Objects#Instance Attributes|instance attributes]].
+It is a special kind of attribute that allows you to add function-like behavior (like data validation, logging, or caching) on top of regular [](Python%20-%20Classes%20and%20Objects.md#Instance%20Attributes|instance%20attributes).
 + [p] **Encapsulation & Validation:** You can shield the internal state of your object (stored in the non-public `_radius`) and protect it against invalid data or corruption.
 - [p] **Computed Attributes:** You can create properties like `area` that are calculated dynamically on demand, ensuring the value is never stale or out of sync.    
 - [p] **Backward Compatibility:** If you start with a simple public attribute like `self.radius = 10` and realize months later that you need to add validation, you can turn it into a `@property`. **None of the existing code using your class will break**, because the calling syntax remains exactly the same
@@ -224,7 +224,7 @@ class Circle:
     def area(self):
         return 3.14159 * (self.radius ** 2)
 ```
-## Enforcing [[#Read-only properties|read-only]] or [[#Write-Only Properties|write only]] attributes
+## Enforcing [read-only](#Read-only%20properties) or [write only](#Write-Only%20Properties) attributes
 ```python
 class SystemStatus:
     def __init__(self, build_version):

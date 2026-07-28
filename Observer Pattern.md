@@ -10,7 +10,7 @@ It is used when we some functionality in our application needs a publisher-subsc
 Consider that you want to create a weather application that gets data such as _temperature, pressure_ and _humidity_ from a weather station. 
 The application has 3 displays, _current conditions_, _weather stats_ and _forecast_, which must be updated whenever weather measurements taken by the weather station changes.(`measurementsChanged()`)
 The system must be extensible so that we can add/remove displays with ease.
-![[Pasted image 20250930151657.png]]
+![Pasted image 20250930151657](Assets/Pasted%20image%2020250930151657.png)
 # Observer Pattern
 >[!note]
 >Publishers are called **subjects** and subscribers are called **observers** in this pattern.
@@ -83,7 +83,7 @@ public class CurrentConditionsDisplay implements Observer {
 	private float humidity;
 	private Subject weatherData; // can be used to unsubscribe too
 	
-	//[[Core Principles#**Constructor injection**|Constructor injection]]
+	//[](Core%20Principles.md#**Constructor%20injection**|Constructor%20injection)
 	public CurrentConditionsDisplay(Subject weatherData) {
 		this.weatherData = weatherData;
 		weatherData.registerObserver(this);
@@ -107,10 +107,10 @@ public class CurrentConditionsDisplay implements Observer {
 + Since `Observable` is a class, it must be subclassed to create a concrete subject.
 	+ Concrete Subject cannot extend any other class, which limits flexibility.
 	+ Since a `Observable` interface does not exist, we cannot create custom implementation which can be used with `java.util.Observer` interface.
-	+ Since `setChanged()` method is _protected_, we cannot [[Composition|compose]] an instance of `Observable` with our own class to create a custom implementation, since _protected_ methods can only be accessed by the class itself and its subclasses.
+	+ Since `setChanged()` method is _protected_, we cannot [compose](Composition.md) an instance of `Observable` with our own class to create a custom implementation, since _protected_ methods can only be accessed by the class itself and its subclasses.
 + 
 # UML Class Diagram
-![[Screenshot 2025-02-20 at 5.23.50 PM.png]]
+![Screenshot 2025-02-20 at 5.23.50 PM](Assets/Screenshot%202025-02-20%20at%205.23.50%20PM.png)
 # Advantages
 + `Subject` and `Observer` are both loosely coupled. `Subject` is unaware of what the concrete Observer does, or wants.
 + We can add new observers at any time, no need to modify `Subject` .

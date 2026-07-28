@@ -66,7 +66,7 @@ To read a single bit, we would have to fetch the byte and use bit masking to fil
 
 Now, a system might have multiple boolean (properties on a object / boolean value columns in a table), say for example a user might have `isBetaTester`, `hasDarkTheme`, `emailVerified`, `notificationsEnabled`, `marketingOptIn`, etc.
 If you have millions of users or thousands of entities, there would be a lot of storage space wasted on representing boolean values separately (1 bool = 1 byte). 
-To save space, we can use [[Parquet#Bit Packing|bit packing]] to group multiple boolean values together. (1 bool = 1 bit).[^2]
+To save space, we can use [](Parquet.md#Bit%20Packing|bit%20packing) to group multiple boolean values together. (1 bool = 1 bit).[^2]
 # Enum
 To efficiently represent, ==a combination of enum values==, we use _flag enums_.
 Each enum constant, is represented by a bit (power of 2), so a combination of enum values is represented by bit packing boolean values ($1 \implies \text{enum value exists }, 0 \implies \text{enum value doesn't exist}$).

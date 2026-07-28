@@ -1,28 +1,28 @@
 #aws #cloud 
 # Prerequisite
-[[Scaling#Load Balancer|Load Balancer]]
+[](Scaling.md#Load%20Balancer|Load%20Balancer)
 # Overview
 + Elastic Load Balancer
-+ [[Storage in AWS#Managed Services|Managed Service]]. 
++ [](Storage%20in%20AWS.md#Managed%20Services|Managed%20Service). 
 	+ AWS responsible for upgrade, maintenance of underlying infrastructure and high availability
 	+ Customer responsible for setting security rules, configuration of load balancers & auth.
-+ As the number of [[Amazon Elastic Compute Cloud (AWS EC2)|EC2]] instances fluctuates in response to traffic demands, incoming requests are first directed to the load balancer. From there, the traffic is distributed evenly across the available instances.
-+ Serves as the single point of contact for all incoming web traffic to an [[Amazon Elastic Compute Cloud (AWS EC2)#Auto Scaling Group (ASG)|Auto Scaling group]].
++ As the number of [EC2](Amazon%20Elastic%20Compute%20Cloud%20(AWS%20EC2).md) instances fluctuates in response to traffic demands, incoming requests are first directed to the load balancer. From there, the traffic is distributed evenly across the available instances.
++ Serves as the single point of contact for all incoming web traffic to an [](Amazon%20Elastic%20Compute%20Cloud%20(AWS%20EC2).md#Auto%20Scaling%20Group%20(ASG)|Auto%20Scaling%20group).
 + **Decouples** front-end and backend tiers and reduces manual synchronization.
 + Provides SSL termination (HTTPS) for websites.
 + Can be setup as internal (private) or external (public) ELB's. 
 + Each ELB has a **static DNS name**, which clients can use to send traffic to.
-	+ Even in multi-AZ setup, there is only one static DNS name. The DNS name resolves to the IP addresses of all the ELB nodes in the set. ^[[Amazon Route 53]]
-+ Operates within a [[AWS Global Infrastructure|region]] but only provisions nodes in AZ's that are enabled.
+	+ Even in multi-AZ setup, there is only one static DNS name. The DNS name resolves to the IP addresses of all the ELB nodes in the set. ^[Amazon Route 53](Amazon%20Route%2053.md)
++ Operates within a [region](AWS%20Global%20Infrastructure.md) but only provisions nodes in AZ's that are enabled.
 	+ Load balancing done only for instances in target group that are in AZ's where ELB is enabled.
 + Monitors health of targets. If target becomes unhealthy, traffic is not sent its way. If an AZ fails or has no healthy targets, traffic is routed to healthy targets in other enabled AZ's.
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851240.png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851240](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851240.png)
 # Listener
 + A listener is configured with 
 	+ a frontend protocol and port (client-to-load-balancer) 
 	+ a backend protocol and port (load-balancer-to-target)
 + Ex:  HTTPS listener on port 443 that forwards traffic to target group using HTTP on port 80.
-+ Listener rules determine which traffic is routed to which [[#Target Groups|target group]].
++ Listener rules determine which traffic is routed to which [target group](#Target%20Groups).
 	+ Each rule has conditions, priority and actions.
 + Every listener has a default action that is performed if no condition is met. Ex: forward traffic to a specific target group.
 + Can specify one of 3 actions for a rule:
@@ -37,7 +37,7 @@
 		+ `instance` : specified by instance id
 		+ `ip` : target is IP address (cannot use public ip). 
 		+ `lambda` : target is a lambda function.
-+ A [[#Listener|listener rule]] is used to evaluate incoming traffic and forward it to a designated target group if its conditions are met.
++ A [listener rule](#Listener) is used to evaluate incoming traffic and forward it to a designated target group if its conditions are met.
 	+ When you create a listener rule, you specify a target group and conditions.
 + Can register a target with multiple target groups.
 + Can configure health checks on a target group basis. 
@@ -75,9 +75,9 @@ AWS provides 4 types:
 + Uses **listeners** and **rules** to route requests to **target groups**.
 	+ can define rules based on the request's path (e.g., `/app1` or `/app2`), host header, or other information.
 	+ The path pattern rules apply only to the URL path and not to the query parameters of the URL.
-+ Can register EC2 instances, [[Amazon ECS|ECS tasks]] (`ip`) and lambda functions as targets.
++ Can register EC2 instances, [ECS tasks](Amazon%20ECS.md) (`ip`) and lambda functions as targets.
 + Targets don't see IP of client directly, it is in `X-Forwarded-For` header.
-+ Can route requests to ports on one or more requested targets in [[Amazon VPC|VPC]].
++ Can route requests to ports on one or more requested targets in [VPC](Amazon%20VPC.md).
 	+ Can register the same target (such as an EC2 instance) with a target group multiple times, using a different port each time.
 	+ This means we can run multiple applications or microservices on different ports on a single EC2 instance.
 	+ Ex: configure a listener on front-end port `80` with two rules:
@@ -97,22 +97,22 @@ AWS provides 4 types:
 + New generation
 + Operates in Layer 3 (IP).
 + Facilitate the deployment, scaling, and management of a fleet of virtual network appliances (such as firewalls, intrusion detection systems, and deep packet inspection systems).
-+ Traffic is routed as is by the GWLB to the target group containing security appliances. The security appliances then analyze the request to determine if it is compliant/safe, and if safe, returns it to the GWLB to route it to its destination.![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_28875086.png]]
++ Traffic is routed as is by the GWLB to the target group containing security appliances. The security appliances then analyze the request to determine if it is compliant/safe, and if safe, returns it to the GWLB to route it to its destination.![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_28875086](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_28875086.png)
 # Cross-Zone Load Balancing
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19733688.png]]
-+ [[#Application Load Balancer|ALB]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19733688](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19733688.png)
++ [ALB](#Application%20Load%20Balancer)
 	+ Enabled by default
 	+ No charges for inter-AZ data
-+ [[#Network Load Balancer|NLB]] and [[#Gateway Load Balancer|GWLB]]
++ [NLB](#Network%20Load%20Balancer) and [GWLB](#Gateway%20Load%20Balancer)
 	+ Disabled by default
 	+ Charges for inter-AZ data
-+ [[#Classic Load Balancer (Deprecated)|CLB]]
++ [CLB](#Classic%20Load%20Balancer%20(Deprecated))
 	+ Disabled by default
 	+ No charges for inter AZ data
 # Server Name Indication (SNI)
-Read [[SSL & TLS]] before continuing.
+Read [SSL & TLS](SSL%20&%20TLS.md) before continuing.
 + Allows ELB to securely host multiple websites with different TLS/SSL certificates on same address and port.
-+ Works with [[#Application Load Balancer|ALB]] and [[#Network Load Balancer|NLB]].
++ Works with [ALB](#Application%20Load%20Balancer) and [NLB](#Network%20Load%20Balancer).
 ## How they work together
 + An ELB acts as a single point of contact for multiple web servers, distributing incoming traffic across them. With SNI, it also handles certificate management.
 + All certificates are stored in Amazon Certificate Manager (ACM).
@@ -123,7 +123,7 @@ Here is the process:
 # Sticky sessions
 + Allows load balancer to bind a user session to a specific target in a target group.
 + On enabling, routing algorithm is used to select initial target, then future requests are automatically forwarded to same target.
-+ Works for [[#Classic Load Balancer (Deprecated)|CLB]], [[#Application Load Balancer|ALB]] and [[#Network Load Balancer|NLB]].
++ Works for [CLB](#Classic%20Load%20Balancer%20(Deprecated)), [ALB](#Application%20Load%20Balancer) and [NLB](#Network%20Load%20Balancer).
 + Cookie is used to enforce stickiness and has an expiration date you control
 + Used when user should not lose session data.
 + May bring imbalance to load distribution.
@@ -147,9 +147,9 @@ Here is the process:
 + ELB health checks can be passed to ASG, which can terminate instances deemed unhealthy by the load balancer.
 ## How they work together
 **Low-demand period**: 
-![[ELB_LowDemand.png]]
-**High-demand period**: ASG scales up to meet demand.![[ELB_HighDemand.png]]
-**Load Balancing**: directs the incoming traffic evenly to different web servers based on their current load.![[ELB_Traffic.png]]
+![ELB_LowDemand](Assets/ELB_LowDemand.png)
+**High-demand period**: ASG scales up to meet demand.![ELB_HighDemand](Assets/ELB_HighDemand.png)
+**Load Balancing**: directs the incoming traffic evenly to different web servers based on their current load.![ELB_Traffic](Assets/ELB_Traffic.png)
 # Connection draining
 + Also called deregistration delay.
 + Mechanism to allow a instance to shut down gracefully without abruptly terminating active user connections.
@@ -160,16 +160,16 @@ Here is the process:
 	+ Draining timeout is configurable between 1 and 3600 seconds. Default 300. 
 4. **Forcibly close remaining connections**: If the draining timeout expires and any requests are still in progress, the load balancer will forcibly terminate those connections.
 5. **Remove instance**: After all active requests are completed or the timeout is reached, the instance is completely removed from the backend pool and can be safely terminated.
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19733714.png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19733714](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19733714.png)
 # Steps to create ELB
-1. Choose [[#Load Balancer Types|load balancer type]]
+1. Choose [load balancer type](#Load%20Balancer%20Types)
 2. Choose scheme
 	1. Internet-facing/public: Route traffic from clients over the internet to targets. Requires a public subnet.
 	2. Internal/private: Route traffic from client to target using private IP addresses.
 3. Choose IP address type: IPv4 or Dualstack (IPv4 and IPv6 addresses)
-4. Select [[Amazon VPC|VPC]] and AZ's
+4. Select [VPC](Amazon%20VPC.md) and AZ's
 5. Assign security group
-6. Create [[#Listener|listeners]] : specify protocol, port and default action.
+6. Create [listeners](#Listener) : specify protocol, port and default action.
 	1. After creation, can specify rules in created ELB's listener tab.
 # Workflow recap
 1. A user's browser sends a secure request to the static DNS of the **ELB**. It includes an SNI extension specifying hostname of target website.

@@ -47,7 +47,7 @@ class ReportGenerator{
 }
 ```
 If we now, want to generate a report for Orders, then we have to change existing code. 
-Instead, we should create a **base class/ [[Interface]]** that others can inherit and implement as shown.
+Instead, we should create a **base class/ [Interface](Interface.md)** that others can inherit and implement as shown.
 ```java
 interface ReportGenerator {
 	public Report generateReport();
@@ -180,4 +180,4 @@ public class Test {
 ```
 
 
-[^1]: [[Java Inheritance#Upcasting]]
+[^1]: [](Java%20Inheritance.md#Upcasting)

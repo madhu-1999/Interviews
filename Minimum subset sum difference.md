@@ -6,6 +6,6 @@ Given a **non-empty** array $nums$ containing only positive integers, find if th
 >Ans: 1
 >Soln: {1, 6, 5} & {11} => 12 - 11 = 1
 # Solution
-==Variation of [[Partition Equal Subset Sum]].==  Find subset with largest $sum \leq totalSum/2$ .
+==Variation of [Partition Equal Subset Sum](Partition%20Equal%20Subset%20Sum.md).==  Find subset with largest $sum \leq totalSum/2$ .
 then $\text{diff} =  abs(sum - (totalSum - sum))$ .
 If $sum = totalSum/2$ then diff = 0 , thus we have to find largest $sum \leq totalSum/2$ .

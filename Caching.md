@@ -16,7 +16,7 @@ debugInConsole: false # Print debug info in Obsidian console
 	+ Client side: Browser cache
 	+ Server side: Redis
 	+ CDN for static data caching
-![[Screenshot 2025-04-12 at 3.02.34 PM.png]]
+![Screenshot 2025-04-12 at 3.02.34 PM](Assets/Screenshot%202025-04-12%20at%203.02.34%20PM.png)
 # Cache tiering
 + Multiple layers of cache are used to improve data access performance.
 	+ L1 Cache (in-memory cache): Fastest cache, stored in system memory. Holds data needed/used most.
@@ -32,7 +32,7 @@ debugInConsole: false # Print debug info in Obsidian console
 + To lower latency (think geography)
 + Fault Tolerance: If one cache server fails, requests can be rerouted to other cache.
 # How is cache distributed ?
-+ [[Consistent Hashing]] and [[Consistent Hashing#Virtual Nodes in Consistent Hashing|Virtual Nodes]] are used in distributed caches.
++ [Consistent Hashing](Consistent%20Hashing.md) and [](Consistent%20Hashing.md#Virtual%20Nodes%20in%20Consistent%20Hashing|Virtual%20Nodes) are used in distributed caches.
 # Caching Strategy
 + All strategies need to use a cache eviction policy to replace older data when cache is full.
 + There has to be some expiry time after which data in cache is **invalidated** to ensure outdated data is not present in it. Cache can be refreshed after expiry time.

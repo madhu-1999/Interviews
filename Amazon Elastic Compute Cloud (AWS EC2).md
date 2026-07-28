@@ -1,7 +1,7 @@
 #cloud #aws 
 # Prerequisite
-+ [[Container#Contrast with VM|Virtual Machines]]
-+ [[Scaling]]
++ [](Container.md#Contrast%20with%20VM|Virtual%20Machines)
++ [Scaling](Scaling.md)
 # Overview
 + *Compute* refers to processing power.
 + *Compute in the cloud* refers to creating virtual machines with a cloud provider to run applications and tasks over the internet.
@@ -17,15 +17,15 @@
 + Then Instance type is selected which allows customization of:
 	+ Compute power and cores
 	+ RAM
-	+ [[Storage in AWS|Storage space]]
-		+ [[Network Attached Storage (NAS)]]: ([[Amazon EBS|EBS]]and EFS)
-		+ Hardware: ([[Storage in AWS#^233511|EC2 Instance Store]])
+	+ [Storage space](Storage%20in%20AWS.md)
+		+ [Network Attached Storage (NAS)](Network%20Attached%20Storage%20(NAS).md): ([EBS](Amazon%20EBS.md)and EFS)
+		+ Hardware: ([](Storage%20in%20AWS.md#^233511|EC2%20Instance%20Store))
 + Next, we need to create a key pair for SSH login. The public key will be injected into the EC2 instance and the user will hold the private key.
 + Then we define network settings
 	+ Network (AWS VPC)
 	+ Subnet
 	+ Public IP
-	+ [[Amazon VPC#Security Groups|Security Group]] 
+	+ [](Amazon%20VPC.md#Security%20Groups|Security%20Group) 
 >[!note]+ 
 >+  By default, public IP address is assigned by AWS and may change whenever the instance is restarted.
 >	+ Only assigned if `Auto-assign public IP` is enabled for chosen subnet.
@@ -33,17 +33,17 @@
 
 + Configure extra storage or customize existing storage (AMI). 
 >[!note]+
->+ AMI Determines size of default [[Amazon EBS|EBS]] root volume.
+>+ AMI Determines size of default [EBS](Amazon%20EBS.md) root volume.
 > + Can increase/decrease default volume size during this step
 >+ By default, EBS volume is deleted after EC2 instance is terminated.
 
-+ Specify bootstrap script (if any) : [[#EC2 User data]] 
++ Specify bootstrap script (if any) : [#EC2 User data](#EC2%20User%20data) 
 + Specify the number of instances to launch
 ## Amazon Machine Image (AMI)
 + Pre-built virtual machine images that have the basic components for what is needed to start an instance.
 + ==AMI is built for a specific AWS region. Can't launch a EC2 instance using an AMI in  another region.==
 + Three ways to use:
-	+ Create [[#custom AMI]]
+	+ Create [#custom AMI](#custom%20AMI)
 	+ Use preconfigured AWS AMI's
 	+ Buy third-party AMI from AWS marketplace (usually for specialized use cases)
 + Provide **repeatability** if environment is same for every instance. Identical configurations + deployment automation makes testing and dev environments consistent. 
@@ -53,7 +53,7 @@
 + Stop the instance (for data integrity).
 + Build an AMI (Right click on instance -> images and templates -> create image)
 + Launch instances from this custom AMI.
-+ If deleted, can be recovered from [[Amazon EBS#Recycle Bin|Recycle Bin]] through retention rules.
++ If deleted, can be recovered from [](Amazon%20EBS.md#Recycle%20Bin|Recycle%20Bin) through retention rules.
 ## EC2 User data
 + Bootstrap script that runs **only once** when the **instance first starts**
 + Automate tasks such as
@@ -83,7 +83,7 @@
 ### **Storage Optimized (I, Im, Is, D, H)**
 + Designed for workloads that require high-disk throughput and low-latency access to large datasets.
 Some examples:
-![[Screenshot 2025-08-15 at 1.38.21 PM.png]]
+![Screenshot 2025-08-15 at 1.38.21 PM](Assets/Screenshot%202025-08-15%20at%201.38.21%20PM.png)
 Reference for extended reading: https://aws.amazon.com/ec2/instance-types/
 # Pricing Options
 ## On-demand
@@ -124,7 +124,7 @@ Reference for extended reading: https://aws.amazon.com/ec2/instance-types/
 
 + EC2 Auto Scaling adds instances based on demand and key scaling metrics and then decommissions instances when that demand goes down. 
 + It is a collection of EC2 instances, which can scale in and out to dynamically meet demand.
-+ Auto-scaling group can launch multiple types of instances, to optimize costs. (Spot + On-demand or Reserved/Savings Plan + On-demand)^[[#Pricing Options]]    
++ Auto-scaling group can launch multiple types of instances, to optimize costs. (Spot + On-demand or Reserved/Savings Plan + On-demand)^[#Pricing Options](#Pricing%20Options)    
 ## Launch Template
 + Specify instance configuration information such as AMI, instance type etc.. (All config options in creating EC2 instance).
 + Used by ASG to create new instances.
@@ -164,7 +164,7 @@ Reference for extended reading: https://aws.amazon.com/ec2/instance-types/
 + **Scheduled Actions**: manually schedule instances based on known future demand. ^55db8e
 ## Health checks
 + EC2 Auto Scaling uses health checks to maintain the *desired* capacity. If any instances are down, it replaces them with new instances. Custom health check can be specified, failure of which leads to the instance being replaced with a new one.
-+ If multiple [[AWS Global Infrastructure#Availability Zone (AZ)|AZ's]] specified in the group, instances are divided evenly amongst the AZ's. AWS attempts to create new instances first in the AZ with the least number of instances, on failure moves on to other AZ's. 
++ If multiple [](AWS%20Global%20Infrastructure.md#Availability%20Zone%20(AZ)|AZ's) specified in the group, instances are divided evenly amongst the AZ's. AWS attempts to create new instances first in the AZ with the least number of instances, on failure moves on to other AZ's. 
 > [!note] 
 > All AZ's specified ***MUST*** belong to same region. Mulitple regions are not supported
 + If AZ becomes unhealthy , uneven distribution of instances may occur, but EC2 Auto Scaling automatically rebalances when AZ becomes available by creating new instances and then terminating equal amount from other AZ's. 
@@ -201,7 +201,7 @@ ssh -i EC2Tutorial.pem ec2-user@<public ip>
 ## EC2 Instance Connect
 + Terminal in browser to SSH into EC2 instance.
 + Only supports Linux based EC2 instances.
-+ Uses [[IAM#Policy|IAM policies and principal]] to control SSH access to instances, removing need to manage and share SSH keys.
++ Uses [](IAM.md#Policy|IAM%20policies%20and%20principal) to control SSH access to instances, removing need to manage and share SSH keys.
 + All connection requests through EC2 Instance Connect logged to AWS CloudTrail.
 + Process
 	+ When you connect to an instance using EC2 Instance Connect, the EC2 Instance Connect API pushes an SSH public key to the [instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) where it remains for 60 seconds.

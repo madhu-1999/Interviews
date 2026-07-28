@@ -1,14 +1,14 @@
 #aws #cloud #database #rdbms
 # Prerequisite
-[[Amazon RDS]]
+[Amazon RDS](Amazon%20RDS.md)
 # Overview
 + Proprietary technology that is compatible with MySQL and PostgreSQL i.e. the Aurora database accepts connections using MySQL and PostgreSQL drivers.
 + Cloud optimized, 5x faster than MySQL and 3x faster than PostgreSQL.
-+ Supports [[Amazon RDS#Automated Backups|automated backups and point in time recovery]]
++ Supports [](Amazon%20RDS.md#Automated%20Backups|automated%20backups%20and%20point%20in%20time%20recovery)
 + Fast failover recovery (<60s) and database cloning.
 + Access through RDS.
 # Storage
-+ High-throughput, fault-tolerant, distributed storage similar to [[Amazon RDS#Multi-AZ DB cluster deployment|Multi-AZ DB cluster]]. i.e. it is shared storage amongst all DB instances.
++ High-throughput, fault-tolerant, distributed storage similar to [](Amazon%20RDS.md#Multi-AZ%20DB%20cluster%20deployment|Multi-AZ%20DB%20cluster). i.e. it is shared storage amongst all DB instances.
 	+ Makes data independent of DB instances in the cluster. Viewed by the instances as a single, logical volume, although it is made up of multiple storage nodes across AZ's.
 	+ Low replication lag since all read replicas share same storage as primary.
 	+ Quick deployment of read replicas/new DB instances since there is no need to copy storage of primary instance.
@@ -43,6 +43,6 @@
 + TLS certificate specific to AWS region used to encrypt data.
 + Need to modify database connection settings to incorporate TLS certificate to do encryption client-side.
 ## IAM Authentication
-+ Use [[IAM#Roles|IAM Roles]] to authenticate connection to database. 
++ Use [](IAM.md#Roles|IAM%20Roles) to authenticate connection to database. 
 ## Network Security
-+ Enforced through [[Amazon VPC#Security Groups|Security Groups]]
++ Enforced through [](Amazon%20VPC.md#Security%20Groups|Security%20Groups)

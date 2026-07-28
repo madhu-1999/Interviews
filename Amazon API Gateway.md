@@ -11,14 +11,14 @@
  ![API Gateway architecture diagram](https://docs.aws.amazon.com/images/apigateway/latest/developerguide/images/Product-Page-Diagram_Amazon-API-Gateway-How-Works.png)
 # API Endpoint Types
 ## Edge Optimized
-+ Uses [[Amazon CloudFront]] POPs to provide client access across AWS Regions.
++ Uses [Amazon CloudFront](Amazon%20CloudFront.md) POPs to provide client access across AWS Regions.
 ## Private
-+ Exposed through [[Amazon VPC#VPC Endpoint Types#**Interface**|VPC ENI]], to allow secure, private access to API resources in a VPC.
++ Exposed through [](Amazon%20VPC#VPC%20Endpoint%20Types#VPC%20Endpoint%20Types#**Interface**|VPC%20ENI), to allow secure, private access to API resources in a VPC.
 ## Regional 
 + Deployed in a AWS region, and serves clients in the same region.
 # API Integration Types
 Integration $\rightarrow$ service to which API gateway passes request to.
-## [[AWS Lambda]]
+## [AWS Lambda](AWS%20Lambda.md)
 ### ___Lambda Proxy Integration___ (Recommended)
 API Gateway passes the entire request as a JSON object directly to the Lambda function and expects a specific JSON format back for the response
 ### ___Lambda Custom Integration___
@@ -45,11 +45,11 @@ ___Stage___: A deployment is associated with a stage, which makes it callable fr
 + You can view deployment history of your stage and revert to a previous deployment.
 + You can have multiple, parallel environments (e.g., a `dev` stage for active development and a `prod` stage for stable customer use) running different versions of the API simultaneously.
 + You can configure a stage to use a canary release, directing a small percentage of traffic (e.g., 10%) to a new, updated deployment, while the remaining traffic goes to the stable production deployment.
-+ You can enable detailed [[AWS CloudWatch]] logs or [[AWS CloudWatch#AWS X-Ray|X-ray]] tracing.
++ You can enable detailed [AWS CloudWatch](AWS%20CloudWatch.md) logs or [](AWS%20CloudWatch.md#AWS%20X-Ray|X-ray) tracing.
 + You can configure cache settings and throttling (rate limits + quotas) for optimized performance.
 ___Stage variables___: Act like env variables, allowing dynamic config for an API stage.
 Ex: `dev` stage variable points to a `dev` lambda function alias while `test` stage variable points to a `test` function alias.
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851434.png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851434](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11851434.png)
 # Caching API Responses
 + Caching is configured at __stage__ level.
 + Can provision cache capacity (cluster) between 0.5 GB to 237 GB.
@@ -59,12 +59,12 @@ Ex: `dev` stage variable points to a `dev` lambda function alias while `test` st
 + Can encrypt data in cache
 + Clients can bypass the cache and fetch a fresh response from the backend by sending the `Cache-Control: max-age=0` header in their request.
 	+ Can configure it so that client needs `execute-api:InvalidateCache` permission to perform cache invalidation.
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11937082.png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11937082](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_11937082.png)
 # OpenAPI Specification Compatibility
 + API Gateway supports importing and exporting APIs using OpenAPI spec files (JSON/YAML).
 + OpenAPI Spec is vendor neutral, so to specify AWS services, we must AWS extensions:
 	+ `x-amazon-apigateway-authorizer` & `x-amazon-apigateway-authtype` is used to configure AWS specific auth methods like Lambda authorizers or Cognito User Pools.
-	+ `x-amazon-apigateway-integration` is used to specify [[#API Integration Types]] 
+	+ `x-amazon-apigateway-integration` is used to specify [#API Integration Types](#API%20Integration%20Types) 
 	+ `x-amazon-apigateway-request-validator` is used to specify request validator to enforce schema for incoming request payload, header and params.
 ```yaml
 openapi: 3.0.1
@@ -119,13 +119,13 @@ Metrics are by stage.
 	+ `Access-Control-Allow-Headers`
 	+ `Access-Control-Allow-Methods`
 	+ `Access-Control-Allow-Origin`
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19731672.png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19731672](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19731672.png)
 # Security
 ## IAM Security
 1. **Define Access with IAM Policies**: You write standard IAM policies that explicitly grant or deny the `execute-api:Invoke` action for specific API Gateway resources (identified by their Amazon Resource Name, or ARN).
 2. **Assign to Invoker**: These policies are attached to the IAM users, roles, or groups that need access to the API.
 3. **Authentication via SigV4**: When an authorized client makes a request to the API Gateway, they must use their AWS credentials to sign the request using the **Signature Version 4 (SigV4)** signing process. This cryptographic signature authenticates the sender and prevents tampering.
-4. **Verification**: API Gateway verifies the SigV4 signature and checks the associated IAM policy. If the user/role has permission to `Invoke` the requested method, the request is allowed through; otherwise, it is denied.![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19731690.png]]
+4. **Verification**: API Gateway verifies the SigV4 signature and checks the associated IAM policy. If the user/role has permission to `Invoke` the requested method, the request is allowed through; otherwise, it is denied.![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19731690](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19731690.png)
 ## Cognito User Pools
 Cognito fully manages user lifecycle, expires token automatically
 1. **User Authentication**: A user signs up and signs in to your mobile or web application using Amazon Cognito User Pools.
@@ -136,7 +136,7 @@ Cognito fully manages user lifecycle, expires token automatically
     - If the token is valid and unexpired, API Gateway allows the request to proceed to the backend (e.g., a Lambda function or HTTP endpoint).
     - If the token is invalid or missing, API Gateway rejects the request and returns a `401 Unauthorized` response without reaching the backend.
 6. **Backend Access to User Data**: The validated token's claims (user ID, email, custom attributes) are automatically passed to the backend integration, allowing the backend logic to operate in the context of the specific authenticated user.
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19731690 (1).png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19731690 (1)](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19731690%20(1).png)
 ## Lambda Authorizer (for 3<sup>rd</sup> party authentication system)
 1. **Client Request**: A client sends a request to an API Gateway method, including a token in a specified header (e.g., `Authorization`).
 2. **Authorizer Invocation**: API Gateway invokes your designated Lambda authorizer function, passing the token and other request context information (e.g., HTTP method, path).
@@ -149,4 +149,4 @@ Cognito fully manages user lifecycle, expires token automatically
     - If the policy allows access, API Gateway executes the original requested backend integration (e.g., another Lambda function).
     - If the policy denies access or an error occurs, API Gateway immediately stops the request and returns a `401 Unauthorized` or `403 Forbidden` response.
 6. **Caching**: API Gateway can cache the generated IAM policy for a configurable Time-to-Live (TTL). Subsequent requests with the same token reuse the cached policy, improving performance and reducing the load on your authorizer function.
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19731690 (2).png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19731690 (2)](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19731690%20(2).png)

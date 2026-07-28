@@ -4,8 +4,8 @@ tags:
   - design-pattern-impl
 ---
 # Overview
-+ [i] Iterators implement the [[Iterator Pattern]] 
-	+ [I] For loops, [[Python - Comprehensions]]  and iterable unpacking, support iteration using iterators under the hood.
++ [i] Iterators implement the [Iterator Pattern](Iterator%20Pattern) 
+	+ [I] For loops, [Python - Comprehensions](Python%20-%20Comprehensions)  and iterable unpacking, support iteration using iterators under the hood.
 	+ [I] Custom iterators must implement `.__iter__()` to initialize an iterator, and `.__next__()` to return the next value in the data stream.
 + [i] Iterable is any object that implements the `.__iter__()` method or `.__getitem__()` method, and thus, can be __iterated over by an iterator__.
 	+ [I] If `.__iter__()` is not specified, Python looks for the `.__getitem__()` method. 
@@ -48,7 +48,7 @@ while True:
 		break
 ```
 
-The `abc` module provides a [[Python - Abstract Base Class|Abstract Base class]] for creating custom iterators, called `Iterator`. It provides a built-in implementation of `.__iter__()` , which means we can skip its implementation, and implement only `.__next__()`.
+The `abc` module provides a [Abstract Base class](Python%20-%20Abstract%20Base%20Class.md) for creating custom iterators, called `Iterator`. It provides a built-in implementation of `.__iter__()` , which means we can skip its implementation, and implement only `.__next__()`.
 
 ```run-python
 from collections.abc import Iterator
@@ -83,7 +83,7 @@ while True:
 	except StopIteration:
 		break
 ```
-# Function based iterators using [[Python - Generators|Generators]]
+# Function based iterators using [Generators](Python%20-%20Generators)
 Unlike regular functions, which typically compute a value and return it to the caller, generator functions return a **generator iterator** that yields a stream of data one value at a time.
 ```run-python
 def sequence_generator(sequence):

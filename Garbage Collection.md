@@ -9,11 +9,11 @@ hideWhenEmpty: false # Hide TOC if no headings are found
 debugInConsole: false # Print debug info in Obsidian console
 ```
 # Prerequisite
-+ [[JVM vs JRE vs JDK#**Stack area**|Stack Memory]]
-+ [[JVM vs JRE vs JDK#**Heap Area**| Heap Memory]]
++ [](JVM%20vs%20JRE%20vs%20JDK.md#**Stack%20area**|Stack%20Memory)
++ [](JVM%20vs%20JRE%20vs%20JDK.md#**Heap%20Area**|%20Heap%20Memory)
 # Overview
 + Garbage collection is a mechanism of JVM to reclaim heap memory from objects that are eligible.
-+ It is carried out by a [[Multithreading#Types of threads|daemon]] thread.
++ It is carried out by a [](Multithreading.md#Types%20of%20threads|daemon) thread.
 + It cannot be forced. `System.gc()` and `Runtime.gc()` can request garbage collection but it may/may not happen.
 + Before removing an object, garbage collector thread invokes`finalize()` method of the object to perform any cleanup required.
 # Eligibility for Garbage Collection

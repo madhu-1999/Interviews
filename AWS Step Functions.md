@@ -2,8 +2,8 @@
 # Overview
 + **Serverless orchestration service** used to build and manage multi-step application workflows as **state machines**.
 + Visualize workflow, its execution and history.
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101906.png]]
-+ Start workflow with SDK call, [[Amazon API Gateway]], [[AWS CloudWatch#Amazon EventBridge|EventBridge]] 
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101906](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101906.png)
++ Start workflow with SDK call, [Amazon API Gateway](Amazon%20API%20Gateway.md), [](AWS%20CloudWatch.md#Amazon%20EventBridge|EventBridge) 
 # Amazon States Language (ASL)
 + Step Functions use ASL to define different states in the state machine. (JSON doc)
 ## Task State
@@ -81,7 +81,7 @@
 	+ Reference this ARN in a Task state within your state machine
 	+ An external "worker" (your custom code) constantly polls Step Functions for work using the `GetActivityTask` API and the activity ARN.
 	+ When the workflow reaches the activity state, Step Functions provides the worker with a **task token** and the input data.
-	+ Once the work is done, the worker sends back the result along with the task token using `SendTaskSuccess` or `SendTaskFailure` to advance the workflow![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_36527762.png]]
+	+ Once the work is done, the worker sends back the result along with the task token using `SendTaskSuccess` or `SendTaskFailure` to advance the workflow![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_36527762](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_36527762.png)
 + To keep task active:
 	+ Configure how long the task can run using `TimeoutSeconds` parameter. 
 	+ Periodically send a heartbeat from your worker using `SendTaskHeartBeat` within the time specified in `HeartBeatSeconds` parameter.
@@ -96,7 +96,7 @@
 | **Execution History** | **Full history** available in console/API for 90 days | Sent to **CloudWatch Logs** (requires configuration) |
 | **Pricing**           | **$0.025 per 1,000 state transitions**                | **$1.00 per 1M requests** + duration/memory costs    |
 | **Best For**          | Long-running, durable, auditable tasks                | High-volume, short-duration event processing         |
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101914.png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101914](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101914.png)
 ## Standard Workflows
 - **Best Use Cases**: Orchestrating non-idempotent actions like processing payments or starting EMR clusters.
 - **Reliability**: Provides an **exactly-once** execution guarantee, ensuring steps do not run more than once unless you define retry logic.

@@ -33,10 +33,10 @@ Note that we are only defining the anonymous function using arrow syntax, **not*
   alert('You clicked me!');
 }}>```
 + All event handlers receive an event object as their only argument.
-+ Unlike rendering functions, event handlers don't need to be [[Component#Keeping Components pure|pure]], so they can have side effects.
-	+ But, in order to mutate some local variable, it needs to be stored such that re-rendering doesn't reset the value. This is done using [[State|state]] .
++ Unlike rendering functions, event handlers don't need to be [](Component.md#Keeping%20Components%20pure|pure), so they can have side effects.
+	+ But, in order to mutate some local variable, it needs to be stored such that re-rendering doesn't reset the value. This is done using [state](State.md) .
 # Passing as props
-+ Event handlers can be passed as [[Props|props]].
++ Event handlers can be passed as [props](Props.md).
 + The need to pass event handlers as prop is explained later.
 + Naming convention: start with `on`, followed by a capital letter.
 ```jsx

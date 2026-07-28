@@ -13,7 +13,7 @@ debugInConsole: false # Print debug info in Obsidian console
 # Overview
 + React applications are entirely made out of components.
 + Piece of UI that has its own **data, logic** and **appearance** (how it looks and works)
-![[Screenshot 2025-08-28 at 5.44.32 PM.png]]
+![Screenshot 2025-08-28 at 5.44.32 PM](Assets/Screenshot%202025-08-28%20at%205.44.32%20PM.png)
 
 # Defining a component
 + React components are regular JavaScript functions, but **their names must start with a capital letter** or they won’t work!
@@ -46,7 +46,7 @@ export default function Gallery() {
 + With `function Profile() { }` you define a JavaScript function with the name `Profile`.
 ## Return JSX
 >[!critical]+
->A component must return a single [[JSX]] element. If more than one element is returned, JSX won't transpile.
+>A component must return a single [JSX](JSX.md) element. If more than one element is returned, JSX won't transpile.
 + Return statements can be written all in one line:
 ```jsx
 return <img src="https://i.imgur.com/MK3eW3Am.jpg" alt="Katherine Johnson"/>;
@@ -126,7 +126,7 @@ function Profile() {
 + **Destroys state and causes forced remounts**
 	+  Each time `ParentComponent` re-renders, the `ChildComponent` function is recreated with a new memory reference.
 	+ React interprets this new function as a completely different component, which causes it to unmount the old `ChildComponent` instance and mount a new one.
-	+ This destroys any internal [[State|state]] the child was holding and can trigger unnecessary side effects.
+	+ This destroys any internal [state](State.md) the child was holding and can trigger unnecessary side effects.
 + **Breaks hooks**: Any hooks inside the nested component, such as `useState` or `useEffect`, will be reinitialized on every parent re-render, leading to bugs and unexpected behavior.
 + **Performance degradation:** Remounting a component is more computationally expensive than simply re-rendering it. Repeatedly doing so when parent updates can lead to poor performance, especially in large applications.
 # Types of Component
@@ -153,7 +153,7 @@ class Welcome extends React.Component {
 
 ```
 # One way data flow
-+ Data can be passed **only** from parent to child using [[Props|props]] 
++ Data can be passed **only** from parent to child using [props](Props.md) 
 + This makes applications 
 	+ easier to understand and more predictable
 	+ easier to debug
@@ -228,4 +228,4 @@ An uncontrolled componentrefers to a component where the form element's state is
 - ***Less Predictable:*** Since the component's state is not synchronized with React, it can lead to less predictable behavior.
 - ***Manual Validation:*** Validation and formatting need to be handled manually, often during form submission.
 # Component Lifecycle
-![[www.udemy.com_course_the-ultimate-react-course_learn_lecture_37350868.png]]
+![www.udemy.com_course_the-ultimate-react-course_learn_lecture_37350868](Assets/www.udemy.com_course_the-ultimate-react-course_learn_lecture_37350868.png)

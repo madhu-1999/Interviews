@@ -24,7 +24,7 @@ dvd.on();
 dvd.play(movie);
 ```
 
-If in the future, we upgrade some of the components, it is possible that we have to perform the steps slightly differently. This means, we would have to modify the code, violating [[SOLID#**O**pen for extension, closed for modification|Open/closed principle]].
+If in the future, we upgrade some of the components, it is possible that we have to perform the steps slightly differently. This means, we would have to modify the code, violating [](SOLID.md#**O**pen%20for%20extension,%20closed%20for%20modification|Open/closed%20principle).
 
 To avoid this, a simple solution would be to encapsulate these steps in a function, and use it whenever, we want to watch a movie. This way, any changes after upgrade, are limited to the function.
 But, other functionality like turning off the home theater system would be equally complex involving multiple steps, which could again be simplified by wrapping it in a function.
@@ -96,4 +96,4 @@ public class HomeTheaterFacade {
 If required, we can still access any of the subsystems (`Amplifier`, `Screen` etc..) individually. Facade pattern is just simplifying access to the combined system.
 
 # UML Diagram
-![[Screenshot 2025-12-25 at 1.36.34 AM.png]]
+![Screenshot 2025-12-25 at 1.36.34 AM](Assets/Screenshot%202025-12-25%20at%201.36.34%20AM.png)

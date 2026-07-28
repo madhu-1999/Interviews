@@ -1,7 +1,7 @@
 #graph #dsa 
 # Prerequisite
-[[Union Find]]
-[[Minimum Spanning Tree]]
+[Union Find](Union%20Find.md)
+[Minimum Spanning Tree](Minimum%20Spanning%20Tree.md)
 # Algorithm
 1. Sort all the edges in a non-decreasing order of their weight. 
 2.  Pick the smallest edge. Check if it forms a cycle with the spanning tree formed so far. If the cycle is not formed, include this edge. Else, discard it. 

@@ -11,7 +11,7 @@ hideWhenEmpty: false # Hide TOC if no headings are found
 debugInConsole: false # Print debug info in Obsidian console
 ```
 # Amazon Kinesis Data Streams
-+ Collect and store __real-time__ streaming of data![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101780.png]]
++ Collect and store __real-time__ streaming of data![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101780](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101780.png)
 + Data Retention upto 365 days. (default: 24 hrs)
 	+ Data cannot be deleted. Need to wait for it to expire.
 + Consumers can replay or reprocess the data stored in the stream
@@ -43,7 +43,7 @@ debugInConsole: false # Print debug info in Obsidian console
 + No replay capability
 + Supports JSON, CSV, Parquet, Avro, Raw Text, Binary Data
 	+ Optional data transformation through AWS Lambda
-+ Any failed data can be sent to a S3 bucket![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101802.png]]
++ Any failed data can be sent to a S3 bucket![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101802](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101802.png)
 # Managed Service for Apache Flink
 + Framework for processing data streams (Java, SQL, Scala)
 + Producers: Amazon MSK (Kafka) and Amazon Kinesis Data Streams
@@ -56,24 +56,24 @@ debugInConsole: false # Print debug info in Obsidian console
 + It allows applications to securely access, combine, and manipulate data from multiple sources, such as databases, microservices, and AI models through a single network request.
 + Retrieve data in __Real time__ with Websocket or MQTT on Websocket.
 + Offline data synchronization for mobile and web apps
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19732092.png]]
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19732092 (1).png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19732092](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19732092.png)
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19732092 (1)](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19732092%20(1).png)
 + Four ways to authorize client to interact with AppSync:
 	+ _API_KEY_ 
-	+ [[IAM|_AWS_IAM_]]
+	+ [_AWS_IAM_](IAM.md)
 	+ _OPENID_CONNECT_
-	+ [[Amazon Cognito|_AMAZON_COGNITO_USER_POOLS_]]
+	+ [_AMAZON_COGNITO_USER_POOLS_](Amazon%20Cognito.md)
 # AWS Amplify
 + Set of tools to create full stack web and mobile apps.
-	+ [[Elastic Beanstalk]] used to deploy apps.
+	+ [Elastic Beanstalk](Elastic%20Beanstalk.md) used to deploy apps.
 	+ Must have features like data storage, auth, ML are powered by AWS services.
 	+ Frontend libs with ready to use components for React.js, Vue.js, Android, Flutter, iOS.
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_30055484.png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_30055484](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_30055484.png)
 + Authentication
-	+ Uses [[Amazon Cognito]]
+	+ Uses [Amazon Cognito](Amazon%20Cognito.md)
 	+ `amplify add auth`
 + Datastore
-	+ [[#AWS AppSync]] and [[Amazon DynamoDB]].
+	+ [#AWS AppSync](#AWS%20AppSync) and [Amazon DynamoDB](Amazon%20DynamoDB.md).
 	+ Work with local data and auto-syncs to cloud.
 	+ `amplify add api`
 + Hosting
@@ -83,7 +83,7 @@ debugInConsole: false # Print debug info in Obsidian console
 	+ Custom domains
 	+ Monitoring
 	+ `amplify add hosting`
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_30055484 (1).png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_30055484 (1)](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_30055484%20(1).png)
 + End-to-end testing
 	+ Integrated with Cypress framework
 	+ Run test commands at build time (amplify.yml).

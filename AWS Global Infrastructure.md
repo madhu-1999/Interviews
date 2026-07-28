@@ -44,15 +44,15 @@ debugInConsole: false # Print debug info in Obsidian console
 + Allows operation of applications and databases that are highly available, fault tolerant and scalable.
 + All AZ's in a region are connected via high bandwidth, low latency, fully redundant network.
 + All traffic between AZ's is encrypted.
-+ [[Database Replication Strategies#Synchronous updates| Synchronous replication]] between AZ's.
++ [](Database%20Replication%20Strategies.md#Synchronous%20updates|%20Synchronous%20replication) between AZ's.
 + All AZ's in a region are far enough from each other to avoid damage to multiple of them in case of any natural disasters.
 # Local Zones
 + Provides compute, storage, database and other select  AWS services closer to end users (Closer than closest AZ in the geographic area).
 + Ex: Real-time gaming
 # Edge locations
 + Strategically placed data centers that serve data from location closest to user.
-	+  [[Amazon CloudFront]] (CDN) retrieves from closest edge location.
+	+  [Amazon CloudFront](Amazon%20CloudFront.md) (CDN) retrieves from closest edge location.
 	+ Frequently accessed content is cached here, reducing load on origin server.
 + High performance, low latency
 # AWS Outposts
-+ Can use AWS APIs, tools and infrastructure on-premises or own data center along with AWS cloud for  [[Cloud Computing#Alternatives|hybrid deployment]].
++ Can use AWS APIs, tools and infrastructure on-premises or own data center along with AWS cloud for  [](Cloud%20Computing.md#Alternatives|hybrid%20deployment).

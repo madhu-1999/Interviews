@@ -1,6 +1,6 @@
 #react 
 # Overview
-+ Data that a [[Component]] receives from its parents.
++ Data that a [Component](Component.md) receives from its parents.
 + Immutable i.e read only
 + Used by parent component to configure (how they work) and customize (how they look) child component.
 ```jsx
@@ -82,7 +82,7 @@ function Profile() {
 1. **Data Consistency:** Immutable props make it easier to track data flow between components and ensure consistency throughout the application.
 2.  **Performance Optimization:** Since props are immutable, React can efficiently determine which parts of the UI need to be updated and optimize DOM rendering.
 3. **Simpler Debugging:** Immutable props make it easier to identify and fix bugs in your code.
-+ Components have to be **pure functions** in terms of props and [[State|state]]
++ Components have to be **pure functions** in terms of props and [state](State.md)
 + If data has to be modified use state.
 # How props change over time
 ```jsx
@@ -93,7 +93,7 @@ export default function Clock({ color, time }) {
     </h1>
   );
 }
-[[State]]```
+[State](State.md)```
 + The `time` prop changes every second, and the `color` prop changes when you select another color. 
 + Each time new props are passed in, the child component is re-rendered.
 + Note that, for the child component, props are still immutable. It is just that the parent component is passing in different values for props.

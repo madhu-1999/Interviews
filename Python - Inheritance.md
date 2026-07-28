@@ -4,8 +4,8 @@ tags:
 ---
 # Overview
 + [*] Everything in Python is an object i.e. it a subclass of the `Object` class.
-	+ [!] The only exception is classes that subclass `BaseException` i.e. all [[Python - Exceptions|exceptions]].
-+ [i] The __base class__ will contain common methods and functions. The __derived__ classes can override [[Python - Functions|methods]] and [[Python - Classes and Objects|attributes]] in the __base__ class to provide their own implementation.
+	+ [!] The only exception is classes that subclass `BaseException` i.e. all [exceptions](Python%20-%20Exceptions.md).
++ [i] The __base class__ will contain common methods and functions. The __derived__ classes can override [methods](Python%20-%20Functions.md) and [attributes](Python%20-%20Classes%20and%20Objects.md) in the __base__ class to provide their own implementation.
 + [i] __Derived__ classes can have other methods that are not in the __base__ class.
 	+ [!] These methods __SHOULD'NT__ overload base class methods, as it will ==hide the base class method==.
 + [!]  All methods, even instance methods are attached to the _class_, but instance attributes live in the object so, if a super class is not initialized, we cannot access its attributes, but we can access it's methods.
@@ -37,7 +37,7 @@ class RegressionModel(DataModel):
 		# Implementation of regression-specific evaluation metrics, e.g., MSE, RMSE
 ```
 
->[!warning] Since [[Python - Functions#Method Overloading|method overloading]] is supported differently in Python, we cannot overload base class methods.
+>[!warning] Since [](Python%20-%20Functions.md#Method%20Overloading|method%20overloading) is supported differently in Python, we cannot overload base class methods.
 ```run-python
 class Base:
     def greet(self):
@@ -166,7 +166,7 @@ print(o.greet())
 print(super(Child, Child).greet())
 ```
 
-## Using with [[Python - Constructors|constructors]]
+## Using with [constructors](Python%20-%20Constructors.md)
 ```run-python
 class Animal:
     def __init__(self, name):
@@ -301,7 +301,7 @@ child.sports() # Child's own method
 ```
 ## Diamond Problem & Resolution
 Atleast two super classes of a class, that inherits from multiple classes, in turn inherit from a common ancestor
-![[Python - Inheritance-1781748535562.webp]]
+![Python - Inheritance-1781748535562](Assets/Python%20-%20Inheritance-1781748535562.webp)
 When `D` calls a method provided by grandparent class `A` using `super()` , how does Python figure out if it should call `B's` implementation or `C's` implementation?
 + [I] The answer is __Method Order Resolution__. 
 ```run-python
@@ -337,7 +337,7 @@ print(D.__mro__)
 
 The `.__mro__` class attribute can be used to understand the method order resolution chain for a class.
 # Abstract Base classes
-See [[Python - Abstract Base Class|Abstract Base Class]] for more information.
+See [Abstract Base Class](Python%20-%20Abstract%20Base%20Class.md) for more information.
 # References:
 [super() in Python](https://codefinity.com/blog/Using-super-in-Python-and-Its-Pitfalls)
 [Python inheritance](https://medium.com/data-bistrot/inheritance-in-python-object-oriented-programming-63bd93d7490c)

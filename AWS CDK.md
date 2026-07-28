@@ -1,9 +1,9 @@
 #aws #cloud 
 # Overview
 + SDK for IaC.
-	+ Uses [[AWS CloudFormation]], under the hood to define and provision cloud infrastructure.
+	+ Uses [AWS CloudFormation](AWS%20CloudFormation.md), under the hood to define and provision cloud infrastructure.
 	+ Code is compiled into a CloudFormation template.
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101880.png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101880](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101880.png)
 # Constructs
 + Represents one or more AWS resources and their configuration that is converted into a CloudFormation stack.
 + AWS Construct Library:
@@ -59,9 +59,9 @@ Must run `cdk bootstrap aws://<account>/<aws_region>` for each new env.
 `cdk deploy`: Deploy the stacks
 `cdk diff`: View diff b/w local and deployed stacks
 `cdk destroy`: Destroy stacks.
-+ Can use [[AWS SAM]] CLI to locally test CDK apps.
++ Can use [AWS SAM](AWS%20SAM.md) CLI to locally test CDK apps.
 	+ `cdk synth` : to generate CloudFormation template.
-	+ `sam local invoke -t <TemplateName> <function>` : To locally test a lambda function.![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101880 (1).png]]
+	+ `sam local invoke -t <TemplateName> <function>` : To locally test a lambda function.![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101880 (1)](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101880%20(1).png)
 # Testing
 + Use CDK Assertions + popular test frameworks (JUnit, Pytest) to verify specify resources, properties, rules, conditions etc..
 	+ __Fine-grained assertions__: test specific aspects of CloudFormation template. (Ex: does resource have _x_ property?)

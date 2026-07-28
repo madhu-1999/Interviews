@@ -33,7 +33,7 @@ sc = spark._sc
 ```
 
 # Parallelizing non-distributed tasks (`parallelize()`)
-The `parallelize()` method is used to take an existing collection in your driver program (like a Python list) and distribute it across the cluster to create a [[Spark - Introduction#RDDs|Resilient Distributed Dataset (RDD).]][^2]
+The `parallelize()` method is used to take an existing collection in your driver program (like a Python list) and distribute it across the cluster to create a [](Spark%20-%20Introduction.md#RDDs|Resilient%20Distributed%20Dataset%20(RDD).)[^2]
 
 Because `parallelize()` requires all data to fit in the memory of the local driver program first, it is **not used for processing massive production datasets**.
 

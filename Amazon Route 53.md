@@ -1,6 +1,6 @@
 #cloud #aws 
 # Prerequisite
-[[Domain Name System (DNS)]]
+[Domain Name System (DNS)](Domain%20Name%20System%20(DNS).md)
 # Overview
 + Highly available (100%) and scalable DNS service.
 + Fully managed and **global** service
@@ -39,11 +39,11 @@ Note that TTL is mandatory for every DNS record except Alias records
 ## Public Hosted Zone
 + Contains records that specify how to route traffic on Internet. (public domain names)
 + Automatically creates a SOA and NS record.
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19728936.png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19728936](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19728936.png)
 ## Private Hosted Zone
-+ Contains records that specify how to route traffic within one or more [[Amazon VPC|VPC's]]. (private domain names).
++ Contains records that specify how to route traffic within one or more [VPC's](Amazon%20VPC.md). (private domain names).
 + Only resolves DNS queries that originate from within those associated VPCs.
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19728936 (2).png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19728936 (2)](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19728936%20(2).png)
 ## Public vs Private
 | Aspect            | Public Hosted Zone (for public domains)                                                                                                       | Private Hosted Zone (for private domains)                                                                                                                                            |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -61,7 +61,7 @@ Note that TTL is mandatory for every DNS record except Alias records
 + Can coexist with other record types for same hostname. Ex: there can be a Alias record and a MX record for `example.com`.
 + Performs health check for target AWS resource.
 ## Supported AWS targets
-+ [[Amazon ELB|Elastic Load Balancers]]
++ [Elastic Load Balancers](Amazon%20ELB.md)
 + CloudFront Distributions
 + API Gateway
 + Elastic Beanstalk environments
@@ -91,7 +91,7 @@ Note that TTL is mandatory for every DNS record except Alias records
 	+ If multiple values, client will pick any one at random.
 + If Alias record, can specify only one AWS resource.
 + **Can't** be associated with health checks.
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19728958.png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19728958](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19728958.png)
 ## Weighted Routing
 + Can associate multiple resources with same domain/subdomain.
 	+ Create multiple records with same name and type. (one per resource)
@@ -100,9 +100,9 @@ $$\text{traffic \%} = \frac{\text{Weight of record}}{\text{Sum of weights of all
 + Can be associated with health checks.
 + Assign $weight\space = 0$ to a record to stop sending traffic to a resource.
 	+ If all records have $weight\space=0$ , then all records returned equally.
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19728960.png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19728960](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19728960.png)
 ## Latency based routing
-+ Route to a resource in the [[AWS Global Infrastructure#Region|AWS region]] with lowest latency.
++ Route to a resource in the [](AWS%20Global%20Infrastructure.md#Region|AWS%20region) with lowest latency.
 	+ Multiple latency records (one per resource) are created for multiple AWS Regions.
 	+ On receiving a DNS query, Route 53 determines: 
 		+ which AWS region there are records for
@@ -114,9 +114,9 @@ $$\text{traffic \%} = \frac{\text{Weight of record}}{\text{Sum of weights of all
 		+ Note that the calculation for latency of region is more complex.
 + Can be associated with health checks.
 ## Failover routing
-Read [[#Automated DNS failover]] before proceeding.
-+ [[#Active Passive]] failover configuration
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19728974 1.png]]
+Read [#Automated DNS failover](#Automated%20DNS%20failover) before proceeding.
++ [#Active Passive](#Active%20Passive) failover configuration
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19728974 1](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_19728974%201.png)
 ## Geolocation routing
 + Route to a resource based on geographic location.
 	+ Can specify location by continent, country or US state.
@@ -140,10 +140,10 @@ Read [[#Automated DNS failover]] before proceeding.
 	+ When the geographic region of a resource is expanded, then region of adjacent resources shrinks and vice versa.
 	+ $\text{Biased distance} = \text{actual distance} * [1 - (bias/100)]$ 
 + Need to specify
-	+ AWS region / [[AWS Global Infrastructure#Local Zones|Local Zone]] for AWS resources.
+	+ AWS region / [](AWS%20Global%20Infrastructure.md#Local%20Zones|Local%20Zone) for AWS resources.
 	+ Latitude and Longitude for non-AWS resources.
 No bias:
-![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101622.png]]With +ve bias: ![[www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101622 (1).png]]
+![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101622](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101622.png)With +ve bias: ![www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101622 (1)](Assets/www.udemy.com_course_aws-certified-developer-associate-dva-c01_learn_lecture_26101622%20(1).png)
 
 ## IP based routing
 + Based on **client's IP address**
@@ -162,7 +162,7 @@ No bias:
 	+ If no health check attached to a record, always healthy
 	+ If all resources are unhealthy, returns all values.
 ## Traffic flow policy
-+ Simplifies creation and maintenance of records in [[#**Complex configuration**|complex configurations]].
++ Simplifies creation and maintenance of records in [complex configurations](#**Complex%20configuration**).
 + Visual editor to manage complex routing decision trees.
 + Can create multiple versions of the same traffic policy (unchanged configs carry over).
 + Root record represents all records created as part of decision tree. i.e. only root record shows up on list of records of hosted zone. Need to specify:
@@ -209,7 +209,7 @@ Read more: [Documentation](https://docs.aws.amazon.com/Route53/latest/DeveloperG
 	+ Protocol to use for health check (HTTP, TCP, HTTPS)
 	+ *Request interval*: how often to send requests (10s or 30s)
 	+ *Failure Threshold*: no of consecutive failures (no response or incorrect response) before deeming it unhealthy.
-	+ Notification configuration: If configured, when a endpoint is deemed unhealthy, a CloudWatch alarm is triggered, which uses [[Amazon SNS]] to notify users that the endpoint is unhealthy.
+	+ Notification configuration: If configured, when a endpoint is deemed unhealthy, a CloudWatch alarm is triggered, which uses [Amazon SNS](Amazon%20SNS.md) to notify users that the endpoint is unhealthy.
 ### **Working**
 + AWS health checkers ($\approx 15$) are distributed globally and send requests to the public endpoint configured in health check.
 + If over 18% of health checkers deem a endpoint healthy, it is considered healthy.
@@ -247,7 +247,7 @@ Read more: [Documentation](https://docs.aws.amazon.com/Route53/latest/DeveloperG
 # Failover configurations
 ## Active Passive
 + Use when a _primary_ resource or group of resources should be available majority of the time and you want _secondary_ resource on standby, in case _primary_ becomes unavailable.
-+ [[#Failover routing]] policy is used.
++ [#Failover routing](#Failover%20routing) policy is used.
 	+ Create one DNS record for _primary_ resource (single value) or group of resources (multiple values).
 	+ Create one DNS record for _secondary_ resource (single value) or group of resources (multiple values).
 	+ If at least one resource in primary DNS record is healthy, failover does not happen.
@@ -256,4 +256,4 @@ Read more: [Documentation](https://docs.aws.amazon.com/Route53/latest/DeveloperG
 + When a resource becomes unhealthy, Route 53 stops sending it requests.
 + All records with same name, type and routing policy are considered active, unless health check deems it unhealthy.
 ##
-For more clarity on the concept, see [[Scaling#Failover strategies]] 
+For more clarity on the concept, see [](Scaling.md#Failover%20strategies) 

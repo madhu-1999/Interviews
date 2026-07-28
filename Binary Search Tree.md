@@ -1,5 +1,5 @@
 #dsa 
-+ A [[Binary Tree]] in which a node is greater than all nodes in its left subtree but smaller then all nodes in right subtree
++ A [Binary Tree](Binary%20Tree.md) in which a node is greater than all nodes in its left subtree but smaller then all nodes in right subtree
 # Representation
 ```java
 public class TreeNode{

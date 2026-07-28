@@ -48,22 +48,22 @@ In the CRUD model, we update the table at every stage (_product received, shippe
 	3. If an intermediate update is lost, table will become inconsistent. (ex: some error occurred while trying to update inventory)
 # Working
 1. **Event Creation**: When a user performs an action (e.g., placing an order), the application creates an event object that describes the action.
-2. **Event Storage**: The event is stored in the event store. This store is __append-only__, meaning events can only be added and never modified or deleted. (Ex: Apache Kafka, [[Other AWS Services#Amazon Kinesis Data Streams|AWS Kinesis]])
+2. **Event Storage**: The event is stored in the event store. This store is __append-only__, meaning events can only be added and never modified or deleted. (Ex: Apache Kafka, [](Other%20AWS%20Services.md#Amazon%20Kinesis%20Data%20Streams|AWS%20Kinesis))
 3. **State Rebuilding**: To determine the current state of an entity (e.g., an order), the application __replays__ all the events related to that entity from the event store.
 4. __Projection (Read model)__: We can aggregate the events into views/materialized views for querying.
-![[Pasted image 20260429012634.png]]
+![Pasted image 20260429012634](Assets/Pasted%20image%2020260429012634.png)
 Since __append-only logs__ cannot be modified or deleted, __the size of the log will keep on growing over time.__
 As the number of events grows, __replaying__ the entire event stream to reconstruct the state can become __slow and inefficient__.
 ## Techniques to manage log storage
 ### __Rebuilding State using Snapshots__
  Instead of replaying all events from the beginning, the application can load the latest snapshot and then replay only the events that occurred after the snapshot was taken.
- ![[Pasted image 20260429013935.png]]
+ ![Pasted image 20260429013935](Assets/Pasted%20image%2020260429013935.png)
  ### __Compaction__
  It is highly effective when you only care about the _latest_ value for a specific key. 
  The system periodically crawls the log. If it finds multiple events for the same ID, it keeps the most recent one and deletes the older versions of that same record.
  
  ### __Tiered Storage__
- Keep the last 24–48 hours of events or the most recent "segment" on high-performance disks for immediate processing and move older data to archival storage like [[Amazon S3#Storage Classes|S3 Glacier]].
+ Keep the last 24–48 hours of events or the most recent "segment" on high-performance disks for immediate processing and move older data to archival storage like [](Amazon%20S3.md#Storage%20Classes|S3%20Glacier).
 
 ## TTL
 For a tracking system (like GPS pings), you might decide that events older than 90 days have no value and, set a retention policy that automatically drops segments of the log after they reach a certain age.

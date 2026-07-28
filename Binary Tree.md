@@ -23,12 +23,12 @@ class Node {
 >[!tldr] Left -> Root -> Right
 
 ```media-slider
-![[Pasted image 20260316185754.png]]
-![[Pasted image 20260316185804.png]]
-![[Pasted image 20260316185813.png]]
-![[Pasted image 20260316185902.png]]
-![[Pasted image 20260316185838.png]]
-![[Pasted image 20260316185917.png]]
+![Pasted image 20260316185754.png](Pasted%20image%2020260316185754.png)
+![Pasted image 20260316185804.png](Pasted%20image%2020260316185804.png)
+![Pasted image 20260316185813.png](Pasted%20image%2020260316185813.png)
+![Pasted image 20260316185902.png](Pasted%20image%2020260316185902.png)
+![Pasted image 20260316185838.png](Pasted%20image%2020260316185838.png)
+![Pasted image 20260316185917.png](Pasted%20image%2020260316185917.png)
 ```
 ````tabs
 tab: Recursive
@@ -89,12 +89,12 @@ public class Tree {
 >[!tldr] Root -> Left -> Right
 
 ```media-slider
-![[Pasted image 20260316190530.png]]
-![[Pasted image 20260316190631.png]]
-![[Pasted image 20260316190623.png]]
-![[Pasted image 20260316190614.png]]
-![[Pasted image 20260316190541.png]]
-![[Pasted image 20260316190604.png]]
+![Pasted image 20260316190530.png](Pasted%20image%2020260316190530.png)
+![Pasted image 20260316190631.png](Pasted%20image%2020260316190631.png)
+![Pasted image 20260316190623.png](Pasted%20image%2020260316190623.png)
+![Pasted image 20260316190614.png](Pasted%20image%2020260316190614.png)
+![Pasted image 20260316190541.png](Pasted%20image%2020260316190541.png)
+![Pasted image 20260316190604.png](Pasted%20image%2020260316190604.png)
 ```
 ````tabs
 tab: Recursive
@@ -145,12 +145,12 @@ public class Tree {
 >[!tldr] Left -> Right -> Root
 
 ```media-slider
-![[Pasted image 20260316190835.png]]
-![[Pasted image 20260316190841.png]]
-![[Pasted image 20260316190849.png]]
-![[Pasted image 20260316190855.png]]
-![[Pasted image 20260316190902.png]]
-![[Pasted image 20260316190909.png]]
+![Pasted image 20260316190835.png](Pasted%20image%2020260316190835.png)
+![Pasted image 20260316190841.png](Pasted%20image%2020260316190841.png)
+![Pasted image 20260316190849.png](Pasted%20image%2020260316190849.png)
+![Pasted image 20260316190855.png](Pasted%20image%2020260316190855.png)
+![Pasted image 20260316190902.png](Pasted%20image%2020260316190902.png)
+![Pasted image 20260316190909.png](Pasted%20image%2020260316190909.png)
 ```
 ````tabs 
 tab: Recursive```
@@ -211,12 +211,12 @@ public class Tree {
 >1. ***Left Boundary:*** The nodes on the left edge of the tree, excluding the leaf nodes.
 >2. ***Leaf Nodes:*** All the leaf nodes from left to right.
 >3. ***Right Boundary:*** The nodes on the right edge of the tree, excluding the leaf nodes, traversed in bottom-up order.
->![[Pasted image 20260317161701.png]]
+>![Pasted image 20260317161701](Assets/Pasted%20image%2020260317161701.png)
 
 ```media-slider
-![[Pasted image 20260317161818.png]]
-![[Pasted image 20260317161824.png]]
-![[Pasted image 20260317161833.png]]
+![Pasted image 20260317161818.png](Pasted%20image%2020260317161818.png)
+![Pasted image 20260317161824.png](Pasted%20image%2020260317161824.png)
+![Pasted image 20260317161833.png](Pasted%20image%2020260317161833.png)
 ```
 
 ```java

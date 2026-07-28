@@ -2,8 +2,8 @@
 # Overview
 + Elastic Block Store (EBS)
 + Data persists even after instance is terminated or stopped.
-+ [[Storage in AWS#Block storage|Block-level storage]] , offering consistent and low-latency performance for workloads like databases.
-+ EBS volumes can be backed up, resized and reattached to different [[Amazon Elastic Compute Cloud (AWS EC2)|EC2]] instances.
++ [](Storage%20in%20AWS.md#Block%20storage|Block-level%20storage) , offering consistent and low-latency performance for workloads like databases.
++ EBS volumes can be backed up, resized and reattached to different [EC2](Amazon%20Elastic%20Compute%20Cloud%20(AWS%20EC2).md) instances.
 + ==Bound to a specific AZ==.
 + Can customize size (in GBs) and IOPS.
 	+ Billed for entire provisioned capacity, even if unused.
@@ -28,7 +28,7 @@ After creating,  go to EBS->Actions->Attach Volume to attach it to a EC2 instanc
 + Make a backup of your EBS volume at a point in time.
 + Not necessary, ***but*** recommended to detach volume before taking snapshot.
 + Can copy snapshots across AZ or region (redundancy or data migration).
-+ Amazon Data Lifecycle Manager ([[Storage in AWS#Shared Responsibility for Storage services#Fully Managed Services|fully managed service]])  can schedule snapshots during off-peak hours to minimize performance impact and automatically delete outdated backups to control storage costs.
++ Amazon Data Lifecycle Manager ([](Storage%20in%20AWS#Shared%20Responsibility%20for%20Storage%20services#Shared%20Responsibility%20for%20Storage%20services#Fully%20Managed%20Services|fully%20managed%20service))  can schedule snapshots during off-peak hours to minimize performance impact and automatically delete outdated backups to control storage costs.
 ## Standard tier
 + Takes ==incremental backups== i.e. only copies what has changed since previous snapshot was taken.
 	+ Each incremental snapshot contains reference to previous snapshot for portions of data that are unchanged.
@@ -41,25 +41,25 @@ After creating,  go to EBS->Actions->Attach Volume to attach it to a EC2 instanc
 		Then block 1-4 data in A is deleted since B has latest data. Data in Blocks 5-10 is preserved and reassigned to B, since it was unchanged.
 + Makes subsequent snapshots faster and more storage efficient => cost reduction
 + Can be used to create new volumes from a snapshot. The new volume is an ==exact copy== of the original volume at the time the snapshot was taken.
-+ ==Snapshots are redundantly stored in multiple AZ's using [[Amazon S3]].==
++ ==Snapshots are redundantly stored in multiple AZ's using [Amazon S3](Amazon%20S3.md).==
 ## Archive Tier
 + Use for low-cost, long-term storage of rarely accessed snapshots that do not need frequent or fast retrieval.
 + When a snapshot is archived, it is converted to a full snapshot from an incremental one.
 + On accessing an archived snapshot, it is restored to the standard tier. Can take 24- 72 hours to restore.
 + Upto 75% discount on storage costs for snapshots stored for 90+ days.
 + ==Can't use a archived snapshot to create a EBS volume==
-+ Can't enable [[#Fast snapshot restore|fast snapshot restore]] for an archived snapshot. Must be restored before enabling.
++ Can't enable [fast snapshot restore](#Fast%20snapshot%20restore) for an archived snapshot. Must be restored before enabling.
 + ==Can't cancel the snapshot archive/restore process after it has started==.
 Reading: [Guidelines and best practices for archiving Amazon EBS snapshots](https://docs.aws.amazon.com/ebs/latest/userguide/archiving-guidelines.html)
 ## Recycle Bin
 >[!note]+
->+ This feature can only be accessed by granting [[IAM]] access.
+>+ This feature can only be accessed by granting [IAM](IAM.md) access.
 >+ Can also recover AMI through it.
 + Setup retention rules to recover **deleted** EBS snapshots after a accidental deletion.
 + Rules can apply to all snapshots, or to snapshots that include a specified set of tag/value pairs. 
 + Each rule specifies a retention period (between one day and one year), after which the snapshot is permanently deleted.
 + Rules can be changed any time but new rules don't apply retroactively. i.e. Changing a rule after an item has been deleted will not alter the retention period for the item.
-+ [[#Fast snapshot restore|Fast snapshot restore]] is disabled when snapshot is deleted, and thus also when it is restored.
++ [Fast snapshot restore](#Fast%20snapshot%20restore) is disabled when snapshot is deleted, and thus also when it is restored.
 + Resources in recycle bin are charged usual price
 ## Use Cases
 + Disaster recovery
@@ -82,7 +82,7 @@ Reading: [Guidelines and best practices for archiving Amazon EBS snapshots](http
 ### Advantages
 + Faster restore
 + Ensures new volumes perform consistently since first use.
-+ [[Amazon Elastic Compute Cloud (AWS EC2)#**Custom AMI**|If a new EC2 instance is created from an existing EC2 instance]], the AMI automatically takes snapshot of root EBS volume. If FSR is enabled, EC2 instance boots up faster, since lazy-loading does not happen.
++ [](Amazon%20Elastic%20Compute%20Cloud%20(AWS%20EC2).md#**Custom%20AMI**|If%20a%20new%20EC2%20instance%20is%20created%20from%20an%20existing%20EC2%20instance), the AMI automatically takes snapshot of root EBS volume. If FSR is enabled, EC2 instance boots up faster, since lazy-loading does not happen.
 # EBS Volume Types
 ## Solid State Drive (SSD) 
 + Optimized for ==transactional== workloads with ==frequent R/W== operations, ==small I/O== 
@@ -94,7 +94,7 @@ Reading: [Guidelines and best practices for archiving Amazon EBS snapshots](http
 + io1, io2 Block Express
 + Highest performance SSD for mission critical ==low latency== or ==high throughput== workloads.
 + Great for database workloads
-+ Allows [[#EBS Multi Attach]]
++ Allows [#EBS Multi Attach](#EBS%20Multi%20Attach)
 ## Hard disk drive (HDD)
 + Optimized for large ==streaming== workloads with ==high throughput== needs
 + Cannot be boot volume.
@@ -106,10 +106,10 @@ Reading: [Guidelines and best practices for archiving Amazon EBS snapshots](http
 + sc1
 + ==Lowest cost== HDD for ==infrequently accessed== workloads
 # EBS Multi Attach
-+ Only for [[#**IOPS provisoned SSD**|io1/io2]] .
++ Only for [io1/io2](#**IOPS%20provisoned%20SSD**) .
 + Can attach same volume to multiple instances (upto 16 Nitro-based) in the ==same AZ==.
 + Must use a ==cluster aware== file system (GFS2, OCFS2) designed to handle concurrent R/W.
-+ [[AWS CloudWatch|Cloudwatch]] metrics aggregated over all instances, so cannot monitor performance for individual insatnce.
++ [Cloudwatch](AWS%20CloudWatch.md) metrics aggregated over all instances, so cannot monitor performance for individual insatnce.
 + All instances have full R/W access.
 + Eliminates SPOF. If one instance fails, another can take over without need to detach and reattach the volume, reducing recovery time.
 + Use case:

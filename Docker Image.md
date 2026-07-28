@@ -1,6 +1,6 @@
 #docker #devops 
 # Overview
-+ Standardized package that includes all the files, binaries, libraries and configurations needed to run a [[Container|container]].
++ Standardized package that includes all the files, binaries, libraries and configurations needed to run a [container](Container.md).
 + They are **immutable**.
 	+ To make changes to an existing image, you have to create a new image with the changes. (versioning)
 	+ When a file is modified/deleted in a new layer, a copy of updated file is added to it (update) or it is masked from view (deletion). The old file stills exists in its layer. (copy-on-write).
@@ -63,7 +63,7 @@ RUN pip install requests
 + __Third party registry__ 
 	+ Services where you can store, manage and secure private / public images.
 	+ Eliminates operational overhead of maintaining on-premises registry.
-	+ Ex: Google Container Registry, [[Amazon ECR]].
+	+ Ex: Google Container Registry, [Amazon ECR](Amazon%20ECR).
 + __Self hosted registry__
 	+ On-premises hosting of images.
 		+ Typically due to security or compliance requirements or to reduce latency.
@@ -91,7 +91,7 @@ docker pull company-registry.com:5000/my-app:v2
 ```
 
 ## Working
-1. Docker client parses arguments to the `docker pull` command and recognizes `company-registry.com:5000`  is the registry name ([[Domain Name System (DNS)|Fully qualified domain name]])
+1. Docker client parses arguments to the `docker pull` command and recognizes `company-registry.com:5000`  is the registry name ([Fully qualified domain name](Domain%20Name%20System%20(DNS).md))
 2. It tries to establish a HTTPS connection to it using given address and port.
 3. If registry is private, client uses credentials stored from a previous `docker login company-registry.com:5000` command.
 4. Client sends request to registry to pull image `my-app:v2`.
@@ -100,5 +100,5 @@ docker pull company-registry.com:5000/my-app:v2
 >If no registry is specified, it defaults to Docker hub servers.
 
 # Creating images
-## [[Docker CLI]]
-## [[DockerFile]] (recommended)
+## [Docker CLI](Docker%20CLI.md)
+## [DockerFile](DockerFile.md) (recommended)

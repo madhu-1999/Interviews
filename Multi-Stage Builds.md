@@ -1,15 +1,15 @@
 #docker #devops 
 # Prerequisite
-[[DockerFile]]
-[[Docker Image]]
+[DockerFile](DockerFile.md)
+[Docker Image](Docker%20Image.md)
 # Overview
-+ Building an image from a [[DockerFile]] is divided into multiple stages.
++ Building an image from a [DockerFile](DockerFile.md) is divided into multiple stages.
 + Creates more optimized and smaller images than single stage build.
 	+ Separate the build environment from the runtime environment.
 # Use cases
 ## Removing bulky build dependencies
 Below is an example of a single stage build Dockerfile.
-To build (compile) `HelloWorld.java` , we download the [[JVM vs JRE vs JDK#JDK|JDK]] which contains compiler + [[JVM vs JRE vs JDK#JRE|JRE]]. The output (artifact) of the build stage is `HelloWorld.class` file.
+To build (compile) `HelloWorld.java` , we download the [](JVM%20vs%20JRE%20vs%20JDK.md#JDK|JDK) which contains compiler + [](JVM%20vs%20JRE%20vs%20JDK.md#JRE|JRE). The output (artifact) of the build stage is `HelloWorld.class` file.
 
 ```Dockerfile
 # build
@@ -85,7 +85,7 @@ docker build --target=dev -t myapp:dev
 ```
 
 ## Testing in separate stage
-Same as [[#Separately run different environments]], in single stage builds we would need two different Dockerfiles, one to test the application and other to deploy, if we want to keep production and testing environments separate.
+Same as [#Separately run different environments](#Separately%20run%20different%20environments), in single stage builds we would need two different Dockerfiles, one to test the application and other to deploy, if we want to keep production and testing environments separate.
 
 With multi-stage builds, we can do this in the same file. Testing is done in its own stage (with its own dependencies that don't carry over the next stage) each time we have to deploy the application.
 

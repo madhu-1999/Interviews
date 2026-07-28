@@ -6,7 +6,7 @@ Python resolves names using the LEGB rule, which defines the order in which the 
 	**G**lobal
 	**B**uilt-in (Last)
 # Local
-Variables inside a [[Python - Functions|function]] or lambda expression.
+Variables inside a [function](Python%20-%20Functions.md) or lambda expression.
 If we try to access local variables outside the function/lambda, a **NameError** exception is thrown.
 You can inspect the names in a function’s local scope using the built-in [`dir()`](https://realpython.com/ref/builtin-functions/dir/) and [`vars()`](https://realpython.com/ref/builtin-functions/vars/) functions:
 # Enclosing

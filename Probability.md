@@ -11,7 +11,7 @@ hideWhenEmpty: false # Hide TOC if no headings are found
 debugInConsole: false # Print debug info in Obsidian console
 ```
 # Prerequisite
-[[Permutations and Combinations]]
+[Permutations and Combinations](Permutations%20and%20Combinations.md)
 # Type of Events
 ## Independent Event
 + Outcome of one event does not affect outcome of other event.
@@ -126,7 +126,7 @@ $A$ = Sum of dice is 7= $\{(1,6),(6,1),(2,5), (5,2),(3,4),(4,3)\}$
 $$P[(X,Y)\in A] = \sum_{(x,y)\in A}f(x,y)$$
 $$=f(1,6) + f(6,1) + f(2,5) + f(5,2) + f(3,4) + f(4,3)$$
 $$=\frac{6}{36} = \frac{1}{6}$$
-## [[#Expectation E(X)]]
+## [#Expectation E(X)](#Expectation%20E(X))
 $$E(XY) = \sum_y\sum_xxy. f(x,y)$$
 ## Continuous Random Variables
 + PDF is given by $f(x,y)$.
@@ -134,7 +134,7 @@ $$E(XY) = \sum_y\sum_xxy. f(x,y)$$
 	+ $f(x,y) \geq 0\space\forall\space (x,y)$
 	+ $\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f(x,y)dxdy = 1$
 	+ For any event $A\subset S$ ($S$ = sample space):$$P[(X,Y)\in A] = \int\int f(x,y)dxdy$$
-## [[#Expectation E(X)]]
+## [#Expectation E(X)](#Expectation%20E(X))
 $$E(XY) = \int_{y\in\Omega_y}\int_{x\in\Omega_x} xy.f(x,y)dxdy$$
 where $\Omega_y$ = Sample space of $Y$, and $\Omega_x$ = Sample space of X
 ##  Notes
@@ -143,7 +143,7 @@ where $\Omega_y$ = Sample space of $Y$, and $\Omega_x$ = Sample space of X
 3. If X and Y are independent, joint expectation $E(XY)= E(X)E(Y)$
 # Marginal Probability
 + Unconditional probability of an event $A$ occurring. 
-+ Derived from [[#Joint Probability]] and represents likelihood of event happening in isolation.
++ Derived from [#Joint Probability](#Joint%20Probability) and represents likelihood of event happening in isolation.
 + Ex: Probability of drawing a red card.
 ## Discrete Random Variables
 $$P(X=x) = \sum_yP(X=x,Y=y)$$

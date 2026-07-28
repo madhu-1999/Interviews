@@ -1,6 +1,6 @@
 #sql #postgres 
 # Prerequisite
-[[Block Structure]]
+[Block Structure](Block%20Structure.md)
 # Syntax
 ```sql
 create [or replace] procedure procedure_name(parameter_list)
@@ -82,7 +82,7 @@ END;
 $$;
 ```
 
-![[Pasted image 20260502112545.png]]
+![Pasted image 20260502112545](Assets/Pasted%20image%2020260502112545.png)
 # When to use
 1. **Large-Scale Data Processing:** Use procedures when performing heavy operations on millions of rows. Running logic on the database server prevents "shuttling" massive amounts of data over the network to the application server, which reduces latency and saves bandwidth.
 2. **Complex Multi-Step Transactions:** They are ideal for operations that span multiple tables and require atomicity (all-or-nothing execution), such as order processing systems that must simultaneously insert an order, update stock, and generate an invoice.

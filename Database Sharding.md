@@ -6,10 +6,10 @@
 			+ If storing multiple logical shards together, the goal is to ensure all related data is stored on same shard. Ex: all of a user's data (profile, posts, purchases) should reside on the same shard.
 	+ Data is distributed such that a row appears in exactly one shard.
 
->[!note] A logical shard is a [[Database Partitioning|partition]].
+>[!note] A logical shard is a [partition](Database%20Partitioning.md).
 
-![[Screenshot 2025-09-25 at 11.01.22 PM.png]]
-+ [[Scaling#Horizontal Scaling|Horizontally scales]] a database to improve **throughput** and **storage capacity**. 
+![Screenshot 2025-09-25 at 11.01.22 PM](Assets/Screenshot%202025-09-25%20at%2011.01.22%20PM.png)
++ [](Scaling.md#Horizontal%20Scaling|Horizontally%20scales) a database to improve **throughput** and **storage capacity**. 
 # Advantages
 + **Horizontal write scaling** : Write operations are distributed across multiple shards, instead of one server handling all the writes, increasing write capacity.
 + **Unlimited storage capacity**: Add more shards when needed, can infinitely scale out.
@@ -27,7 +27,7 @@
 	+ Key should not be monotonic i.e. non-increasing or non-decreasing.
 		+ Monotonic key can be used as part of a composite key
 + Related data, based on shard key is stored together. (data locality)
-![[Screenshot 2025-09-26 at 12.05.59 AM.png]]
+![Screenshot 2025-09-26 at 12.05.59 AM](Assets/Screenshot%202025-09-26%20at%2012.05.59%20AM.png)
 ### **Advantages**
 + **Efficient for range queries** as well as individual record lookups.
 + Simple to implement if ranges are fixed.
@@ -41,7 +41,7 @@
 + Value of chosen column(s) is passed through a hash function and data is partitioned based on hash value obtained.
 	+ Use same column across all data to partition data consistently.
 	+ Should have **high cardinality** i.e. greater number of unique values and **low frequency** of repeated values
-![[Screenshot 2025-09-25 at 11.22.44 PM.png]]
+![Screenshot 2025-09-25 at 11.22.44 PM](Assets/Screenshot%202025-09-25%20at%2011.22.44%20PM.png)
 ### **Advantages**
 + A good hash function ensures **uniform and random distribution** of data across shards, preventing any _hotspots_ that can lead to heavy write or read traffic.
 + Works well with keys that change monotonically i.e. in one direction only, either non-decreasing or non-increasing.
@@ -67,7 +67,7 @@
 ## Geo sharding
 + Distribute data across multiple physical shards based on geographic location.
 	+ Shard key could be geolocation or IP address.
-![[Screenshot 2025-09-26 at 2.04.28 PM.png]]
+![Screenshot 2025-09-26 at 2.04.28 PM](Assets/Screenshot%202025-09-26%20at%202.04.28%20PM.png)
 ### **Advantages**
 + **Reduced latency** since requests are routed to nearest shard.
 + Helps companies **comply with data residency laws**, such as Europe's GDPR, by ensuring that user data is stored and processed within its country or region of origin.
@@ -108,7 +108,7 @@
 + **Less latency** compared to using a routing layer
 + **More operational overhead** since client application has to decide where to route request to.
 ## Use a routing layer (Recommended)
-+ Typically routing layer is a [[Proxy server#Database Proxy|database proxy]].
++ Typically routing layer is a [](Proxy%20server.md#Database%20Proxy|database%20proxy).
 + Separates database layer entirely from application.
 	+ Client application forwards request to routing layer which is responsible for routing to the correct shard based on shard key and its knowledge of the sharding scheme.
 + Can detect failed shards and redirect to healthy replicas, minimizing downtime.

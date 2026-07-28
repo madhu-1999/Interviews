@@ -17,5 +17,5 @@
 + Wrapper to primitive conversion
 + Implicit (use .xxValue() for explicit Ex: `a.intValue()`
 # Typecasting for non-primitive types
-## [[Java Inheritance#Upcasting| Upcasting]]
-## [[Java Inheritance#Downcasting| Downcasting]]
+## [](Java%20Inheritance.md#Upcasting|%20Upcasting)
+## [](Java%20Inheritance.md#Downcasting|%20Downcasting)

@@ -90,7 +90,7 @@ another_car.accelerate(30)
 ```
 
 # ☱Class Attributes
-+ [i] Analogous to [[Static#Static Variables|Static variables]] in Java  
++ [i] Analogous to [](Static.md#Static%20Variables|Static%20variables) in Java  
  These attributes are tied to the class itself rather than to particular objects of that class. i.e. a class attribute and its value is shared between all objects of that class.
  ```python
  class ObjectCounter:
@@ -207,14 +207,14 @@ print(c.class_process(10))     # O/PL 30
 print(c.instance_process2(10)) # O/P: 30
 ```
 ````
-# ☱[[Python - Constructors|Constructors]]
+# ☱[Constructors](Python%20-%20Constructors.md)
 # Comparing Objects: `id()` and `isinstance`
 # Copying objects
 ## Shallow copy
 ## Deep copy
 # Dynamic addition of attributes
 Python supports dynamic addition of both class and instance attributes.
-+ [*] Prevent dynamic addition by using [[#_ _slots _ _ Attribute]].
++ [*] Prevent dynamic addition by using [#_ _slots _ _ Attribute](#_%20_slots%20_%20_%20Attribute).
 
 >[!question]- Why It Is Generally Discouraged?
 > + **Reduces Code Readability:** If a developer wants to understand what data a class holds, they look at the `__init__` method or the class-level definitions. If attributes are being injected invisibly from various functions or external files, the code becomes incredibly difficult to read and debug.
@@ -355,12 +355,12 @@ Robot.upgrade_robot(chappie)
 print(chappie.hardware_version)  # Output: v2.0
 ```
 # ☱\_\_dict\_\_ Attribute
-Both classes and objects have a special attribute \_\_dict\_\_, which returns a [[Python - Dictionary|dictionary]] containing all the methods and variables belonging to that class/object.
+Both classes and objects have a special attribute \_\_dict\_\_, which returns a [dictionary](Python%20-%20Dictionary.md) containing all the methods and variables belonging to that class/object.
 # ☱\_\_slots\_\_ Attribute
-+ [*] `__slots__ ` is a [[#☱Class Attributes|class attribute]]
++ [*] `__slots__ ` is a [class attribute](#☱Class%20Attributes)
 + [p] __Reduce memory footprint__ by preventing creation of \_\_dict\_\_ attribute.
 + [p] Fetching or changing attributes bypasses dictionary lookups, __making access faster__
-+ [p] Restrict attributes to a fixed set, preventing [[#Dynamic addition of attributes|dynamic addition of attributes]]. 
++ [p] Restrict attributes to a fixed set, preventing [dynamic addition of attributes](#Dynamic%20addition%20of%20attributes). 
 
 ```run-python
 class ImmutablePoint:
@@ -405,16 +405,16 @@ If you want to strongly hide a method and prevent subclasses from accidentally o
 Hello!
 >```
 ## ☱Property attributes
-Encapsulation can also be performed using [[Python - Property Attributes|property attributes]]
+Encapsulation can also be performed using [property attributes](Python%20-%20Property%20Attributes.md)
 # ☱Abstraction
-Implemented using [[Python - Abstract Base Class|Abstract Base classes]]
+Implemented using [Abstract Base classes](Python%20-%20Abstract%20Base%20Class.md)
 # ☱Polymorphism
-1. [[Python - Duck typing|Duck typing]]
-2. [[Python - Functions#Method Overloading|Method Overloading]]
-3. [[Python - Inheritance#Method overriding|Method overriding]] 
+1. [Duck typing](Python%20-%20Duck%20typing.md)
+2. [](Python%20-%20Functions.md#Method%20Overloading|Method%20Overloading)
+3. [](Python%20-%20Inheritance.md#Method%20overriding|Method%20overriding) 
 # ☱Inheritance
-See [[Python - Inheritance]] for more info
-# ☱[[Python - Data Classes|Data class]]
+See [Python - Inheritance](Python%20-%20Inheritance.md) for more info
+# ☱[Data class](Python%20-%20Data%20Classes.md)
 
 # References
 [Python classes](https://realpython.com/python-classes/)

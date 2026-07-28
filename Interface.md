@@ -9,7 +9,7 @@ debugInConsole: false # Print debug info in Obsidian console
 ```
 An interface is a **blueprint of a behavior**.
 
-+ A mechanism to achieve [[Abstraction]] and Multiple inheritance[^1] . It provides **total** abstraction.
++ A mechanism to achieve [Abstraction](definitions/Abstraction.md) and Multiple inheritance[^1] . It provides **total** abstraction.
 + By default(implicit), **variables** are **public, static, and final**.
 + By default, all the **methods** are **public** and **abstract**.
 + Defines a set of behaviors that a class can implement.
@@ -45,4 +45,4 @@ class B implements A {
 + Private methods **cannot** be abstract.
 
 ## Footnotes
-[^1]: [[Inheritance#**Multiple Inheritance** **One child, multiple parents**]]
+[^1]: [](definitions/Inheritance.md#**Multiple%20Inheritance**%20**One%20child,%20multiple%20parents**)

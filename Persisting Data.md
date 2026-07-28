@@ -30,7 +30,7 @@ docker run --mount type=bind,src=<host-path>,dst=<container-path>,readonly <imag
 >Since a Dockerfile specifies how to build a image, not how to use it, we cannot specify bind mounts in it.
 
 ```bash
-# [[Docker Compose]] file
+# [Docker Compose](Docker%20Compose.md) file
 version: '3.1'
 
 services:
@@ -48,7 +48,7 @@ services:
 + Persistent data stores created and managed by Docker
 	+ When a volume is created, Docker stores its contents in a directory on the host machine. On Linux, typically `/var/lib/docker/volumes`.
 	+ A volume is isolated from the host machine and managed by Docker daemon.
-	+ To modify files in the volume from host machine, it is recommended to use [[Docker CLI]].
+	+ To modify files in the volume from host machine, it is recommended to use [Docker CLI](Docker%20CLI.md).
 + Data stored in volumes does not increase container size, since it exists only on the host machine.
 	+ When mounted, volume is associated with a container directory. Shared directory contents same as bind mount.
 	+ If _empty_ volume and non-empty container dir, container dir files and folders automatically copied to volume.

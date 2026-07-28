@@ -10,4 +10,4 @@ Given a **non-empty** array $nums$ containing only positive integers, find if th
 1. Find sum of all elements in $nums$ => $totalSum$. 
 	1. If $totalSum$ is odd, no partition is possible.
 	2. If $totalSum$ is even, partition is possible.
-2. If partition is possible this problem can be reduced to finding if a subset exists with sum of $totalSum/2$ which is the [[Subset Sum]] problem.
+2. If partition is possible this problem can be reduced to finding if a subset exists with sum of $totalSum/2$ which is the [Subset Sum](Subset%20Sum.md) problem.

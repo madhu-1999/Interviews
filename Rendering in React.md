@@ -11,13 +11,13 @@ hideWhenEmpty: false # Hide TOC if no headings are found
 debugInConsole: false # Print debug info in Obsidian console
 ```
 # Overview
-![[Screenshot 2025-08-30 at 7.24.20 PM.png]]
+![Screenshot 2025-08-30 at 7.24.20 PM](Assets/Screenshot%202025-08-30%20at%207.24.20%20PM.png)
 + This process of requesting and serving UI has three steps:
 
 1. **Triggering** a render (delivering the guest’s order to the kitchen)
 2. **Rendering** the component (preparing the order in the kitchen)
 3. **Committing** to the DOM (placing the order on the table)
-![[Screenshot 2025-08-30 at 7.37.58 PM.png]]
+![Screenshot 2025-08-30 at 7.37.58 PM](Assets/Screenshot%202025-08-30%20at%207.37.58%20PM.png)
 # Triggering a render
 ## Initial Render
 + The initial render is triggered by calling `createRoot` with the target DOM node, and then calling its render method.
@@ -112,7 +112,7 @@ on clicking `Increase` button, only `h1` element is changed:
 ### **Need for Virtual Dom**
 + On updating DOM, the entire tree is rendered again, including parts that have not changed.
 + The DOM rendering process is slow and resource-intensive especially for frequent, complex updates.
-+ The virtual DOM is instead used to track changes and these changes are then batched and applied to the real DOM in [[#Commit|commit]] phase, to minimize the full rendering of DOM tree.
++ The virtual DOM is instead used to track changes and these changes are then batched and applied to the real DOM in [commit](#Commit) phase, to minimize the full rendering of DOM tree.
 ### **How does virtual DOM track changes?**
 + Whenever state changes and a render is triggered, a new virtual DOM is created.
 + The previous version of virtual DOM and the new one are compared, in a process called **diffing**, to ascertain the changes made.
@@ -120,16 +120,16 @@ on clicking `Increase` button, only `h1` element is changed:
 ## Reconciliation
 ### **Fiber**
 + Current React reconciler is called **fiber**
-+ During [[#Initial Render]], it creates a **fiber tree** based on the [[#Virtual DOM]].
++ During [#Initial Render](#Initial%20Render), it creates a **fiber tree** based on the [#Virtual DOM](#Virtual%20DOM).
 + It is a special internal tree with **one** "fiber" for each component instance and DOM element in the app.
 + Each fiber contains a components current state, props, hooks etc, along with a queue of work to do, like updating state, updating refs, performing DOM updates.
-+ Unlike [[#Virtual DOM]], it is not recreated on every render. It is a mutable data structure that is mutated in each reconciliation step.
-+ Instead of a parent-child relationship, each first child has a link to its parent and all other children have a link to their previous sibling. ([[Linked List]]).
-+ Reconciling done asynchronously. i.e. work can be paused, reused, split into chunks and resumed as necessary.![[www.udemy.com_course_the-ultimate-react-course_learn_lecture_37350774.png]]
++ Unlike [#Virtual DOM](#Virtual%20DOM), it is not recreated on every render. It is a mutable data structure that is mutated in each reconciliation step.
++ Instead of a parent-child relationship, each first child has a link to its parent and all other children have a link to their previous sibling. ([Linked List](Linked%20List.md)).
++ Reconciling done asynchronously. i.e. work can be paused, reused, split into chunks and resumed as necessary.![www.udemy.com_course_the-ultimate-react-course_learn_lecture_37350774](Assets/www.udemy.com_course_the-ultimate-react-course_learn_lecture_37350774.png)
 ### **How does fiber tree help in reconciliation?
-+ New [[#Virtual DOM]] is compared to previous virtual DOM through **diffing** to give the updated fiber tree which is internally called the work in progress tree.
-+ During diffing, DOM mutations identified are placed in a list called list of effects which is used in [[#Commit]] phase to mutate the DOM.
-![[Screenshot 2025-09-01 at 4.19.36 PM.png]]
++ New [#Virtual DOM](#Virtual%20DOM) is compared to previous virtual DOM through **diffing** to give the updated fiber tree which is internally called the work in progress tree.
++ During diffing, DOM mutations identified are placed in a list called list of effects which is used in [#Commit](#Commit) phase to mutate the DOM.
+![Screenshot 2025-09-01 at 4.19.36 PM](Assets/Screenshot%202025-09-01%20at%204.19.36%20PM.png)
 ## Diffing
 Uses 2 rules:
 + Same component at same position in component tree, preserves state or conversely different components at same position reset state.
@@ -156,10 +156,10 @@ Ex: changing key
 ```
 # Commit
 + List of effects generated in previous step is used to write to DOM.
-+ The write process is **synchronous**, unlike the [[#Render]] step which is asynchronous.
++ The write process is **synchronous**, unlike the [#Render](#Render) step which is asynchronous.
 	+ It is synchronous, so that DOM updates are never partial and, thus UI is consistent.
 + The browser will then notice that the DOM has been changed, and as a result, it will repaint the screen whenever it has some idle time.
 + Once completed, the work in progress tree becomes the current fiber tree for the next render.
-+ [[#Render]] step is performed by the React library but commit is done by React DOM library.
-	+ This is because React is platform independent, it can be used to create mobile apps, videos and documents ( [[React#Key Characteristics|Write anywhere]] ).
++ [#Render](#Render) step is performed by the React library but commit is done by React DOM library.
+	+ This is because React is platform independent, it can be used to create mobile apps, videos and documents ( [](React.md#Key%20Characteristics|Write%20anywhere) ).
 	+ React DOM is used to write updates to browser DOM, but other packages are used for commit phase in mobile apps and other use cases.
