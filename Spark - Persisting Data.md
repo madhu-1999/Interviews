@@ -11,7 +11,7 @@ Suppose we have a lineage graph as shown below:
 flowchart LR
    RDD1 -- map --> RDD2 -- groupby --> RDD3
 ```
-If we want to perform an [[Spark - Introduction#Actions|action]] or a [[Spark - Transformations|transformation]] on _RDD3_ multiple times, then _RDD3_ will be recomputed every time. We will repeatedly perform the costly `groupBy()` operation.
+If we want to perform an [](Spark%20-%20Introduction.md#Actions|action) or a [transformation](Spark%20-%20Transformations.md) on _RDD3_ multiple times, then _RDD3_ will be recomputed every time. We will repeatedly perform the costly `groupBy()` operation.
 When an RDD is persisted, each node stores any partitions of it, that it computes in memory, and reuses it for future transformations or actions.
 # Storage Levels
 
@@ -27,9 +27,9 @@ When an RDD is persisted, each node stores any partitions of it, that it compute
 
 Both methods are used to persist RDDs/DataFrames/Datasets to memory.
 Both `.cache()` and `.persist()` internally translate to a `.persist()` call.
-The only difference is that, `.persist()` allows us to specify a [[#Storage Levels|storage level]], while `.cache()` does not.
+The only difference is that, `.persist()` allows us to specify a [storage level](#Storage%20Levels), while `.cache()` does not.
 
-+ [i] **For [[Spark - RDD|RDDs]]**: `.cache()` and `.persist()` defaults to **MEMORY_ONLY**.
++ [i] **For [RDDs](Spark%20-%20RDD.md)**: `.cache()` and `.persist()` defaults to **MEMORY_ONLY**.
 + [i] **For DataFrame/Dataset**: `.cache()` and `.persist()` default to **MEMORY_AND_DISK**.
  
  **Notes** [^3]
@@ -43,7 +43,7 @@ If you would like to manually remove an RDD instead of waiting for it to fall ou
 [^3][^5] 
 >[!warning] This section talks about checkpointing related to batch processing!
 
-It is the process of saving a RDD/DataFrame to distributed storage like HDFS, [[Amazon S3|S3]]  **permanently**, so that future operations read directly from disk.
+It is the process of saving a RDD/DataFrame to distributed storage like HDFS, [S3](Amazon%20S3.md)  **permanently**, so that future operations read directly from disk.
 + [i] It requires specifying a directory before calling `.checkpoint()` on a RDD/DataFrame.
 ```python
 spark.sparkContext.setCheckpointDir("\path\to\checkpoint\dir")
@@ -54,7 +54,7 @@ emp_df.checkpoint()
 
 >[!faq] Why use `.checkpoint()` over `.persist()`?
 >+ [I] **Lineage Explosion**: In recursive, machine learning, or graph processing jobs, the lineage keeps growing, leading to `OutOfMemory`  or `StackOverflow` errors when trying to recompute a lost partition. `.checkpoint()` truncates the lineage, and the _checkpoint directory_ is treated as the new starting point.
->![[Spark - Persisting Data-1784676532518.webp]]
+>![Spark - Persisting Data-1784676532518](Assets/Spark%20-%20Persisting%20Data-1784676532518.webp)
 >+ [I] **Permanent Storage:** Checkpointed data persists even after the Spark application shuts down. Persisted data vanishes when the session ends. 
 >+ [I] **Absolute Reliability:** If a node crashes, a checkpointed dataset can be recovered directly from storage. With `.persist()`, if data is lost from memory and the original data source has changed or is unavailable, the job fails.
 

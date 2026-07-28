@@ -11,7 +11,7 @@ RDDs provide fault tolerance by maintaining the lineage of transformations appli
 >[!faq]- What is lineage?
 >It is a DAG that represents a sequence of transformations applied to a RDD from its source to its current state.
 >Each node in the lineage graph represents a parent RDD, and each edge represents a transformation operation (e.g., map, filter) that was applied to derive the child RDD.
->![[RDDs in Spark-1784475581781.webp]]
+>![RDDs in Spark-1784475581781](Assets/RDDs%20in%20Spark-1784475581781.webp)
 # Executor Failure
 [^1]
 

@@ -39,7 +39,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Spark - Fault tolerance.md",
+                "file": "Spark - Introduction.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -54,7 +54,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "Spark - Fault tolerance"
+              "title": "Spark - Introduction"
             }
           },
           {
@@ -63,7 +63,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Spark - RDD.md",
+                "file": "Spark - Persisting Data.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -78,7 +78,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "Spark - RDD"
+              "title": "Spark - Persisting Data"
             }
           }
         ],
@@ -114,7 +114,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "#spark",
                 "matchingCase": false,
                 "explainSearch": true,
                 "collapseAll": true,
@@ -135,7 +135,8 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -215,13 +216,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Spark - RDD.md",
+                "file": "Spark - Persisting Data.md",
                 "followCursor": true,
                 "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Spark - RDD"
+              "title": "Outline of Spark - Persisting Data"
             }
           }
         ],
@@ -291,14 +292,18 @@
   },
   "active": "7cca6836cfb3da13",
   "lastOpenFiles": [
+    "Spark - Transformations.md",
+    "Spark - RDD.md",
+    "Spark - RDD Operations Reference.md",
+    "Spark - Introduction.md",
+    "Database Sharding.md",
+    "Database Partitioning.md",
+    "Spark.md",
+    "Spark - Shared Variables.md",
     "Spark - Persisting Data.md",
+    "Spark - Fault tolerance.md",
     "Wiki/Home.md",
     "Wiki",
-    "Spark - Fault tolerance.md",
-    "Spark - RDD.md",
-    "Spark - Transformations.md",
-    "Spark - Introduction.md",
-    "Spark - RDD Operations Reference.md",
     "Topics to cover.md",
     "Assets/Spark - RDD Operations Reference-1785093751138.webp",
     "Assets/Spark - RDD Operations Reference-1785092337224.webp",
@@ -306,7 +311,6 @@
     "Assets/Spark - RDD Operations Reference-1785031212619.webp",
     "PySpark.md",
     "Spark - Reading & Writing Files.md",
-    "Spark - Shared Variables.md",
     "Assets/Spark - Shared Variables-1784734785613.webp",
     "Assets/Spark - Persisting Data-1784676532518.webp",
     "Assets/RDDs in Spark-1784475581781.webp",
@@ -325,9 +329,6 @@
     "Python - Constructors.md",
     "Views.md",
     "Historical Weather Analytics Project.md",
-    "Pandas (SQL Reference).md",
-    "Grouping Data.md",
-    "Persisting Data.md",
     "Documents/Database Internals.pdf",
     "media-lib/index.base",
     "definitions",

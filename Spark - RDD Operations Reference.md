@@ -17,7 +17,7 @@ print(rdd.filter(lambda x: x % 2 == 0).collect())
 ```
 ## `flatMap()`
 
-Returns an iterable per input and flattens those [[Python - Iterable and Iterators|iterables]], so one input can produce zero or many outputs.
+Returns an iterable per input and flattens those [iterables](Python%20-%20Iterable%20and%20Iterators.md), so one input can produce zero or many outputs.
 
 ```python
 # --------- Filtering Data (1 to 0 Mapping) -----------
@@ -70,7 +70,7 @@ print(result.collect())
 ## `aggregateByKey()` 
 
 [^4]
-It takes a Pair [[Spark - RDD|RDD]] (RDD of key-value pairs) and aggregates values of each key, producing a new Pair RDD with aggregated values per key.
+It takes a Pair [RDD](Spark%20-%20RDD.md) (RDD of key-value pairs) and aggregates values of each key, producing a new Pair RDD with aggregated values per key.
 	The input type $V$ can be different from the output type $C$.
 ```python
 rdd = sc.parallelize([("a", 1), ("b", 2), ("a", 3)])
@@ -83,7 +83,7 @@ result = aggregated_rdd.collect()
 print(result)  # Output: [('a', 4), ('b', 2)]
 ```
 
-![[Spark - RDD Operations Reference-1785056140668.webp]]
+![Spark - RDD Operations Reference-1785056140668](Assets/Spark%20-%20RDD%20Operations%20Reference-1785056140668.webp)
 + [i] `zeroValue` is the initial value for the accumulated result of each partition. It is the ==same for every key in every partition==
 + [i] `seqFunc` aggregates values within each partition by combining the current aggregate (starting from `zeroValue`) with each value for a key. 
 + [i] `combFunc` merges, aggregates from different partitions for a key after shuffling.
@@ -94,7 +94,7 @@ print(result)  # Output: [('a', 4), ('b', 2)]
 ## `combineByKey()`
 
 [^6]
-It takes a Pair [[Spark - RDD|RDD]] (RDD of key-value pairs) and aggregates values of each key, producing a new Pair RDD with aggregated values per key.
+It takes a Pair [RDD](Spark%20-%20RDD.md) (RDD of key-value pairs) and aggregates values of each key, producing a new Pair RDD with aggregated values per key.
 	The input type $V$ can be different from the output type $C$.
 
 ```python
@@ -183,7 +183,7 @@ print(f"Average: {res[0] / res[1]}")
 + [i] `zeroValue` is the initial value for the accumulated result of each partition for the `seqOp` operator, and also the initial value for the combine results from different partitions for the `combOp` operator.
 + [i] `seqOp` is an operator used to accumulate results within a partition.
 + [i] `combOp` is an associative operator used to combine results from different partitions. 
-![[Spark - RDD Operations Reference-1785031212619.webp]]
+![Spark - RDD Operations Reference-1785031212619](Assets/Spark%20-%20RDD%20Operations%20Reference-1785031212619.webp)
 
 >[!warning] All partitions send their reduced value to the driver. This becomes a bottleneck when there are many partitions and the data from each partition is big.
 >>[!tip] Use `treeAggregate()` instead, it combines partitions on a small set of executors first before sending sending them to the driver.
@@ -236,7 +236,7 @@ print(sc.parallelize(range(1000)).map(str).countApproxDistinct())
 
 Counts the number of values associated with each key in a Pair RDD and returns the result as a dictionary.
 
-![[Spark - RDD Operations Reference-1785092337224.webp]]
+![Spark - RDD Operations Reference-1785092337224](Assets/Spark%20-%20RDD%20Operations%20Reference-1785092337224.webp)
 
 >[!warning] All partitions send their reduced value to the driver. This becomes a bottleneck when there are many partitions and the data from each partition is big.
 ## `countByValue()`
@@ -251,7 +251,7 @@ rdd = sc.parallelize([1, 2, 1, 2, 2], 3)
 print(rdd.countByValue())
 ```
 
-![[Spark - RDD Operations Reference-1785093751138.webp]]
+![Spark - RDD Operations Reference-1785093751138](Assets/Spark%20-%20RDD%20Operations%20Reference-1785093751138.webp)
 
 >[!warning] All partitions send their reduced value to the driver. This becomes a bottleneck when there are many partitions and the data from each partition is big.
 

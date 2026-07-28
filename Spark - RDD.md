@@ -12,13 +12,13 @@ tags:
 
 An `RDD` is an __in-memory__ data structure that is distributed across many servers within a Spark cluster.
 It logically partitions data and the worker nodes store their segments of the partitioned RDD _in-memory_ for fast computation.
-![[Pasted image 20260430095939.webp]]
+![Pasted image 20260430095939](Assets/Pasted%20image%2020260430095939.webp)
 >[!info]- Rule of thumb: target 128MB–256MB per partition.
 >$$\frac{data\_size\_gb * 1000 }{target\_mb\_per\_partition} = \text{ideal partition count}$$
 >For 100 GB data:
 >$$\frac{100 * 1000}{200} = 500\space\text{partitions}$$
 
-![[Pasted image 20260430094210.webp]]
+![Pasted image 20260430094210](Assets/Pasted%20image%2020260430094210.webp)
 # Features
 ## Immutable
 [^4]
@@ -41,19 +41,19 @@ The data inside an RDD (partition of it) is stored by the executor in memory, te
 > + The data can be persisted in memory using `.cache()` and `.persist()`, which means, it can be reused every time we perform a given sequence of operations, instead of computing or fetching it, again and again.
 > + Reading from disk requires constant serialization / deserialization. This overhead is also eliminated by keeping data in memory.
 
-> See [[Spark - Persisting Data]] for more details on `.cache()` and `.persist()`.
+> See [Spark - Persisting Data](Spark%20-%20Persisting%20Data.md) for more details on `.cache()` and `.persist()`.
 ## Lazy Evaluation
 [^2]
-[[Spark - Transformations|Transformations]] are not executed immediately. Instead, they are recorded in the lineage and executed together when an [[Spark - Introduction#Actions|action]] is called on it.
+[Transformations](Spark%20-%20Transformations.md) are not executed immediately. Instead, they are recorded in the lineage and executed together when an [](Spark%20-%20Introduction.md#Actions|action) is called on it.
 >[!faq]- What is lineage?
 >It is a DAG that represents a sequence of transformations applied to a RDD from its source to its current state.
 >Each node in the lineage graph represents a parent RDD, and each edge represents a transformation operation (e.g., map, filter) that was applied to derive the child RDD.
->![[RDDs in Spark-1784475581781.webp]]
+>![RDDs in Spark-1784475581781](Assets/RDDs%20in%20Spark-1784475581781.webp)
 ## Fault tolerance
 [^3]
 RDDs provide fault tolerance through lineage.If a failure occurs during any transformation or if an RDD is lost, Spark can recompute the lost partition or RDD by following the lineage. It only re-executes the missing or affected transformation, avoiding unnecessary recomputation.
 
->See [[Spark - Fault tolerance]] to understand other types of fault tolerance in Spark.
+>See [Spark - Fault tolerance](Spark%20-%20Fault%20tolerance.md) to understand other types of fault tolerance in Spark.
 ## Type Safety
 RDDs provide compile time safety, but there is no schema enforcement.
 RDDs also provide **no query or execution optimizations**.
@@ -103,7 +103,7 @@ print(whole_rdd.collect())
 # ]
 ```
 
-> See [[Spark - Reading & Writing Files]] for more details
+> See [Spark - Reading & Writing Files](Spark%20-%20Reading%20&%20Writing%20Files.md) for more details
 ## From a DataFrame / Dataset
 ```python
 # Create a sample DataFrame

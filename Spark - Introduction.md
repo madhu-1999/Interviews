@@ -5,7 +5,7 @@ tags:
   - "#distributed"
 ---
 # Prerequisite
-[Database Partitioning](Database%20Partitioning.md)
+[Database Partitioning](<Database Partitioning.md>)
 [Database Sharding](Database%20Sharding.md)
 [Hadoop](Hadoop) 
 # What is Apache Spark?
@@ -111,14 +111,14 @@ They are worker processes (JVM) responsible for __executing tasks__ in Spark app
 They are launched on worker nodes (physical machine) and communicate with the driver program and cluster manager. Executors run tasks concurrently (__one task = one core__) and store data in memory or disk for caching and intermediate storage.
 ## Task
 A task is the smallest unit of work in Spark, representing a unit of computation that can be performed on a single partition of data i.e. __one task = one partition__. The driver program divides the Spark job into tasks and assigns them to the executor nodes for execution.
-# [](Spark%20-%20Transformations.md#Transformations|Transformations)
+# [Transformations](Spark%20-%20Transformations.md#Transformations) 
 [^12]
 They are operations that transform your existing RDD or DataFrame into a new RDD or DataFrame.
 + [I] **Lazy evaluation**: They don't execute immediately.
 + [*] `map`, `filter`, `groupBy`, `flatMap`, `distinct`, `union`, `join` etc...
 # Actions
 [^12]
-> See [](Spark%20-%20Transformations.md#Transformations%20vs%20Actions|Transformations%20vs%20Actions) for differences.
+> See [Transformations vs Action](Spark%20-%20Transformations.md#Transformations%20vs%20Actions) for differences.
 
 They trigger the actual computation of the set of transformations defined up until that point, and then it executes immediately.
 + [I] They return the result to the driver, typically a single value or a small collection of data that **can fit in the driver's memory**.
@@ -189,7 +189,7 @@ It is only available for strongly typed languages like Java and Scala.
 
 ## Explicit Repartitioning
 ### `coalesce`
-It is a [narrow transform](#Narrow%20transformations) designed to __reduce the partitions__ in your DataFrame __without triggering a full [shuffle](#Data%20shuffling).__
+It is a [narrow transform](<Spark - Transformations#Narrow Transformations>)  designed to __reduce the partitions__ in your DataFrame __without triggering a full [shuffle](#Data%20shuffling).__
 __Key characteristics of coalesce__:
 - **One-way operation**: Coalesce can only reduce the number of partitions, not increase them (unless you set shuffle=true, which essentially turns it into repartition).
 - [p] **Minimal data movement**: It __attempts__ to combine partitions that are already on the same executor, minimizing network traffic.
@@ -303,7 +303,7 @@ df_coalesced.write.parquet("s3://bucket/output/")
 >- **Optimized Output Files:** It is the standard tool for reducing the number of small files written to a data lake or database.
 >- **Maintains Sort Order:** In some scenarios, because it merges adjacent partitions without a full reshuffle, it is better at preserving any existing local sort order than a full `repartition`
 ### `repartition`
-It's a [wide transformation](#Wide%20Transformations) because each output partition may depend on data from all input partitions.[^1]
+It's a [wide transformation](<Spark - Transformations#Wide Transformations>) because each output partition may depend on data from all input partitions.[^1]
 __Key characteristics of repartition__:
 - **Bidirectional operation**: Can both increase and decrease the number of partitions.
 - [c] **Full data shuffle**: Triggers a complete redistribution of data across the cluster.

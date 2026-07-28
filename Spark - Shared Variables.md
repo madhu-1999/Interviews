@@ -8,7 +8,7 @@ tags:
 [^1][^2]
 They allow us to **efficiently share a small, read-only dataset** to all executors in a cluster.
 Instead of sending the data with each task, it is sent once from the driver to each executor, minimizing network I/O.
-![[Spark - Shared Variables-1784734785613.webp]]
+![Spark - Shared Variables-1784734785613](Assets/Spark%20-%20Shared%20Variables-1784734785613.webp)
 ## Example
 ```python
 # Use case: Mapping country code to country name
@@ -67,7 +67,7 @@ It is a shared variable used to **calculate simple global aggregations** across 
 + [i] Read-only for the driver
 + [i] Write-only for the executors 
 + [i] Supports commutative and associative operations 
-+ [!] Use with [[Spark - Introduction#Actions|actions]], ***NOT*** [[Spark - Transformations|transformations]].
++ [!] Use with [](Spark%20-%20Introduction.md#Actions|actions), ***NOT*** [transformations](Spark%20-%20Transformations.md).
 
 >[!faq] Why can't global variables be used for global aggregations?
 
