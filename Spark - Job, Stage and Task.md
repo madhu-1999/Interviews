@@ -47,11 +47,9 @@ print(f"Avg salary by department: {final_output}")
 ![Apache Spark-1778698144623](Assets/Apache%20Spark-1778698144623.webp)
 # Task
 It is the __smallest unit of work__ in Spark.
-	__One partition = one task__
+	__One [partition](Spark%20-%20Partition.md) = one task__
 
-The driver assigns tasks to executors, which process them in parallel. Balancing the number of tasks and partition sizes is essential to avoid performance bottlenecks.
-
->See [Spark - Partition](Spark%20-%20Partition) for more details.
-
+The driver assigns tasks to executors, which process them in parallel. (__one task = one core__)
+Balancing the number of tasks and partition sizes is essential to avoid performance bottlenecks.
 
 [^1]: https://blog.dataengineerthings.org/deep-dive-into-spark-jobs-and-stages-481ecf1c9b62

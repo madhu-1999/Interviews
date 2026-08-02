@@ -12,7 +12,7 @@ flowchart LR
    RDD1 -- map --> RDD2 -- groupby --> RDD3
 ```
 If we want to perform an [](Spark%20-%20Introduction.md#Actions|action) or a [transformation](Spark%20-%20Transformations.md) on _RDD3_ multiple times, then _RDD3_ will be recomputed every time. We will repeatedly perform the costly `groupBy()` operation.
-When an RDD is persisted, each node stores any partitions of it, that it computes in memory, and reuses it for future transformations or actions.
+When an RDD is persisted, each node stores any [partitions](Spark%20-%20Partition.md) of it, that it computes in memory, and reuses it for future transformations or actions.
 # Storage Levels
 
 | Storage Level                                 | Meaning                                                                                                                                                                                                                              |
@@ -53,7 +53,7 @@ emp_df.checkpoint()
 ```
 
 >[!faq] Why use `.checkpoint()` over `.persist()`?
->+ [I] **Lineage Explosion**: In recursive, machine learning, or graph processing jobs, the lineage keeps growing, leading to `OutOfMemory`  or `StackOverflow` errors when trying to recompute a lost partition. `.checkpoint()` truncates the lineage, and the _checkpoint directory_ is treated as the new starting point.
+>+ [I] **Lineage Explosion**: In recursive, machine learning, or graph processing [jobs](Spark%20-%20Job,%20Stage%20and%20Task.md), the lineage keeps growing, leading to `OutOfMemory`  or `StackOverflow` errors when trying to recompute a lost partition. `.checkpoint()` truncates the lineage, and the _checkpoint directory_ is treated as the new starting point.
 >![Spark - Persisting Data-1784676532518](Assets/Spark%20-%20Persisting%20Data-1784676532518.webp)
 >+ [I] **Permanent Storage:** Checkpointed data persists even after the Spark application shuts down. Persisted data vanishes when the session ends. 
 >+ [I] **Absolute Reliability:** If a node crashes, a checkpointed dataset can be recovered directly from storage. With `.persist()`, if data is lost from memory and the original data source has changed or is unavailable, the job fails.

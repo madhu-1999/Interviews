@@ -39,7 +39,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Spark - Introduction.md",
+                "file": "Spark - Transformations.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -54,7 +54,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "Spark - Introduction"
+              "title": "Spark - Transformations"
             }
           },
           {
@@ -63,7 +63,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Spark - Job, Stage and Task.md",
+                "file": "Spark - Partition.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -78,11 +78,11 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "Spark - Job, Stage and Task"
+              "title": "Spark - Partition"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -114,7 +114,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "spark",
+                "query": "tag:#spark partition  ",
                 "matchingCase": false,
                 "explainSearch": true,
                 "collapseAll": true,
@@ -175,12 +175,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Spark - RDD Operations Reference.md",
+                "file": "Spark - Transformations.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Spark - RDD Operations Reference"
+              "title": "Outgoing links from Spark - Transformations"
             }
           },
           {
@@ -204,7 +204,7 @@
             "state": {
               "type": "footnotes",
               "state": {
-                "file": "Spark - RDD Operations Reference.md"
+                "file": "Spark - Transformations.md"
               },
               "icon": "lucide-file-signature",
               "title": "Footnotes"
@@ -216,17 +216,17 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Spark - Job, Stage and Task.md",
+                "file": "Spark - Transformations.md",
                 "followCursor": true,
                 "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Spark - Job, Stage and Task"
+              "title": "Outline of Spark - Transformations"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -290,25 +290,27 @@
       }
     ]
   },
-  "active": "c3b4371c3f7c3fe6",
+  "active": "f79339f661a139de",
   "lastOpenFiles": [
-    "Spark - Introduction.md",
-    "Spark - Job, Stage and Task.md",
-    "Spark - Fault tolerance.md",
-    "Assets/Spark - Job, Stage and Task-1785260619945.webp",
-    "Assets/Spark - Job, Stage and Task-1785260373362.webp",
-    "Spark - Transformations.md",
     "Spark - Shared Variables.md",
     "Spark - Reading & Writing Files.md",
     "Spark - RDD.md",
-    "Database Partitioning.md",
     "Spark - Persisting Data.md",
+    "Spark - Job, Stage and Task.md",
+    "Spark - Partition.md",
+    "Spark - Introduction.md",
+    "Spark - Fault tolerance.md",
+    "Spark - Transformations.md",
+    "Amazon S3.md",
+    "Topics to cover.md",
+    "Database Partitioning.md",
+    "Assets/Spark - Job, Stage and Task-1785260619945.webp",
+    "Assets/Spark - Job, Stage and Task-1785260373362.webp",
     "Spark - RDD Operations Reference.md",
     "Database Sharding.md",
     "Spark.md",
     "Wiki/Home.md",
     "Wiki",
-    "Topics to cover.md",
     "Assets/Spark - RDD Operations Reference-1785093751138.webp",
     "Assets/Spark - RDD Operations Reference-1785092337224.webp",
     "Assets/Spark - RDD Operations Reference-1785056140668.webp",
@@ -327,7 +329,6 @@
     "Python - Iterable and Iterators.md",
     "Window Functions.md",
     "Python - List.md",
-    "Python - Constructors.md",
     "Documents/Database Internals.pdf",
     "media-lib/index.base",
     "definitions",

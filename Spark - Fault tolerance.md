@@ -6,7 +6,7 @@ tags:
 ---
 # RDD and Lineage
 [^1][^2]
-RDDs provide fault tolerance by maintaining the lineage of transformations applied to the data. In case of a failure, Spark can recompute the lost partition of an RDD by following the lineage, ensuring data recovery without the need to reprocess the entire dataset.
+RDDs provide fault tolerance by maintaining the lineage of transformations applied to the data. In case of a failure, Spark can recompute the lost [partition](Spark%20-%20Partition.md) of an RDD by following the lineage, ensuring data recovery without the need to reprocess the entire dataset.
 
 >[!faq]- What is lineage?
 >It is a DAG that represents a sequence of transformations applied to a RDD from its source to its current state.

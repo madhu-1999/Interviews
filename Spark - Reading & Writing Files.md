@@ -53,8 +53,8 @@ rdd.saveAsPickleFile("pickle_data")
 # DataFrame
 ## Reading Files
 [^2]
-Even though reading from a file is technically a [transformation](Spark%20-%20Transformations.md), it is not evaluated lazily, and a job is triggered right away. (Remember __one action = one job__!)
-	This is because, the read operation `spark.read` involves more complex logic such as inferring the schema, checking the file, and setting up data partitions.
+Even though reading from a file is technically a [transformation](Spark%20-%20Transformations.md), it is not evaluated lazily, and a [job](Spark%20-%20Job,%20Stage%20and%20Task.md) is triggered right away. (Remember __one action = one job__!)
+	This is because, the read operation `spark.read` involves more complex logic such as inferring the schema, checking the file, and setting up data [partitions](Spark%20-%20Partition.md).
 
 ## Writing Files
 

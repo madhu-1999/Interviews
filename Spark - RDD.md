@@ -11,7 +11,8 @@ tags:
 **Dataset:** Represents records of the data you work with.
 
 An `RDD` is an __in-memory__ data structure that is distributed across many servers within a Spark cluster.
-It logically partitions data and the worker nodes store their segments of the partitioned RDD _in-memory_ for fast computation.
+It logically [partitions](Spark%20-%20Partition.md) data and the worker nodes store their segments of the partitioned RDD _in-memory_ for fast computation.
+<center><b>Simplified Representation of a RDD</b></center> 
 ![Pasted image 20260430095939](Assets/Pasted%20image%2020260430095939.webp)
 >[!info]- Rule of thumb: target 128MB–256MB per partition.
 >$$\frac{data\_size\_gb * 1000 }{target\_mb\_per\_partition} = \text{ideal partition count}$$
@@ -129,6 +130,7 @@ print(empty_rdd.isEmpty())
 
 # Anatomy of an RDD
 [^6][^1]
+A RDD stores the given metadata about the data: 
 
 | **Operation**              | **Meaning**                                                                            |
 | -------------------------- | -------------------------------------------------------------------------------------- |
@@ -138,7 +140,7 @@ print(empty_rdd.isEmpty())
 | `iterator(p, parentIters)` | A method to compute each partition/split, given iterators of  parent dependencies      |
 | `partitioner()`            | Return metadata specifying whether the RDD is hash/range partitioned. (Optional)       |
 
-For example, an RDD representing an HDFS file has a partition for each block of the file and knows which machines each block is on. Meanwhile, the result of a map on this RDD has the same partitions, but applies the map function to the parent’s data when computing its elements.
+It ___DOES NOT___ contain the actual data, all the time. It stores the actual data, typically when an action is called.
 # When to use RDDs
 + __Data is unstructured__: Unstructured data sources such as media or text streams benefit from the performance advantages RDDs offer.
 + **Schema is unimportant**: Since RDDs do not impose schemas, use them when accessing specific data by column or attribute is not relevant.

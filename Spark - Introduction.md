@@ -4,10 +4,6 @@ tags:
   - "#spark"
   - "#distributed"
 ---
-# Prerequisite
-[Database Partitioning](<Database Partitioning.md>)
-[Database Sharding](Database%20Sharding.md)
-[Hadoop](Hadoop) 
 # What is Apache Spark?
 It is an __open source, distributed computing framework__ for big data processing and analytics. [^3]
 # Why use Apache Spark?
@@ -110,7 +106,7 @@ Spark supports various cluster managers like Apache Mesos, Hadoop YARN, and stan
 They are worker processes (JVM) responsible for __executing tasks__ in Spark applications. 
 They are launched on worker nodes (physical machine) and communicate with the driver program and cluster manager. Executors run tasks concurrently (__one task = one core__) and store data in memory or disk for caching and intermediate storage.
 ## Task
-A task is the smallest unit of work in Spark, representing a unit of computation that can be performed on a single partition of data i.e. __one task = one partition__. The driver program divides the Spark job into tasks and assigns them to the executor nodes for execution.
+A task is the smallest unit of work in Spark, representing a unit of computation that can be performed on a single partition of data i.e. __one task = one [partition](Spark%20-%20Partition.md)__. The driver program divides the Spark job into tasks and assigns them to the executor nodes for execution.
 # [Transformations](Spark%20-%20Transformations.md#Transformations) 
 [^12]
 They are operations that transform your existing RDD or DataFrame into a new RDD or DataFrame.
@@ -186,164 +182,6 @@ It is only available for strongly typed languages like Java and Scala.
 | **Optimization**                                                                          | No built-in optimization engine. Each RDD is optimized individually.                                   | Query optimization through the Catalyst optimizer.     | Query optimization through the Catalyst optimizer, like DataFrames. |
 | **Programming Language Support**                                                          | Java Scala Python R                                                                                    | Java Scala Python R                                    | Java Scala                                                          |
 | **Schema Projection**                                                                     | Schemas need to be defined manually.                                                                   | Auto-discovery of file schemas.                        | Auto-discovery of file schemas.                                     |
-
-## Explicit Repartitioning
-### `coalesce`
-It is a [narrow transform](<Spark - Transformations#Narrow Transformations>)  designed to __reduce the partitions__ in your DataFrame __without triggering a full [shuffle](#Data%20shuffling).__
-__Key characteristics of coalesce__:
-- **One-way operation**: Coalesce can only reduce the number of partitions, not increase them (unless you set shuffle=true, which essentially turns it into repartition).
-- [p] **Minimal data movement**: It __attempts__ to combine partitions that are already on the same executor, minimizing network traffic.
-	- [*] Data stays on the same nodes as much as possible. It only moves data if a node needs to "hand over" its partition to a neighbor to meet the exact global count of $n$
-+ [c] **Potentially uneven distribution**: The resulting partitions may have skewed sizes because data is not reshuffled. 
-In the image below, we can see that `coalesce(4)`  reduces no of partitions from 8 to 4 (globally), and it does so by merging partitions on the same node.
-```mermaid
-graph LR
-    subgraph Input ["Initial State"]
-        subgraph W1_In ["Worker 1"]
-            P1[P1]
-            P2[P2]
-            P3[P3]
-            P4[P4]
-            P1 ~~~ P3
-            P2 ~~~ P4
-        end
-        subgraph W2_In ["Worker 2"]
-            P5[P5]
-            P6[P6]
-            P7[P7]
-            P8[P8]
-            P5 ~~~ P7
-            P6 ~~~ P8
-        end
-    end
-
-    subgraph Coalesce ["coalesce(4)"]
-        direction TB
-        subgraph W1_Out1 ["Worker 1"]
-            P1_out[P1]
-            P2_out[P2]
-        end
-        subgraph W1_Out2 ["Worker 2"]
-            P3_out[P3]
-            P4_out[P4]
-        end
-    end
-
-    %% Connections
-    W1_In --> W1_Out1
-    W2_In --> W1_Out2
-    
-    style P1 fill:#FAD7D7
-    style P2 fill:#FAD7D7
-    style P1_out fill:#FAD7D7
-    
-    style P3 fill:#DAE8FC
-    style P4 fill:#DAE8FC
-    style P2_out fill:#DAE8FC
-    
-    style P5 fill:#F9E6D5
-    style P6 fill:#F9E6D5
-    style P3_out fill:#F9E6D5
-    
-    style P7 fill:#E1D5E7
-    style P8 fill:#E1D5E7
-    style P4_out fill:#E1D5E7
-```
-When all nodes for merge are not on the same node, it will choose a node to host the new partition and transfer the required partition for the merge to the new partition from its original node (Here `P4` handed over to `Worker 2`).
->[!warning] Coalesce will always do the hand over to the node that is physically closest to it, irrespective of data skew.
-
-![Apache Spark-1778557874206](Assets/Apache%20Spark-1778557874206.webp)
->[!faq ]- Why is shuffle a narrow transform even though sometimes shuffle happens?
->A transformation is _narrow_ if each output partition depends on a **specific, known set of input partitions**.
->> In `coalesce(3)` above, output partition `P1` knows it needs `P1, P2, P3` , output partition `P2` knows, it needs `P5, P6, P7` etc..
->
->Actually, `coalesce` does not perform a shuffle, since no shuffle files are written and no hashing is performed. It simply moves partitions from the RAM of one worker node to another.
-
-**Use Cases**
-- Reducing output file count before writing to [S3](Amazon%20S3.md), HDFS, or Delta Lake.
-```python
-df = spark.read.parquet("s3://bucket/transactions/")  
-# Suppose df has 200 partitions after reads + filters
-print(df.rdd.getNumPartitions())  # 200
-df_coalesced = df.coalesce(10)   # merge down to 10  
-print(df_coalesced.rdd.getNumPartitions())  # 10
-# Now writes only 10 files instead of 200  
-df_coalesced.write.parquet("s3://bucket/output/")
-```
-- Merging the tiny partitions of a filtered DataFrame that shrank drastically after a `.filter()`.
-- Preparing a small result set for a single-file CSV export.
->[!failure]- Disadvantages
->+ __Severe Data Skew__: Because it merges existing partitions without a full reshuffle, any original skew remains and can even be magnified. 
->>[!example]- Example
->> Output partition = Sum of all partitions sizes being merged. So if we merge partitions of unequal sizes or unequal no of equal partitions, data will be skewed. 
->> The data skew means that, one worker node may end up handling 90% of the data while others sit idle, leading to a massive bottleneck.
->+ __Drastic Reduction in Parallelism__: - When you add a `coalesce(n)` operation, all operations within that same stage will run with at most $n$ tasks.
->>[!example]- Example
->>Let’s say you had a parallelism of 1000, but you only wanted to write 10 files at the end. You might think you could do:
->>```python
->>load().map(...).filter(...).coalesce(10).save(...)
->>```
->>but Spark's optimizer __Catalyst__ will perform predicate pushdown (optimization) so this gets executed.
->>```python
->>load().coalesce(10).map(...).filter(...).save(...)
->>```
->>which essentially means the entire processing will happen on 10 worker nodes instead of say, the default 200 partitions that we assumed would be used initially.
->+ __OOM Errors__: Aggressively reducing partitions with `coalesce` forces a large amount of data into a small number of executors.
->>[!example]- Example
->>If you use `coalesce(1)` on a 1TB dataset, Spark will attempt to fit all that data onto a single machine's RAM/disk. This frequently causes `Java heap space` or `GC overhead limit exceeded` errors
->+ __Only reduces partitions__: You cannot use `coalesce` to increase the number of partitions unless you explicitly set `shuffle=true`, which effectively makes it identical to `repartition`
->+ **Slow Sequential Writes**: When writing to disk, fewer partitions mean fewer concurrent write tasks.
->>[!example]- Example
->>A single large 10GB file can take significantly longer to write than twenty 500MB files because it's limited to one CPU core's write speed.
-
->[!success]- Advantages
->- **Minimized Shuffle & Network Overhead:** `coalesce` merges existing partitions together. It prioritizes merging partitions on the same executor to minimize network I/O.
->- **Faster Execution:** Because it avoids writing intermediate _shuffle files_ to disk and reading them back, it is significantly faster than `repartition` for downscaling.
->- **Reduced Resource Usage:** It consumes less CPU and memory because it doesn't perform the complex hashing or sorting required for a standard shuffle.
->- **Optimized Output Files:** It is the standard tool for reducing the number of small files written to a data lake or database.
->- **Maintains Sort Order:** In some scenarios, because it merges adjacent partitions without a full reshuffle, it is better at preserving any existing local sort order than a full `repartition`
-### `repartition`
-It's a [wide transformation](<Spark - Transformations#Wide Transformations>) because each output partition may depend on data from all input partitions.[^1]
-__Key characteristics of repartition__:
-- **Bidirectional operation**: Can both increase and decrease the number of partitions.
-- [c] **Full data shuffle**: Triggers a complete redistribution of data across the cluster.
-- [p] **Even distribution**: Produces roughly equal-sized partitions, which is optimal for parallel processing.
-```python
-# Form 1: Repartition by count (round-robin, even distribution)
-# If no count provided: Default is `spark.sql.shuffle.partitions`
-# Good for: balancing skewed data before heavy computation 
-df_balanced = df.repartition(50)  # Creates 50 partitions
-
-# Form 2: Repartition by column (hash-based, groups same keys together)
-# Good for: optimising subsequent joins or groupBys on "country"    
-df_by_country = df.repartition(50, col("country")) 
-
-# Form 3: Repartition by range (Samples data into `count` ranges)
-# Good for: continuous values (it samples the ranges so, output is inconsistent across multiple trials)
-df_by_range = df.repartition(50, col("age"))
-```
-
->[!important] Partitions are primarily used to distribute data efficiently across worker nodes rather than for performing aggregations
->Although all records with the same partition key end up in the same partition, but __one partition $\neq$ one partition key__. Multiple partition key records can end up on the same partition.
->This is because internally, `repartition(numPartitions, column)` calls `HashPartitioner` to distribute the data into partitions, which uses the formula `hash(partitionKey) % numPartitions`.
->>[!example]- Example
->>If you have 1,000 unique countries but you repartition to 200, then mathematically, at least some partitions _must_ contain at least 5 different countries
-
-<center>Repartition by column (hash-based distribution)</center>
-![Apache Spark-1778618364734](Assets/Apache%20Spark-1778618364734.webp)
-<center>Repartition by numPartitions (round-robin)</center> ![Apache Spark-1778619479776](Assets/Apache%20Spark-1778619479776.webp)
-**Use Cases**
-+ __Addressing Data Skew__: If your data is unevenly distributed across existing partitions, `repartition()` can help rebalance it.
-+ __Increasing Parallelism__: If you've filtered a huge dataset down to a small fraction, you might only have a few active partitions left. Repartitioning to a higher number allows Spark to utilize more of your cluster’s CPU cores for the next set of transformations.
-+ **Optimizing Join Performance:** If you frequently join two large DataFrames on the same key, repartitioning both by that key _once_ and then caching them can prevent Spark from having to re-shuffle them every single time they are joined in subsequent steps.
-+ **Randomizing Data for Machine Learning:** Before training a model, you often want to ensure your data is thoroughly shuffled and not ordered by time or ID. A `repartition` acts as a global shuffle that breaks any existing row order.
-+ **Preventing Out-of-Memory (OOM) Errors:** If a specific transformation (like a complex aggregation) is failing because a single partition is too large for an executor's memory, repartitioning into a larger number of smaller chunks can keep your job within its memory limits.
-
->[!failure]- Disadvantages
->+ __High Network I/O__:Since `repartition` redistributes data across the entire cluster, it triggers a **Full Shuffle**.
->+ __Disk Spill__: When Spark shuffles data, It writes the data to local disks on the worker nodes first (**Shuffle Write**) and then the receiving node reads it back (**Shuffle Read**).If your worker nodes don't have enough RAM to hold the shuffle blocks, Spark will "spill" that data to disk.
->+ __Increased CPU Overhead__:Data must be serialized (converted to bytes) to be sent over the wire and then deserialized at the destination. Spark may also calculate a hash for every record to decide which partition it belongs.
->+ __Broken Pipeline__: Spark usually processes data in a _stream_. However, a shuffle acts as a **Barrier**. All _Map_ tasks must finish writing their shuffle files before any _Reduce_ tasks can start reading them.
 # Job, Stage and Task
 > See  [Job, Stage and Task](Spark%20-%20Job,%20Stage%20and%20Task.md).
 # Data shuffling

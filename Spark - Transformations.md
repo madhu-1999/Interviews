@@ -10,7 +10,7 @@ They are operations that transform your existing RDD or DataFrame into a new RDD
 + [I] **Coarse-grained**: All transformations apply to the entire RDD/DataFrame/Dataset, and not on an individual record in it. 
 + [*] `map`, `filter`, `groupBy`, `flatMap`, `distinct`, `union`, `join` etc...
 ## Narrow transformations
-They are operations, where each partition of the output DataFrame depends on at most one partition of the parent DataFrame. In simpler terms, the data required to compute an output record comes from only one input partition.
+They are operations, where each partition of the output DataFrame depends on at most one [partition](Spark%20-%20Partition.md) of the parent DataFrame. In simpler terms, the data required to compute an output record comes from only one input partition.
 **Key characteristics of narrow transformations:**
 - [i] They don't require data from other partitions   
 - [p] They can be executed independently on each partition    
@@ -23,7 +23,7 @@ Wide transformations, on the other hand, are operations where each partition of 
 **Key characteristics of wide transformations:**
 - [i]   They require data from multiple partitions
 - [c]  They involve [data shuffling](#Data%20shuffling) across the cluster
-- [i] They create [stage boundaries](#Jobs,%20Stages%20and%20Tasks) in the execution plan
+- [i] They create [stage boundaries](Spark%20-%20Job,%20Stage%20and%20Task.md#Stage) in the execution plan
 - [*] Examples include: `groupBy()`, `agg()`, `join()`, `orderBy()`, `sort()`, `distinct()`, `pivot()`, and operations that use `window` functions.
 ![Apache Spark-1778543527311](Assets/Apache%20Spark-1778543527311.webp)
 The image shows how the state of each partition changes before the transformation is applied.
